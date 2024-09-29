@@ -269,6 +269,18 @@ ul, ol {
 	-webkit-box-shadow: 0px 12px 15px rgba(36, 11, 12, 0.05);
 	box-shadow: 0px 12px 15px rgba(36, 11, 12, 0.05);
 }
+
+/* .logo-img {
+    width: 100%;
+    transition: filter 0.3s ease;
+}
+.menu-item.scrolled .logo-img {
+    filter: brightness(1) invert(0);
+}
+.menu-item .logo-img {
+    filter: brightness(0) invert(1);
+} */
+
 .top-nav {
 	border-bottom: 1px solid #e5e5e5;
 }
@@ -382,9 +394,20 @@ ul, ol {
 .top-nav .tn-right .language-option .flag-dropdown ul li a:hover {
 	color: #dfa974;
 }
+/* Awal menu dengan background transparan */
 .menu-item {
-	position: relative;
-	z-index: 9;
+    position: fixed;
+    width: 100%;
+    z-index: 998;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    color: #ffffff;
+}
+
+/* Ketika halaman digulir, background berubah menjadi putih */
+.menu-item.scrolled {
+    background-color: #ffffff; /* Warna latar belakang saat digulir */
+    box-shadow: 0px 12px 15px rgba(36, 11, 12, 0.05); /* Tambahkan bayangan jika diperlukan */
 }
 .menu-item .logo {
 	padding: 25px 0;
@@ -417,7 +440,7 @@ ul, ol {
 }
 .menu-item .nav-menu .mainmenu li a {
 	font-size: 16px;
-	color: #19191a;
+	color: #ffffff;
 	margin-right: 42px;
 	font-weight: 500;
 	display: inline-block;
@@ -426,6 +449,9 @@ ul, ol {
 	-webkit-transition: all 0.3s;
 	-o-transition: all 0.3s;
 	transition: all 0.3s;
+}
+.menu-item.scrolled .nav-menu .mainmenu li a {
+	color: #19191a;
 }
 .menu-item .nav-menu .mainmenu li a:after {
 	position: absolute;
@@ -482,8 +508,11 @@ ul, ol {
 }
 .menu-item .nav-menu .nav-right i {
 	font-size: 16px;
-	color: #19191a;
+	color: #ffffff;
 	cursor: pointer;
+}
+.menu-item.scrolled .nav-menu .nav-right i {
+	color: #19191a;
 }
 .canvas-open {
 	display: none;
