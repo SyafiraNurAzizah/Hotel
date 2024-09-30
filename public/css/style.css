@@ -511,9 +511,15 @@ ul, ol {
 	font-size: 16px;
 	color: #ffffff;
 	cursor: pointer;
+	transition: 0.5s ease;
+
 }
 .menu-item.scrolled .nav-menu .nav-right i {
 	color: #19191a;
+}
+.menu-item .nav-menu .nav-right a:hover i {
+	transform: scale(1.5);
+	transition: 0.5s ease;
 }
 .canvas-open {
 	display: none;
