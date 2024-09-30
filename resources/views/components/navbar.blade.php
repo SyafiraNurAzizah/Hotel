@@ -47,22 +47,26 @@
                         <nav class="mainmenu">
                             <ul>
                                 <li class="active"><a href="./index.html">Beranda</a></li>
-                                <li><a href="./rooms.html">Rooms</a></li>
-                                <li><a href="./about-us.html">About Us</a></li>
-                                <li><a href="./pages.html">Pages</a>
-                                    <ul class="dropdown">
+                                <li><a href="./rooms.html">Hotel</a></li>
+                                <li><a href="./about-us.html">Meetings</a></li>
+                                <li><a href="./pages.html">Weedings</a>
+                                    {{-- <ul class="dropdown">
                                         <li><a href="./room-details.html">Room Details</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
                                         <li><a href="#">Family Room</a></li>
                                         <li><a href="#">Premium Room</a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
-                                <li><a href="./blog.html">News</a></li>
+                            
                                 <li><a href="./contact.html">Contact</a></li>
                             </ul>
                         </nav>
                         <div class="nav-right search-switch">
                             <i class="icon_search"></i>
+                        </div>
+                        <div class="nav-right login-button">
+                            {{-- <a href="{{ route('login') }}"><i class="fa fa-user"></i></a> --}}
+                            <a href="#" id="openPopup"><i class="fa fa-user"></i></a>
                         </div>
                     </div>
                 </div>

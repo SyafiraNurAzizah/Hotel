@@ -17,6 +17,26 @@
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+                    
+                    <div class="overlay" id="overlay">
+                        <div class="login-form">
+                            <span class="close" id="closePopup">&times;</span>
+                            <h3>Login to Your Account</h3>
+                            <form action="{{ route('login') }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password:</label>
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </form>
+                        </div>
+                    </div>
+
                     {{-- <div class="booking-form">
                         <h3>Booking Your Hotel</h3>
                         <form action="#">
@@ -405,4 +425,28 @@
 
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+    // Mendapatkan elemen
+    const overlay = document.getElementById('overlay');
+    const openPopup = document.getElementById('openPopup');
+    const closePopup = document.getElementById('closePopup');
+
+    // Menampilkan pop-up
+    openPopup.addEventListener('click', function() {
+        overlay.style.display = 'block';
+    });
+
+    // Menutup pop-up
+    closePopup.addEventListener('click', function() {
+        overlay.style.display = 'none';
+    });
+
+    // Menutup pop-up jika pengguna mengklik di luar form
+    overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+            overlay.style.display = 'none';
+        }
+    });
+</script>
 @endpush
