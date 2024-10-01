@@ -1,8 +1,8 @@
 <div class="overlay" id="registerOverlay">
     <div class="register-form">
-        <span class="close" id="closeRegisterPopup">&times;</span>
+        <span class="close" id="closeRegisterPopup"></span>
         <h3>Register Your Account</h3>
-        <form action="{{ route('register') }}" method="POST">
+        <form action="{{ route('register.store') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="firstname">First Name:</label>

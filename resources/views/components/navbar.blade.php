@@ -65,8 +65,18 @@
                             <i class="icon_search"></i>
                         </div>
                         <div class="nav-right login-button">
-                            {{-- <a href="{{ route('login') }}"><i class="fa fa-user"></i></a> --}}
-                            <a href="#" id="openLoginPopup"><i class="fa fa-user"></i></a>
+                            @if (Auth::check())
+                                <!-- Show Logout Option in Navbar -->
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fa fa-sign-out"></i>
+                                </a>
+                            @else
+                                <!-- Show Login Button -->
+                                <a href="#" id="openLoginPopup"><i class="fa fa-user"></i></a>
+                            @endif
                         </div>
                     </div>
                 </div>

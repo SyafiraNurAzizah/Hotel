@@ -18,9 +18,9 @@
                 </div>
                 <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
 
-                    @include('auth.login')
-                    @include('auth.register')
-                    
+                    {{-- @include('auth.login')
+                    @include('auth.register') --}}
+
                     {{-- <div class="booking-form">
                         <h3>Booking Your Hotel</h3>
                         <form action="#">

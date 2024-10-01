@@ -557,51 +557,24 @@ ul, ol {
     z-index: 1000; /* Pastikan overlay berada di atas konten lain */
 }
 
-.login-form {
+.login-form, .register-form {
     background: #ffffff;
 	padding: 44px 40px 50px 40px;
 	border-radius: 4px;
+	text-align: center;
 }
-.login-form h3 {
+.login-form h3, .register-form h3 {
 	color: #19191a;
 	margin-bottom: 36px;
+	letter-spacing: 10px;
 }
-.login-form form label {
+.login-form form label, .register-form form label {
 	font-size: 14px;
 	color: #707079;
 	display: block;
 	margin-bottom: 10px;
 }
-.login-form form button {
-	display: block;
-	font-size: 14px;
-	text-transform: uppercase;
-	border: 1px solid #dfa974;
-	border-radius: 2px;
-	color: #dfa974;
-	font-weight: 500;
-	background: transparent;
-	width: 100%;
-	height: 46px;
-	margin-top: 30px;
-}
-
-.register-form {
-    background: #ffffff;
-	padding: 44px 40px 50px 40px;
-	border-radius: 4px;
-}
-.register-form h3 {
-	color: #19191a;
-	margin-bottom: 36px;
-}
-.register-form form label {
-	font-size: 14px;
-	color: #707079;
-	display: block;
-	margin-bottom: 10px;
-}
-.register-form form button {
+.login-form form button, .register-form form button {
 	display: block;
 	font-size: 14px;
 	text-transform: uppercase;
