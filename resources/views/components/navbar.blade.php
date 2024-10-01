@@ -46,8 +46,8 @@
                     <div class="nav-menu">
                         <nav class="mainmenu">
                             <ul>
-                                <li class="active"><a href="./index.html">Beranda</a></li>
-                                <li><a href="./rooms.html">Hotel</a></li>
+                                <li class="active"><a href="{{ route('index') }}">Beranda</a></li>
+                                <li><a href="{{ route('hotel') }}">Hotel</a></li>
                                 <li><a href="./about-us.html">Meetings</a></li>
                                 <li><a href="./pages.html">Weedings</a>
                                     {{-- <ul class="dropdown">
@@ -66,7 +66,7 @@
                         </div>
                         <div class="nav-right login-button">
                             {{-- <a href="{{ route('login') }}"><i class="fa fa-user"></i></a> --}}
-                            <a href="#" id="openPopup"><i class="fa fa-user"></i></a>
+                            <a href="#" id="openLoginPopup"><i class="fa fa-user"></i></a>
                         </div>
                     </div>
                 </div>

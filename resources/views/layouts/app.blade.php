@@ -54,5 +54,51 @@
     <script src={{ asset('js/main.js')}}></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        const loginOverlay = document.getElementById('loginOverlay');
+        const registerOverlay = document.getElementById('registerOverlay'); // Tambahkan ini
+        const openLoginPopup = document.getElementById('openLoginPopup');
+        const closeLoginPopup = document.getElementById('closeLoginPopup');
+        const openRegisterPopup = document.getElementById('openRegisterPopup'); // Tambahkan ini
+        const closeRegisterPopup = document.getElementById('closeRegisterPopup'); // Tambahkan ini
+    
+        // Buka pop-up login ketika tombol login di klik
+        openLoginPopup.addEventListener('click', function() {
+            loginOverlay.style.display = 'flex';
+            registerOverlay.style.display = 'none'; // Sembunyikan registrasi
+        });
+    
+        // Tutup pop-up login ketika tombol close di klik
+        closeLoginPopup.addEventListener('click', function() {
+            loginOverlay.style.display = 'none';
+        });
+    
+        // Tutup pop-up login jika area di luar form di klik
+        loginOverlay.addEventListener('click', function(e) {
+            if (e.target === loginOverlay) {
+                loginOverlay.style.display = 'none';
+            }
+        });
+    
+        // Buka pop-up registrasi ketika tombol registrasi di klik
+        openRegisterPopup.addEventListener('click', function() {
+            registerOverlay.style.display = 'flex';
+            loginOverlay.style.display = 'none'; // Sembunyikan login
+        });
+    
+        // Tutup pop-up registrasi ketika tombol close di klik
+        closeRegisterPopup.addEventListener('click', function() {
+            registerOverlay.style.display = 'none';
+        });
+    
+        // Tutup pop-up registrasi jika area di luar form di klik
+        registerOverlay.addEventListener('click', function(e) {
+            if (e.target === registerOverlay) {
+                registerOverlay.style.display = 'none';
+            }
+        });
+    </script>
+      
 </body>
 </html>
