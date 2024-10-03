@@ -69,7 +69,8 @@
                         <img src="img/room/room-jkt.jpg" alt="" class="room-image">
                         <div class="ri-text">
                             <h3>Jakarta</h3>
-                            <a href="#" class="primary-btn">More Details</a>
+                            <a href="{{ route('detail1') }}" class="primary-btn">More Details</a>
+
                         </div>
                     </div>
                 </div>
