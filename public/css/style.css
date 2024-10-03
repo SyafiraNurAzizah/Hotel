@@ -32,6 +32,7 @@
 /* Slidebar */
 *::-webkit-scrollbar {
     width: 13px;
+	background-color: #222736;
 }
 *::-webkit-scrollbar-track {
     border-radius: 10px;
@@ -39,8 +40,11 @@
 }
 *::-webkit-scrollbar-thumb {
     background-color: #aaaab3;
+    /* background-color: #dfa974; */
+    /* background-color: rgba(25, 25, 26, 0.2); */
     border-radius: 10px;
-    border: 3px solid #fffcf4;
+    border: 3px solid #222736;
+    /* border: 3px solid #fffcf4; */
     margin: 4px;
 }
 /*----------------------------------------*/
@@ -411,6 +415,7 @@ ul, ol {
 .top-nav .tn-right .language-option .flag-dropdown ul li a:hover {
 	color: #dfa974;
 }
+
 /* Awal menu dengan background transparan */
 .menu-item {
     position: fixed;
@@ -420,7 +425,6 @@ ul, ol {
     transition: background-color 0.3s ease;
     color: #ffffff;
 }
-
 /* Ketika halaman digulir, background berubah menjadi putih */
 .menu-item.scrolled {
     background-color: #ffffff; /* Warna latar belakang saat digulir */
@@ -536,6 +540,22 @@ ul, ol {
 	transform: scale(1.5);
 	transition: 0.5s ease;
 }
+.menu-item.visible-on-white {
+    position: fixed;
+    width: 100%;
+    z-index: 998;
+    transition: background-color 0.3s ease;
+    color: #19191a;
+    background-color: #ffffff;
+    box-shadow: 0px 12px 15px rgba(36, 11, 12, 0.05);
+}
+.menu-item.visible-on-white .nav-menu .nav-right i {
+    color: #19191a;
+}
+.menu-item.visible-on-white .nav-menu .mainmenu li a {
+    color: #19191a;
+}
+
 .canvas-open {
 	display: none;
 }
@@ -551,22 +571,35 @@ ul, ol {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Latar belakang semi-transparan */
+    background-color: rgba(16, 20, 31, 0.616); /* Latar belakang semi-transparan */
     justify-content: center;
     align-items: center;
     z-index: 1000; /* Pastikan overlay berada di atas konten lain */
 }
 
-.login-form, .register-form {
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+.login-form {
     background: #ffffff;
 	padding: 44px 40px 50px 40px;
 	border-radius: 4px;
 	text-align: center;
+	width: 350px;
 }
-.login-form h3, .register-form h3 {
-	color: #19191a;
-	margin-bottom: 36px;
+.login-form h3 {
+	color: rgb(16, 20, 31);
+	margin-bottom: 50px;
 	letter-spacing: 10px;
+}
+.login-form img {
+	margin-bottom: 50px;
 }
 .login-form form label, .register-form form label {
 	font-size: 14px;
@@ -574,18 +607,105 @@ ul, ol {
 	display: block;
 	margin-bottom: 10px;
 }
-.login-form form button, .register-form form button {
-	display: block;
-	font-size: 14px;
-	text-transform: uppercase;
-	border: 1px solid #dfa974;
-	border-radius: 2px;
+.login-form form input {
+	border: none;
+    border-bottom: 1px solid #ced4da;
+    outline: none;
+    box-shadow: none;
+    padding: 8px 0;
+    border-radius: 0;
+	margin-bottom: 30px;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.login-form form input::placeholder {
+	font-size: 15px;
+	color: #707079;
+	font-weight: 400;
+	text-align: center;
+}
+.login-form form input:focus {
+	border: none;
+    border-bottom: 1px solid #dfa974;
+    outline: none;
+    box-shadow: none;
+    padding: 8px 0;
+    border-radius: 0;
+}
+.login-form form button:disabled {
+    position: relative;
+    display: block; 
+    font-size: 14px;
+    border: none;
+    border-radius: 25px;
+    color: #ffffff;
+    font-weight: 500;
+    background-color: #dfa974; 
+    width: 100%;
+    max-width: 100px;
+    height: 40px;
+    margin: 30px auto;
+    cursor: not-allowed;
+    transition: background 0.3s, color 0.3s;
+	font-size: 15px;
+}
+.login-form form button {
+    position: relative;
+    display: block; 
+    font-size: 14px;
+    border: none;
+    border-radius: 25px;
+    color: #ffffff;
+    font-weight: 500;
+    background-color: rgba(16, 20, 31, 0.89);
+    width: 100%;
+    max-width: 100px;
+    height: 40px;
+    margin: 30px auto;
+    cursor: not-allowed;
+    transition: background 0.3s, color 0.3s;
+}
+.login-form form button.enabled {
+    background-color: rgba(16, 20, 31, 0.89);
+    cursor: pointer;
+}
+.login-form form button.enabled:hover,
+.register-form form button:hover {
+    background: #dfa974;
+    color: #ffffff;
+}
+.login-form p {
+    font-size: 15px;
+    color: #707079;
+    display: flex;
+    justify-content: center; /* Agar berada di tengah secara horizontal */
+    align-items: center; /* Agar vertikal sejajar */
+}
+.login-form p a {
+	/* position: relative; */
+	display: inline;
+	font-size: 15px;
+	font-weight: bold;
 	color: #dfa974;
-	font-weight: 500;
-	background: transparent;
-	width: 100%;
-	height: 46px;
-	margin-top: 30px;
+	display: block;
+	padding-left: 5px;
+	/* bottom: 15px; */
+}
+
+.register-form {
+    background: #ffffff;
+	padding: 44px 40px 50px 40px;
+	border-radius: 4px;
+	text-align: center;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group .input-group-text {
+    background-color: transparent; /* Membuat latar belakang transparan */
+    border: none; /* Menghilangkan border */
+    cursor: pointer; /* Menampilkan kursor pointer saat hover */
 }
 
 .close {

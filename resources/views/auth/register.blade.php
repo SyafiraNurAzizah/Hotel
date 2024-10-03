@@ -2,27 +2,32 @@
     <div class="register-form">
         <span class="close" id="closeRegisterPopup"></span>
         <h3>Register Your Account</h3>
-        <form action="{{ route('register.store') }}" method="POST">
+        <form method="POST" action="{{ route('register') }}">
             @csrf
+            
             <div class="form-group">
                 <label for="firstname">First Name:</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" required>
+                <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname">
             </div>
             <div class="form-group">
                 <label for="lastname">Last Name:</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" required>
+                <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname">
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email">
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <input id="password" type="password" class="form-control" name="password" value="{{ old('password') }}" required autocomplete="new-password">
+            </div>
+            <div class="form-group">
+                <label for="password-confirm">Password:</label>
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
             </div>
             <div class="form-group">
                 <label for="no_telp">Phone Number:</label>
-                <input type="text" class="form-control" id="no_telp" name="no_telp" required>
+                <input id="no_telp" type="text" class="form-control" name="no_telp" value="{{ old('no_telp') }}" required autocomplete="no_telp">
             </div>            
             <button type="submit" class="btn btn-primary">Register</button>
         </form>

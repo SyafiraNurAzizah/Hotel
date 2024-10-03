@@ -46,31 +46,25 @@
                     <div class="nav-menu">
                         <nav class="mainmenu">
                             <ul>
-                                <li class="active"><a href="{{ route('index') }}">Beranda</a></li>
-                                <li><a href="{{ route('hotel') }}">Hotel</a></li>
-                                <li><a href="./about-us.html">Meetings</a></li>
-                                <li><a href="./pages.html">Weedings</a>
-                                    {{-- <ul class="dropdown">
-                                        <li><a href="./room-details.html">Room Details</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="#">Family Room</a></li>
-                                        <li><a href="#">Premium Room</a></li>
-                                    </ul> --}}
-                                </li>
-                            
-                                <li><a href="./contact.html">Contact</a></li>
+                                <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}">Beranda</a></li>
+                                <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ route('hotel') }}">Hotel</a></li>
+                                <li class="{{ Request::is('about-us') ? 'active' : '' }}"><a href="./about-us.html">Meetings</a></li>
+                                <li class="{{ Request::is('pages') ? 'active' : '' }}"><a href="./pages.html">Weedings</a></li>
+                                <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="./contact.html">Contact</a></li>
                             </ul>
-                        </nav>
+                        </nav>                        
                         <div class="nav-right search-switch">
                             <i class="icon_search"></i>
                         </div>
                         <div class="nav-right login-button">
                             @if (Auth::check())
                                 <!-- Show Logout Option in Navbar -->
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
                                     @csrf
                                 </form>
-                                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <a href="#"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="fa fa-sign-out"></i>
                                 </a>
                             @else
@@ -86,18 +80,48 @@
 </header>
 
 @push('scripts')
-<script>
-    // Saat halaman digulir
-    window.addEventListener('scroll', function() {
-        const menu = document.querySelector('.menu-item');
-        
-        // Jika halaman digulir lebih dari 50px, tambahkan kelas 'scrolled'
-        if (window.scrollY > 50) {
-            menu.classList.add('scrolled');
-        } else {
-            menu.classList.remove('scrolled');
-        }
-    });
-</script>
+    <script>
+        // Saat halaman digulir
+        window.addEventListener('scroll', function() {
+            const menu = document.querySelector('.menu-item');
+            const currentPage = window.location.pathname;
+            const bgColor = window.getComputedStyle(document.body).backgroundColor;
 
+            // Jika halaman digulir lebih dari 50px, tambahkan kelas 'scrolled'
+            if (window.scrollY > 50) {
+                menu.classList.add('scrolled');
+            } else {
+                menu.classList.remove('scrolled');
+            }
+
+            // Jika latar belakang adalah putih dan bukan halaman index, tambahkan kelas 'visible-on-white'
+            if (bgColor === 'rgb(255, 255, 255)' || bgColor === '#ffffff') {
+                if (currentPage !== '/index' && currentPage !== '/') {
+                    menu.classList.add('visible-on-white');
+                } else {
+                    menu.classList.remove('visible-on-white');
+                }
+            } else {
+                menu.classList.remove('visible-on-white');
+            }
+        });
+
+        // Tambahkan kode untuk menambahkan kelas 'visible-on-white' saat halaman pertama kali dibuka
+        document.addEventListener('DOMContentLoaded', function() {
+            const menu = document.querySelector('.menu-item');
+            const currentPage = window.location.pathname;
+            const bgColor = window.getComputedStyle(document.body).backgroundColor;
+
+            // Jika latar belakang adalah putih dan bukan halaman index, tambahkan kelas 'visible-on-white'
+            if (bgColor === 'rgb(255, 255, 255)' || bgColor === '#ffffff') {
+                if (currentPage !== '/index' && currentPage !== '/') {
+                    menu.classList.add('visible-on-white');
+                } else {
+                    menu.classList.remove('visible-on-white');
+                }
+            } else {
+                menu.classList.remove('visible-on-white');
+            }
+        });
+    </script>
 @endpush

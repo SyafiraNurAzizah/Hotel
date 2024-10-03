@@ -6,32 +6,23 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; // Tambahkan ini
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | Kontroler ini menangani pendaftaran pengguna baru serta validasi dan pembuatan pengguna.
-    | Secara default, kontroler ini menggunakan trait untuk menyediakan fungsionalitas ini tanpa memerlukan kode tambahan.
-    |
-    */
-
     use RegistersUsers;
 
     /**
-     * Alamat URL untuk redirect setelah pendaftaran berhasil.
+     * Where to redirect users after registration.
      *
      * @var string
      */
     protected $redirectTo = '/';
 
     /**
-     * Buat instance kontroler baru.
+     * Create a new controller instance.
      *
      * @return void
      */
@@ -41,7 +32,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Dapatkan validator untuk permintaan pendaftaran yang masuk.
+     * Get a validator for an incoming registration request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
@@ -58,38 +49,37 @@ class RegisterController extends Controller
     }
 
     /**
-     * Buat instance pengguna baru setelah pendaftaran yang valid.
+     * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\Models\User
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'no_telp' => $data['no_telp'],
-            'role' => 'user', // Atau sesuai dengan logika role yang Anda inginkan
+            'role' => 'user',
         ]);
+
+        // Login otomatis setelah pendaftaran
+        Auth::login($user); // Tambahkan baris ini
+
+        return $user;
     }
 
-    public function store(Request $request)
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
     {
-        // Validasi data yang dikirim
-        $data = $request->validate([
-            'firstname' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'no_telp' => 'required|string|max:15',
-        ]);
-
-        // Buat instance pengguna baru
-        $user = $this->create($data);
-
-        // Redirect setelah pendaftaran berhasil
-        return view('index', compact('user'))->with('success', 'Pendaftaran berhasil!');
+        return redirect()->intended($this->redirectTo); // Redirect ke halaman yang diinginkan setelah login
     }
 }

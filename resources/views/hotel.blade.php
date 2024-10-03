@@ -5,7 +5,7 @@
 @endpush --}}
 
 @section('content')
-<div class="app" style="background-color: #ffcc00; color: white;">
+<div class="app">
     {{-- @include('auth.login')
     @include('auth.register') --}}
 
