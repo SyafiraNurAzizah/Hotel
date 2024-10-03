@@ -31,8 +31,14 @@ class HomeController extends Controller
         return view('hotel');
     }
 
+<<<<<<< HEAD
     public function weedings()
     {
         return view('weedings');
+=======
+    public function meeting()
+    {
+        return view('meeting');
+>>>>>>> ac034b2e6dfb8e96939378a2454a6ad9c4c6bdf9
     }
 }

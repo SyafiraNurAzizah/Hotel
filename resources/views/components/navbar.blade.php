@@ -46,11 +46,27 @@
                     <div class="nav-menu">
                         <nav class="mainmenu">
                             <ul>
+<<<<<<< HEAD
                                 <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}">Beranda</a></li>
                                 <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ route('hotel') }}">Hotel</a></li>
                                 <li class="{{ Request::is('about-us') ? 'active' : '' }}"><a href="./about-us.html">Meetings</a></li>
                                 <li class="{{ Request::is('weedings') ? 'active' : '' }}"><a href="{{ route('wee') }}">Weedings</a></li>
                                 <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="./contact.html">Contact</a></li>
+=======
+                                <li class="active"><a href="{{ route('index') }}">Beranda</a></li>
+                                <li><a href="{{ route('hotel') }}">Hotel</a></li>
+                                <li><a href= "{{ route('meeting')}}">Meetings</a></li>
+                                <li><a href="./pages.html">Weedings</a>
+                                    {{-- <ul class="dropdown">
+                                        <li><a href="./room-details.html">Room Details</a></li>
+                                        <li><a href="./blog-details.html">Blog Details</a></li>
+                                        <li><a href="#">Family Room</a></li>
+                                        <li><a href="#">Premium Room</a></li>
+                                    </ul> --}}
+                                </li>
+                            
+                                <li><a href="./contact.html">Contact</a></li>
+>>>>>>> ac034b2e6dfb8e96939378a2454a6ad9c4c6bdf9
                             </ul>
                         </nav>                        
                         <div class="nav-right search-switch">
