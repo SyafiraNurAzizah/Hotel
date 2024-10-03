@@ -49,7 +49,7 @@
                                 <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}">Beranda</a></li>
                                 <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ route('hotel') }}">Hotel</a></li>
                                 <li class="{{ Request::is('about-us') ? 'active' : '' }}"><a href="./about-us.html">Meetings</a></li>
-                                <li class="{{ Request::is('pages') ? 'active' : '' }}"><a href="./pages.html">Weedings</a></li>
+                                <li class="{{ Request::is('weddings') ? 'active' : '' }}"><a href="{{ route('weddings') }}">Weddings</a></li>
                                 <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="./contact.html">Contact</a></li>
                             </ul>
                         </nav>                        
