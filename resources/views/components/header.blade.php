@@ -1,5 +1,5 @@
 <header class="header-section">
-    {{-- <div class="top-nav">
+    <div class="top-nav">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -31,14 +31,14 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
     <div class="menu-item">
         <div class="container">
             <div class="row">
                 <div class="col-lg-2">
                     <div class="logo">
                         <a href="./index.html">
-                            <img src="img/logo.png" alt="Logo" class="logo-img">
+                            <img src="img/logo.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                     <div class="nav-menu">
                         <nav class="mainmenu">
                             <ul>
-                                <li class="active"><a href="./index.html">Beranda</a></li>
+                                <li class="active"><a href="./index.html">Home</a></li>
                                 <li><a href="./rooms.html">Rooms</a></li>
                                 <li><a href="./about-us.html">About Us</a></li>
                                 <li><a href="./pages.html">Pages</a>
@@ -55,13 +55,12 @@
                                         <li><a href="./blog-details.html">Blog Details</a></li>
                                         <li><a href="#">Family Room</a></li>
                                         <li><a href="#">Premium Room</a></li>
-                                    </ul> --}}
+                                    </ul>
                                 </li>
-                            
+                                <li><a href="./blog.html">News</a></li>
                                 <li><a href="./contact.html">Contact</a></li>
->>>>>>> ac034b2e6dfb8e96939378a2454a6ad9c4c6bdf9
                             </ul>
-                        </nav>                        
+                        </nav>
                         <div class="nav-right search-switch">
                             <i class="icon_search"></i>
                         </div>
@@ -71,50 +70,3 @@
         </div>
     </div>
 </header>
-
-@push('scripts')
-    <script>
-        // Saat halaman digulir
-        window.addEventListener('scroll', function() {
-            const menu = document.querySelector('.menu-item');
-            const currentPage = window.location.pathname;
-            const bgColor = window.getComputedStyle(document.body).backgroundColor;
-
-            // Jika halaman digulir lebih dari 50px, tambahkan kelas 'scrolled'
-            if (window.scrollY > 50) {
-                menu.classList.add('scrolled');
-            } else {
-                menu.classList.remove('scrolled');
-            }
-
-            // Jika latar belakang adalah putih dan bukan halaman index, tambahkan kelas 'visible-on-white'
-            if (bgColor === 'rgb(255, 255, 255)' || bgColor === '#ffffff') {
-                if (currentPage !== '/index' && currentPage !== '/') {
-                    menu.classList.add('visible-on-white');
-                } else {
-                    menu.classList.remove('visible-on-white');
-                }
-            } else {
-                menu.classList.remove('visible-on-white');
-            }
-        });
-
-        // Tambahkan kode untuk menambahkan kelas 'visible-on-white' saat halaman pertama kali dibuka
-        document.addEventListener('DOMContentLoaded', function() {
-            const menu = document.querySelector('.menu-item');
-            const currentPage = window.location.pathname;
-            const bgColor = window.getComputedStyle(document.body).backgroundColor;
-
-            // Jika latar belakang adalah putih dan bukan halaman index, tambahkan kelas 'visible-on-white'
-            if (bgColor === 'rgb(255, 255, 255)' || bgColor === '#ffffff') {
-                if (currentPage !== '/index' && currentPage !== '/') {
-                    menu.classList.add('visible-on-white');
-                } else {
-                    menu.classList.remove('visible-on-white');
-                }
-            } else {
-                menu.classList.remove('visible-on-white');
-            }
-        });
-    </script>
-@endpush

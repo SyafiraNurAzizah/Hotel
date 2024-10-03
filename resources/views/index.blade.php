@@ -17,6 +17,10 @@
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+
+                    {{-- @include('auth.login')
+                    @include('auth.register') --}}
+
                     {{-- <div class="booking-form">
                         <h3>Booking Your Hotel</h3>
                         <form action="#">
@@ -394,4 +398,13 @@
 
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.set-bg').each(function() {
+                var bg = $(this).data('setbg');
+                $(this).css('background-image', 'url(' + bg + ')');
+            });
+        });
+    </script>    
 @endpush
