@@ -108,9 +108,7 @@
                     <div class="service-item">
                         <i class="fa-solid fa-dumbbell fa-2x"></i>
                         <h4>GYM</h4>
-                        <p>Manjakan diri Anda dengan pengalaman kebugaran yang tiada duanya 
-                            di pusat kebugaran hotel mewah kami, yang dirancang untuk meningkatkan latihan anda
-                             ke tingkat yang lebih tinggi. Dengan peralatan canggih, area latihan yang luas,
+                        <p>Dengan peralatan canggih, area latihan yang luas,
                              dan pemandangan yang menakjubkan</p>
                     </div>
                 </div>
@@ -120,8 +118,7 @@
                         <h4>Restaurant</h4>
                         <p>Bersantaplah di tempat yang menakjubkan yang
                              dihiasi dengan dekorasi yang canggih dan 
-                             pencahayaan yang nyaman, menciptakan latar belakang yang 
-                             sempurna untuk hidangan yang tak terlupakan. </p>
+                             pencahayaan yang nyaman. </p>
                     </div>
                 </div>
             
@@ -130,7 +127,7 @@
                         <i class="fa-solid fa-rocket fa-2x"></i>
                         <h4>Kids Zone</h4>
                         <p>Ajak buah hati Anda dan temukan kegembiraan bermain di taman bermain kami. 
-                            Di sini, tawa dan kebahagiaan memenuhi</p>
+                            Di sini, tawa dan kebahagiaan.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
@@ -138,6 +135,20 @@
                         <i class="fa-solid fa-water-ladder  fa-2x"></i>
                         <h4>Swimming pool</h4>
                         <p>Buat diri anda segar kembali</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <i class="fa-solid fa-square-parking fa-2x"></i>
+                        <h4>Parking</h4>
+                        <p>Spacious Parking Area. Dengan kemanan yang sudah teruji</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <i class="fa-solid fa-clock fa-2x"></i>
+                        <h4>Receptionist</h4>
+                        <p>Pelayanan 24 jam menambahkan kepuasan pengunjung.</p>
                     </div>
                 </div>
             </div>
@@ -194,10 +205,6 @@
                                                                         <td>30 m²</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td class="r-o">Manys :</td>
-                                                                        <td>5 places</td>
-                                                                    </tr>
-                                                                    <tr>
                                                                         <td class="r-o">Provide :</td>
                                                                         <td>Dumbbell..</td>
                                                                     </tr>
@@ -222,10 +229,7 @@
                                             <td class="r-o">Best Chefs :</td>
                                             <td>All Corners</td>
                                         </tr>
-                                        <tr>
-                                            <td class="r-o">Service :</td>
-                                            <td>Dinner..</td>
-                                        </tr>
+                                        
                                        
                                     </tbody>
                                 </table>
@@ -243,10 +247,6 @@
                                         <tr>
                                             <td class="r-o">Size :</td>
                                             <td>20 m²</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Capacity :</td>
-                                            <td>Max persion 100</td>
                                         </tr>
                                         <tr>
                                             <td class="r-o">security :</td>
@@ -337,6 +337,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="blog-item set-bg" data-setbg="img/blog/evn-01.jpg">
+                        <div class="dark-layer-blog"></div>
                         <div class="bi-text">
                             <span class="b-tag">Wedding</span>
                             <h4><a href="#">wedding of Acep & Sity</a></h4>
@@ -346,6 +347,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="blog-item set-bg" data-setbg="img/blog/evn-2.jpg">
+                        <div class="dark-layer-blog"></div>
                         <div class="bi-text">
                             <span class="b-tag">Meeting</span>
                             <h4><a href="#">SANGHAI COMPANY</a></h4>
@@ -355,6 +357,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="blog-item set-bg" data-setbg="img/blog/evn-3.jpg">
+                        <div class="dark-layer-blog"></div>
                         <div class="bi-text">
                             <span class="b-tag">Birthday</span>
                             <h4><a href="#">Birthday of Sity</a></h4>
@@ -364,6 +367,7 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="blog-item small-size set-bg" data-setbg="img/blog/evn-4.jpg">
+                        <div class="dark-layer-blog"></div>
                         <div class="bi-text">
                             <span class="b-tag">Event</span>
                             <h4><a href="#">Big Agency Meeting</a></h4>
@@ -373,6 +377,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="blog-item small-size set-bg" data-setbg="img/blog/evn-5.jpg">
+                        <div class="dark-layer-blog"></div>
                         <div class="bi-text">
                             <span class="b-tag">Travel</span>
                             <h4><a href="#">Traveling To Barcelona</a></h4>

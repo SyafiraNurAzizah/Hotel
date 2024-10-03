@@ -10,7 +10,7 @@
                                 <img src="img/footer-logo.png" alt="">
                             </a>
                         </div>
-                        <p>We inspire and reach millions of travelers<br /> across 90 local websites</p>
+                        <p>Kami menginspirasi dan menjangkau jutaan wisatawan<br /> di media sosial kami</p>
                         <div class="fa-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
@@ -25,14 +25,14 @@
                         <ul>
                             <li>(12) 345 67890</li>
                             <li>bimhotel@gmail.com</li>
-                            <li>856 Cordia Extension Apt. 356, Lake, United State</li>
+                            <li>Jl. Jendral Sudirman No. 123 Jakarta, Indonesia</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 offset-lg-1">
                     <div class="ft-newslatter">
                         <h6>Ketik Pesan</h6>
-                        <p>Kirimkan ulsan kepada BIM Hotel</p>
+                        <p>Kirimkan ulasan kepada BIM Hotel</p>
                         <form action="#" class="fn-form">
                             <input type="text" placeholder="Email">
                             <button type="submit"><i class="fa fa-send"></i></button>
