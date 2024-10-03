@@ -30,4 +30,9 @@ class HomeController extends Controller
     {
         return view('hotel');
     }
+
+    public function weedings()
+    {
+        return view('weedings');
+    }
 }

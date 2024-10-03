@@ -7,6 +7,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 
 Route::get('/hotel', [App\Http\Controllers\HomeController::class, 'hotel'])->name('hotel');
 
+Route::get('/weedings', [App\Http\Controllers\HomeController::class, 'weedings'])->name('weedings');
+
 //---------------------------- LOGIN & REGISTER -----------------------------//
 Auth::routes();
 
