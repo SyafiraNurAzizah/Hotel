@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="hero-text">
-                        <h1>BIM A Luxury Hotel</h1>
+                        <h1>Berlian Hotel</h1>
                         <p>Come and discover a world where luxury knows no bounds,
                              and every moment is a masterpiece waiting to be experienced.</p>
                         <a href="#" class="primary-btn">Discover Now</a>
@@ -51,7 +51,8 @@
             </div>
         </div>
         <div class="hero-slider owl-carousel">
-            <div class="hs-item set-bg" data-setbg="img/hero/hero-1.jpg"></div>
+    
+            <div class="hs-item set-bg" data-setbg="img/hero/room-c1.jpg"></div>
             <div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg"></div>
             <div class="hs-item set-bg" data-setbg="img/hero/hero-3.jpg"></div>
         </div>
@@ -66,7 +67,7 @@
                     <div class="about-text">
                         <div class="section-title">
                             <span>About Us</span>
-                            <h2>Berlian Inovasi Mandiri<br/>Fantastic Hotel</h2>
+                            <h2>Berlian<br/> A Fantastic Hotel</h2>
                         </div>
                         <p class="f-para">Welcome to a world of sophistication and elegance where every detail is crafted to perfection.
                              Our luxury hotel offers an unparalleled experience, blending modern comfort with timeless charm.</p>
