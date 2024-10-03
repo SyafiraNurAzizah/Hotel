@@ -29,6 +29,26 @@
 
 /*----------------------------------------*/
 
+/* Slidebar */
+*::-webkit-scrollbar {
+    width: 13px;
+	background-color: #222736;
+}
+*::-webkit-scrollbar-track {
+    border-radius: 10px;
+    margin: 2.5px;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #aaaab3;
+    /* background-color: #dfa974; */
+    /* background-color: rgba(25, 25, 26, 0.2); */
+    border-radius: 10px;
+    border: 3px solid #222736;
+    /* border: 3px solid #fffcf4; */
+    margin: 4px;
+}
+/*----------------------------------------*/
+
 /* Template default CSS
 /*----------------------------------------*/
 
@@ -36,7 +56,8 @@ html, body {
 	height: 100%;
 	font-family: "Cabin", sans-serif;
 	-webkit-font-smoothing: antialiased;
-	font-smoothing: antialiased;
+	/* font-smoothing: antialiased; */
+	text-rendering: optimizeLegibility;
 }
 h1, h2, h3, h4, h5, h6 {
 	margin: 0;
@@ -269,6 +290,18 @@ ul, ol {
 	-webkit-box-shadow: 0px 12px 15px rgba(36, 11, 12, 0.05);
 	box-shadow: 0px 12px 15px rgba(36, 11, 12, 0.05);
 }
+
+/* .logo-img {
+    width: 100%;
+    transition: filter 0.3s ease;
+}
+.menu-item.scrolled .logo-img {
+    filter: brightness(1) invert(0);
+}
+.menu-item .logo-img {
+    filter: brightness(0) invert(1);
+} */
+
 .top-nav {
 	border-bottom: 1px solid #e5e5e5;
 }
@@ -382,9 +415,20 @@ ul, ol {
 .top-nav .tn-right .language-option .flag-dropdown ul li a:hover {
 	color: #dfa974;
 }
+
+/* Awal menu dengan background transparan */
 .menu-item {
-	position: relative;
-	z-index: 9;
+    position: fixed;
+    width: 100%;
+    z-index: 998;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    color: #ffffff;
+}
+/* Ketika halaman digulir, background berubah menjadi putih */
+.menu-item.scrolled {
+    background-color: #ffffff; /* Warna latar belakang saat digulir */
+    box-shadow: 0px 12px 15px rgba(36, 11, 12, 0.05); /* Tambahkan bayangan jika diperlukan */
 }
 .menu-item .logo {
 	padding: 25px 0;
@@ -417,7 +461,7 @@ ul, ol {
 }
 .menu-item .nav-menu .mainmenu li a {
 	font-size: 16px;
-	color: #19191a;
+	color: #ffffff;
 	margin-right: 42px;
 	font-weight: 500;
 	display: inline-block;
@@ -426,6 +470,9 @@ ul, ol {
 	-webkit-transition: all 0.3s;
 	-o-transition: all 0.3s;
 	transition: all 0.3s;
+}
+.menu-item.scrolled .nav-menu .mainmenu li a {
+	color: #19191a;
 }
 .menu-item .nav-menu .mainmenu li a:after {
 	position: absolute;
@@ -482,15 +529,191 @@ ul, ol {
 }
 .menu-item .nav-menu .nav-right i {
 	font-size: 16px;
-	color: #19191a;
+	color: #ffffff;
 	cursor: pointer;
+	transition: 0.5s ease;
 }
+.menu-item.scrolled .nav-menu .nav-right i {
+	color: #19191a;
+}
+.menu-item .nav-menu .nav-right a:hover i {
+	transform: scale(1.5);
+	transition: 0.5s ease;
+}
+.menu-item.visible-on-white {
+    position: fixed;
+    width: 100%;
+    z-index: 998;
+    transition: background-color 0.3s ease;
+    color: #19191a;
+    background-color: #ffffff;
+    box-shadow: 0px 12px 15px rgba(36, 11, 12, 0.05);
+}
+.menu-item.visible-on-white .nav-menu .nav-right i {
+    color: #19191a;
+}
+.menu-item.visible-on-white .nav-menu .mainmenu li a {
+    color: #19191a;
+}
+
 .canvas-open {
 	display: none;
 }
 .offcanvas-menu-wrapper {
 	display: none;
 }
+
+
+.overlay {
+    display: none; /* Mengatur overlay agar tidak terlihat secara default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(16, 20, 31, 0.616); /* Latar belakang semi-transparan */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Pastikan overlay berada di atas konten lain */
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+.login-form {
+    background: #ffffff;
+	padding: 44px 40px 50px 40px;
+	border-radius: 4px;
+	text-align: center;
+	width: 350px;
+}
+.login-form h3 {
+	color: rgb(16, 20, 31);
+	margin-bottom: 50px;
+	letter-spacing: 10px;
+}
+.login-form img {
+	margin-bottom: 50px;
+}
+.login-form form label, .register-form form label {
+	font-size: 14px;
+	color: #707079;
+	display: block;
+	margin-bottom: 10px;
+}
+.login-form form input {
+	border: none;
+    border-bottom: 1px solid #ced4da;
+    outline: none;
+    box-shadow: none;
+    padding: 8px 0;
+    border-radius: 0;
+	margin-bottom: 30px;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.login-form form input::placeholder {
+	font-size: 15px;
+	color: #707079;
+	font-weight: 400;
+	text-align: center;
+}
+.login-form form input:focus {
+	border: none;
+    border-bottom: 1px solid #dfa974;
+    outline: none;
+    box-shadow: none;
+    padding: 8px 0;
+    border-radius: 0;
+}
+.login-form form button:disabled {
+    position: relative;
+    display: block; 
+    font-size: 14px;
+    border: none;
+    border-radius: 25px;
+    color: #ffffff;
+    font-weight: 500;
+    background-color: #dfa974; 
+    width: 100%;
+    max-width: 100px;
+    height: 40px;
+    margin: 30px auto;
+    cursor: not-allowed;
+    transition: background 0.3s, color 0.3s;
+	font-size: 15px;
+}
+.login-form form button {
+    position: relative;
+    display: block; 
+    font-size: 14px;
+    border: none;
+    border-radius: 25px;
+    color: #ffffff;
+    font-weight: 500;
+    background-color: rgba(16, 20, 31, 0.89);
+    width: 100%;
+    max-width: 100px;
+    height: 40px;
+    margin: 30px auto;
+    cursor: not-allowed;
+    transition: background 0.3s, color 0.3s;
+}
+.login-form form button.enabled {
+    background-color: rgba(16, 20, 31, 0.89);
+    cursor: pointer;
+}
+.login-form form button.enabled:hover,
+.register-form form button:hover {
+    background: #dfa974;
+    color: #ffffff;
+}
+.login-form p {
+    font-size: 15px;
+    color: #707079;
+    display: flex;
+    justify-content: center; /* Agar berada di tengah secara horizontal */
+    align-items: center; /* Agar vertikal sejajar */
+}
+.login-form p a {
+	/* position: relative; */
+	display: inline;
+	font-size: 15px;
+	font-weight: bold;
+	color: #dfa974;
+	display: block;
+	padding-left: 5px;
+	/* bottom: 15px; */
+}
+
+.register-form {
+    background: #ffffff;
+	padding: 44px 40px 50px 40px;
+	border-radius: 4px;
+	text-align: center;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group .input-group-text {
+    background-color: transparent; /* Membuat latar belakang transparan */
+    border: none; /* Menghilangkan border */
+    cursor: pointer; /* Menampilkan kursor pointer saat hover */
+}
+
+.close {
+    cursor: pointer;
+    float: right;
+    font-size: 20px;
+}
+
 /*---------------------
   Hero
 -----------------------*/
@@ -609,7 +832,7 @@ ul, ol {
 .hero-slider {
 	position: absolute;
 	width: 100%;
-	height: 100%;
+	height: 103%;
 	left: 0;
 	top: 0;
 }
