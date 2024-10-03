@@ -48,7 +48,7 @@
                             <ul>
                                 <li class="active"><a href="{{ route('index') }}">Beranda</a></li>
                                 <li><a href="{{ route('hotel') }}">Hotel</a></li>
-                                <li><a href="./about-us.html">Meetings</a></li>
+                                <li><a href= "{{ route('meeting')}}">Meetings</a></li>
                                 <li><a href="./pages.html">Weedings</a>
                                     {{-- <ul class="dropdown">
                                         <li><a href="./room-details.html">Room Details</a></li>
