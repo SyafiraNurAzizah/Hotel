@@ -38,9 +38,8 @@
                                     <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail
                                 </a>
                                 
-                                
                             </div>
-                            <a href="{{ route('weddings.details')}}" class="primary-btn">More Details</a>
+                            <a href="{{ route('wedding.show')}}" class="primary-btn">More Details</a>
                         </div>
                     </div>
                 </div>

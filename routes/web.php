@@ -10,7 +10,9 @@ Route::get('/hotel', [App\Http\Controllers\HomeController::class, 'hotel'])->nam
 
 Route::get('/weddings', [App\Http\Controllers\HomeController::class, 'weddings'])->name('weddings');
 
+Route::resource('wedding', App\Http\Controllers\WeddingsController::class);
 
+// Route::get('/weddings/{id}', [App\Http\Controllers\WeddingsController::class, 'show'])->name('weddings.show');
 
 //---------------------------- LOGIN & REGISTER -----------------------------//
 Auth::routes();
