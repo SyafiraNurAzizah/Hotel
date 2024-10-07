@@ -12,3 +12,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/detail/detail1', function () {
+    return view('meeting.detail1');
+})->name('detail1');
+
+Route::get('/detail/detail2', function () {
+    return view('meeting.detail2');
+})->name('detail2'); // Tambahkan nama disini
+
