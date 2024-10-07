@@ -33,7 +33,7 @@ class HomeController extends Controller
 
     public function weddings()
     {
-        return view('weddings');
+        return view('wedding.index');
     }
     
 }

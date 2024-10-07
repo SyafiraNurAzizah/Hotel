@@ -3,20 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\wedding;
+use App\Models\Wedding;
 
 class WeddingsController extends Controller
 {
     public function index()
     {
         $weddings = Wedding::all();
-        return view('weddings', compact('weddings'));
+        return view('wedding.index', compact('weddings'));
     }
 
     public function show($id)
     {
-        $wedding = Wedding::findOrFail($id); 
-        return view('wedding.show', compact('wedding'));
+        $weddings = Wedding::findOrFail($id); 
+        return view('wedding.show', compact('weddings'));
     }
+
 
 }

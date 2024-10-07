@@ -8,7 +8,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 
 Route::get('/hotel', [App\Http\Controllers\HomeController::class, 'hotel'])->name('hotel');
 
-Route::get('/weddings', [App\Http\Controllers\HomeController::class, 'weddings'])->name('weddings');
+// Route::get('/weddings', [App\Http\Controllers\HomeController::class, 'weddings'])->name('weddings');
 
 Route::resource('wedding', App\Http\Controllers\WeddingsController::class);
 
