@@ -416,8 +416,8 @@ ul, ol {
 	color: #dfa974;
 }
 
-/* Awal menu dengan background transparan */
-.menu-item {
+
+/* .menu-item {
     position: fixed;
     width: 100%;
     z-index: 998;
@@ -425,10 +425,9 @@ ul, ol {
     transition: background-color 0.3s ease;
     color: #ffffff;
 }
-/* Ketika halaman digulir, background berubah menjadi putih */
 .menu-item.scrolled {
-    background-color: #ffffff; /* Warna latar belakang saat digulir */
-    box-shadow: 0px 12px 15px rgba(36, 11, 12, 0.05); /* Tambahkan bayangan jika diperlukan */
+    background-color: #ffffff;
+    box-shadow: 0px 12px 15px rgba(36, 11, 12, 0.05);
 }
 .menu-item .logo {
 	padding: 25px 0;
@@ -556,12 +555,75 @@ ul, ol {
     color: #19191a;
 }
 
+
+
+.nav-menu .nav-right .profile-user {
+	display: inline-block;
+	margin-left: 30px;
+	cursor: pointer;
+	padding: 13px 0px 11px;
+	position: relative;
+}
+.nav-menu .nav-right .profile-user:hover .user-dropdown {
+	top: 40px;
+	opacity: 1;
+	visibility: visible;
+}
+.nav-menu .nav-right .profile-user img {
+	height: 26px;
+	width: 26px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+.nav-menu .nav-right .profile-user p {
+	font-size: 16px;
+	color: #19191a;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+.nav-menu .nav-right .profile-user .user-dropdown {
+	position: absolute;
+	left: 0;
+	top: 60px;
+	width: 100px;
+	background: #ffffff;
+	display: block;
+	padding: 10px 15px;
+	-webkit-box-shadow: 0px 9px 10px rgba(25, 25, 26, 0.2);
+	box-shadow: 0px 9px 10px rgba(25, 25, 26, 0.2);
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+	z-index: 99;
+}
+.nav-menu .nav-right .profile-user .user-dropdown ul li {
+	list-style: none;
+	text-align: left;
+}
+.nav-menu .nav-right .profile-user .user-dropdown ul li a {
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: 500;
+	color: #19191a;
+	-webkit-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.nav-menu .nav-right .profile-user .user-dropdown ul li a:hover {
+	color: #dfa974;
+}
+
+
+
+
 .canvas-open {
 	display: none;
 }
 .offcanvas-menu-wrapper {
 	display: none;
-}
+} */
 
 
 /* .overlay {
