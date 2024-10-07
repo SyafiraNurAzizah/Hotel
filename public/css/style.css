@@ -1000,9 +1000,41 @@ ul, ol {
 	-o-transition: all 0.3s;
 	transition: all 0.3s;
 }
+/* .service-item i {
+	display: inline-block;
+	color: #dfa974;
+	-webkit-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+    width: 50px;
+	height: 50px;
+} */
+
 /*------------------------
   Home Page Room Section 
 -------------------------*/
+
+.hp-room-section .hr-text h2 {
+    font-size: 24px;
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+.info-span {
+    font-size: 16px;
+    margin-left: 8px; /* Space between text and span */
+    background: rgba(0, 123, 255, 0.3); /* Light blue background */
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: #ffffff;
+    display: inline-block;
+}
+
+.info-span.free {
+    background: rgba(0, 200, 0, 0.3); /* Light green background */
+}
+
+
 
 .hp-room-items {
 	margin-left: -15px;
@@ -1138,6 +1170,9 @@ ul, ol {
 .blog-section .section-title {
 	margin-bottom: 36px;
 }
+
+
+
 /*---------------------
   Footer Section
 -----------------------*/
@@ -1825,6 +1860,7 @@ ul, ol {
 	width: 100%;
 	padding-left: 30px;
 	padding-right: 30px;
+	z-index: 5;
 }
 .blog-item .bi-text .b-tag {
 	display: inline-block;
@@ -1849,6 +1885,20 @@ ul, ol {
 	text-transform: uppercase;
 	letter-spacing: 3px;
 }
+
+.dark-layer-blog {
+	/* display: none; */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to top, rgba(6, 2, 91, 0.614), rgba(0, 0, 0, 0)); /* Ganti 0.5 untuk mengatur kegelapan */
+    z-index: 1;
+	opacity: 1; /* Set opacity ke 0 saat tidak di-hover */
+    transition: opacity 0.3s ease; /* Tambahkan transisi untuk efek smooth */
+}
+
 .load-more {
 	text-align: center;
 	padding-top: 30px;
@@ -2122,6 +2172,7 @@ ul, ol {
 	display: inline-block;
 	border-radius: 2px;
 }
+
 /*---------------------
   Recommend Blog
 -----------------------*/
@@ -2617,3 +2668,32 @@ ul, ol {
 		margin-bottom: 10px;
 	}
 }
+
+/* picture*/
+.hp-room-item {
+    position: relative;
+}
+
+.dark-layer {
+	/* display: none; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.427); /* Ganti 0.5 untuk mengatur kegelapan */
+    z-index: 1;
+	opacity: 0; /* Set opacity ke 0 saat tidak di-hover */
+    transition: opacity 0.3s ease; /* Tambahkan transisi untuk efek smooth */
+}
+
+.hp-room-item:hover .dark-layer {
+    opacity: 1; /* Ubah opacity menjadi 1 saat di-hover */
+}
+
+.hr-text {
+    position: relative;
+    z-index: 2; /* Supaya teks tetap di atas overlay */
+    color: #fff; /* Warna teks menjadi putih agar kontras */
+}
+
