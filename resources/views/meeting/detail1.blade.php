@@ -88,7 +88,7 @@ ul.list-unstyled {
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-6">
-                    <img src="img/meeting-room.jpg" class="img-fluid rounded" alt="Premium Meeting Room">
+                    <img src="img/meetings/meeting-2.jpg" class="img-fluid rounded" alt="Premium Meeting Room">
                 </div>
                 <div class="col-lg-6">
                     <h2 class="display-4 mb-4">Premium Meeting Room</h2>
@@ -130,30 +130,9 @@ ul.list-unstyled {
                     <p>Hubungi kami di <a href="tel:02112345678">(021) 1234-5678</a> atau email <a href="mailto:info@meetingroom.com">info@meetingroom.com</a>.</p>
                 </div>
             </div>
-        
-            <div class="row mt-5">
-                <div class="col-lg-12">
-                    <h3 class="mb-4">Testimoni Pelanggan</h3>
-                    <div class="card mb-3 shadow-sm">
-                        <div class="card-body">
-                            <blockquote class="blockquote">
-                                <p>"Ruangan yang luas, fasilitas lengkap, dan staf yang sangat membantu. Pertemuan bisnis kami berjalan lancar tanpa hambatan."</p>
-                                <footer class="blockquote-footer">John Doe, CEO <cite title="Source Title">PT Sukses Makmur</cite></footer>
-                            </blockquote>
-                        </div>
-                    </div>
-                    <div class="card mb-3 shadow-sm">
-                        <div class="card-body">
-                            <blockquote class="blockquote">
-                                <p>"Tempat ini adalah pilihan terbaik untuk acara rapat dan pelatihan. Fasilitasnya memadai dan mudah diakses."</p>
-                                <footer class="blockquote-footer">Jane Smith, Manager <cite title="Source Title">XYZ Corp</cite></footer>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
+            <div style="text-align: right;">
+                <a href="#" class="btn btn-primary">Booking Now</a>
             </div>
-        </div>
-        
         
     </section>
 
