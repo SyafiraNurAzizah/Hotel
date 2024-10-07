@@ -122,11 +122,17 @@
 <div class="breadcrumb-section" style="background-image: url('{{ asset('img/hotels/hotel-bg.jpg') }}');">
     <div class="container-atas">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="breadcrumb-text">
-                    <h2>Detail Kamar Hotel</h2>
-                    <p>Temukan kenyamanan dan kemewahan di kamar hotel kami, dengan pilihan dari kelas Standard hingga Suite.</p>
-                </div>
+            <div class="breadcrumb-text">
+                <h2>Jakarta</h2>
+                <p style="color: white;">Temukan kenyamanan dan kemewahan di kamar hotel kami, dengan pilihan dari kelas Standard hingga Suite.</p>
+                <button onclick="location.href='detail1.html'" style="background: none; border: none; color: white; cursor: pointer; transition: color 0.3s ease;" onmouseover="this.style.color='#ccc';" onmouseout="this.style.color='white';">Room Details</button>
+                <button onclick="location.href='/fasilitas/jkt'" style="background: none; border: none; color: white; cursor: pointer; transition: color 0.3s ease;" onmouseover="this.style.color='#ccc';" onmouseout="this.style.color='white';">Fasilitas</button>
+            </div>
+            
+            
+        
+                
+                
             </div>
         </div>
     </div>
@@ -136,8 +142,8 @@
 <section class="room-details-section spad">
     <div class="container py-5">
         <div class="row">
-            <div class="col-lg-8 text-center">
-                <h2 class="display-4 mb-4">Kamar Hotel Kami</h2>
+            <div class="col-lg-12 text-center">
+                <h2 class="display-4 mb-12">Kamar Hotel Kami</h2>
                 <p class="text-muted">Pilih dari berbagai kelas kamar yang sesuai dengan kebutuhan dan anggaran Anda, mulai dari Standard Room yang ekonomis hingga Suite Room yang mewah.</p>
             </div>
         </div>

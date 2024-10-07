@@ -37,6 +37,9 @@
         <div id="main-content">
             @yield('content')
 
+                @include('auth.login')
+                @include('auth.register')
+
             <x-footer />
         </div>
     </div>
@@ -57,46 +60,58 @@
 
     <script>
         const loginOverlay = document.getElementById('loginOverlay');
-        const registerOverlay = document.getElementById('registerOverlay'); // Tambahkan ini
+        const registerOverlay = document.getElementById('registerOverlay');
         const openLoginPopup = document.getElementById('openLoginPopup');
         const closeLoginPopup = document.getElementById('closeLoginPopup');
-        const openRegisterPopup = document.getElementById('openRegisterPopup'); // Tambahkan ini
-        const closeRegisterPopup = document.getElementById('closeRegisterPopup'); // Tambahkan ini
-    
+        const openRegisterPopup = document.getElementById('openRegisterPopup');
+        const closeRegisterPopup = document.getElementById('closeRegisterPopup');
+
         // Buka pop-up login ketika tombol login di klik
         openLoginPopup.addEventListener('click', function() {
             loginOverlay.style.display = 'flex';
-            registerOverlay.style.display = 'none'; // Sembunyikan registrasi
+            registerOverlay.style.display = 'none';
         });
-    
+
         // Tutup pop-up login ketika tombol close di klik
         closeLoginPopup.addEventListener('click', function() {
             loginOverlay.style.display = 'none';
         });
-    
+
         // Tutup pop-up login jika area di luar form di klik
         loginOverlay.addEventListener('click', function(e) {
             if (e.target === loginOverlay) {
                 loginOverlay.style.display = 'none';
             }
         });
-    
+
         // Buka pop-up registrasi ketika tombol registrasi di klik
         openRegisterPopup.addEventListener('click', function() {
             registerOverlay.style.display = 'flex';
-            loginOverlay.style.display = 'none'; // Sembunyikan login
+            loginOverlay.style.display = 'none';
         });
-    
+
         // Tutup pop-up registrasi ketika tombol close di klik
         closeRegisterPopup.addEventListener('click', function() {
             registerOverlay.style.display = 'none';
         });
-    
+
         // Tutup pop-up registrasi jika area di luar form di klik
         registerOverlay.addEventListener('click', function(e) {
             if (e.target === registerOverlay) {
                 registerOverlay.style.display = 'none';
             }
+        });
+
+        // Tambahkan event listener pada tombol "Register" pada form login
+        loginOverlay.querySelector('#openRegisterPopup').addEventListener('click', function() {
+            registerOverlay.style.display = 'flex';
+            loginOverlay.style.display = 'none';
+        });
+
+        // Tambahkan event listener pada tombol "Login" pada form registrasi
+        registerOverlay.querySelector('#openLoginPopup').addEventListener('click', function() {
+            loginOverlay.style.display = 'flex';
+            registerOverlay.style.display = 'none';
         });
     </script>
       

@@ -47,8 +47,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2>Hotels</h2>
-                        
+                        <h2>Our Rooms</h2>
+                        <div class="bt-option">
+                            <a href="./home.html">Home</a>
+                            <span>Rooms</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -62,17 +65,17 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
-                        <img src="img/room/room-1.jpg" alt="" class="room-image">
+                        <img src="img/room/room-jkt.jpg" alt="" class="room-image">
                         <div class="ri-text">
                             <h3>Jakarta</h3>
-                            <a href="{{ route('detail2')}}" class="primary-btn">More Details</a>
+                            <a href="{{ route('detail2') }}" class="primary-btn">More Details</a>
 
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
-                        <img src="img/room/room-2.jpg" alt="" class="room-image">
+                        <img src="img/room/room-sby.jpg" alt="" class="room-image">
                         <div class="ri-text">
                             <h3>Surabaya</h3>
                             <a href="#" class="primary-btn">More Details</a>
@@ -81,7 +84,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
-                        <img src="img/room/room-3.jpg" alt="" class="room-image">
+                        <img src="img/room/room-bndg.jpg" alt="" class="room-image">
                         <div class="ri-text">
                             <h3>Bandung</h3>
                             <a href="#" class="primary-btn">More Details</a>
@@ -91,7 +94,7 @@
     
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
-                        <img src="img/room/room-4.jpg" alt="" class="room-image">
+                        <img src="img/room/room-bksi.jpg" alt="" class="room-image">
                         <div class="ri-text">
                             <h3>Bekasi</h3>
                             <a href="#" class="primary-btn">More Details</a>
@@ -100,7 +103,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
-                        <img src="img/room/room-5.jpg" alt="" class="room-image">
+                        <img src="img/room/room-smrg.jpg" alt="" class="room-image">
                         <div class="ri-text">
                             <h3>Semarang</h3>
                             <a href="#" class="primary-btn">More Details</a>
@@ -109,7 +112,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
-                        <img src="img/room/room-6.jpg" alt="" class="room-image">
+                        <img src="img/room/room-bgr.jpg" alt="" class="room-image">
                         <div class="ri-text">
                             <h3>Bogor</h3>
                             <a href="#" class="primary-btn">More Details</a>
@@ -119,7 +122,7 @@
     
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
-                        <img src="img/room/room-1.jpg" alt="" class="room-image">
+                        <img src="img/room/room-mlng.jpg" alt="" class="room-image">
                         <div class="ri-text">
                             <h3>Malang</h3>
                             <a href="#" class="primary-btn">More Details</a>
@@ -128,7 +131,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
-                        <img src="img/room/room-2.jpg" alt="" class="room-image">
+                        <img src="img/room/room-jgj.jpg" alt="" class="room-image">
                         <div class="ri-text">
                             <h3>Yogyakarta</h3>
                             <a href="#" class="primary-btn">More Details</a>
@@ -137,7 +140,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
-                        <img src="img/room/room-3.jpg" alt="" class="room-image">
+                        <img src="img/room/room-pwt.jpg" alt="" class="room-image">
                         <div class="ri-text">
                             <h3>Purwokerto</h3>
                             <a href="#" class="primary-btn">More Details</a>

@@ -1,0 +1,206 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+}
+
+
+.menu-item {
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    z-index: 998; 
+    background-color: transparent; 
+    transition: background-color 0.3s ease; 
+    color: #ffffff; 
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+.menu-item.scrolled {
+    background-color: #ffffff;
+    box-shadow: 0px 12px 15px rgba(36, 11, 12, 0.05);
+}
+
+.menu-item .logo {
+    position: fixed;
+    
+}
+.menu-item .logo a {
+    display: inline-block;
+}
+
+.menu-item .nav-menu {
+    text-align: right;
+    position: relative;
+}
+.menu-item .nav-menu .mainmenu {
+    text-align: right;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    position: fixed;
+    right: 250px;
+    top: -5px;
+}
+.menu-item .nav-menu .mainmenu li {
+    list-style: none;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    z-index: 1;
+    margin-bottom: 15px;
+}
+.menu-item .nav-menu .mainmenu li a {
+    font-size: 16px;
+    color: #ffffff;
+    margin-right: 42px;
+    font-weight: 500;
+    display: inline-block; 
+    padding: 27px 0;
+    position: relative;
+    transition: all 0.3s;
+}
+.menu-item.scrolled .nav-menu .mainmenu li a {
+    color: #19191a;
+}
+.menu-item .nav-menu .mainmenu li.active a:after {
+    opacity: 1;
+}
+.menu-item .nav-menu .mainmenu li a:after {
+    position: absolute;
+    left: 0;
+    top: 52px;
+    width: 100%;
+    height: 2px;
+    background: #dfa974;
+    content: "";
+    opacity: 0;
+    transition: all 0.3s;
+}
+.menu-item .nav-menu .mainmenu li:hover > a:after {
+    opacity: 1;
+}
+.menu-item .nav-menu .mainmenu li .dropdown {
+    position: absolute;
+    left: 0; 
+    top: 70px;
+    width: 180px; 
+    background: #ffffff; 
+    z-index: 9; 
+    opacity: 0; 
+    visibility: hidden; 
+    transition: all 0.3s; 
+    box-shadow: 0px 9px 15px rgba(25, 25, 26, 0.05);
+    padding: 10px 0;
+    margin-top: 0;
+}
+.menu-item .nav-menu .mainmenu li:hover .dropdown {
+    top: -5px;
+    opacity: 1;
+    visibility: visible;
+}
+.menu-item .nav-menu .mainmenu li .dropdown li {
+    list-style: none;
+    display: block;
+}
+.menu-item .nav-menu .mainmenu li .dropdown li a {
+    font-size: 16px;
+    color: #19191a;
+    display: block;
+    text-align: left;
+    padding: 8px 15px;
+    transition: all 0.3s;
+}
+.menu-item .nav-menu .mainmenu li .dropdown li a:hover {
+    color: #dfa974;
+}
+.menu-item .nav-menu .mainmenu li .dropdown li a:after {
+    display: none;
+}
+
+.menu-item .nav-menu .nav-right {
+    display: inline-block;
+    margin-left: 43px;
+    padding: 27px 0px;
+}
+.menu-item .nav-menu .nav-right i {
+    font-size: 16px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+.menu-item.scrolled .nav-menu .nav-right i {
+    color: #19191a;
+}
+.menu-item .nav-menu .nav-right a:hover i {
+    transform: scale(1.5);
+    transition: 0.5s ease;
+}
+
+.menu-item.visible-on-white {
+    position: fixed;
+    width: 100%;
+    z-index: 998;
+    transition: background-color 0.3s ease;
+    color: #19191a;
+    background-color: #ffffff;
+    box-shadow: 0px 12px 15px rgba(36, 11, 12, 0.05);
+}
+.menu-item.visible-on-white .nav-menu .nav-right i {
+    color: #19191a;
+}
+.menu-item.visible-on-white .nav-menu .mainmenu li a {
+    color: #19191a;
+}    
+
+.nav-menu .nav-right .profile-user {
+    display: inline-block;
+    margin-left: 30px;
+    cursor: pointer;
+    padding: 13px 0px 11px;
+    position: relative;
+}
+.menu-item.scrolled .nav-menu .nav-right .profile-user {
+    color: #19191a;
+}
+.nav-menu .nav-right .profile-user:hover .user-dropdown {
+    top: 40px;
+    opacity: 1;
+    visibility: visible;
+}
+.nav-menu .nav-right .profile-user p {
+    font-size: 16px;
+    color: #19191a;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.nav-menu .nav-right .profile-user .user-dropdown {
+    position: absolute;
+    left: 0;
+    top: 70px;
+    width: 100px;
+    background: #ffffff;
+    display: block;
+    padding: 10px 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    margin-top: 0;
+}
+.nav-menu .nav-right .profile-user .user-dropdown ul li {
+    list-style: none;
+}
+.nav-menu .nav-right .profile-user .user-dropdown a {
+    color: #19191a;
+    text-decoration: none;
+    display: block;
+    padding: 5px 0;
+}
+.nav-menu .nav-right .profile-user .user-dropdown a:hover {
+    color: #dfa974;
+}

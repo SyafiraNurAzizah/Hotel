@@ -30,7 +30,6 @@ class HomeController extends Controller
     {
         return view('hotel');
     }
-
     public function meeting()
     {
         return view('meeting');
