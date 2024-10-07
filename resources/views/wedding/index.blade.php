@@ -39,13 +39,13 @@
                                     <a href="#" class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
                                         <i class="icon_phone" style="margin-right: 8px;"></i> Contact
                                     </a>
-                                    <a href="#" class="btn btn-outline-secondary w-35 gmail-btn d-flex align-items-center">
+                                    <a href="#" class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
                                         <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail
                                     </a>
                                 </div>
 
                                 <!-- Tombol More Details yang mengarahkan ke modal untuk menampilkan detail wedding -->
-                                <button class="primary-btn" data-bs-toggle="modal" data-bs-target="#weddingModal-{{ $wedding->id }}">
+                                <button class="primary-btn" style="border: none; background: none;" data-bs-toggle="modal" data-bs-target="#weddingModal-{{ $wedding->id }}">
                                     More Details
                                 </button>
                             </div>

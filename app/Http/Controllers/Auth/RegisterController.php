@@ -45,6 +45,17 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'no_telp' => 'required|string|max:15',
+        ], [
+            'firstname.required' => 'Nama depan wajib diisi.',
+            'lastname.required' => 'Nama belakang wajib diisi.',
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email ini sudah digunakan.',
+            'password.required' => 'Password wajib diisi.',
+            'password.min' => 'Password minimal 8 karakter.',
+            'password.confirmed' => 'Password anda tidak cocok.',
+            'no_telp.required' => 'Nomor telepon wajib diisi.',
+            'no_telp.max' => 'Nomor telepon maksimal 15 karakter.',
         ]);
     }
 
@@ -78,8 +89,31 @@ class RegisterController extends Controller
      * @param  \App\Models\User  $user
      * @return mixed
      */
+
+    public function register(Request $request)
+    {
+        // Validasi input
+        $this->validator($request->all())->validate();
+
+        // Periksa apakah password dan konfirmasi password cocok
+        if ($request->password !== $request->password_confirmation) {
+            return $this->sendFailedRegistrationResponse($request);
+        }
+
+        $user = $this->create($request->all());
+
+        return $this->registered($request, $user);
+    }
+
     protected function registered(Request $request, $user)
     {
         return redirect()->intended($this->redirectTo); // Redirect ke halaman yang diinginkan setelah login
+    }
+
+    protected function sendFailedRegistrationResponse(Request $request)
+    {
+        return redirect()->back()
+            ->withInput($request->only('firstname', 'lastname', 'email', 'no_telp'))
+            ->withErrors(['password' => 'Password dan konfirmasi password tidak cocok.']); // Menggunakan withErrors
     }
 }
