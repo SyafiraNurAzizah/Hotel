@@ -10,13 +10,15 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="hero-text">
-                        <h1>BIM A Luxury Hotel</h1>
-                        <p>Come and discover a world where luxury knows no bounds,
-                             and every moment is a masterpiece waiting to be experienced.</p>
+                        <h1>Berlian Hotel</h1>
+                        <p>
+                            Dengan fasilitas modern, layanan berkelas, dan suasana yang elegan.
+                             Setiap kamar dirancang dengan sentuhan yang hangat dan mewah untuk memastikan kenyamanan anda selama menginap.</p>
+
                         <a href="#" class="primary-btn">Discover Now</a>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+                {{-- <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1"> --}}
                     {{-- <div class="booking-form">
                         <h3>Booking Your Hotel</h3>
                         <form action="#">
@@ -47,14 +49,15 @@
                             <button type="submit">Check Availability</button>
                         </form>
                     </div> --}}
-                </div>
+                {{-- </div> --}}
             </div>
         </div>
         <div class="hero-slider owl-carousel">
-            <div class="hs-item set-bg" data-setbg="img/hero/hero-1.jpg"></div>
-            <div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg"></div>
-            <div class="hs-item set-bg" data-setbg="img/hero/hero-3.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="img/hero/hero-4.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="img/hero/hero-7.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="img/hero/hero-6.jpg"></div>
         </div>
+        <div class="dark-layer-hero"></div>
     </section>
     <!-- Hero Section End -->
 
@@ -66,7 +69,7 @@
                     <div class="about-text">
                         <div class="section-title">
                             <span>About Us</span>
-                            <h2>Berlian Inovasi Mandiri<br/>Fantastic Hotel</h2>
+                            <h2>Berlian <br/> A Fantastic Hotel</h2>
                         </div>
                         <p class="f-para">Welcome to a world of sophistication and elegance where every detail is crafted to perfection.
                              Our luxury hotel offers an unparalleled experience, blending modern comfort with timeless charm.</p>

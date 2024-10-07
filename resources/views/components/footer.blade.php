@@ -24,7 +24,7 @@
                         <h6>Contact Us</h6>
                         <ul>
                             <li>(12) 345 67890</li>
-                            <li>bimhotel@gmail.com</li>
+                            <li>berlianhotel@gmail.com</li>
                             <li>Jl. Jendral Sudirman No. 123 Jakarta, Indonesia</li>
                         </ul>
                     </div>
@@ -32,7 +32,7 @@
                 <div class="col-lg-3 offset-lg-1">
                     <div class="ft-newslatter">
                         <h6>Ketik Pesan</h6>
-                        <p>Kirimkan ulasan kepada BIM Hotel</p>
+                        <p>Kirimkan ulasan kepada Berlian Hotel</p>
                         <form action="#" class="fn-form">
                             <input type="text" placeholder="Email">
                             <button type="submit"><i class="fa fa-send"></i></button>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="co-text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Berlian Inovasi Mandiri Hotel 
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Berlian Hotel 
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
                 </div>
             </div>
