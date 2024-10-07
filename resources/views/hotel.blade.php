@@ -41,48 +41,6 @@
 @endpush
 
 @section('content')
-<<<<<<< HEAD
-<div class="app">
-    {{-- @include('auth.login')
-    @include('auth.register') --}}
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    @include('auth.register')
-
-    <h1>HOTEL</h1>
-=======
    
     <!-- Breadcrumb Section Begin -->
     <div class="breadcrumb-section" style="background-image: url('{{ asset('img/meetings/meeting-bg.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
@@ -196,6 +154,5 @@
     
     <!-- Rooms Section End -->
 
->>>>>>> ac034b2e6dfb8e96939378a2454a6ad9c4c6bdf9
 </div>
 @endsection
