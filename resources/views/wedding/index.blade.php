@@ -41,7 +41,9 @@
                                     </a>
                                     <a href="#" class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
                                         <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail
-                                    </a>
+                                <button class="primary-btn" data-bs-toggle="modal" data-bs-target="#weddingModal-{{ $wedding->id }}">
+                                    More Details
+                                </button>    </a>
                                 </div>
 
                                 <!-- Tombol More Details yang mengarahkan ke modal untuk menampilkan detail wedding -->
