@@ -67,7 +67,7 @@
                 <img src="{{ asset('img/meetings/meeting-1.jpg') }}" alt="Business Strategy Conference 2024" class="img-fluid mb-3">
                 <div class="mi-text">
                     <span class="m-tag">Conference</span>
-                    <h4><a href="meeting/detail-bussines.html">Business Strategy Conference 2024</a></h4>
+                    <h4><a href="{{ route('detail1')}}">Business Strategy Conference 2024</a></h4>
                     <div class="m-time"><i class="icon_clock_alt"></i> 12th March, 2024</div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                 <img src="{{ asset('img/meetings/meeting-3.jpg') }}" alt="Business Strategy Conference 2024" class="img-fluid mb-3">
                 <div class="mi-text">
                     <span class="m-tag">Workshop</span>
-                    <h4><a href="./meeting-details.html">Digital Marketing Workshop</a></h4>
+                    <h4><a href="{{ route('detail1') }}">Digital Marketing Workshop</a></h4>
                     <div class="m-time"><i class="icon_clock_alt"></i> 12th March, 2024</div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                 <img src="{{ asset('img/meetings/meeting-2.jpg') }}" alt="Business Strategy Conference 2024" class="img-fluid mb-3">
                 <div class="mi-text">
                     <span class="m-tag">Networking</span>
-                    <h4><a href="./meeting-details.html">Tech Leaders Networking Event</a></h4>
+                    <h4><a href="{{ route('detail1')}}">Tech Leaders Networking Event</a></h4>
                     <div class="m-time"><i class="icon_clock_alt"></i> 12th March, 2024</div>
                 </div>
             </div>
