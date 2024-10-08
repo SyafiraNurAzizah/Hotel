@@ -11,6 +11,7 @@ class Wedding extends Model
 
     protected $table = 'weddings';
     protected $fillable = [
+        'judul',
         'gambar',
         'harga',
         'kapasitas',

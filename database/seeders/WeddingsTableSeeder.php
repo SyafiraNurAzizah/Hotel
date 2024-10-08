@@ -15,7 +15,8 @@ class WeddingsTableSeeder extends Seeder
     public function run(): void
     {
         Wedding::create([
-            'gambar' => 'public/img/weddings.jpg',
+            'judul' => 'Romantic Beach Wedding',
+            'gambar' => 'img/weddings/weddings.jpg',
             'harga' => '300.000.000',
             'kapasitas' => 200,
             'paket' => 'Beach Wedding Package',

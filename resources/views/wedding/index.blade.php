@@ -27,23 +27,22 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="room-item">
                             <!-- Mengambil gambar dari database -->
-                            <img src="{{ asset('../img/weddings/' . $wedding->gambar) }}" alt="{{ $wedding->paket }}">
+                            <img src="{{ asset($wedding->gambar) }}">
 
                             <div class="ri-text">
-                                <h4>{{ $wedding->paket }}</h4>
-                                <h3>IDR {{ number_format((float)$wedding->harga, 2) }} <br>
+                                <h4>{{ $wedding->judul }}</h4>
+                                <h3>
+                                    IDR {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }} <br>
                                     <span class="text-muted">nett min. {{ $wedding->kapasitas }} guests</span>
                                 </h3>
+                                
                                 
                                 <div class="btn-contact d-flex justify-content-between align-items-center my-3">
                                     <a href="#" class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
                                         <i class="icon_phone" style="margin-right: 8px;"></i> Contact
                                     </a>
                                     <a href="#" class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
-                                        <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail
-                                <button class="primary-btn" data-bs-toggle="modal" data-bs-target="#weddingModal-{{ $wedding->id }}">
-                                    More Details
-                                </button>    </a>
+                                        <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail    </a>
                                 </div>
 
                                 <!-- Tombol More Details yang mengarahkan ke modal untuk menampilkan detail wedding -->
