@@ -53,29 +53,30 @@
                         </div>
                     </div>
 
+
                     <!-- Modal -->
                     <div class="modal fade" id="weddingModal-{{ $wedding->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Wedding Package Details</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <h4 class="modal-title" id="exampleModalLabel">Wedding Package Details</h4>
+                                    <button type="button" class="icon_close" style="border: none; background: none;" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <!-- Isi modal dengan detail wedding -->
                                     <div class="card mb-4">
-                                        <img src="{{ asset('../public/img/' . $wedding->gambar) }}" class="card-img-top" alt="{{ $wedding->paket }}" style="max-width: 600px;">
+                                        <img src="{{ asset($wedding->gambar) }}" class="card-img-top" alt="{{ $wedding->judul }}" style="height: 300px; width: 900px; object-fit: cover;">
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ $wedding->paket }}</h5>
-                                            <p class="card-text"><strong>Harga:</strong> IDR {{ number_format((float)$wedding->harga, 2) }}</p>
-                                            <p class="card-text"><strong>Kapasitas:</strong> {{ $wedding->kapasitas }} orang</p>
+                                            {{-- <h5 class="card-title">{{ $wedding->paket }}</h5> --}}
+                                            <h5 class="card-text">Starting From IDR {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }} <span class="text-muted">nett min. {{ $wedding->kapasitas }} guests</span></h5>
+                                            {{-- <p class="card-text"><strong>Kapasitas:</strong> {{ $wedding->kapasitas }} orang</p> --}}
                                             <p class="card-text">{{ $wedding->deskripsi }}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
+                                {{-- <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
