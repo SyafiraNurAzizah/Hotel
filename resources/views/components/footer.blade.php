@@ -7,15 +7,16 @@
                     <div class="ft-about">
                         <div class="logo">
                             <a href="#">
-                                <img src="img/footer-logo.png" alt="">
+                                <img src="img/berlian-white.png" alt="" class="logo-footer">
                             </a>
                         </div>
-                        <p>Kami menginspirasi dan menjangkau jutaan wisatawan<br /> di media sosial kami</p>
+                        <p>Kami menginspirasi dan menjangkau jutaan wisatawan di seluruh belahan dunia.</p>
                         <div class="fa-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-tripadvisor"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="https://youtu.be/eoTpdTU8nTA?si=nWoqydMmWsWfrI4s"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
                         </div>
                     </div>
                 </div>
@@ -55,7 +56,7 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="co-text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Berlian Hotel 
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Berlian Inovasi Mandiri Hotel 
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
                 </div>
             </div>

@@ -53,9 +53,10 @@
             </div>
         </div>
         <div class="hero-slider owl-carousel">
+    
             <div class="hs-item set-bg" data-setbg="img/hero/hero-4.jpg"></div>
-            <div class="hs-item set-bg" data-setbg="img/hero/hero-7.jpg"></div>
             <div class="hs-item set-bg" data-setbg="img/hero/hero-6.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="img/hero/hero-7.jpg"></div>
         </div>
         <div class="dark-layer-hero"></div>
     </section>
@@ -69,7 +70,7 @@
                     <div class="about-text">
                         <div class="section-title">
                             <span>About Us</span>
-                            <h2>Berlian <br/> A Fantastic Hotel</h2>
+                            <h2>Berlian<br/> A Fantastic Hotel</h2>
                         </div>
                         <p class="f-para">Welcome to a world of sophistication and elegance where every detail is crafted to perfection.
                              Our luxury hotel offers an unparalleled experience, blending modern comfort with timeless charm.</p>
@@ -304,15 +305,15 @@
                         <div class="ts-item">
                             <p>Setelah proyek konstruksi memakan waktu lebih lama dari yang diharapkan, saya, istri, putri saya, dan saya
                                 membutuhkan tempat untuk menginap selama beberapa malam. Sebagai penduduk Chicago, kami tahu banyak tentang kami
-                                kota, lingkungan sekitar, dan jenis pilihan perumahan yang tersedia dan sangat kami sukai
-                                liburan di BIM Hotel.</p>
+                                kota, lingkungan sekitar, dan jenis pilihan Class rooms yang tersedia dan sangat kami sukai
+                                 harga yang sepandan dengan fasilitas yang disediakan.</p>
                             <div class="ti-author">
                                 <h5> - Mr. Gemini Norawit</h5>
                             </div>
                             <img src="img/testimonial-logo.png" alt="">
                         </div>
                         <div class="ts-item">
-                            <p>Pengalaman menginap di Hotel BIM benar-benar luar biasa! Kamar yang nyaman, 
+                            <p>Pengalaman menginap di Hotel Berlian benar-benar luar biasa! Kamar yang nyaman, 
                                 pelayanan yang ramah, dan lokasi yang strategis membuat perjalanan saya semakin menyenangkan. Saya pasti akan kembali</p>
                             <div class="ti-author">
                           <h5> - Roronoa Zoro</h5>
@@ -396,4 +397,13 @@
 
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.set-bg').each(function() {
+                var bg = $(this).data('setbg');
+                $(this).css('background-image', 'url(' + bg + ')');
+            });
+        });
+    </script>    
 @endpush

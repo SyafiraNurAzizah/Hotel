@@ -1,73 +1,112 @@
-@extends('layouts.app')
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<div class="overlay" id="loginOverlay">
+    <div class="login-form">
+        <span class="close" id="closeLoginPopup"></span>
+        
+        <img src="img/berlian.png" alt="Logo" class="logo-img">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+        @if (session('error'))
+            <div class="alert alert-danger" id="loginErrorAlert">
+                {{ session('error') }}
+            </div>
+        @endif
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+            <div class="form-group">
+                <input type="email" class="form-control" id="loginEmail" name="email" value="{{ old('email') }}" placeholder="Masukkan Email" required>
+            </div>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="password" class="form-control" id="loginPassword" name="password" value="{{ old('password') }}" placeholder="Kata Sandi" required oninput="toggleLoginEyeIcon()">
+                    <div class="input-group-append" id="loginEyeIconContainer" style="display: none;">
+                        <span class="input-group-text" id="toggleLoginPassword" style="cursor: pointer;">
+                            <i class="fa-regular fa-eye" id="loginEyeIcon"></i>
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <button type="submit" id="loginButton" disabled>Masuk</button>
+        </form>
+
+        <p class="mt-3">
+            Belum punya akun? <a href="#" id="openRegisterPopup">Daftar</a>.
+        </p>
     </div>
 </div>
-@endsection
+
+<script>
+    let isLoginPasswordVisible = false;
+
+    function toggleLoginEyeIcon() {
+        const passwordInput = document.getElementById('loginPassword');
+        const eyeIconContainer = document.getElementById('loginEyeIconContainer');
+
+        // Menampilkan ikon mata jika ada input
+        if (passwordInput.value.length > 0) {
+            eyeIconContainer.style.display = 'block';
+        } else {
+            eyeIconContainer.style.display = 'none';
+        }
+    }
+
+    document.getElementById('toggleLoginPassword').addEventListener('click', function() {
+        const passwordInput = document.getElementById('loginPassword');
+        const eyeIcon = document.getElementById('loginEyeIcon');
+
+        // Menangani toggle password visibility
+        if (!isLoginPasswordVisible) {
+            passwordInput.type = 'text';
+            eyeIcon.classList.remove('fa-regular', 'fa-eye');
+            eyeIcon.classList.add('fa-regular', 'fa-eye-slash');
+            isLoginPasswordVisible = true;
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.classList.remove('fa-regular', 'fa-eye-slash');
+            eyeIcon.classList.add('fa-regular', 'fa-eye');
+            isLoginPasswordVisible = false;
+        }
+    });
+
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        const loginEmailInput = document.getElementById('loginEmail');
+        const loginPasswordInput = document.getElementById('loginPassword');
+        const loginButton = document.getElementById('loginButton');
+        const loginOverlay = document.getElementById('loginOverlay');
+        const loginErrorAlert = document.getElementById('loginErrorAlert');
+
+        function checkLoginInput() {
+            if (loginEmailInput.value && loginPasswordInput.value) {
+                loginButton.classList.add('enabled');
+                loginButton.disabled = false;
+                loginButton.style.cursor = 'pointer';
+            } else {
+                loginButton.classList.remove('enabled');
+                loginButton.disabled = true;
+                loginButton.style.cursor = 'not-allowed';
+            }
+        }
+
+        loginEmailInput.addEventListener('input', checkLoginInput);
+        loginPasswordInput.addEventListener('input', checkLoginInput);
+
+        if (loginErrorAlert) {
+            loginOverlay.style.display = 'flex';
+        }
+
+        document.getElementById('closeLoginPopup').addEventListener('click', function () {
+            loginOverlay.style.display = 'none';
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                loginOverlay.style.display = 'none';
+            }
+        });
+    });
+</script>

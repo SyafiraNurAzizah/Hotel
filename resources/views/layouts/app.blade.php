@@ -37,6 +37,20 @@
         <div id="main-content">
             @yield('content')
 
+            @if (Auth::check())
+                <!-- Display Logout Option -->
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+            @else
+                <!-- Display Login and Register Forms -->
+                @include('auth.login')
+                @include('auth.register')
+            @endif
+
             <x-footer />
         </div>
     </div>
@@ -54,5 +68,63 @@
     <script src={{ asset('js/main.js')}}></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        const loginOverlay = document.getElementById('loginOverlay');
+        const registerOverlay = document.getElementById('registerOverlay');
+        const openLoginPopup = document.getElementById('openLoginPopup');
+        const closeLoginPopup = document.getElementById('closeLoginPopup');
+        const openRegisterPopup = document.getElementById('openRegisterPopup');
+        const closeRegisterPopup = document.getElementById('closeRegisterPopup');
+
+        // Buka pop-up login ketika tombol login di klik
+        openLoginPopup.addEventListener('click', function() {
+            loginOverlay.style.display = 'flex';
+            registerOverlay.style.display = 'none';
+        });
+
+        // Tutup pop-up login ketika tombol close di klik
+        closeLoginPopup.addEventListener('click', function() {
+            loginOverlay.style.display = 'none';
+        });
+
+        // Tutup pop-up login jika area di luar form di klik
+        loginOverlay.addEventListener('click', function(e) {
+            if (e.target === loginOverlay) {
+                loginOverlay.style.display = 'none';
+            }
+        });
+
+        // Buka pop-up registrasi ketika tombol registrasi di klik
+        openRegisterPopup.addEventListener('click', function() {
+            registerOverlay.style.display = 'flex';
+            loginOverlay.style.display = 'none';
+        });
+
+        // Tutup pop-up registrasi ketika tombol close di klik
+        closeRegisterPopup.addEventListener('click', function() {
+            registerOverlay.style.display = 'none';
+        });
+
+        // Tutup pop-up registrasi jika area di luar form di klik
+        registerOverlay.addEventListener('click', function(e) {
+            if (e.target === registerOverlay) {
+                registerOverlay.style.display = 'none';
+            }
+        });
+
+        // Tambahkan event listener pada tombol "Register" pada form login
+        loginOverlay.querySelector('#openRegisterPopup').addEventListener('click', function() {
+            registerOverlay.style.display = 'flex';
+            loginOverlay.style.display = 'none';
+        });
+
+        // Tambahkan event listener pada tombol "Login" pada form registrasi
+        registerOverlay.querySelector('#openLoginPopup').addEventListener('click', function() {
+            loginOverlay.style.display = 'flex';
+            registerOverlay.style.display = 'none';
+        });
+    </script>
+      
 </body>
 </html>
