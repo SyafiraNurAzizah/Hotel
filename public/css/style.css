@@ -1472,7 +1472,7 @@ ul, ol {
   Room Section
 -----------------------*/
 
-.rooms-section {
+/* .rooms-section {
 	padding-top: 0;
 	padding-bottom: 80px;
 }
@@ -1538,7 +1538,7 @@ ul, ol {
 .room-pagination a:hover {
 	background: #dfa974;
 	color: #ffffff;
-}
+} */
 /*-----------------------
   Room Details Section
 -------------------------*/

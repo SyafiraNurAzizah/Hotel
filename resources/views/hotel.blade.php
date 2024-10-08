@@ -1,79 +1,41 @@
 @extends('layouts.app')
 
 @push('styles')
-<style>
-.room-image {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-
-.breadcrumb-section {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 150px 0; /* Menambah padding untuk membuat gambar latar lebih besar */
-    position: relative;
-    z-index: 1;
-}
-
-.breadcrumb-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Membuat overlay lebih gelap dengan opacity 0.7 */
-    z-index: -1;
-}
-
-.breadcrumb-text h2, .breadcrumb-text p {
-    color: white; /* Agar teks terlihat jelas di atas gambar */
-    text-align: center; /* Membuat teks berada di tengah */
-}
-
-.breadcrumb-text {
-    max-width: 800px;
-    margin: 0 auto; /* Agar teks berada di tengah kontainer */
-}
-</style>
+<link rel="stylesheet" href="{{ asset('css/hotel.css') }}">
 @endpush
 
 @section('content')
-      <!-- Breadcrumb Section Begin -->
-    <div class="breadcrumb-section" style="background-image: url('{{ asset('img/meetings/meeting-bg.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+   
+    <div class="breadcrumb-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2>Our Rooms</h2>
+                        <h2>Mau ke mana?</h2>
                         <div class="bt-option">
-                            <a href="./home.html">Home</a>
-                            <span>Rooms</span>
+                            <span>Temukan pengalaman menginap yang sempurna di hotel kami!</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Breadcrumb Section End -->
-    <br><br><br>
-    <!-- Rooms Section Begin -->
+
     <section class="rooms-section spad">
         <div class="container">
             <div class="row">
+                @foreach ($hotels as $item)
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
-                        <img src="img/room/room-jkt.jpg" alt="" class="room-image">
+                        <img src="{{ asset('/img/hotels/' . $item->foto_hotel) }}" alt="" class="room-image">
                         <div class="ri-text">
-                            <h3>Jakarta</h3>
-                            <a href="{{ route('detail2') }}" class="primary-btn">More Details</a>
-
+                            <h3>{{ $item->nama_cabang }}</h3>
+                            <a href="{{ route('rooms', ['location' => strtolower($item->nama_cabang)]) }}" class="primary-btn">More Details</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                @endforeach
+                {{-- <div class="col-lg-4 col-md-6">
                     <div class="room-item">
                         <img src="img/room/room-sby.jpg" alt="" class="room-image">
                         <div class="ri-text">
@@ -146,12 +108,8 @@
                             <a href="#" class="primary-btn">More Details</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
-    
-    <!-- Rooms Section End -->
-
-</div>
 @endsection
