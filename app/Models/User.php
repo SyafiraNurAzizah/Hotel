@@ -47,4 +47,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function isUser()
+    {
+        return $this->role === 'user';
+    }
 }

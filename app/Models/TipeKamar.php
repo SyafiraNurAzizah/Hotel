@@ -20,6 +20,7 @@ class TipeKamar extends Model
         'fasilitas',
         'ukuran_kamar',
         'jenis_kasur',
+        'foto',
         'status',
     ];
 }

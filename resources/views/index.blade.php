@@ -21,7 +21,9 @@
                     {{-- @include('auth.login')
                     @include('auth.register') --}}
 
-                    {{-- <div class="booking-form">
+                    {{-- @if (Auth::guest()) --}}
+                    @if(Auth::check() && Auth::user()->isUser())
+                    <div class="booking-form">
                         <h3>Booking Your Hotel</h3>
                         <form action="#">
                             <div class="check-date">
@@ -50,7 +52,8 @@
                             </div>
                             <button type="submit">Check Availability</button>
                         </form>
-                    </div> --}}
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
