@@ -59,7 +59,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title" id="exampleModalLabel">Wedding Package Details</h4>
+                                    <h4 class="modal-title" id="exampleModalLabel">{{ $wedding->judul }}</h4>
                                     <button type="button" class="icon_close" style="border: none; background: none;" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">

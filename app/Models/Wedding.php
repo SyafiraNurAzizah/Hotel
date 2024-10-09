@@ -12,10 +12,14 @@ class Wedding extends Model
     protected $table = 'weddings';
     protected $fillable = [
         'judul',
+        'judul_paket1',
+        'judul_paket2',
+        'judul_paket3',
         'gambar',
         'harga',
         'kapasitas',
-        'paket', 
-        'deskripsi',
+        'paket1',
+        'paket2',
+        'paket3'
     ];
 }
