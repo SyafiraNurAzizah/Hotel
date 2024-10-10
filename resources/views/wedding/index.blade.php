@@ -23,7 +23,7 @@
     <section class="rooms-section spad">
         <div class="container">
             <div class="row">
-                @foreach($weddings as $wedding)
+                @foreach ($weddings as $wedding)
                     <div class="col-lg-4 col-md-6">
                         <div class="room-item">
                             <!-- Mengambil gambar dari database -->
@@ -32,21 +32,26 @@
                             <div class="ri-text">
                                 <h4>{{ $wedding->judul }}</h4>
                                 <h3>
-                                    IDR {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }} <br>
+                                    IDR
+                                    {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }}
+                                    <br>
                                     <span class="text-muted">nett min. {{ $wedding->kapasitas }} guests</span>
                                 </h3>
-                                
-                                
+
+
                                 <div class="btn-contact d-flex justify-content-between align-items-center my-3">
-                                    <a href="#" class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
+                                    <a href="#"
+                                        class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
                                         <i class="icon_phone" style="margin-right: 8px;"></i> Contact
                                     </a>
-                                    <a href="#" class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
-                                        <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail    </a>
+                                    <a href="#"
+                                        class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
+                                        <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail </a>
                                 </div>
 
                                 <!-- Tombol More Details yang mengarahkan ke modal untuk menampilkan detail wedding -->
-                                <button class="primary-btn" style="border: none; background: none;" data-bs-toggle="modal" data-bs-target="#weddingModal-{{ $wedding->id }}">
+                                <button class="primary-btn" style="border: none; background: none;" data-bs-toggle="modal"
+                                    data-bs-target="#weddingModal-{{ $wedding->id }}">
                                     More Details
                                 </button>
                             </div>
@@ -55,33 +60,62 @@
 
 
                     <!-- Modal -->
-                    <div class="modal fade" id="weddingModal-{{ $wedding->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="weddingModal-{{ $wedding->id }}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl">
                             <div class="modal-content style="width: 100%;>
-                                {{-- <div class="modal-header">
-                                    <h3 class="modal-title" id="exampleModalLabel">{{ $wedding->judul }}</h3>
-                                    <button type="button" class="icon_close" style="border: none; background: none;" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div> --}}
                                 <div class="modal-body">
-                                    <button type="button" class="icon_close ms-auto" style="border: none; background: none;" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    <img src="{{ asset($wedding->gambar) }}" class="card-img-top" alt="{{ $wedding->judul }}" style="height: 400px; width: 2000px; object-fit: cover;">
+                                    <button type="button" class="icon_close ms-auto"
+                                        style="border: none; background: none;" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    <img src="{{ asset($wedding->gambar) }}" class="card-img-top"
+                                        alt="{{ $wedding->judul }}"
+                                        style="height: 400px; width: 2000px; object-fit: cover;">
                                     <br>
                                     <br>
-                                    <h4 class="card-text">Starting From IDR {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }} <span class="text-muted">nett min. {{ $wedding->kapasitas }} guests</span></h4>
-                                    <br>
+                                    <div class="row mb-4">
+                                        <div class="card mb-4 col-lg-4 col-md-6" style="border: none;">
+                                            <div class="deskripsi">
+                                                <h4 class="card-text">Starting From IDR
+                                                    {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }}
+                                                    <span class="text-muted">nett min. {{ $wedding->kapasitas }} guests</span></h4>
+                                                <br>
+                                            </div>
+                                            <div class="btn-contact">
+                                                <div class="btn-contact d-flex justify-content-end gap-3 my-3">
+                                                    <a href="#"
+                                                        class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
+                                                        <i class="icon_phone" style="margin-right: 8px;"></i> Contact
+                                                    </a>
+                                                    <a href="#"
+                                                        class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
+                                                        <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <!-- Isi modal dengan detail wedding -->
-                                    <div class="card mb-4">
-                                        <div class="card1">
-                                            <h6 class="card-text">{{ $wedding->judul_paket1 }}</h6>
-                                            <p class="card-text">{{ $wedding->paket1 }}</p></p>
+                                    <div class="row">
+                                        <div class="card mb-4 col-lg-4 col-md-6" style="border: none;">
+                                            <div class="card1">
+                                                <h6 class="card-text">{{ $wedding->judul_paket1 }}</h6>
+                                                <p class="card-text">{{ $wedding->paket1 }}</p>
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="card2">
-                                            <h6 class="card-text">{{ $wedding->judul_paket2 }}</h6>
-                                            <p class="card-text">{{ $wedding->paket2 }}</p></p>
+                                        <div class="card mb-4 col-lg-4 col-md-6" style="border: none;">
+                                            <div class="card2">
+                                                <h6 class="card-text">{{ $wedding->judul_paket2 }}</h6>
+                                                <p class="card-text">{{ $wedding->paket2 }}</p>
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="card3">
-                                            <h6 class="card-text">{{ $wedding->judul_paket3 }}</h6>
-                                            <p class="card-text">{{ $wedding->paket3 }}</p></p>
+                                        <div class="card mb-4 col-lg-4 col-md-6" style="border: none;">
+                                            <div class="card3">
+                                                <h6 class="card-text">{{ $wedding->judul_paket3 }}</h6>
+                                                <p class="card-text">{{ $wedding->paket3 }}</p>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
