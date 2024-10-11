@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/wedding.css') }}">
+@endpush
 @section('content')
     <!-- Breadcrumb Section Begin -->
     <div class="breadcrumb-section">
@@ -24,7 +27,7 @@
         <div class="container">
             <div class="row">
                 @foreach ($weddings as $wedding)
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6 coba">
                         <div class="room-item">
                             <!-- Mengambil gambar dari database -->
                             <img src="{{ asset($wedding->gambar) }}">
@@ -63,7 +66,7 @@
                     <div class="modal fade" id="weddingModal-{{ $wedding->id }}" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl">
-                            <div class="modal-content style="width: 100%;>
+                            <div class="modal-content" style="width: 100%;">
                                 <div class="modal-body">
                                     <button type="button" class="icon_close ms-auto"
                                         style="border: none; background: none;" data-bs-dismiss="modal"
@@ -71,53 +74,61 @@
                                     <img src="{{ asset($wedding->gambar) }}" class="card-img-top"
                                         alt="{{ $wedding->judul }}"
                                         style="height: 400px; width: 2000px; object-fit: cover;">
-                                    <br>
-                                    <br>
-                                    <div class="row mb-4">
-                                        <div class="card mb-4 col-lg-4 col-md-6" style="border: none;">
+
+                                    
                                             <div class="deskripsi">
                                                 <h4 class="card-text">Starting From IDR
                                                     {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }}
                                                     <span class="text-muted">nett min. {{ $wedding->kapasitas }} guests</span></h4>
                                                 <br>
-                                            </div>
-                                            <div class="btn-contact">
-                                                <div class="btn-contact d-flex justify-content-end gap-3 my-3">
-                                                    <a href="#"
-                                                        class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
-                                                        <i class="icon_phone" style="margin-right: 8px;"></i> Contact
-                                                    </a>
-                                                    <a href="#"
-                                                        class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
-                                                        <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail </a>
+                                                <div class="btn-contact">
+                                                    <div class="btn-contact d-flex justify-content-end gap-3 my-3">
+                                                        <a href="#"
+                                                            class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
+                                                            <i class="icon_phone" style="margin-right: 8px;"></i> Contact
+                                                        </a>
+                                                        <a href="#"
+                                                            class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
+                                                            <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                            
+
                                     <!-- Isi modal dengan detail wedding -->
-                                    <div class="row">
+                                    <div class="row mb-3" style="margin-left: 15px;">
                                         <div class="card mb-4 col-lg-4 col-md-6" style="border: none;">
                                             <div class="card1">
-                                                <h6 class="card-text">{{ $wedding->judul_paket1 }}</h6>
-                                                <p class="card-text">{{ $wedding->paket1 }}</p>
-                                                </p>
+                                                <h6 class="card-text" style="font-weight: bold;">{{ $wedding->judul_paket1 }}</h6>
+                                                <ul>
+                                                    @foreach (explode("\n", $wedding->paket1) as $item)
+                                                        <li>{{ $item }}</li>
+                                                    @endforeach
+                                                </ul>
                                             </div>
                                         </div>
                                         <div class="card mb-4 col-lg-4 col-md-6" style="border: none;">
                                             <div class="card2">
-                                                <h6 class="card-text">{{ $wedding->judul_paket2 }}</h6>
-                                                <p class="card-text">{{ $wedding->paket2 }}</p>
-                                                </p>
+                                                <h6 class="card-text" style="font-weight: bold;">{{ $wedding->judul_paket2 }}</h6>
+                                                <ul>
+                                                    @foreach (explode("\n", $wedding->paket2) as $item)
+                                                        <li>{{ $item }}</li>
+                                                    @endforeach
+                                                </ul>
                                             </div>
                                         </div>
                                         <div class="card mb-4 col-lg-4 col-md-6" style="border: none;">
                                             <div class="card3">
-                                                <h6 class="card-text">{{ $wedding->judul_paket3 }}</h6>
-                                                <p class="card-text">{{ $wedding->paket3 }}</p>
-                                                </p>
+                                                <h6 class="card-text" style="font-weight: bold;">{{ $wedding->judul_paket3 }}</h6>
+                                                <ul>
+                                                    @foreach (explode("\n", $wedding->paket3) as $item)
+                                                        <li>{{ $item }}</li>
+                                                    @endforeach
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
+                                    
                                 </div>
                                 {{-- <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -125,6 +136,7 @@
                             </div>
                         </div>
                     </div>
+                    {{-- end modal --}}
                 @endforeach
             </div>
         </div>

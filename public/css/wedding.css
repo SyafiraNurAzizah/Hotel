@@ -1,0 +1,21 @@
+.container .modal .modal-body .icon_close {
+    float: right;
+    position: relative;
+    bottom: 8px;
+    left: 5px;
+}
+
+.deskripsi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.btn-contact {
+    display: flex;
+    gap: 1rem;
+    align-self: flex-end;
+    margin-top: 0;
+    margin-bottom: 0;
+}
