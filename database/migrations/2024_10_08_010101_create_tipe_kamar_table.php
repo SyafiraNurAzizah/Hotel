@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('hotel_id')->constrained('hotels')->onDelete('cascade');
             $table->string('nama_tipe'); // Nama tipe kamar
             $table->text('deskripsi')->nullable(); // Deskripsi tipe kamar
-            $table->decimal('harga_per_malam', 10, 2); // Harga per malam dengan presisi dua desimal
+            $table->string('harga_per_malam'); // Harga per malam dengan presisi dua desimal
             $table->integer('jumlah_kamar_tersedia'); // Jumlah kamar tersedia
             $table->integer('kapasitas'); // Kapasitas maksimal tamu
             $table->text('fasilitas')->nullable(); // Fasilitas dalam bentuk teks (bisa JSON atau string)

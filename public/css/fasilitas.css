@@ -59,8 +59,18 @@
 	padding-top: 0;
 	padding-bottom: 80px;
 }
-.room-item {
-	margin-bottom: 30px;
+.room-item img {
+    width: 100%; /* Memastikan gambar menempati seluruh lebar container */
+    height: 250px; /* Menetapkan tinggi tetap untuk gambar */
+    object-fit: cover; /* Memastikan gambar dipotong secara proporsional dan tidak terdistorsi */
+    border-radius: 5px; /* Menambahkan border-radius agar gambar lebih menarik */
+}
+
+/* Responsive untuk mobile */
+@media (max-width: 768px) {
+    .room-item img {
+        height: 200px; /* Sesuaikan tinggi gambar untuk layar lebih kecil */
+    }
 }
 .room-item img {
 	min-width: 100%;
@@ -122,3 +132,5 @@
 	background: #dfa974;
 	color: #ffffff;
 }
+
+
