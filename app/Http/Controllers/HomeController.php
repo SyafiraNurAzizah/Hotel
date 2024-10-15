@@ -36,4 +36,9 @@ class HomeController extends Controller
         return view('wedding.index');
     }
     
+
+    public function meeting()
+    {
+        return view('meeting');
+    }
 }

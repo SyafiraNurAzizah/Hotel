@@ -37,19 +37,8 @@
         <div id="main-content">
             @yield('content')
 
-            @if (Auth::check())
-                <!-- Display Logout Option -->
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    Logout
-                </a>
-            @else
-                <!-- Display Login and Register Forms -->
                 @include('auth.login')
                 @include('auth.register')
-            @endif
 
             <x-footer />
         </div>
