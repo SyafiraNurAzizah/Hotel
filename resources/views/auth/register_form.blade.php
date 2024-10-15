@@ -1,82 +1,11 @@
-<div class="register_form">
-    <div class="container">
-        <div class="register-box">
-            @include('auth.register_form')
-        </div>
-    </div>
-    <div class="login-route">
-        <p class="mt-3">
-            Sudah punya akun? <a href="{{ route('login') }}">Masuk</a>.
-        </p>
-    </div>
-</div>
+<link rel="stylesheet" href="{{ asset('css/register.css') }}">
 
-
-<style>
-    /* .register_form {
-        position: fixed
-    } */
-
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-left: 450px;
-        padding-top: 40px;
-        padding-right: 430px;
-    }
-
-    .register-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        padding: 20px;
-        background-color: white;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.212);
-        border-radius: 8px;
-        width: 500px;
-    }
-
-    .login-route {
-        position: relative;
-        bottom: 158px;
-        left: 578px;
-        background-color: #ffffff;
-        width: 200px;
-        height: 30px;
-        font-family: 'Cabin', sans-serif;
-    }
-    .login-route p {
-        font-size: 15px;
-        color: #707079;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .login-route p a {
-        display: inline;
-        font-size: 15px;
-        font-weight: bold;
-        color: #dfa974;
-        display: block;
-        padding-left: 5px;
-        text-decoration: none;
-    }
-</style>
-
-
-
-
-
-
-{{-- <link rel="stylesheet" href="{{ asset('css/register.css') }}">
-
-<div class="overlay" id="registerOverlay">
+{{-- <div class="overlay" id="registerOverlay"> --}}
     <div class="register-form">
         <span class="close" id="closeRegisterPopup"></span>
 
-        <img src="img/logo.png" alt="Logo" class="logo-img" id="logo-img">
+        <h3>DAFTAR</h3>
+        {{-- <img src="img/logo.png" alt="Logo" class="logo-img" id="logo-img"> --}}
 
         @if ($errors->any())
             <div class="alert alert-danger" id="registerErrorAlert">
@@ -88,7 +17,7 @@
             </div>
         @endif
         
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" class="register-form-input">
             @csrf
             
             <div class="row">
@@ -138,12 +67,12 @@
         </form>
 
         <p class="mt-3 route-login">
-            Sudah punya akun? <a href="#" id="openLoginPopup">Masuk</a>.
+            Sudah punya akun? <a href="#" id="openLoginPopup">Login</a>.
         </p>
 
         <input type="text" class="hitung-password" readonly id="jumlah" name="jumlah" value="1/8" placeholder="1/8" />
     </div>
-</div>
+{{-- </div> --}}
 
 <script>
     let isRegisterPasswordVisible = false;
@@ -238,7 +167,9 @@
         const registrationError = @json(session('registration_error'));
         const registerErrorAlert = document.getElementById('registerErrorAlert');
         const image = document.getElementById('logo-img');
+        const registerForm = document.querySelector('.register-form-input');
         const routeLogin = document.querySelector('.route-login');
+        const hitungPassword = document.querySelector('.hitung-password');
 
         function checkInput() {
             const passwordLength = passwordInput.value.length;
@@ -283,12 +214,14 @@
         });
 
         if (registerErrorAlert) {
-            image.style.marginBottom = '5px';
+            registerForm.classList.add('register-shift-up');
             routeLogin.classList.add('route-login-with-alert');
-        } else {
-            image.style.marginBottom = '';
-            routeLogin.classList.remove('route-login-with-alert');
-        }
+            hitungPassword.classList.add('hitung-password-with-alert');
+        } 
+        // else {
+        //     image.style.marginBottom = '';
+        //     routeLogin.classList.remove('route-login-with-alert');
+        // }
     });
 
     
@@ -306,4 +239,4 @@
             jumlahInput.style.color = '#ced4da';
         }
     }
-</script> --}}
+</script>

@@ -11,6 +11,13 @@
     <link href={{ asset('https://fonts.googleapis.com/css?family=Lora:400,700&display=swap') }} rel="stylesheet">
     <link href={{ asset('https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap') }} rel="stylesheet">
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRkWoDP1lKmFZP5Ik0Uc5zZPQhoSOOpI5bNjCh2t" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLSbDPv9cGRZlw5S0mrhDKTcy5RkLIp5+8FJX5HdlBY5ZdQ0yG5v6IB5HE/smk+t" crossorigin="anonymous">
+
     <!-- Css Styles -->
     <link rel="stylesheet" href={{ asset('css/bootstrap.min.css') }} type="text/css">
     <link rel="stylesheet" href={{ asset('css/font-awesome.min.css') }} type="text/css">
@@ -37,8 +44,12 @@
         <div id="main-content">
             @yield('content')
 
-                @include('auth.login')
-                @include('auth.register')
+            <div class="overlay" id="loginOverlay" style="display: none;">
+                @include('auth.login_form')
+            </div>
+            <div class="overlay" id="registerOverlay" style="display: none;">
+                @include('auth.register_form')
+            </div>
 
             <x-footer />
         </div>
@@ -55,6 +66,10 @@
     <script src={{ asset('js/jquery.slicknav.js')}}></script>
     <script src={{ asset('js/owl.carousel.min.js')}}></script>
     <script src={{ asset('js/main.js')}}></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6Z6pmy9mB1f5prm4bmbLy8fZlP7x4roeTqz0iP4vo7AlPq0PXQ/" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76A08ztpM7a6eZrnPtb6QUEWZg+AjR7gPzC7S0JnB1zYgknVx0PBp0LBBR5BrHl" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

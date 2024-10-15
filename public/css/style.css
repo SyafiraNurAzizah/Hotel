@@ -223,7 +223,7 @@ ul, ol {
 		border-left-color: transparent;
 	}
 }
-.spacial-controls {
+/* .spacial-controls {
 	position: fixed;
 	width: 111px;
 	height: 91px;
@@ -281,7 +281,7 @@ ul, ol {
 	-webkit-box-pack: center;
 	-ms-flex-pack: center;
 	justify-content: center;
-}
+} */
 /*---------------------
   Header
 -----------------------*/

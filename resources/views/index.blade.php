@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-{{-- @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-@endpush --}}
-
 @section('content')
     <section class="hero-section">
         <div class="container">
@@ -18,10 +14,6 @@
                 </div>
                 <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
 
-                    {{-- @include('auth.login')
-                    @include('auth.register') --}}
-
-                    {{-- @if (Auth::guest()) --}}
                     @if(Auth::check() && Auth::user()->isUser())
                     <div class="booking-form">
                         <h3>Booking Your Hotel</h3>
@@ -58,7 +50,6 @@
             </div>
         </div>
         <div class="hero-slider owl-carousel">
-    
             <div class="hs-item set-bg" data-setbg="img/hero/room-c1.jpg"></div>
             <div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg"></div>
             <div class="hs-item set-bg" data-setbg="img/hero/hero-3.jpg"></div>

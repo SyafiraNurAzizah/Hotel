@@ -9,14 +9,19 @@ Route::get('/meeting', [App\Http\Controllers\HomeController::class, 'meeting'])-
 
 Route::get('/weedings', [App\Http\Controllers\HomeController::class, 'weedings'])->name('weedings');
 
+
 //---------------------------- LOGIN & REGISTER -----------------------------//
 Auth::routes();
 
-// Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'create'])->name('register.create');
-// Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('register.store');
-
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
 
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/{firstname}-{lastname}', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
+});
 //----------------------------------------------------------------------------//
 
 //------------------------------- HOTEL -----------------------------------//
