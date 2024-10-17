@@ -1,252 +1,140 @@
 @extends('layouts.app')
 
-@section('content')
-
-    <!-- Breadcrumb Section Begin -->
-    <div class="breadcrumb-section" style="background-image: url('{{ asset('img/meetings/meeting-bg.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+@push('styles')
+    <style>
+       
+        .breadcrumb-section {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 150px 0; /* Menambah padding untuk membuat gambar latar lebih besar */
+            position: relative;
+            z-index: 1;
+        }
         
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <h2>Our Rooms</h2>
-                        <div class="bt-option">
-                            <a href="./home.html">Home</a>
-                            <span>Rooms</span>
-                        </div>
-                    </div>
+        .breadcrumb-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Membuat overlay lebih gelap dengan opacity 0.7 */
+            z-index: -1;
+        }
+        
+        .breadcrumb-text h2, .breadcrumb-text p {
+            color: white; /* Agar teks terlihat jelas di atas gambar */
+            text-align: center; /* Membuat teks berada di tengah */
+        }
+        
+        .breadcrumb-text {
+            max-width: 800px;
+            margin: 0 auto; /* Agar teks berada di tengah kontainer */
+        }
+        
+
+
+ul.list-unstyled {
+    font-size: 1rem;
+    color: #495057;
+}
+
+.text-primary {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.card {
+    border: none;
+    background-color: #ffffff;
+}
+
+.blockquote-footer {
+    color: #6c757d;
+}
+
+.card-body {
+    background-color: #f1f3f5;
+    border-radius: 5px;
+}
+
+.card-body blockquote {
+    margin: 0;
+}
+
+    </style>
+@endpush
+
+@section('content')
+<!-- Breadcrumb Section Begin -->
+<div class="breadcrumb-section" style="background-image: url('{{ asset('img/meetings/meeting-bg.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <div class="container-atas">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Detail Meetings</h2>
+                    <p>Explore our latest meetings and stay updated with the latest events and schedules.</p>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Breadcrumb Section End -->
+</div>
+<!-- Breadcrumb Section End -->
 
-    <!-- Room Details Section Begin -->
+
+
     <section class="room-details-section spad">
-        <div class="container">
+        <div class="container py-5">
             <div class="row">
-                <div class="col-lg-8">
-                    <div class="room-details-item">
-                        <img src="img/room/room-details.jpg" alt="">
-                        <div class="rd-text">
-                            <div class="rd-title">
-                                <h3>Premium King Room</h3>
-                                <div class="rdt-right">
-                                    <div class="rating">
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star-half_alt"></i>
-                                    </div>
-                                    <a href="#">Booking Now</a>
-                                </div>
-                            </div>
-                            <h2>159$<span>/Pernight</span></h2>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Size:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Capacity:</td>
-                                        <td>Max persion 5</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Bed:</td>
-                                        <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <p class="f-para">Motorhome or Trailer that is the question for you. Here are some of the
-                                advantages and disadvantages of both, so you will be confident when purchasing an RV.
-                                When comparing Rvs, a motorhome or a travel trailer, should you buy a motorhome or fifth
-                                wheeler? The advantages and disadvantages of both are studied so that you can make your
-                                choice wisely when purchasing an RV. Possessing a motorhome or fifth wheel is an
-                                achievement of a lifetime. It can be similar to sojourning with your residence as you
-                                search the various sites of our great land, America.</p>
-                            <p>The two commonly known recreational vehicle classes are the motorized and towable.
-                                Towable rvs are the travel trailers and the fifth wheel. The rv travel trailer or fifth
-                                wheel has the attraction of getting towed by a pickup or a car, thus giving the
-                                adaptability of possessing transportation for you when you are parked at your campsite.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="rd-reviews">
-                        <h4>Reviews</h4>
-                        <div class="review-item">
-                            <div class="ri-pic">
-                                <img src="img/room/avatar/avatar-1.jpg" alt="">
-                            </div>
-                            <div class="ri-text">
-                                <span>27 Aug 2019</span>
-                                <div class="rating">
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star-half_alt"></i>
-                                </div>
-                                <h5>Brandon Kelley</h5>
-                                <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                    adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
-                                    magnam.</p>
-                            </div>
-                        </div>
-                        <div class="review-item">
-                            <div class="ri-pic">
-                                <img src="img/room/avatar/avatar-2.jpg" alt="">
-                            </div>
-                            <div class="ri-text">
-                                <span>27 Aug 2019</span>
-                                <div class="rating">
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star-half_alt"></i>
-                                </div>
-                                <h5>Brandon Kelley</h5>
-                                <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                    adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
-                                    magnam.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="review-add">
-                        <h4>Add Review</h4>
-                        <form action="#" class="ra-form">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <input type="text" placeholder="Name*">
-                                </div>
-                                <div class="col-lg-6">
-                                    <input type="text" placeholder="Email*">
-                                </div>
-                                <div class="col-lg-12">
-                                    <div>
-                                        <h5>You Rating:</h5>
-                                        <div class="rating">
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star-half_alt"></i>
-                                        </div>
-                                    </div>
-                                    <textarea placeholder="Your Review"></textarea>
-                                    <button type="submit">Submit Now</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                <div class="col-lg-6">
+                    <img src="img/meetings/meeting-2.jpg" class="img-fluid rounded" alt="Premium Meeting Room">
                 </div>
-                <div class="col-lg-4">
-                    <div class="room-booking">
-                        <h3>Your Reservation</h3>
-                        <form action="#">
-                            <div class="check-date">
-                                <label for="date-in">Check In:</label>
-                                <input type="text" class="date-input" id="date-in">
-                                <i class="icon_calendar"></i>
-                            </div>
-                            <div class="check-date">
-                                <label for="date-out">Check Out:</label>
-                                <input type="text" class="date-input" id="date-out">
-                                <i class="icon_calendar"></i>
-                            </div>
-                            <div class="select-option">
-                                <label for="guest">Guests:</label>
-                                <select id="guest">
-                                    <option value="">3 Adults</option>
-                                </select>
-                            </div>
-                            <div class="select-option">
-                                <label for="room">Room:</label>
-                                <select id="room">
-                                    <option value="">1 Room</option>
-                                </select>
-                            </div>
-                            <button type="submit">Check Availability</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Room Details Section End -->
-
-    <!-- Footer Section Begin -->
-    <footer class="footer-section">
-        <div class="container">
-            <div class="footer-text">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="ft-about">
-                            <div class="logo">
-                                <a href="#">
-                                    <img src="img/footer-logo.png" alt="">
-                                </a>
-                            </div>
-                            <p>We inspire and reach millions of travelers<br /> across 90 local websites</p>
-                            <div class="fa-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 offset-lg-1">
-                        <div class="ft-contact">
-                            <h6>Contact Us</h6>
+                <div class="col-lg-6">
+                    <h2 class="display-4 mb-4">Premium Meeting Room</h2>
+                    <p class="text-muted">Ideal untuk pertemuan bisnis, konferensi, atau acara eksklusif lainnya. Desain modern dan fasilitas lengkap yang menjamin kenyamanan serta kesuksesan acara Anda.</p>
+        
+                    <h3 class="mt-4">Fasilitas</h3>
+                    <ul class="list-unstyled mb-4">
+                        <li><strong>Kapasitas:</strong> Hingga 50 orang</li>
+                        <li><strong>Ukuran Ruangan:</strong> 100 meter persegi</li>
+                        <li><strong>Fasilitas Utama:</strong>
                             <ul>
-                                <li>(12) 345 67890</li>
-                                <li>info.colorlib@gmail.com</li>
-                                <li>856 Cordia Extension Apt. 356, Lake, United State</li>
+                                <li>Proyektor & layar LCD</li>
+                                <li>Sistem audio berkualitas tinggi</li>
+                                <li>Papan tulis interaktif</li>
+                                <li>Wi-Fi berkecepatan tinggi</li>
+                                <li>AC yang terkontrol</li>
                             </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 offset-lg-1">
-                        <div class="ft-newslatter">
-                            <h6>New latest</h6>
-                            <p>Get the latest updates and offers.</p>
-                            <form action="#" class="fn-form">
-                                <input type="text" placeholder="Email">
-                                <button type="submit"><i class="fa fa-send"></i></button>
-                            </form>
-                        </div>
-                    </div>
+                        </li>
+                        <li><strong>Kelengkapan:</strong>
+                            <ul>
+                                <li>Meja konferensi & kursi nyaman</li>
+                                <li>Meja registrasi</li>
+                                <li>Kursi tambahan</li>
+                            </ul>
+                        </li>
+                        <li><strong>Kebutuhan Tambahan:</strong>
+                            <ul>
+                                <li>Katering & coffee break</li>
+                                <li>Ruangan istirahat</li>
+                                <li>Layanan fotokopi & printer</li>
+                            </ul>
+                        </li>
+                    </ul>
+        
+                    <h3>Harga</h3>
+                    <p class="text-primary">Rp 2.000.000,- / 4 jam<br>Rp 3.500.000,- / 8 jam</p>
+        
+                    <h3>Reservasi</h3>
+                    <p>Hubungi kami di <a href="tel:02112345678">(021) 1234-5678</a> atau email <a href="mailto:info@meetingroom.com">info@meetingroom.com</a>.</p>
                 </div>
             </div>
-        </div>
-        <div class="copyright-option">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <ul>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Terms of use</a></li>
-                            <li><a href="#">Privacy</a></li>
-                            <li><a href="#">Environmental Policy</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-5">
-                        <div class="co-text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                    </div>
-                </div>
+            <div style="text-align: right;">
+                <a href="#" class="btn btn-primary">Booking Now</a>
             </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
+        
+    </section>
 
     <!-- Search model Begin -->
     <div class="search-model">

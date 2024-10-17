@@ -16,7 +16,7 @@
                         <nav class="mainmenu">
                             <ul>
                                 <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}">Beranda</a></li>
-                                <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="#">Hotel</a></li>
+                                <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ url('hotel') }}">Hotel</a></li>
                                 <li class="{{ Request::is('meeting') ? 'active' : '' }}"><a href="{{url('meeting')}}">Meetings</a></li>
                                 <li class="{{ Request::is('pages') ? 'active' : '' }}"><a href="./pages.html">Weedings</a></li>
                                 <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="./contact.html">Contact</a></li>

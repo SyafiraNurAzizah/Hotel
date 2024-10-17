@@ -22,5 +22,13 @@ class UserSeeder extends Seeder
             'no_telp' => '1234567890',
             'role' => 'admin', 
         ]);
+        User::create([
+            'firstname' => 'Admin',
+            'lastname' => 'Winda',
+            'email' => 'adminwinda@mail.com',
+            'password' => Hash::make('adminwinda'),
+            'no_telp' => '1234567891',
+            'role' => 'admin', 
+        ]);
     }
 }
