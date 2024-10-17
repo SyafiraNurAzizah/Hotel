@@ -12,6 +12,7 @@ Route::get('/meeting', [App\Http\Controllers\HomeController::class, 'meeting'])-
 Route::get('/weedings', [App\Http\Controllers\HomeController::class, 'weedings'])->name('weedings');
 
 
+
 //---------------------------- LOGIN & REGISTER -----------------------------//
 Auth::routes();
 
@@ -26,12 +27,28 @@ Route::middleware(['auth'])->group(function () {
 });
 //----------------------------------------------------------------------------//
 
+
+
+//------------------------------ ADMIN --------------------------------//
+Route::group(['middleware' => ['auth', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
+    
+});
+
+Route::group(['middleware' => ['auth', App\Http\Middleware\UserAccessMiddleware::class]], function () {
+    
+});
+//---------------------------------------------------------------------//
+
+
+
 //------------------------------- HOTEL -----------------------------------//
 Route::get('/hotel', [App\Http\Controllers\HotelsController::class, 'index'])->name('hotel');
 
 Route::get('/hotel/{location}', [App\Http\Controllers\HotelsController::class, 'showRooms'])->name('rooms');
 Route::get('/hotel/{location}/fasilitas', [App\Http\Controllers\HotelsController::class, 'showFasilitas'])->name('fasilitas');
 //---------------------------------------------------------------------------//
+
+
 
 Route::get('/detail/detail1', function () {
     return view('meeting.detail1');
