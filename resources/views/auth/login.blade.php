@@ -75,7 +75,7 @@
     <div class="login-form">
         <span class="close" id="closeLoginPopup"></span>
         
-        <img src="img/logo.png" alt="Logo" class="logo-img">
+        <img src="img/berlian.png" alt="Logo" class="logo-img">
 
         @if (session('error'))
             <div class="alert alert-danger" id="loginErrorAlert">

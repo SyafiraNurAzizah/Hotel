@@ -15,11 +15,16 @@
                     <div class="nav-menu">
                         <nav class="mainmenu">
                             <ul>
-                                <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}">Beranda</a></li>
-                                <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ url('hotel') }}">Hotel</a></li>
-                                <li class="{{ Request::is('meeting') ? 'active' : '' }}"><a href="meeting">Meetings</a></li>
-                                <li class="{{ Request::is('pages') ? 'active' : '' }}"><a href="./pages.html">Weedings</a></li>
-                                <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="./contact.html">Contact</a></li>
+                                @if (Auth::guest())
+                                    <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}">Beranda</a></li>
+                                    <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ url('hotel') }}">Hotel</a></li>
+                                    <li class="{{ Request::is('meeting') ? 'active' : '' }}"><a href="{{url('meeting')}}">Meetings</a></li>
+                                    <li class="{{ Request::is('pages') ? 'active' : '' }}"><a href="./pages.html">Weedings</a></li>
+                                    <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="./contact.html">Contact</a></li>
+                                @elseif (Auth::check() && Auth::user()->role == 'admin')
+                                    <li class="{{ Request::is('admin') ? 'active' : '' }}"><a href="{{ route('admin.index') }}">ADMIN</a></li>
+                                    <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ route('admin.hotel.index') }}">Hotel</a></li>
+                                @endif
                             </ul>
                         </nav>                        
                         <div class="nav-right search-switch">

@@ -27,4 +27,14 @@ class HomeController extends Controller
 
         return view('profile', ['user' => $user]);
     }
+
+
+    public function adminIndex()
+    {
+        return view('admin.index');
+    }
+    public function adminHotel()
+    {
+        return view('admin.hotel.index');
+    }
 }
