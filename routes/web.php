@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HotelsController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Container\Attributes\Config;
 use Illuminate\Support\Facades\Auth;
@@ -49,4 +50,15 @@ Route::get('/fasilitas/{location}', function ($location) {
 
 // Route untuk halaman detail kamar
 Route::get('/rooms/{id}', [App\Http\Controllers\RoomController::class, 'show'])->name('room.show');
+
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/hotel', [HotelsController::class, 'index'])->name('hotel.index');
+//     Route::get('/hotel/rooms/{location}', [HotelsController::class, 'showRooms'])->name('hotel.rooms');
+//     Route::get('/hotel/fasilitas/{location}', [HotelsController::class, 'showFasilitas'])->name('hotel.fasilitas');
+// });
+
+// Route::prefix('admin')->middleware(['auth', 'admin.access'])->group(function () {
+//     Route::get('/hotel', [HotelsController::class, 'adminIndex'])->name('admin.hotel.index');
+//     Route::get('/hotel/rooms/{location}', [HotelsController::class, 'adminShowRooms'])->name('admin.hotel.rooms');
+// });
 

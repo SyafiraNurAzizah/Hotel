@@ -16,10 +16,20 @@
                         <nav class="mainmenu">
                             <ul>
                                 <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}">Beranda</a></li>
-                                <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ url('hotel') }}">Hotel</a></li>
-                                <li class="{{ Request::is('meeting') ? 'active' : '' }}"><a href="meeting">Meetings</a></li>
-                                <li class="{{ Request::is('pages') ? 'active' : '' }}"><a href="./pages.html">Weedings</a></li>
-                                <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="./contact.html">Contact</a></li>
+                                @if(Auth::check() && Auth::user()->role == 'admin')
+                                <li class="{{ Request::is('admin/hotel') ? 'active' : '' }}">
+                                    <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ url('hotel') }}">Hotel</a></li>
+                                    <li class="{{ Request::is('meeting') ? 'active' : '' }}"><a href="meeting">Meetings</a></li>
+                                    <li class="{{ Request::is('pages') ? 'active' : '' }}"><a href="./pages.html">Weddings</a></li>
+                                    <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="./contact.html">Contact</a></li>
+                                    
+                                </li>
+                                 @else
+                                    <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ url('hotel') }}">Hotel</a></li>
+                                    <li class="{{ Request::is('meeting') ? 'active' : '' }}"><a href="meeting">Meetings</a></li>
+                                    <li class="{{ Request::is('pages') ? 'active' : '' }}"><a href="./pages.html">Weddings</a></li>
+                                    <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="./contact.html">Contact</a></li>
+                                @endif
                             </ul>
                         </nav>                        
                         <div class="nav-right search-switch">
@@ -27,20 +37,17 @@
                         </div>
                         <div class="nav-right login-button">
                             @if (Auth::check())
-
                                 <div class="profile-user">
                                     <span>{{ Auth::user()->firstname }}</i></span>
                                     <div class="user-dropdown">
                                         <ul>
                                             <li><a href="#">Profile</a></li>
                                             <li>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                    style="display: none;">
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                     @csrf
                                                 </form>
-                                                <a href="#"
-                                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                    <i class="fa fa-sign-out"></i>
+                                                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                    <i class="fa fa-sign-out"></i> Logout
                                                 </a>
                                             </li>
                                         </ul>
@@ -56,6 +63,7 @@
         </div>
     </div>
 </header>
+
 
 @push('scripts')
     <script>
