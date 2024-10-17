@@ -16,4 +16,9 @@ class Hotels extends Model
         'no_telp',
         'foto_hotel',
     ];
+
+    public function tipeKamars()
+    {
+        return $this->hasMany(TipeKamar::class);
+    }
 }

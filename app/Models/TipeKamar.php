@@ -23,4 +23,9 @@ class TipeKamar extends Model
         'foto',
         'status',
     ];
+
+    public function hotel()
+    {
+        return $this->belongsTo(Hotels::class); // Pastikan model Hotel sudah ada
+    }
 }

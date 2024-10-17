@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\RoomController;
+use Illuminate\Container\Attributes\Config;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -39,13 +41,17 @@ Route::get('/detail/detail2', function () {
     return view('hotel.detail2');
 })->name('detail2'); // Tambahkan nama disini
 
-Route::get('/fasilitas/{location}', function ($location) {
-    // Periksa apakah view untuk lokasi tersedia
-    $viewName = 'hotel.fasilitas.fasilitas-' . $location;
+// Route::get('/fasilitas/{location}', function ($location) {
+//     // Periksa apakah view untuk lokasi tersedia
+//     $viewName = 'hotel.fasilitas.fasilitas-' . $location;
     
-    if (view()->exists($viewName)) {
-        return view($viewName);
-    } else {
-        abort(404); // Jika view tidak ditemukan, tampilkan halaman 404
-    }
-});
+//     if (view()->exists($viewName)) {
+//         return view($viewName);
+//     } else {
+//         abort(404); // Jika view tidak ditemukan, tampilkan halaman 404
+//     }
+// });
+
+// Route untuk halaman detail kamar
+Route::get('/rooms/{id}', [App\Http\Controllers\RoomController::class, 'show'])->name('room.show');
+

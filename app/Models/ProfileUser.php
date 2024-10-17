@@ -14,7 +14,7 @@ class ProfileUser extends Model
         'user_id',
         'alamat',
         'tanggal_lahir',
-        'no_telp',
+        'jenis_kelamin',
     ];
 
     

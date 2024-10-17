@@ -62,12 +62,6 @@
     position: relative;
     bottom: 50px;
 }
-.login-form form label {
-	font-size: 14px;
-	color: #707079;
-	display: block;
-	margin-bottom: 10px;
-}
 .login-form form input {
 	border: none;
     border-bottom: 1px solid #ced4da;
