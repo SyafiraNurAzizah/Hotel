@@ -127,7 +127,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <a href="{{ route('room.show', ['id' => $room->id]) }}" class="primary-btn">More Details</a>
+                                    <a href="{{ route('detail-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe]) }}" class="primary-btn">More Details</a>
                                 </div>
                             </div>
                         </div>

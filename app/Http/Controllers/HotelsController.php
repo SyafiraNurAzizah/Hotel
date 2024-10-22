@@ -31,6 +31,23 @@ class HotelsController extends Controller
         ]);
     }
 
+    public function showRoomsDetail($location, $nama_tipe)
+    {
+        $hotels = Hotels::where('nama_cabang', $location)->get();
+
+        $room = TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail();
+
+        foreach ($hotels as $hotel) {
+            $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
+        }
+        
+        return view('hotel.detail-hotel', [
+            'location' => ucfirst($location),
+            'hotels' => $hotels,
+            'room' => $room
+        ]);
+    }
+
     public function showFasilitas($location)
     {
         // Ambil hotel berdasarkan lokasi

@@ -34,7 +34,6 @@ Route::middleware(['auth'])->group(function () {
 Route::group(['middleware' => ['auth', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
     Route::get('/admin', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('admin.index');
     Route::get('/admin/hotel', [App\Http\Controllers\HomeController::class, 'adminHotel'])->name('admin.hotel.index');
-
 });
 //----------------------------------------------------------------------------
 
@@ -52,8 +51,16 @@ Route::group(['middleware' => ['auth', App\Http\Middleware\UserAccessMiddleware:
 
 
 
-//------------------------------- HOTEL -----------------------------------//
+//-------------------------------- HOTEL -----------------------------------//
 Route::get('/hotel', [App\Http\Controllers\HotelsController::class, 'index'])->name('hotel');
+
+Route::get('/hotel/{location}', [App\Http\Controllers\HotelsController::class, 'showRooms'])->name('rooms');
+
+Route::get('/hotel/{location}/{nama_tipe}', [App\Http\Controllers\HotelsController::class, 'showRoomsDetail'])->name('detail-hotel');
+
+Route::get('/hotel/{location}/fasilitas', [App\Http\Controllers\HotelsController::class, 'showFasilitas'])->name('fasilitas');
+//--------------------------------------------------------------------------//
+
 
 // ------------------------------------ Meetings----------------------------------//
 Route::get('/meeting', [App\Http\Controllers\MeetingsController::class, 'index'])->name('meeting');
@@ -66,13 +73,20 @@ Route::get('/meeting/{location}/{roomId}', [App\Http\Controllers\MeetingsControl
 //-----------------------------------------------------------------------------------//
 
 
+//------------------------------------ BOOKING ----------------------------------//
+Route::post('/hotel/{location}/{nama_tipe}', [App\Http\Controllers\BookingController::class, 'storeHotel'])->name('booking.hotel.store');
+//-------------------------------------------------------------------------------//
+
+
+
+
+
+
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/hotel/{location}', [App\Http\Controllers\HotelsController::class, 'showRooms'])->name('rooms');
-Route::get('/hotel/{location}/fasilitas', [App\Http\Controllers\HotelsController::class, 'showFasilitas'])->name('fasilitas');
 //---------------------------------------------------------------------------//
 
 
@@ -109,5 +123,8 @@ Route::get('/detail/detail2', function () {
 // });
 
 // Route untuk halaman detail kamar
-Route::get('/rooms/{id}', [App\Http\Controllers\RoomController::class, 'show'])->name('room.show');
+
+
+
+// Route::get('/rooms/{id}', [App\Http\Controllers\RoomController::class, 'show'])->name('room.show');
 

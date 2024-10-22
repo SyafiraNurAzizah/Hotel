@@ -14,8 +14,7 @@
                         <a href="#" class="primary-btn">Discover Now</a>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
-
+                {{-- <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
                     @if(Auth::check() && Auth::user()->isUser())
                     <div class="booking-form">
                         <h3>Booking Your Hotel</h3>
@@ -48,12 +47,12 @@
                         </form>
                     </div>
                     @endif
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="hero-slider owl-carousel">
     
-            <div class="hs-item set-bg" data-setbg="img/hero/hero-4.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="img/slider-1.png"></div>
             <div class="hs-item set-bg" data-setbg="img/hero/hero-6.jpg"></div>
             <div class="hs-item set-bg" data-setbg="img/hero/hero-7.jpg"></div>
         </div>
