@@ -2,25 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        // $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
         return view('index');
@@ -41,4 +27,25 @@ class HomeController extends Controller
     {
         return view('meeting');
     }
+<<<<<<< HEAD
 }
+=======
+
+    public function profile($firstname, $lastname)
+    {
+        $user = User::where('firstname', $firstname)->where('lastname', $lastname)->firstOrFail();
+
+        return view('profile', ['user' => $user]);
+    }
+
+
+    public function adminIndex()
+    {
+        return view('admin.index');
+    }
+    public function adminHotel()
+    {
+        return view('admin.hotel.index');
+    }
+}
+>>>>>>> 95f558bbdbfb15404b7b408bde221af19f05ae10

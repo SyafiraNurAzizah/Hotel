@@ -1,105 +1,115 @@
 @extends('layouts.app')
 
-{{-- Custom CSS untuk ukuran gambar --}}
 @push('styles')
-    <style>
-        .meeting-section img {
-            width: 100%;
-            height: 250px; /* Atur tinggi sesuai kebutuhan */
-            object-fit: cover; /* Agar gambar tidak terdistorsi */
-        }
-        .breadcrumb-section {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            padding: 150px 0; /* Menambah padding untuk membuat gambar latar lebih besar */
-            position: relative;
-            z-index: 1;
-        }
-        
-        .breadcrumb-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7); /* Membuat overlay lebih gelap dengan opacity 0.7 */
-            z-index: -1;
-        }
-        
-        .breadcrumb-text h2, .breadcrumb-text p {
-            color: white; /* Agar teks terlihat jelas di atas gambar */
-            text-align: center; /* Membuat teks berada di tengah */
-        }
-        
-        .breadcrumb-text {
-            max-width: 800px;
-            margin: 0 auto; /* Agar teks berada di tengah kontainer */
-        }
-        
-    </style>
+<link rel="stylesheet" href="{{ asset('css/meetings.css') }}">
 @endpush
+
 @section('content')
-<!-- Breadcrumb Section Begin -->
-<div class="breadcrumb-section" style="background-image: url('{{ asset('img/meetings/meeting-bg.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="breadcrumb-text">
-                    <h2>Meetings</h2>
-                    <p>Explore our latest meetings and stay updated with the latest events and schedules.</p>
+   
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2>Meeting Services</h2>
+                        <div class="bt-option">
+                            <span>Pilih lokasi & tempat rapat terbaik yang pernah ada dengan fasilitas terlengkap!</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-
-<!-- Breadcrumb Section End -->
-
-<!-- Meetings Section Begin -->
-<section class="meeting-section spad">
-    <div class="container">
-        <div class="row">
-            <!-- Contoh item Meeting -->
-            <div class="col-lg-4 col-md-6">
-                <img src="{{ asset('img/meetings/meeting-1.jpg') }}" alt="Business Strategy Conference 2024" class="img-fluid mb-3">
-                <div class="mi-text">
-                    <span class="m-tag">Conference</span>
-                    <h4><a href="{{ route('detail1')}}">Business Strategy Conference 2024</a></h4>
-                    <div class="m-time"><i class="icon_clock_alt"></i> 12th March, 2024</div>
+    <section class="rooms-section spad">
+        <div class="container">
+            <div class="row">
+                @foreach ($hotels as $item)
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="{{ asset('/img/hotels/' . $item->foto_hotel) }}" alt="" class="room-image">
+                        <div class="ri-text">
+                            <h3>{{ $item->nama_cabang }}</h3>
+                            <a href="{{ route('ruang', ['location' => strtolower($item->nama_cabang)]) }}" class="primary-btn">More Details</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <img src="{{ asset('img/meetings/meeting-3.jpg') }}" alt="Business Strategy Conference 2024" class="img-fluid mb-3">
-                <div class="mi-text">
-                    <span class="m-tag">Workshop</span>
-                    <h4><a href="{{ route('detail1') }}">Digital Marketing Workshop</a></h4>
-                    <div class="m-time"><i class="icon_clock_alt"></i> 12th March, 2024</div>
+                @endforeach
+                {{-- <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="img/room/room-sby.jpg" alt="" class="room-image">
+                        <div class="ri-text">
+                            <h3>Surabaya</h3>
+                            <a href="#" class="primary-btn">More Details</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="col-lg-4 col-md-6">
-                <img src="{{ asset('img/meetings/meeting-2.jpg') }}" alt="Business Strategy Conference 2024" class="img-fluid mb-3">
-                <div class="mi-text">
-                    <span class="m-tag">Networking</span>
-                    <h4><a href="{{ route('detail1')}}">Tech Leaders Networking Event</a></h4>
-                    <div class="m-time"><i class="icon_clock_alt"></i> 12th March, 2024</div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="img/room/room-bndg.jpg" alt="" class="room-image">
+                        <div class="ri-text">
+                            <h3>Bandung</h3>
+                            <a href="#" class="primary-btn">More Details</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-
-            <!-- Tambah lebih banyak item sesuai kebutuhan -->
-            <div class="col-lg-12">
-                <div class="load-more">
-                    <a href="#" class="btn btn-primary">Booking Now</a>
+    
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="img/room/room-bksi.jpg" alt="" class="room-image">
+                        <div class="ri-text">
+                            <h3>Bekasi</h3>
+                            <a href="#" class="primary-btn">More Details</a>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="img/room/room-smrg.jpg" alt="" class="room-image">
+                        <div class="ri-text">
+                            <h3>Semarang</h3>
+                            <a href="#" class="primary-btn">More Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="img/room/room-bgr.jpg" alt="" class="room-image">
+                        <div class="ri-text">
+                            <h3>Bogor</h3>
+                            <a href="#" class="primary-btn">More Details</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="img/room/room-mlng.jpg" alt="" class="room-image">
+                        <div class="ri-text">
+                            <h3>Malang</h3>
+                            <a href="#" class="primary-btn">More Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="img/room/room-jgj.jpg" alt="" class="room-image">
+                        <div class="ri-text">
+                            <h3>Yogyakarta</h3>
+                            <a href="#" class="primary-btn">More Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="img/room/room-pwt.jpg" alt="" class="room-image">
+                        <div class="ri-text">
+                            <h3>Purwokerto</h3>
+                            <a href="#" class="primary-btn">More Details</a>
+                        </div>
+                    </div>
+                </div> --}}
             </div>
         </div>
-    </div>
-</section>
-<!-- Meetings Section End -->
-
+    </section>
 @endsection

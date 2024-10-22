@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tipe_kamar', function (Blueprint $table) {
-            $table->id(); // Primary key
+            $table->id();
             $table->foreignId('hotel_id')->constrained('hotels')->onDelete('cascade');
             $table->string('nama_tipe'); // Nama tipe kamar
             $table->text('deskripsi')->nullable(); // Deskripsi tipe kamar
