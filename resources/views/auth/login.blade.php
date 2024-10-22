@@ -1,10 +1,81 @@
-<link rel="stylesheet" href="{{ asset('css/login.css') }}">
+<div class="login_form">
+    <div class="container">
+        <div class="login-box">
+            @include('auth.login_form')
+        </div>
+    </div>
+    <div class="register-route">
+        <p class="mt-3">
+            Belum punya akun? <a href="{{ route('register') }}">Daftar</a>.
+        </p>
+    </div>
+</div>
+
+
+<style>
+    .login_form {
+        position: fixed
+    }
+    
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 450px;
+        padding-top: 70px;
+    }
+
+    .login-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.212);
+        border-radius: 8px;
+        width: 400px;
+    }
+
+    .register-route {
+        position: relative;
+        bottom: 118px;
+        left: 570px;
+        background-color: #ffffff;
+        width: 200px;
+        height: 30px;
+        font-family: 'Cabin', sans-serif;
+    }
+    .register-route p {
+        font-size: 15px;
+        color: #707079;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .register-route p a {
+        display: inline;
+        font-size: 15px;
+        font-weight: bold;
+        color: #dfa974;
+        display: block;
+        padding-left: 5px;
+        text-decoration: none;
+    }
+</style>
+
+
+
+
+
+
+{{-- <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
 <div class="overlay" id="loginOverlay">
     <div class="login-form">
         <span class="close" id="closeLoginPopup"></span>
         
-        <img src="img/logo.png" alt="Logo" class="logo-img">
+        <img src="img/berlian.png" alt="Logo" class="logo-img">
 
         @if (session('error'))
             <div class="alert alert-danger" id="loginErrorAlert">
@@ -109,4 +180,4 @@
             }
         });
     });
-</script>
+</script> --}}

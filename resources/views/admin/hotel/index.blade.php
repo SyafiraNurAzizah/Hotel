@@ -1,6 +1,7 @@
-@extends('layouts.admin') <!-- Pastikan layout admin sudah ada -->
+@extends('layouts.app') <!-- Pastikan layout admin sudah ada -->
 
 @section('content')
+<br><br><br>
 <div class="container">
     <h1 class="my-4">Manage Hotels</h1>
     
