@@ -13,7 +13,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 
 Route::get('/weedings', [App\Http\Controllers\HomeController::class, 'weedings'])->name('weedings');
 
-// Route::get('/weddings', [App\Http\Controllers\HomeController::class, 'weddings'])->name('weddings');
+Route::get('/admin/wedding', [App\Http\Controllers\HomeController::class, 'adminWedding'])->name('admin.wedding.index');
 
 Route::resource('wedding', App\Http\Controllers\WeddingsController::class);
 

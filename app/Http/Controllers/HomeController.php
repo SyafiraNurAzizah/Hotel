@@ -27,9 +27,6 @@ class HomeController extends Controller
     {
         return view('meeting');
     }
-<<<<<<< HEAD
-}
-=======
 
     public function profile($firstname, $lastname)
     {
@@ -47,5 +44,9 @@ class HomeController extends Controller
     {
         return view('admin.hotel.index');
     }
+
+    public function adminWedding()
+    {
+        return view('admin.wedding.index');
+    }
 }
->>>>>>> 95f558bbdbfb15404b7b408bde221af19f05ae10
