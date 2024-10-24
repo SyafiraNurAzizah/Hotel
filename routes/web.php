@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Console\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -9,6 +10,10 @@ Route::get('/hotel', [App\Http\Controllers\HomeController::class, 'hotel'])->nam
 Route::get('/meeting', [App\Http\Controllers\HomeController::class, 'meeting'])->name('meeting');
 
 Route::get('/weedings', [App\Http\Controllers\HomeController::class, 'weedings'])->name('weedings');
+
+Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
+
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 
 //---------------------------- LOGIN & REGISTER -----------------------------//
 Auth::routes();

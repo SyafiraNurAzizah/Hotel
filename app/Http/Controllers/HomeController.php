@@ -30,4 +30,14 @@ class HomeController extends Controller
     {
         return view('hotel');
     }
+
+    public function meeting()
+    {
+        return view('meeting');
+    }
+
+    public function contact()
+    {
+        return view('contact');
+    }
 }
