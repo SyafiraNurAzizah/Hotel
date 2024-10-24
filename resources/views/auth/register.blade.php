@@ -1,4 +1,76 @@
-<link rel="stylesheet" href="{{ asset('css/register.css') }}">
+<div class="register_form">
+    <div class="container">
+        <div class="register-box">
+            @include('auth.register_form')
+        </div>
+    </div>
+    <div class="login-route">
+        <p class="mt-3">
+            Sudah punya akun? <a href="{{ route('login') }}">Masuk</a>.
+        </p>
+    </div>
+</div>
+
+
+<style>
+    /* .register_form {
+        position: fixed
+    } */
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 450px;
+        padding-top: 40px;
+        padding-right: 430px;
+    }
+
+    .register-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.212);
+        border-radius: 8px;
+        width: 500px;
+    }
+
+    .login-route {
+        position: relative;
+        bottom: 158px;
+        left: 578px;
+        background-color: #ffffff;
+        width: 200px;
+        height: 30px;
+        font-family: 'Cabin', sans-serif;
+    }
+    .login-route p {
+        font-size: 15px;
+        color: #707079;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .login-route p a {
+        display: inline;
+        font-size: 15px;
+        font-weight: bold;
+        color: #dfa974;
+        display: block;
+        padding-left: 5px;
+        text-decoration: none;
+    }
+</style>
+
+
+
+
+
+
+{{-- <link rel="stylesheet" href="{{ asset('css/register.css') }}">
 
 <div class="overlay" id="registerOverlay">
     <div class="register-form">
@@ -234,4 +306,4 @@
             jumlahInput.style.color = '#ced4da';
         }
     }
-</script>
+</script> --}}

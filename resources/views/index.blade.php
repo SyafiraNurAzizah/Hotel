@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-{{-- @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-@endpush --}}
-
 @section('content')
     <section class="hero-section">
         <div class="container">
@@ -11,17 +7,17 @@
                 <div class="col-lg-6">
                     <div class="hero-text">
                         <h1>Berlian Hotel</h1>
-                        <p>Come and discover a world where luxury knows no bounds,
-                             and every moment is a masterpiece waiting to be experienced.</p>
+                        <p>
+                            Dengan fasilitas modern, layanan berkelas, dan suasana yang elegan.
+                             Setiap kamar dirancang dengan sentuhan yang hangat dan mewah untuk memastikan kenyamanan anda selama menginap.</p>
+
                         <a href="#" class="primary-btn">Discover Now</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
 
-                    {{-- @include('auth.login')
-                    @include('auth.register') --}}
-
-                    {{-- <div class="booking-form">
+                    @if(Auth::check() && Auth::user()->isUser())
+                    <div class="booking-form">
                         <h3>Booking Your Hotel</h3>
                         <form action="#">
                             <div class="check-date">
@@ -50,16 +46,18 @@
                             </div>
                             <button type="submit">Check Availability</button>
                         </form>
-                    </div> --}}
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
         <div class="hero-slider owl-carousel">
     
-            <div class="hs-item set-bg" data-setbg="img/hero/room-c1.jpg"></div>
-            <div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg"></div>
-            <div class="hs-item set-bg" data-setbg="img/hero/hero-3.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="img/hero/hero-4.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="img/hero/hero-6.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="img/hero/hero-7.jpg"></div>
         </div>
+        {{-- <div class="dark-layer-hero"></div> --}}
     </section>
     <!-- Hero Section End -->
 
@@ -306,15 +304,15 @@
                         <div class="ts-item">
                             <p>Setelah proyek konstruksi memakan waktu lebih lama dari yang diharapkan, saya, istri, putri saya, dan saya
                                 membutuhkan tempat untuk menginap selama beberapa malam. Sebagai penduduk Chicago, kami tahu banyak tentang kami
-                                kota, lingkungan sekitar, dan jenis pilihan perumahan yang tersedia dan sangat kami sukai
-                                liburan di BIM Hotel.</p>
+                                kota, lingkungan sekitar, dan jenis pilihan Class rooms yang tersedia dan sangat kami sukai
+                                 harga yang sepandan dengan fasilitas yang disediakan.</p>
                             <div class="ti-author">
                                 <h5> - Mr. Gemini Norawit</h5>
                             </div>
                             <img src="img/testimonial-logo.png" alt="">
                         </div>
                         <div class="ts-item">
-                            <p>Pengalaman menginap di Hotel BIM benar-benar luar biasa! Kamar yang nyaman, 
+                            <p>Pengalaman menginap di Hotel Berlian benar-benar luar biasa! Kamar yang nyaman, 
                                 pelayanan yang ramah, dan lokasi yang strategis membuat perjalanan saya semakin menyenangkan. Saya pasti akan kembali</p>
                             <div class="ti-author">
                           <h5> - Roronoa Zoro</h5>
