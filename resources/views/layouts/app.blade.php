@@ -45,12 +45,12 @@
         <div id="main-content">
             @yield('content')
 
-            <div class="overlay" id="loginOverlay" style="display: none;">
-                @include('auth.login_form')
-            </div>
-            <div class="overlay" id="registerOverlay" style="display: none;">
-                @include('auth.register_form')
-            </div>
+            {{-- <div class="overlay" id="loginOverlay" style="display: none;"> --}}
+                @include('auth.login')
+            {{-- </div> --}}
+            {{-- <div class="overlay" id="registerOverlay" style="display: none;"> --}}
+                @include('auth.register')
+            {{-- </div> --}}
 
             <x-footer />
         </div>

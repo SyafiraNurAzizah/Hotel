@@ -7,7 +7,7 @@
                     <div class="ft-about">
                         <div class="logo">
                             <a href="#">
-                                <img src="{{ asset('img/berlian-white.png') }}" alt="" class="logo-footer">
+                                <img src="{{ asset('img/logo.png') }}" alt="" class="logo-footer">
                             </a>
                         </div>
                         <p>Kami menginspirasi dan menjangkau jutaan wisatawan di seluruh belahan dunia.</p>

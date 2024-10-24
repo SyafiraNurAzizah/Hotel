@@ -23,7 +23,7 @@ Route::get('/login', function () {
 
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth.custom'])->group(function () {
     Route::get('/{firstname}-{lastname}', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
 });
 //----------------------------------------------------------------------------//
@@ -31,24 +31,25 @@ Route::middleware(['auth'])->group(function () {
 
 
 //------------------------------ ADMIN -----------------------------------//
-Route::group(['middleware' => ['auth', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
+Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
     Route::get('/admin', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('admin.index');
     Route::get('/admin/hotel', [App\Http\Controllers\HomeController::class, 'adminHotel'])->name('admin.hotel.index');
 });
 //----------------------------------------------------------------------------
 
 
+//------------------------------------ USER ----------------------------------//
+Route::group(['middleware' => ['auth.custom', App\Http\Middleware\UserAccessMiddleware::class]], function () {
 
-//------------------------------ ROLE --------------------------------//
-// Route::group(['middleware' => ['auth', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
-    
-// });
-
-Route::group(['middleware' => ['auth', App\Http\Middleware\UserAccessMiddleware::class]], function () {
+    // BOOKING //
+//hotel//
+    Route::get('/hotel/{location}/{nama_tipe}/pembayaran', [App\Http\Controllers\BookingController::class, 'pembayaranHotel'])->name('hotel.pembayaran-hotel')->middleware('remove.room.query');
+    Route::post('/hotel/{location}/{nama_tipe}/pembayaran', [App\Http\Controllers\BookingController::class, 'storeHotel'])->name('booking.hotel.store');
+//---//
+    // ----- //
     
 });
-//---------------------------------------------------------------------//
-
+//-------------------------------------------------------------------------------//
 
 
 //-------------------------------- HOTEL -----------------------------------//
@@ -72,10 +73,6 @@ Route::get('/meeting/{location}/{roomId}', [App\Http\Controllers\MeetingsControl
 // Route::get('/meeting/{location}/{roomId}/gallery', [App\Http\Controllers\MeetingsController::class, 'showGallery'])->name('gallery');
 //-----------------------------------------------------------------------------------//
 
-
-//------------------------------------ BOOKING ----------------------------------//
-Route::post('/hotel/{location}/{nama_tipe}', [App\Http\Controllers\BookingController::class, 'storeHotel'])->name('booking.hotel.store');
-//-------------------------------------------------------------------------------//
 
 
 

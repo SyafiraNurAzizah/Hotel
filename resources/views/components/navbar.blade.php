@@ -17,14 +17,14 @@
                             <ul>
                                 @if (Auth::guest())
                                     <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}">Beranda</a></li>
-                                    <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ url('hotel') }}">Hotel</a></li>
-                                    <li class="{{ Request::is('meeting') ? 'active' : '' }}"><a href="{{url('meeting')}}">Meetings</a></li>
+                                    <li class="{{ Request::is('hotel') || Request::is('hotel/*') ? 'active' : '' }}"><a href="{{ url('hotel') }}">Hotel</a></li>
+                                    <li class="{{ Request::is('meeting') || Request::is('meeting/*') ? 'active' : '' }}"><a href="{{ url('meeting') }}">Meetings</a></li>
                                     <li class="{{ Request::is('pages') ? 'active' : '' }}"><a href="./pages.html">Weedings</a></li>
                                     <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="./contact.html">Contact</a></li>
                                 @elseif (Auth::check() && Auth::user()->role == 'user')
                                     <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}">Beranda</a></li>
-                                    <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ url('hotel') }}">Hotel</a></li>
-                                    <li class="{{ Request::is('meeting') ? 'active' : '' }}"><a href="{{url('meeting')}}">Meetings</a></li>
+                                    <li class="{{ Request::is('hotel') || Request::is('hotel/*') ? 'active' : '' }}"><a href="{{ url('hotel') }}">Hotel</a></li>
+                                    <li class="{{ Request::is('meeting') || Request::is('meeting/*') ? 'active' : '' }}"><a href="{{ url('meeting') }}">Meetings</a></li>
                                     <li class="{{ Request::is('pages') ? 'active' : '' }}"><a href="./pages.html">Weedings</a></li>
                                     <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="./contact.html">Contact</a></li>
                                 @elseif (Auth::check() && Auth::user()->role == 'admin')

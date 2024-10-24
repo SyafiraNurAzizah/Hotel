@@ -165,10 +165,10 @@
                                         <i class="icon_star"></i>
                                         <i class="icon_star-half_alt"></i>
                                     </div>
-                                    <a href="#">Booking Now</a>
+                                    {{-- <a href="#">Booking Now</a --}}
                                 </div>
                             </div>
-                            <h2>Rp{{ $room->harga_per_malam }}<span>/Malam</span></h2>
+                            <h2>Rp{{ number_format($room->harga_per_malam, 2, ',', '.') }}<span>/Malam</span></h2>
                             <table>
                                 <tbody>
                                     <tr>
@@ -272,7 +272,7 @@
                 
                                 <div class="hotel-input">
                                     <input type="hidden" name="hotel_id" value="{{ $hotel->id }}">
-                                    <input type="hidden" name="tipe_kamar_id" value="{{ $room->id }}">
+                                    <input type="hidden" name="tipe_kamar_id" value="{{ $room->id }}" data-kapasitas="{{ $room->kapasitas }}">
                                     <input type="hidden" name="status" value="belum_selesai">
                                     <input type="hidden" name="status_pembayaran" value="belum_dibayar">
                                 </div>
@@ -290,13 +290,41 @@
                                 <div class="select-option">
                                     <label for="tamu_dewasa">Dewasa:</label>
                                     <select class="tamu_dewasa" id="tamu_dewasa" name="tamu_dewasa">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
                                         <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                    </select>
+                                </div>
+                                <div class="select-option">
+                                    <label for="tamu_anak">Anak:</label>
+                                    <select class="tamu_anak" id="tamu_anak" name="tamu_anak">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
                                     </select>
                                 </div>
                                 <div class="select-option">
                                     <label for="jumlah_kamar">Kamar:</label>
                                     <select class="jumlah_kamar" id="jumlah_kamar" name="jumlah_kamar">
                                         <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
                                     </select>
                                 </div>
                                 <div class="check-date">
@@ -319,33 +347,69 @@
 @push('scripts')
 
 <script>
-    $(function() {
-        $("#date-in").datepicker({
-            dateFormat: 'yy-mm-dd',
-            onSelect: function() {
-                updateCheckout();
+    // $(function() {
+    //     $("#date-in").datepicker({
+    //         dateFormat: 'yy-mm-dd',
+    //         onSelect: function() {
+    //             updateCheckout();
+    //         }
+    //     });
+    //     $("#date-out").datepicker({
+    //         dateFormat: 'yy-mm-dd'
+    //     });
+    // });
+
+    // function updateCheckout() {
+    //     const checkinInput = document.getElementById('date-in');
+    //     const checkoutInput = document.getElementById('date-out');
+
+    //     const checkinDate = new Date(checkinInput.value);
+    //     if (!isNaN(checkinDate.getTime())) {
+    //         checkinDate.setDate(checkinDate.getDate() + 1);
+    //         const year = checkinDate.getFullYear();
+    //         const month = String(checkinDate.getMonth() + 1).padStart(2, '0');
+    //         const day = String(checkinDate.getDate()).padStart(2, '0');
+    //         checkoutInput.value = `${year}-${month}-${day}`;
+    //     } else {
+    //         checkoutInput.value = '';
+    //     }
+    // };
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const forms = document.querySelectorAll('.room-booking form');
+
+    forms.forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            // Ambil nilai jumlah dewasa
+            const jumlahTamu = parseInt(form.querySelector('.tamu_dewasa').value) || 0;
+
+            // Ambil jumlah kamar dan kapasitas kamar
+            const jumlahKamar = parseInt(form.querySelector('.jumlah_kamar').value) || 0;
+            const kapasitasKamar = parseInt(form.querySelector('input[name="tipe_kamar_id"]').dataset.kapasitas) || 0;
+
+            // Debugging untuk memastikan semua data diambil dengan benar
+            console.log('Jumlah tamu dewasa:', jumlahTamu);
+            console.log('Jumlah kamar:', jumlahKamar);
+            console.log('Kapasitas per kamar:', kapasitasKamar);
+
+            // Hitung kapasitas total
+            const kapasitasTotal = jumlahKamar * kapasitasKamar;
+            console.log('Kapasitas total:', kapasitasTotal);
+
+            // Jika jumlah tamu melebihi kapasitas total, tampilkan peringatan
+            if (jumlahTamu > kapasitasTotal) {
+                event.preventDefault(); // Hentikan pengiriman form
+                alert('Jumlah tamu melebihi kapasitas kamar. Silakan kurangi jumlah tamu atau tambahkan kamar.');
+                console.log('Form dihentikan karena kapasitas terlampaui');
+            } else {
+                console.log('Form lanjut dikirim');
             }
         });
-        $("#date-out").datepicker({
-            dateFormat: 'yy-mm-dd'
-        });
     });
+});
 
-    function updateCheckout() {
-        const checkinInput = document.getElementById('date-in');
-        const checkoutInput = document.getElementById('date-out');
-
-        const checkinDate = new Date(checkinInput.value);
-        if (!isNaN(checkinDate.getTime())) {
-            checkinDate.setDate(checkinDate.getDate() + 1);
-            const year = checkinDate.getFullYear();
-            const month = String(checkinDate.getMonth() + 1).padStart(2, '0');
-            const day = String(checkinDate.getDate()).padStart(2, '0');
-            checkoutInput.value = `${year}-${month}-${day}`;
-        } else {
-            checkoutInput.value = '';
-        }
-    }
 </script>
 
 @endpush

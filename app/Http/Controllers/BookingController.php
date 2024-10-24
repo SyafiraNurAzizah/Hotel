@@ -55,11 +55,34 @@ class BookingController extends Controller
             $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
         }
         
-        return view('hotel.detail-hotel', [
+        if ($booking->save()) {
+            return redirect()->route('hotel.pembayaran-hotel', [
+                'location' => ucfirst($location),
+                'hotels' => $hotels,
+                'room' => $room,
+                'nama_tipe' => $nama_tipe
+            ]);
+        } else {
+            return back()->withErrors(['error' => 'Gagal menyimpan data booking.']);
+        }
+        
+    }
+
+    public function pembayaranHotel($location, $nama_tipe)
+    {
+        $hotels = Hotels::where('nama_cabang', $location)->get();
+        $room = TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail();
+
+        foreach ($hotels as $hotel) {
+            $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
+        }
+
+        return view('hotel.pembayaran-hotel', [
             'location' => ucfirst($location),
             'hotels' => $hotels,
             'room' => $room
         ]);
     }
+
 
 }

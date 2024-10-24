@@ -22,7 +22,7 @@ class HotelsController extends Controller
 
         // Ambil tipe kamar untuk setiap hotel
         foreach ($hotels as $hotel) {
-            $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
+            $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->orderBy('harga_per_malam', 'asc')->get();
         }
         
         return view('hotel.rooms', [
