@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Console\Application;
 use App\Http\Controllers\RoomController;
 use Illuminate\Container\Attributes\Config;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,9 @@ Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.w
 Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edut');
 
 // Route::resource('admin/wedding', WeddingController::class);
+Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
+
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 
 Route::resource('wedding', App\Http\Controllers\WeddingsController::class);
 
