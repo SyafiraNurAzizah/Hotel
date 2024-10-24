@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/wedding.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/AdminWedding.css') }}">
 @endpush
 @section('content')
     <!-- Breadcrumb Section Begin -->
@@ -49,7 +49,7 @@
                                     <a href="#"
                                         class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
                                         <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail </a>
-                                    <a href="{{ route('admin.wedding.index') }}">admin</a>
+                                        <a href="{{ route('admin.wedding.index') }}">Admin</a>
 
                                 </div>
 

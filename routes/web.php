@@ -5,6 +5,7 @@ use Illuminate\Container\Attributes\Config;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\WeddingController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
@@ -13,7 +14,11 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 
 Route::get('/weedings', [App\Http\Controllers\HomeController::class, 'weedings'])->name('weedings');
 
-Route::get('/admin/wedding', [App\Http\Controllers\HomeController::class, 'adminWedding'])->name('admin.wedding.index');
+Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.wedding.index');
+
+Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edut');
+
+// Route::resource('admin/wedding', WeddingController::class);
 
 Route::resource('wedding', App\Http\Controllers\WeddingsController::class);
 
