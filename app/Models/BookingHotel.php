@@ -16,8 +16,17 @@ class BookingHotel extends Model
         'tipe_kamar_id',
         'checkin',
         'checkout',
-        'total_hari',
-        'total_harga',
+        'tamu_dewasa',
+        'tamu_anak',
+        'jumlah_kamar',
+        'jumlah_harga',
+        'pesan',
         'status',
+        'status_pembayaran',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

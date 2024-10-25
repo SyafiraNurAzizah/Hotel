@@ -342,6 +342,18 @@
             </div>
         </div>
     </section>
+
+
+    {{-- @if ($errors->has('booking_error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ $errors->first('booking_error') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif --}}
+
+
 @endsection
 
 @push('scripts')
@@ -378,37 +390,37 @@
 
 
     document.addEventListener('DOMContentLoaded', function () {
-    const forms = document.querySelectorAll('.room-booking form');
+        const forms = document.querySelectorAll('.room-booking form');
 
-    forms.forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-            // Ambil nilai jumlah dewasa
-            const jumlahTamu = parseInt(form.querySelector('.tamu_dewasa').value) || 0;
+        forms.forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                // Ambil nilai jumlah dewasa
+                const jumlahTamu = parseInt(form.querySelector('.tamu_dewasa').value) || 0;
 
-            // Ambil jumlah kamar dan kapasitas kamar
-            const jumlahKamar = parseInt(form.querySelector('.jumlah_kamar').value) || 0;
-            const kapasitasKamar = parseInt(form.querySelector('input[name="tipe_kamar_id"]').dataset.kapasitas) || 0;
+                // Ambil jumlah kamar dan kapasitas kamar
+                const jumlahKamar = parseInt(form.querySelector('.jumlah_kamar').value) || 0;
+                const kapasitasKamar = parseInt(form.querySelector('input[name="tipe_kamar_id"]').dataset.kapasitas) || 0;
 
-            // Debugging untuk memastikan semua data diambil dengan benar
-            console.log('Jumlah tamu dewasa:', jumlahTamu);
-            console.log('Jumlah kamar:', jumlahKamar);
-            console.log('Kapasitas per kamar:', kapasitasKamar);
+                // Debugging untuk memastikan semua data diambil dengan benar
+                console.log('Jumlah tamu dewasa:', jumlahTamu);
+                console.log('Jumlah kamar:', jumlahKamar);
+                console.log('Kapasitas per kamar:', kapasitasKamar);
 
-            // Hitung kapasitas total
-            const kapasitasTotal = jumlahKamar * kapasitasKamar;
-            console.log('Kapasitas total:', kapasitasTotal);
+                // Hitung kapasitas total
+                const kapasitasTotal = jumlahKamar * kapasitasKamar;
+                console.log('Kapasitas total:', kapasitasTotal);
 
-            // Jika jumlah tamu melebihi kapasitas total, tampilkan peringatan
-            if (jumlahTamu > kapasitasTotal) {
-                event.preventDefault(); // Hentikan pengiriman form
-                alert('Jumlah tamu melebihi kapasitas kamar. Silakan kurangi jumlah tamu atau tambahkan kamar.');
-                console.log('Form dihentikan karena kapasitas terlampaui');
-            } else {
-                console.log('Form lanjut dikirim');
-            }
+                // Jika jumlah tamu melebihi kapasitas total, tampilkan peringatan
+                if (jumlahTamu > kapasitasTotal) {
+                    event.preventDefault(); // Hentikan pengiriman form
+                    alert('Jumlah tamu melebihi kapasitas kamar. Silakan kurangi jumlah tamu atau tambahkan kamar.');
+                    console.log('Form dihentikan karena kapasitas terlampaui');
+                } else {
+                    console.log('Form lanjut dikirim');
+                }
+            });
         });
     });
-});
 
 </script>
 

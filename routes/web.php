@@ -43,8 +43,8 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\UserAccessMidd
 
     // BOOKING //
 //hotel//
-    Route::get('/hotel/{location}/{nama_tipe}/pembayaran', [App\Http\Controllers\BookingController::class, 'pembayaranHotel'])->name('hotel.pembayaran-hotel')->middleware('remove.room.query');
-    Route::post('/hotel/{location}/{nama_tipe}/pembayaran', [App\Http\Controllers\BookingController::class, 'storeHotel'])->name('booking.hotel.store');
+    Route::get('/hotel/{location}/{nama_tipe}/transaksi/{uuid}', [App\Http\Controllers\BookingController::class, 'pembayaranHotel'])->name('hotel.transaksi.pembayaran-hotel')->middleware('remove.room.query');
+    Route::post('/hotel/{location}/{nama_tipe}/transaksi', [App\Http\Controllers\BookingController::class, 'storeHotel'])->name('booking.hotel.store');
 //---//
     // ----- //
     
