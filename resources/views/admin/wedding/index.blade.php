@@ -25,6 +25,8 @@
 
     <section>
         <div class="container"><div class="container mt-5">
+            <a href="{{ route('wedding.create') }}" style="border: none; background: none;"><i class="icon_plus"></i></a>
+
             <table class="table table-custom">
                 <thead class="thead-custom">
                     <tr>

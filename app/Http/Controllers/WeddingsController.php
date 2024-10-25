@@ -34,35 +34,46 @@ class WeddingsController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    $wedding = Wedding::find($id);
+    {
+        $wedding = Wedding::find($id);
 
-    // Validasi form jika diperlukan
-    $request->validate([
-        'gambar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi file gambar
-    ]);
+        // Validasi form jika diperlukan
+        $request->validate([
+            'gambar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi file gambar
+        ]);
 
-    // Cek apakah ada file gambar yang diupload
-    if ($request->hasFile('gambar')) {
-        // Simpan gambar di folder public dan dapatkan path-nya
-        $gambarPath = $request->file('gambar')->store('uploads', 'public');
+        // Cek apakah ada file gambar yang diupload
+        if ($request->hasFile('gambar')) {
+            // Simpan gambar di folder public dan dapatkan path-nya
+            $gambarPath = $request->file('gambar')->store('uploads', 'public');
 
-        // Update path gambar di database
-        $wedding->gambar = '/storage/' . $gambarPath;
+            // Update path gambar di database
+            $wedding->gambar = '/storage/' . $gambarPath;
+        }
+
+        // Update data lainnya
+        $wedding->judul = $request->input('judul');
+        $wedding->judul_paket1 = $request->input('judul_paket1');
+        $wedding->judul_paket2 = $request->input('judul_paket2');
+        $wedding->judul_paket3 = $request->input('judul_paket3');
+        $wedding->harga = $request->input('harga');
+        $wedding->kapasitas = $request->input('kapasitas');
+
+        $wedding->save();
+
+        return redirect()->route('wedding.index')->with('success', 'Data wedding berhasil diupdate.');
     }
 
-    // Update data lainnya
-    $wedding->judul = $request->input('judul');
-    $wedding->judul_paket1 = $request->input('judul_paket1');
-    $wedding->judul_paket2 = $request->input('judul_paket2');
-    $wedding->judul_paket3 = $request->input('judul_paket3');
-    $wedding->harga = $request->input('harga');
-    $wedding->kapasitas = $request->input('kapasitas');
+    public function destroy($id)
+    {
+        $weddings = wedding::find($id);
+        $weddings->delete();
+        return redirect()->route('wedding.index')->with('success', 'Data weddings berhasil dihapus.');
+    }
 
-    $wedding->save();
-
-    return redirect()->route('wedding.index')->with('success', 'Data wedding berhasil diupdate.');
-}
-
-
+    public function create()
+    {
+        $weddings = wedding::all();
+        return view('admin.wedding.create');
+    }
 }
