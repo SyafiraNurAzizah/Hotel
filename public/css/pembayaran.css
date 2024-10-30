@@ -105,11 +105,9 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    position: relative;
-    top: 210px;
-    right: 248px;
-    /* top: 485px;
-    left: 245px; */
+    position: fixed;
+    top: 480px;
+    right: 750px;
     width: 350px;
     max-width: 350px;
     height: 70px;
@@ -168,4 +166,38 @@ body {
 .container .container-isi .data-number .vertical-line {
     border-left: 1px solid rgba(0, 0, 0, 0.15);
     height: 90px;
+}
+
+
+.container .container-metode-pembayaran {
+    position: relative;
+    top: 132px;
+    left: 306px;
+    width: 418px;
+    height: 175px;
+    /* border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px; */
+}
+.container .container-metode-pembayaran form {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+
+.container .form-batal {
+    position: relative;
+    /* top: 212px; */
+    top: 300px;
+    right: 89px;
+}
+.container .form-batal button {
+    /* background-color: #dfa974; */
+    background-color: rgba(16, 20, 31, 0.65);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
 }

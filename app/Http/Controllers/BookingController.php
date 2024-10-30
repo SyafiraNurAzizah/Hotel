@@ -106,8 +106,8 @@ class BookingController extends Controller
         // Simpan booking ke database
         if ($booking->save()) {
             // Update jumlah kamar yang tersedia
-            $tipeKamar->jumlah_kamar_tersedia -= $validatedData['jumlah_kamar'];
-            $tipeKamar->save();
+            // $tipeKamar->jumlah_kamar_tersedia -= $validatedData['jumlah_kamar'];
+            // $tipeKamar->save();
 
             // Redirect atau tampilkan pesan sukses
             return redirect()->route('hotel.transaksi.pembayaran-hotel', [
@@ -123,6 +123,7 @@ class BookingController extends Controller
         }
     }
 
+    
     public function pembayaranHotel($location, $nama_tipe, $uuid)
     {
         // Mengambil semua hotel berdasarkan lokasi
@@ -145,6 +146,37 @@ class BookingController extends Controller
             'booking' => $booking // Pass the booking data to the view
         ]);
     }
+
+
+    public function cancelHotel($location, $nama_tipe, $uuid)
+    {
+        // Retrieve the booking by its UUID
+        $booking = BookingHotel::where('uuid', $uuid)->firstOrFail();
+
+        // Check if the booking status is not already canceled
+        if ($booking->status !== 'dibatalkan') {
+            // Update the room availability
+            $tipeKamar = TipeKamar::findOrFail($booking->tipe_kamar_id);
+            $tipeKamar->jumlah_kamar_tersedia += $booking->jumlah_kamar;
+            $tipeKamar->save();
+
+            // Mark the booking as canceled
+            $booking->status = 'dibatalkan';
+            $booking->save();
+
+            return redirect()->route('detail-hotel', [
+                'location' => ucfirst($location),
+                'nama_tipe' => $nama_tipe
+            ])->with('success', 'Booking telah dibatalkan dan kamar tersedia kembali.');
+        }
+
+        // Handle case where booking is already canceled
+        return redirect()->route('detail-hotel', [
+            'location' => ucfirst($location),   
+            'nama_tipe' => $nama_tipe
+        ])->withErrors(['error' => 'Booking sudah dibatalkan sebelumnya.']);
+    }
+
 }
 
 

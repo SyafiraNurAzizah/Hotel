@@ -1,3 +1,9 @@
+<title>Berlian Hotel</title>
+<link rel="icon" href="{{ asset('img/logo-title.png') }}" type="image/png">
+
+{{-- ------------------------------------------------------------------------------------------------------- --}}
+
+
 <link rel="stylesheet" href="{{ asset('css/pembayaran.css') }}">
 
 <div class="container">
@@ -53,5 +59,36 @@
             </div>
         </div>
     </div>
-    {{-- <p>Check-in: {{ $booking->check_in }}</p> --}}
+
+    <div class="container-metode-pembayaran">
+        {{-- <form action="#" method="POST">
+            @csrf
+        
+            <label>
+                <input type="radio" name="option" value="option1" required>
+                Opsi 1
+            </label><br>
+        
+            <label>
+                <input type="radio" name="option" value="option2">
+                Opsi 2
+            </label><br>
+        
+            <label>
+                <input type="radio" name="option" value="option3">
+                Opsi 3
+            </label><br>
+        
+            <button type="submit">Kirim</button>
+        </form>         --}}
+    </div>
+    
+    @foreach($hotels as $hotel)
+    <form action="{{ route('booking.hotel.cancel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}" method="POST" class="form-batal">
+        @csrf
+        <button type="submit" class="btn btn-danger">Batalkan Pemesanan</button>
+    </form>
+@endforeach
+
+    
 </div>
