@@ -20,6 +20,7 @@ class HotelsController extends Controller
         return Auth::check() && Auth::user()->role == 'admin'
             ? redirect()->route('admin.hotel.index') // Jika admin, redirect ke halaman admin
             : view('hotel', compact('hotels')); // Jika user biasa, tampilkan halaman hotel
+            
     }
 
     // Method untuk menampilkan kamar berdasarkan lokasi

@@ -7,7 +7,7 @@
                     <div class="ft-about">
                         <div class="logo">
                             <a href="#">
-                                <img src="img/berlian-white.png" alt="" class="logo-footer">
+                                <img src="{{ asset('img/berlian-white.png') }}" alt="" class="logo-footer">
                             </a>
                         </div>
                         <p>Kami menginspirasi dan menjangkau jutaan wisatawan di seluruh belahan dunia.</p>
@@ -54,11 +54,7 @@
                         <li><a href="#">Environmental Policy</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-5">
-                    <div class="co-text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Berlian Inovasi Mandiri Hotel 
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                </div>
+               
             </div>
         </div>
     </div>

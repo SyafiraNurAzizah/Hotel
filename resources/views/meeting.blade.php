@@ -6,20 +6,27 @@
 
 @section('content')
    
-    <div class="breadcrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <h2>Meeting Services</h2>
-                        <div class="bt-option">
-                            <span>Pilih lokasi & tempat rapat terbaik yang pernah ada dengan fasilitas terlengkap!</span>
-                        </div>
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <div class="search-container">
+                        <form action="{{ route('search') }}" method="GET">
+                            <!-- Tampilkan query yang sudah dicari jika ada -->
+                            <input type="text" name="query" placeholder="Search Hotel..." class="search-input" value="{{ request('query') }}">
+                            <button type="submit" class="search-btn">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
                     </div>
-                </div>
+                    <h2>Meetings</h2>
+                </div>                    
             </div>
         </div>
     </div>
+</div>
+<br><br>
 
     <section class="rooms-section spad">
         <div class="container">
@@ -35,80 +42,6 @@
                     </div>
                 </div>
                 @endforeach
-                {{-- <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="img/room/room-sby.jpg" alt="" class="room-image">
-                        <div class="ri-text">
-                            <h3>Surabaya</h3>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="img/room/room-bndg.jpg" alt="" class="room-image">
-                        <div class="ri-text">
-                            <h3>Bandung</h3>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="img/room/room-bksi.jpg" alt="" class="room-image">
-                        <div class="ri-text">
-                            <h3>Bekasi</h3>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="img/room/room-smrg.jpg" alt="" class="room-image">
-                        <div class="ri-text">
-                            <h3>Semarang</h3>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="img/room/room-bgr.jpg" alt="" class="room-image">
-                        <div class="ri-text">
-                            <h3>Bogor</h3>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="img/room/room-mlng.jpg" alt="" class="room-image">
-                        <div class="ri-text">
-                            <h3>Malang</h3>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="img/room/room-jgj.jpg" alt="" class="room-image">
-                        <div class="ri-text">
-                            <h3>Yogyakarta</h3>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="img/room/room-pwt.jpg" alt="" class="room-image">
-                        <div class="ri-text">
-                            <h3>Purwokerto</h3>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </section>

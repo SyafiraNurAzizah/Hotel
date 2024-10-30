@@ -2,9 +2,37 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/rooms.css') }}">
+<style>
+/* CSS untuk Tombol Kembali */
+.back-button {
+    position: fixed;
+    top: 90px; /* Sesuaikan posisi vertikal */
+    left: 40px; /* Sesuaikan posisi horizontal */
+	
+}
+
+.btn-back {
+    background-color: #dfa974;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50% ;
+    text-decoration: none;
+    font-size: 20px;
+
+    transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: #c97a5b;
+}
+
+</style>
 @endpush
 
 @section('content')
+<div class="back-button">
+    <h3><a href="javascript:history.back()" class="btn btn-back">←</a></h3>
+</div>
 <!-- Breadcrumb Section Begin -->
 <div class="breadcrumb-section">
     <div class="container">

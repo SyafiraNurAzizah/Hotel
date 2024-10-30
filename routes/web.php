@@ -5,6 +5,8 @@ use App\Http\Controllers\RoomController;
 use Illuminate\Container\Attributes\Config;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SearchController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
@@ -13,7 +15,11 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 
 Route::get('/weedings', [App\Http\Controllers\HomeController::class, 'weedings'])->name('weedings');
 
+// Route::get('/weddings', [App\Http\Controllers\HomeController::class, 'weddings'])->name('weddings');
 
+Route::resource('wedding', App\Http\Controllers\WeddingsController::class);
+
+// Route::get('/weddings/{id}', [App\Http\Controllers\WeddingsController::class, 'show'])->name('weddings.show');
 
 //---------------------------- LOGIN & REGISTER -----------------------------//
 Auth::routes();
@@ -33,9 +39,11 @@ Route::middleware(['auth'])->group(function () {
 
 //------------------------------ ADMIN -----------------------------------//
 Route::group(['middleware' => ['auth', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
-    Route::get('/admin', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('admin.index');
+    Route::get('/admin', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('admin');
     Route::get('/admin/hotel', [App\Http\Controllers\HomeController::class, 'adminHotel'])->name('admin.hotel.index');
-
+    Route::get('/admin/meetings', [App\Http\Controllers\HomeController::class, 'adminMeetings'])->name('admin.meetings.index');
+    Route::get('/admin/weddings', [App\Http\Controllers\HomeController::class, 'adminWeddings'])->name('admin.weddings.index');
+    Route::get('/admin', [App\Http\Controllers\HomeController::class, 'adminContact'])->name('admin.contact');
 });
 //----------------------------------------------------------------------------
 
@@ -122,4 +130,8 @@ Route::get('/rooms/{id}', [App\Http\Controllers\RoomController::class, 'show'])-
 //     Route::get('/hotel', [HotelsController::class, 'adminIndex'])->name('admin.hotel.index');
 //     Route::get('/hotel/rooms/{location}', [HotelsController::class, 'adminShowRooms'])->name('admin.hotel.rooms');
 // });
+
+// web.php
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
