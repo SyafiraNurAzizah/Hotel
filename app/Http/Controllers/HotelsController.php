@@ -22,12 +22,29 @@ class HotelsController extends Controller
 
         // Ambil tipe kamar untuk setiap hotel
         foreach ($hotels as $hotel) {
-            $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
+            $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->orderBy('harga_per_malam', 'asc')->get();
         }
         
         return view('hotel.rooms', [
             'location' => ucfirst($location),
             'hotels' => $hotels
+        ]);
+    }
+
+    public function showRoomsDetail($location, $nama_tipe)
+    {
+        $hotels = Hotels::where('nama_cabang', $location)->get();
+
+        $room = TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail();
+
+        foreach ($hotels as $hotel) {
+            $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
+        }
+        
+        return view('hotel.detail-hotel', [
+            'location' => ucfirst($location),
+            'hotels' => $hotels,
+            'room' => $room
         ]);
     }
 

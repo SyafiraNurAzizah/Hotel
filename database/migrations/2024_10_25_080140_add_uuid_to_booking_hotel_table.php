@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('weddings', function (Blueprint $table) {
-            $table->text('paket1')->nullable()->change();
-            $table->text('paket2')->nullable()->change();
-            $table->text('paket3')->nullable()->change();
+        Schema::table('booking_hotel', function (Blueprint $table) {
+            $table->uuid('uuid')->unique()->after('id');
         });
-        
     }
 
     /**
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('booking_hotel', function (Blueprint $table) {
+            $table->dropColumn('uuid');
+        });
     }
 };

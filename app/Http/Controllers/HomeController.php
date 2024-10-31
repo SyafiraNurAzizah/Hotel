@@ -17,15 +17,19 @@ class HomeController extends Controller
         return view('hotel');
     }
 
+    public function meeting()
+    {
+        return view('meeting');
+    }
+
     public function weddings()
     {
         return view('wedding.index');
     }
     
-
-    public function meeting()
+    public function contact()
     {
-        return view('meeting');
+        return view('contact');
     }
 
     public function profile($firstname, $lastname)

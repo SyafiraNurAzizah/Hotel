@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('weddings', function (Blueprint $table) {
-            $table->text('paket1')->nullable()->change();
-            $table->text('paket2')->nullable()->change();
-            $table->text('paket3')->nullable()->change();
+        Schema::table('tipe_kamar', function (Blueprint $table) {
+            $table->decimal('harga_per_malam', 10, 2)->change();
         });
-        
     }
 
     /**
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('tipe_kamar', function (Blueprint $table) {
+            $table->string('harga_per_malam')->change();
+        });
     }
 };
