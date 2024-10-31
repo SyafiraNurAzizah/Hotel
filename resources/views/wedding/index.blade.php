@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/AdminWedding.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/wedding.css') }}">
 @endpush
 @section('content')
     <!-- Breadcrumb Section Begin -->
@@ -29,7 +29,7 @@
                 @foreach ($weddings as $wedding)
                     <div class="col-lg-4 col-md-6 coba">
                         <div class="room-item">
-                            <img src="{{ asset($wedding->gambar) }}">
+                            <img src="{{ asset('/storage/uploads/' . $wedding->gambar) }}" alt="{{ $wedding->judul }}">
 
                             <div class="ri-text">
                                 <h4>{{ $wedding->judul }}</h4>
@@ -42,14 +42,15 @@
 
 
                                 <div class="btn-contact d-flex justify-content-between align-items-center my-3">
-                                    <a href="#"
+                                    <a href="https://wa.me/+6285701481636?text=Halo%2C%20saya%20tertarik%20dengan%20paket%20wedding%20Anda."
+                                        target="_blank"
                                         class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
                                         <i class="icon_phone" style="margin-right: 8px;"></i> Contact
                                     </a>
-                                    <a href="#"
+                                    <a href="mailto:istiqomahkhoerunnisa@gmail.com?subject=Informasi%20Paket%20Wedding&body=Halo,%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20paket%20wedding%20Anda."
                                         class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
                                         <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail </a>
-                                        <a href="{{ route('admin.wedding.index') }}">Admin</a>
+                                    <a href="{{ route('admin.wedding.index') }}">Admin</a>
 
                                 </div>
 
@@ -72,35 +73,38 @@
                                     <button type="button" class="icon_close ms-auto"
                                         style="border: none; background: none;" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
-                                    <img src="{{ asset($wedding->gambar) }}" class="card-img-top"
+                                    <img src="{{ asset('/storage/uploads/' . $wedding->gambar) }}" class="card-img-top"
                                         alt="{{ $wedding->judul }}"
                                         style="height: 400px; width: 2000px; object-fit: cover;">
 
-                                    
-                                            <div class="deskripsi">
-                                                <h4 class="card-text">Starting From IDR
-                                                    {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }}
-                                                    <span class="text-muted">nett min. {{ $wedding->kapasitas }} guests</span></h4>
-                                                <br>
-                                                <div class="btn-contact">
-                                                    <div class="btn-contact d-flex justify-content-end gap-3 my-3">
-                                                        <a href="#"
-                                                            class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
-                                                            <i class="icon_phone" style="margin-right: 8px;"></i> Contact
-                                                        </a>
-                                                        <a href="#"
-                                                            class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
-                                                            <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
 
-                                    <!-- Isi modal dengan detail wedding -->
+                                    <div class="deskripsi">
+                                        <h4 class="card-text">Starting From IDR
+                                            {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }}
+                                            <span class="text-muted">nett min. {{ $wedding->kapasitas }} guests</span>
+                                        </h4>
+                                        <br>
+                                        <div class="btn-contact">
+                                            <div class="btn-contact d-flex justify-content-end gap-3 my-3">
+                                                <a href="https://wa.me/+6285701481636?text=Halo%2C%20saya%20tertarik%20dengan%20paket%20wedding%20Anda."
+                                                    target="_blank"
+                                                    class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
+                                                    <i class="icon_phone" style="margin-right: 8px;"></i> Contact
+                                                </a>
+                                                <a href="mailto:istiqomahkhoerunnisa@gmail.com?subject=Informasi%20Paket%20Wedding&body=Halo,%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20paket%20wedding%20Anda."
+                                                    class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
+                                                    <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Isi modal detail wedding -->
                                     <div class="row mb-3" style="margin-left: 15px;">
                                         <div class="card mb-4 col-lg-4 col-md-6" style="border: none;">
                                             <div class="card1">
-                                                <h6 class="card-text" style="font-weight: bold;">{{ $wedding->judul_paket1 }}</h6>
+                                                <h6 class="card-text" style="font-weight: bold;">
+                                                    {{ $wedding->judul_paket1 }}</h6>
                                                 <ul>
                                                     @foreach (explode("\n", $wedding->paket1) as $item)
                                                         <li>{{ $item }}</li>
@@ -110,7 +114,8 @@
                                         </div>
                                         <div class="card mb-4 col-lg-4 col-md-6" style="border: none;">
                                             <div class="card2">
-                                                <h6 class="card-text" style="font-weight: bold;">{{ $wedding->judul_paket2 }}</h6>
+                                                <h6 class="card-text" style="font-weight: bold;">
+                                                    {{ $wedding->judul_paket2 }}</h6>
                                                 <ul>
                                                     @foreach (explode("\n", $wedding->paket2) as $item)
                                                         <li>{{ $item }}</li>
@@ -120,7 +125,8 @@
                                         </div>
                                         <div class="card mb-4 col-lg-4 col-md-6" style="border: none;">
                                             <div class="card3">
-                                                <h6 class="card-text" style="font-weight: bold;">{{ $wedding->judul_paket3 }}</h6>
+                                                <h6 class="card-text" style="font-weight: bold;">
+                                                    {{ $wedding->judul_paket3 }}</h6>
                                                 <ul>
                                                     @foreach (explode("\n", $wedding->paket3) as $item)
                                                         <li>{{ $item }}</li>
@@ -129,7 +135,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 {{-- <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

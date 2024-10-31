@@ -49,7 +49,7 @@
                             <td>{{ $wedding->judul_paket1 }}</td>
                             <td>{{ $wedding->judul_paket2 }}</td>
                             <td>{{ $wedding->judul_paket3 }}</td>
-                            <td><img src="{{ asset($wedding->gambar) }}" alt="{{ $wedding->judul }}"></td>
+                            <td><img src="{{ asset('/storage/uploads/' . $wedding->gambar) }}" alt="{{ $wedding->judul }}"></td>
                             <td>IDR {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }}</td>
                             <td>{{ $wedding->kapasitas }} guests</td>
                             <td>

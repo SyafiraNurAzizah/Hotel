@@ -76,4 +76,53 @@ class WeddingsController extends Controller
         $weddings = wedding::all();
         return view('admin.wedding.create');
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'judul' => 'required',
+            'judul_paket1' => 'required',
+            'judul_paket2' => 'required',
+            'judul_paket3' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'harga' => 'required',
+            'kapasitas' => 'required',
+            'paket1' => 'required',
+            'paket2' => 'required',
+            'paket3' => 'required',
+        ]);
+
+        $imageName = time() . '.' . $request->gambar->extension();
+        $request->gambar->move(public_path('storage/uploads'), $imageName);
+
+
+        $weddings = Wedding::create([
+           'judul' => $request->input('judul'),
+           'judul_paket1' => $request->input('judul_paket1'),
+           'judul_paket2' => $request->input('judul_paket2'),
+           'judul_paket3' => $request->input('judul_paket3'),
+           'gambar' => $imageName,
+           'harga' => $request->input('harga'),
+           'kapasitas' => $request->input('kapasitas'),
+           'paket1' => $request->input('paket1'),
+           'paket2' => $request->input('paket2'),
+           'paket3' => $request->input('paket3'),
+        ]);
+
+        // $weddings = new wedding();
+        // $weddings->judul = $request->input('judul');
+        // $weddings->judul_paket1 = $request->input('judul_paket1');
+        // $weddings->judul_paket2 = $request->input('judul_paket2');
+        // $weddings->judul_paket3 = $request->input('judul_paket3');
+        // $weddings->gambar = $request->file('gambar');
+        // $weddings->harga = $request->input('harga');
+        // $weddings->kapasitas = $request->input('kapasitas');
+        // $weddings->paket1 = $request->input('paket1');
+        // $weddings->paket2 = $request->input('paket2');
+        // $weddings->paket3 = $request->input('paket3');
+
+        // $weddings->save();
+
+        return redirect()->route('wedding.index')->with('success', 'Data weddings berhasil ditambahkan.');
+    }
 }
