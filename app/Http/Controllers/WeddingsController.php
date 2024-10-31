@@ -13,12 +13,6 @@ class WeddingsController extends Controller
         return view('wedding.index', compact('weddings'));
     }
 
-    public function show($id)
-    {
-        $weddings = Wedding::findOrFail($id);
-        return view('wedding.show', compact('weddings'));
-    }
-
     public function edit($id)
     {
         // Cari wedding berdasarkan id
@@ -109,20 +103,12 @@ class WeddingsController extends Controller
            'paket3' => $request->input('paket3'),
         ]);
 
-        // $weddings = new wedding();
-        // $weddings->judul = $request->input('judul');
-        // $weddings->judul_paket1 = $request->input('judul_paket1');
-        // $weddings->judul_paket2 = $request->input('judul_paket2');
-        // $weddings->judul_paket3 = $request->input('judul_paket3');
-        // $weddings->gambar = $request->file('gambar');
-        // $weddings->harga = $request->input('harga');
-        // $weddings->kapasitas = $request->input('kapasitas');
-        // $weddings->paket1 = $request->input('paket1');
-        // $weddings->paket2 = $request->input('paket2');
-        // $weddings->paket3 = $request->input('paket3');
-
-        // $weddings->save();
-
         return redirect()->route('wedding.index')->with('success', 'Data weddings berhasil ditambahkan.');
+    }
+
+    public function show($id)
+    {
+        $weddings = wedding::findOrFail($id);
+        return view('admin.wedding.show', compact('weddings'));
     }
 }

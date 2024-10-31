@@ -26,11 +26,12 @@
     <section>
         <div class="container">
             <div class="container mt-5">
-                <a href="{{ route('wedding.create') }}" class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center mb-2">
+                <a href="{{ route('wedding.create') }}"
+                    class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center mb-2">
                     <i class="icon_phone fs-2 me-2"></i> <!-- fs-2 memperbesar ukuran ikon -->
                     Tambah Paket
                 </a>
-                
+
 
                 <table class="table table-custom">
                     <thead class="thead-custom">
@@ -56,12 +57,12 @@
                                 <td>{{ $wedding->judul_paket3 }}</td>
                                 <td><img src="{{ asset('/storage/uploads/' . $wedding->gambar) }}"
                                         alt="{{ $wedding->judul }}"></td>
-                                <td>IDR
+                                <td>
                                     {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }}
                                 </td>
                                 <td>{{ $wedding->kapasitas }} guests</td>
                                 <td>
-                                    <a href="{{ route('wedding.edit', $wedding->id) }}"
+                                    {{-- <a href="{{ route('wedding.edit', $wedding->id) }}"
                                         class="btn btn-outline-secondary">Edit</a>
                                     <form action="{{ route('wedding.destroy', $wedding->id) }}" method="POST"
                                         class="d-inline">
@@ -69,7 +70,10 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-other btn-outline-danger"
                                             onclick="return confirm('Are you sure?')">Delete</button>
-                                    </form>
+                                    </form> --}}
+
+                                    <a href="{{ route('wedding.show', $wedding->id) }}"
+                                        class="icon_view btn btn-outline-secondary"></a>
                                 </td>
                             </tr>
                         @empty

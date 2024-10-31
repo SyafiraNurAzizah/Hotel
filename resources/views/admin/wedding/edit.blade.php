@@ -32,6 +32,11 @@
                         <label for="judul_paket1">Paket 1</label>
                         <input type="text" name="judul_paket1" id="judul_paket1" class="form-control" value="{{ $wedding->judul_paket1 }}">
                     </div>
+                    
+                    <div class="form-group">
+                        <label for="paket1">Deskripsi Paket 1</label>
+                        <textarea name="paket1" id="paket1" class="form-control">{{ $wedding->paket1 }}</textarea>
+                    </div>
 
                     <div class="form-group">
                         <label for="judul_paket2">Paket 2</label>
@@ -39,8 +44,18 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="paket2">Deskripsi Paket 2</label>
+                        <textarea name="paket2" id="paket2" class="form-control">{{ $wedding->paket2 }}</textarea>
+                    </div>
+
+                    <div class="form-group">
                         <label for="judul_paket3">Paket 3</label>
                         <input type="text" name="judul_paket3" id="judul_paket3" class="form-control" value="{{ $wedding->judul_paket3 }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paket3">Deskripsi Paket 3</label>
+                        <textarea name="paket3" id="paket3" class="form-control">{{ $wedding->paket3 }}</textarea>
                     </div>
 
                     <div class="form-group">

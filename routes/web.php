@@ -17,7 +17,9 @@ Route::get('/weedings', [App\Http\Controllers\HomeController::class, 'weedings']
 
 Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.wedding.index');
 
-Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edut');
+Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edit');
+
+Route::get('/admin/wedding/{id}', [WeddingController::class, 'show'])->name('admin.wedding.show');
 
 // Route::resource('admin/wedding', WeddingController::class);
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
