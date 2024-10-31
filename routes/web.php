@@ -1,9 +1,12 @@
 <?php
 
+use Illuminate\Console\Application;
 use App\Http\Controllers\RoomController;
 use Illuminate\Container\Attributes\Config;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\WeddingController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
@@ -12,7 +15,18 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 
 Route::get('/weedings', [App\Http\Controllers\HomeController::class, 'weedings'])->name('weedings');
 
+Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.wedding.index');
 
+Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edut');
+
+// Route::resource('admin/wedding', WeddingController::class);
+Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
+
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
+
+Route::resource('wedding', App\Http\Controllers\WeddingsController::class);
+
+// Route::get('/weddings/{id}', [App\Http\Controllers\WeddingsController::class, 'show'])->name('weddings.show');
 
 //---------------------------- LOGIN & REGISTER -----------------------------//
 Auth::routes();

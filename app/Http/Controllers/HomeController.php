@@ -16,9 +16,20 @@ class HomeController extends Controller
     {
         return view('hotel');
     }
+
     public function meeting()
     {
         return view('meeting');
+    }
+
+    public function weddings()
+    {
+        return view('wedding.index');
+    }
+    
+    public function contact()
+    {
+        return view('contact');
     }
 
     public function profile($firstname, $lastname)
@@ -37,4 +48,10 @@ class HomeController extends Controller
     {
         return view('admin.hotel.index');
     }
+
+    public function adminWedding()
+    {
+        return view('admin.wedding.index');
+    }
+    
 }

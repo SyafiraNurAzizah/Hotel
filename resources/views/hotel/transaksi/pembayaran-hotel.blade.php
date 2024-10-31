@@ -61,6 +61,12 @@
     </div>
 
     <div class="container-metode-pembayaran">
+        {{-- <form action="{{ route('booking.hotel.pay', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}" method="POST"> --}}
+        <form class="form-pembayaran">
+            @csrf
+
+            <p>Metode Pembayaran</p>
+        </form>
         {{-- <form action="#" method="POST">
             @csrf
         
