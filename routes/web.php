@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\HotelsController;
+use App\Http\Controllers\Admin\WeddingController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Container\Attributes\Config;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HotelsController;
+use App\Http\Controllers\MeetingsController;
 use App\Http\Controllers\SearchController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
@@ -15,7 +17,14 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 
 Route::get('/weedings', [App\Http\Controllers\HomeController::class, 'weedings'])->name('weedings');
 
-// Route::get('/weddings', [App\Http\Controllers\HomeController::class, 'weddings'])->name('weddings');
+Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.wedding.index');
+
+Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edut');
+
+// Route::resource('admin/wedding', WeddingController::class);
+Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
+
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 
 Route::resource('wedding', App\Http\Controllers\WeddingsController::class);
 
@@ -132,6 +141,9 @@ Route::get('/rooms/{id}', [App\Http\Controllers\RoomController::class, 'show'])-
 // });
 
 // web.php
+Route::get('/hotel', [HotelsController::class, 'search'])->name('search.hotel');
+Route::get('/meeting', [MeetingsController::class, 'search'])->name('search.meeting');
 
-Route::get('/search', [SearchController::class, 'search'])->name('search');
+
+
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/wedding.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/AdminWedding.css') }}">
 @endpush
 @section('content')
     <!-- Breadcrumb Section Begin -->
@@ -11,10 +11,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text m-5">
                         <h2>Wedding Rooms</h2>
-                        <div class="bt-option">
-                            <a href="{{ route('index') }}">Beranda</a>
-                            <span>Rooms</span>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -29,7 +26,6 @@
                 @foreach ($weddings as $wedding)
                     <div class="col-lg-4 col-md-6 coba">
                         <div class="room-item">
-                            <!-- Mengambil gambar dari database -->
                             <img src="{{ asset($wedding->gambar) }}">
 
                             <div class="ri-text">
@@ -50,9 +46,11 @@
                                     <a href="#"
                                         class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
                                         <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail </a>
+                                        <a href="{{ route('admin.wedding.index') }}">Admin</a>
+
                                 </div>
 
-                                <!-- Tombol More Details yang mengarahkan ke modal untuk menampilkan detail wedding -->
+
                                 <button class="primary-btn" style="border: none; background: none;" data-bs-toggle="modal"
                                     data-bs-target="#weddingModal-{{ $wedding->id }}">
                                     More Details

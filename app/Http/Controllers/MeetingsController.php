@@ -46,6 +46,18 @@ class MeetingsController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Pencarian berdasarkan nama cabang hotel atau kriteria lain
+        $hotels = Hotels::where('nama_cabang', 'LIKE', "%{$query}%")->get();
+
+
+        // Kembali ke view dengan hasil pencarian
+        return view('meeting', compact('hotels'));
+    }
+
 //     public function showGallery($location, $roomId)
 // {
 //     // Retrieve hotel information based on the location

@@ -89,4 +89,17 @@ class HotelsController extends Controller
             'hotels' => $hotels
         ]);
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Lakukan pencarian berdasarkan nama atau lokasi hotel
+        $hotels = Hotels::where('nama_cabang', 'LIKE', "%{$query}%")
+                       ->orWhere('alamat', 'LIKE', "%{$query}%")
+                       ->get();
+
+        // Kembalikan hasil pencarian ke view
+        return view('hotel', compact('hotels', 'query'));
+    }
 }
