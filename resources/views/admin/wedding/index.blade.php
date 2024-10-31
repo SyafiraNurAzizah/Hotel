@@ -24,53 +24,62 @@
     <!-- Breadcrumb Section End -->
 
     <section>
-        <div class="container"><div class="container mt-5">
-            <a href="{{ route('wedding.create') }}" style="border: none; background: none;"><i class="icon_plus"></i></a>
+        <div class="container">
+            <div class="container mt-5">
+                <a href="{{ route('wedding.create') }}" class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center mb-2">
+                    <i class="icon_phone fs-2 me-2"></i> <!-- fs-2 memperbesar ukuran ikon -->
+                    Tambah Paket
+                </a>
+                
 
-            <table class="table table-custom">
-                <thead class="thead-custom">
-                    <tr>
-                        <th>No</th>
-                        <th>Judul</th>
-                        <th>Paket 1</th>
-                        <th>Paket 2</th>
-                        <th>Paket 3</th>
-                        <th>Gambar</th>
-                        <th>Harga</th>
-                        <th>Kapasitas</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($weddings as $wedding)
+                <table class="table table-custom">
+                    <thead class="thead-custom">
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $wedding->judul }}</td>
-                            <td>{{ $wedding->judul_paket1 }}</td>
-                            <td>{{ $wedding->judul_paket2 }}</td>
-                            <td>{{ $wedding->judul_paket3 }}</td>
-                            <td><img src="{{ asset('/storage/uploads/' . $wedding->gambar) }}" alt="{{ $wedding->judul }}"></td>
-                            <td>IDR {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }}</td>
-                            <td>{{ $wedding->kapasitas }} guests</td>
-                            <td>
-                                <a href="{{ route('wedding.edit', $wedding->id) }}" class="btn btn-outline-secondary">Edit</a>
-                                <form action="{{ route('wedding.destroy', $wedding->id) }}" method="POST"
-                                    class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-other btn-outline-danger"
-                                        onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
-                            </td>
+                            <th>No</th>
+                            <th>Judul</th>
+                            <th>Paket 1</th>
+                            <th>Paket 2</th>
+                            <th>Paket 3</th>
+                            <th>Gambar</th>
+                            <th>Harga</th>
+                            <th>Kapasitas</th>
+                            <th>Aksi</th>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="8" class="no-data">No data available</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        @forelse ($weddings as $wedding)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $wedding->judul }}</td>
+                                <td>{{ $wedding->judul_paket1 }}</td>
+                                <td>{{ $wedding->judul_paket2 }}</td>
+                                <td>{{ $wedding->judul_paket3 }}</td>
+                                <td><img src="{{ asset('/storage/uploads/' . $wedding->gambar) }}"
+                                        alt="{{ $wedding->judul }}"></td>
+                                <td>IDR
+                                    {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }}
+                                </td>
+                                <td>{{ $wedding->kapasitas }} guests</td>
+                                <td>
+                                    <a href="{{ route('wedding.edit', $wedding->id) }}"
+                                        class="btn btn-outline-secondary">Edit</a>
+                                    <form action="{{ route('wedding.destroy', $wedding->id) }}" method="POST"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-other btn-outline-danger"
+                                            onclick="return confirm('Are you sure?')">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="8" class="no-data">No data available</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
     </section>
 
     <!-- Breadcrumb Section End -->
