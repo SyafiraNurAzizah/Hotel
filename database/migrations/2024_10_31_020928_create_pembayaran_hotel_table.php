@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('booking_hotel_id')->constrained('booking_hotel')->onDelete('cascade');
             $table->string('metode_pembayaran');
-            $table->string('jumlah_total');
-            $table->dateTime('tanggal_pembayaran');
+            $table->string('bukti_pembayaran')->nullable();
             $table->timestamps();
         });
     }
