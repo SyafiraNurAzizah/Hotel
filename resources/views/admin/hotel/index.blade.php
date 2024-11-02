@@ -1,44 +1,98 @@
-@extends('layouts.app') <!-- Pastikan layout admin sudah ada -->
+<!-- resources/views/admin/hotel/index.blade.php -->
+@extends('layouts.app')
 
 @section('content')
-<br><br><br>
+<br><br><br><br><br>
 <div class="container">
-    <h1 class="my-4">Manage Hotels</h1>
+    <h2 class="mb-4">Reservations Table</h2>
     
-    <!-- Tombol untuk menambah hotel baru -->
-    {{-- <a href="{{ route('admin.hotel.create') }}" class="btn btn-primary mb-3">Add New Hotel</a> --}}
-
-    <!-- Tabel untuk menampilkan daftar hotel -->
     <table class="table table-bordered">
         <thead>
-            <tr>
-                <th>No</th>
-                <th>Hotel Name</th>
-                <th>Location</th>
-                <th>Actions</th>
+            <tr style="background-color: #dfa974">
+                <th>User ID</th>
+                <th>Hotel ID</th>
+                <th>Status</th>
+                <th>Status Pembayaran</th>
+                <th>Jumlah Harga</th>
+                <th>Aksi</th>
             </tr>
         </thead>
-        {{-- <tbody>
-            @forelse($hotels as $hotel) <!-- Looping data hotel dari controller -->
+        <tbody>
+            @foreach($bookinghotels as $item)
             <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $hotel->name }}</td>
-                <td>{{ $hotel->location }}</td>
+                <td>{{ $item->user->firstname ?? 'N/A' }}</td>
+                <td>{{ $item->hotel->nama_cabang ?? 'N/A' }}</td>
+                
                 <td>
-                    <a href="{{ route('admin.hotel.edit', $hotel->id) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('admin.hotel.destroy', $hotel->id) }}" method="POST" style="display: inline;">
+                    @if($item->status == 'SELESAI')
+                        <span style="color: green; font-weight: bold;">{{ $item->status }}</span>
+                    @elseif($item->status == 'BELUM_SELESAI')
+                        <span style="color: orange; font-weight: bold;">{{ $item->status }}</span>
+                    @elseif($item->status == 'DIBATALKAN')
+                        <span style="color: red; font-weight: bold;">{{ $item->status }}</span>
+                    @else
+                        <span>{{ $item->status }}</span>
+                    @endif
+                </td>
+                
+                <td>
+                    @if($item->status_pembayaran == 'DIBAYAR')
+                        <span style="color: green; font-weight: bold;">{{ $item->status_pembayaran }}</span>
+                    @elseif($item->status_pembayaran == 'BELUM_DIBAYAR')
+                        <span style="color: red; font-weight: bold;">{{ $item->status_pembayaran }}</span>
+                    @else
+                        <span>{{ $item->status_pembayaran }}</span>
+                    @endif
+                </td>
+                <td>Rp{{ number_format($item->jumlah_harga, 2) }}</td>
+                <td>
+                    <a href="{{ route('admin.hotel.show', $item->id) }}" class="btn btn-info" title="Detail">
+                        <i class="fas fa-info-circle"></i> <!-- Ikon detail -->
+                    </a>
+                    <a href="{{ route('admin.hotel.edit', $item->id) }}" class="btn btn-warning" title="Edit">
+                        <i class="fas fa-edit"></i> <!-- Ikon edit -->
+                    </a>
+                    <form action="{{ route('admin.hotel.destroy', $item->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                        <button type="submit" class="btn btn-danger" title="Hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus?');">
+                            <i class="fas fa-trash"></i> <!-- Ikon hapus -->
+                        </button>
                     </form>
                 </td>
+                
+                
             </tr>
-            @empty
-            <tr>
-                <td colspan="4" class="text-center">No Hotels Found</td>
-            </tr>
-            @endforelse
-        </tbody> --}}
+            @endforeach
+        </tbody>
     </table>
+    <form action="" id ="form-delete" method="POST" style="d:inline;">
+        @csrf
+        @method('DELETE')
+    </form>
 </div>
 @endsection
+
+@push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script type="text/javascript">
+        function handleDelete(url) {
+           swal({
+               title: "Apakah Anda yakin ingin menghapus data ini?",
+               text: "Data yang dihapus tidak dapat dikembalikan!",
+               icon: "warning",
+               buttons: true,
+               dangerMode: true,
+               
+           }).then((wellDelete) => {
+               if (wellDelete) {
+                   $('#form-delete').attr('action', url);
+                   $('#form-delete').submit();
+               }  
+           })
+        }
+    </script>
+
+@endpush

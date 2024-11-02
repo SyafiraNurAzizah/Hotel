@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class HotelsController extends Controller
 {
+    
     // Method untuk menampilkan daftar hotel
     public function index()
     {
@@ -30,7 +31,7 @@ class HotelsController extends Controller
 
         // Ambil tipe kamar untuk setiap hotel
         foreach ($hotels as $hotel) {
-            $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
+            $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->orderBy('harga_per_malam', 'asc')->get();
         }
 
         // Cek role user dan tampilkan halaman yang sesuai
@@ -43,6 +44,23 @@ class HotelsController extends Controller
                 'location' => ucfirst($location),
                 'hotels' => $hotels
               ]);
+    }
+
+    public function showRoomsDetail($location, $nama_tipe)
+    {
+        $hotels = Hotels::where('nama_cabang', $location)->get();
+
+        $room = TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail();
+
+        foreach ($hotels as $hotel) {
+            $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
+        }
+        
+        return view('hotel.detail-hotel', [
+            'location' => ucfirst($location),
+            'hotels' => $hotels,
+            'room' => $room
+        ]);
     }
 
     // Method untuk menampilkan fasilitas berdasarkan lokasi
@@ -102,4 +120,6 @@ class HotelsController extends Controller
         // Kembalikan hasil pencarian ke view
         return view('hotel', compact('hotels', 'query'));
     }
+
+    
 }

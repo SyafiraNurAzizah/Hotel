@@ -10,6 +10,7 @@ class Wedding extends Model
     use HasFactory;
 
     protected $table = 'weddings';
+    
     protected $fillable = [
         'judul',
         'judul_paket1',

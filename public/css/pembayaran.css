@@ -1,0 +1,207 @@
+body {
+    /* background-color: rgb(243, 243, 243); */
+    background: linear-gradient(to right, #f9f9f9, #f1f1f1);
+}
+
+.container {
+    position: fixed;
+    top: 48px;
+    left: 178px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    height: 540px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px 5px #2011010c; 
+}
+
+
+.container .container-title {
+    position: fixed;
+}
+
+.container .container-title .container-left {
+    position: relative;
+    left: 180px;
+}
+.container .container-title .container-left img {
+    width: 95px;
+    height: 95px;
+    position: relative;
+    bottom: 110px;
+    right: 440px;
+}
+.container .container-title .container-left h1 {
+    color: #19191a;
+    position: relative;
+    bottom: 140px;
+    right: 427px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    font-family: "Lora", serif;
+}
+.container .container-title .container-left h2 {
+    color: #19191a;
+    position: relative;
+    bottom: 191px;
+    right: 345px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    font-family: "Lora", serif;
+}
+
+.container .container-title .container-right {
+    color: #19191aa9;
+    font-family: 'Cabin', sans-serif;
+    font-size: 15px;
+    position: relative;
+    bottom: 253px;
+    left: 190px;
+    line-height: 0.7;
+}
+
+
+/* .horizontal-line-1 {
+    position: relative;
+    bottom: 83px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    width: 87%;
+    align-items: center;
+} */
+
+
+.container .container-isi .data-text {
+    position: fixed;
+    top: 202px;
+    left: 240px;
+    /* right: 930px; */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.container .container-isi .data-text .container-is-booking-text {
+    margin-bottom: -45px;
+    padding: 5px;
+}
+.container .container-isi .data-text .container-is-booking-text p {
+    /* font-size: 15px; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #19191aa9;
+}
+.container .container-isi .data-text .container-is-booking-text h3 {
+    font-family: 'Lora', serif;
+    font-size: 21px;
+    font-weight: 500;
+    color: #19191ac9;
+    /* color: #dfa974; */
+    letter-spacing: 1px;
+    position: relative;
+    bottom: 15px;
+}
+
+.container .container-isi .data-harga {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    top: 480px;
+    right: 750px;
+    width: 350px;
+    max-width: 350px;
+    height: 70px;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    text-align: left;
+    padding: 10px;
+    overflow: hidden;
+}
+.container .container-isi .data-harga h3 {
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #19191aa9;
+    margin: 0;
+    flex: 1;
+    position: relative;
+    right: 8px;
+}
+.container .container-isi .data-harga h2 {
+    color: #dfa974;
+    margin: 0;
+    margin-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    left: 9px;
+}
+
+
+.container .container-isi .data-number {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    width: 420px;
+    position: fixed;
+    left: 680px;
+    bottom: 285px;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+.container .container-isi .data-number .container-isi-booking-number {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.container .container-isi .data-number .container-isi-booking-number h2 {
+    color: #dfa974;
+    font-size: 29px;
+}
+.container .container-isi .data-number .container-isi-booking-number p {
+    color: #19191aa9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.5px;
+    position: relative;
+    bottom: 15px;
+}
+.container .container-isi .data-number .vertical-line {
+    border-left: 1px solid rgba(0, 0, 0, 0.15);
+    height: 90px;
+}
+
+
+.container .container-metode-pembayaran {
+    position: relative;
+    top: 132px;
+    left: 306px;
+    width: 418px;
+    height: 175px;
+    /* border-radius: 5px;
+    box-shadow: 0px 5px 10px 5px #2011010c;  */
+    /* border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px; */
+}
+.container .container-metode-pembayaran .form-pembayaran p {
+    color: #19191aa9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    left: 145px;
+}
+
+
+.container .form-batal {
+    position: relative;
+    /* top: 212px; */
+    top: 300px;
+    right: 89px;
+}
+.container .form-batal button {
+    /* background-color: #dfa974; */
+    background-color: rgba(16, 20, 31, 0.89);
+    opacity: 75%;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+}

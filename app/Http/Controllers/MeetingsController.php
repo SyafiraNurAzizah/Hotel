@@ -6,6 +6,7 @@ use App\Models\Gallery;
 use App\Models\Hotels;
 use App\Models\Meetings;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\Attributes\Medium;
 
 class MeetingsController extends Controller
 {
@@ -58,28 +59,14 @@ class MeetingsController extends Controller
         return view('meeting', compact('hotels'));
     }
 
-//     public function showGallery($location, $roomId)
-// {
-//     // Retrieve hotel information based on the location
-//     $hotels = Hotels::where('nama_cabang', $location)->get();
-
-//     // Find the meeting room using the roomId
-//     $meeting = Meetings::with('room')->findOrFail($roomId);
-
-//     // Get the room details
-//     $room = $meeting->room; // Ensure there's a relationship for this
-
-//     // Return the view and pass necessary variables
-//     return view('meeting.gallery', [
-//         'location' => ucfirst($location), // Capitalize the first letter of the location
-//         'hotels' => $hotels,              // Pass hotels to the view
-//         'roomId' => $roomId,              // Pass roomId to the view
-//         'room' => $room                   // Pass the room details to the view
-//     ]);
-// }
-
-
-
-
+    public function adminIndex()
+    {
+        // Ambil data yang ingin ditampilkan, misalnya daftar hotel
+        $meetings = Meetings::all();
+    
+        // Kembalikan view ke `admin.hotel.index` dengan data yang dibutuhkan
+        return view('admin.meetings.index', compact('meetings'));
+    }
+    
 
 }

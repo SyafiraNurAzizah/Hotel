@@ -132,7 +132,7 @@
                                 <img src="{{ asset('img/hotels/rooms/' . $room->foto) }}" alt="Room image">
                                 <div class="ri-text">
                                     <h4>{{ $room->nama_tipe }}</h4>
-                                    <h3>Rp{{ $room->harga_per_malam}}<span>/Malam</span></h3>
+                                    <h3>Rp{{ number_format($room->harga_per_malam, 2, ',', '.') }}<span>/Malam</span></h3>
                                     <table>
                                         <tbody>
                                             <tr>
@@ -153,7 +153,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <a href="{{ route('room.show', ['id' => $room->id]) }}" class="primary-btn">More Details</a>
+                                    <a href="{{ route('detail-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe]) }}" class="primary-btn">More Details</a>
                                 </div>
                             </div>
                         </div>

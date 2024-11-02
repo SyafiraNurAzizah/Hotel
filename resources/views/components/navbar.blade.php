@@ -23,15 +23,21 @@
                             <ul>
                                 @if (Auth::guest())
                                     <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}">Beranda</a></li>
-                                    <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ url('hotel') }}">Hotel</a></li>
-                                    <li class="{{ Request::is('meeting') ? 'active' : '' }}"><a href="{{url('meeting')}}">Meetings</a></li>
+                                    <li class="{{ Request::is('hotel') || Request::is('hotel/*') ? 'active' : '' }}"><a href="{{ url('hotel') }}">Hotel</a></li>
+                                    <li class="{{ Request::is('meeting') || Request::is('meeting/*') ? 'active' : '' }}"><a href="{{ url('meeting') }}">Meetings</a></li>
                                     <li class="{{ Request::is('wedding') ? 'active' : '' }}"><a href="{{ route('wedding.index') }}">Weedings</a></li>
-                                    <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="./contact.html">Contact</a></li>
+                                    <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">Contact</a></li>
+                                @elseif (Auth::check() && Auth::user()->role == 'user')
+                                    <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}">Beranda</a></li>
+                                    <li class="{{ Request::is('hotel') || Request::is('hotel/*') ? 'active' : '' }}"><a href="{{ url('hotel') }}">Hotel</a></li>
+                                    <li class="{{ Request::is('meeting') || Request::is('meeting/*') ? 'active' : '' }}"><a href="{{ url('meeting') }}">Meetings</a></li>
+                                    <li class="{{ Request::is('wedding') ? 'active' : '' }}"><a href="{{ route('wedding.index') }}">Weedings</a></li>
+                                    <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">Contact</a></li>
                                 @elseif (Auth::check() && Auth::user()->role == 'admin')
                                     <li class="{{ Request::is('admin') ? 'active' : '' }}"><a href="{{ route('index') }}">Admin</a></li>
                                     <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ route('admin.hotel.index') }}">Hotel</a></li>
                                     <li class="{{ Request::is('meetings') ? 'active' : '' }}"><a href="{{ route('admin.meetings.index') }}">Meetings</a></li>
-                                    <li class="{{ Request::is('weddings') ? 'active' : '' }}"><a href="{{ route('admin.weddings.index') }}">Wedding</a></li>
+                                    <li class="{{ Request::is('meetings') ? 'active' : '' }}"><a href="{{ route('admin.meetings.index') }}">Wedding</a></li>
                                     <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{ route('admin.contact') }}">Contact</a></li>
                                 @endif
                             </ul>
@@ -39,7 +45,28 @@
                        
                         
                         <div class="nav-right login-button">
-                            @if (Auth::check())
+                            @if (Auth::check() && Auth::user()->role == 'user')
+                                <div class="profile-user">
+                                    <span>{{ Auth::user()->firstname }}</span>
+                                    <div class="user-dropdown">
+                                        <div class="bridge"></div>
+                                        <ul>
+                                            <li onclick="window.location.href='{{ route('profile', ['firstname' => auth()->user()->firstname, 'lastname' => auth()->user()->lastname]) }}'">
+                                                <i class="fa-regular fa-user"></i>
+                                                <a>Profil</a>
+                                            </li>
+                                            <div class="horizontal-line-dropdown"></div>
+                                            <li onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                </form>
+                                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                                <a>Keluar</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            @elseif (Auth::check() && Auth::user()->role == 'admin')
                                 <div class="profile-user">
                                     <span>{{ Auth::user()->firstname }}</span>
                                     <div class="user-dropdown">

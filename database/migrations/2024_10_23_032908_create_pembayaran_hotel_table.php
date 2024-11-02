@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contact', function (Blueprint $table) {
+        Schema::create('pembayaran_hotel', function (Blueprint $table) {
             $table->id();
-            $table->text('Nama');
-            $table->text('Email');
-            $table->text('Pesan');
+            $table->foreignId('booking_hotel_id')->constrained('booking_hotel')->onDelete('cascade');
+            $table->string('metode_pembayaran');
+            $table->string('jumlah_total');
+            $table->dateTime('tanggal_pembayaran');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contact');
+        Schema::dropIfExists('pembayaran_hotel');
     }
 };
