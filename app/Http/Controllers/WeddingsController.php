@@ -91,16 +91,16 @@ class WeddingsController extends Controller
 
 
         $weddings = Wedding::create([
-           'judul' => $request->input('judul'),
-           'judul_paket1' => $request->input('judul_paket1'),
-           'judul_paket2' => $request->input('judul_paket2'),
-           'judul_paket3' => $request->input('judul_paket3'),
-           'gambar' => $imageName,
-           'harga' => $request->input('harga'),
-           'kapasitas' => $request->input('kapasitas'),
-           'paket1' => $request->input('paket1'),
-           'paket2' => $request->input('paket2'),
-           'paket3' => $request->input('paket3'),
+            'judul' => $request->input('judul'),
+            'judul_paket1' => $request->input('judul_paket1'),
+            'judul_paket2' => $request->input('judul_paket2'),
+            'judul_paket3' => $request->input('judul_paket3'),
+            'gambar' => $imageName,
+            'harga' => $request->input('harga'),
+            'kapasitas' => $request->input('kapasitas'),
+            'paket1' => $request->input('paket1'),
+            'paket2' => $request->input('paket2'),
+            'paket3' => $request->input('paket3'),
         ]);
 
         return redirect()->route('wedding.index')->with('success', 'Data weddings berhasil ditambahkan.');
@@ -108,7 +108,12 @@ class WeddingsController extends Controller
 
     public function show($id)
     {
-        $weddings = wedding::findOrFail($id);
+        $weddings = wedding::find($id);
+
+        if (!$weddings) {
+            return redirect()->route('wedding.index')->with('error', 'Data tidak ditemukan');
+        }
+
         return view('admin.wedding.show', compact('weddings'));
     }
 }

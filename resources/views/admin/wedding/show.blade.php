@@ -1,32 +1,31 @@
 @extends('layouts.app')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/wedding.css') }}">
+@endpush
 @section('content')
-    
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                @forelse ($weddings as $wedding)
-                    <div class="card-header">{{ $wedding->judul }}</div>
-                    <div class="card-body">
-                        <div>{{ $wedding->gambar }}</div>
-                        <p>{{ $wedding->harga }}</p>
-                        <p>{{ $wedding->kapasitas }}</p>
-                        <p>{{ $wedding->paket1 }}</p>
-                        <p>{{ $wedding->judul_paket1 }}</p>
-                        <p>{{ $wedding->paket2 }}</p>
-                        <p>{{ $wedding->judul_paket2 }}</p>
-                        <p>{{ $wedding->paket3 }}</p>
-                        <p>{{ $wedding->judul_paket3 }}</p>
-                        
-                    </div>
+    <!-- Breadcrumb Section Begin -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    @foreach ($weddings as $wedding)
+                        <div class="breadcrumb-text m-5">
+                            <div class="card-header">
+                                <h2>{{ $wedding->judul }}</h2>
 
-                @empty
-                    
-                @endforelse
-                
+                            </div>
+                            <div class="description">
+                                <p>{{ $wedding->paket1 }}</p><p>{{ $wedding->paket2 }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <!-- Breadcrumb Section End -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 @endsection

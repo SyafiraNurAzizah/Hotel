@@ -45,7 +45,7 @@
                                     <a href="https://wa.me/+6285701481636?text=Halo%2C%20saya%20tertarik%20dengan%20paket%20wedding%20Anda."
                                         target="_blank"
                                         class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
-                                        <i class="icon_phone" style="margin-right: 8px;"></i> Contact
+                                        <i class="icon_phone me-2" style="margin-right: 8px;"></i> Contact
                                     </a>
                                     <a href="mailto:istiqomahkhoerunnisa@gmail.com?subject=Informasi%20Paket%20Wedding&body=Halo,%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20paket%20wedding%20Anda."
                                         class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">

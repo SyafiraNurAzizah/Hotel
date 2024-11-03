@@ -62,7 +62,7 @@
                                 </td>
                                 <td>{{ $wedding->kapasitas }} guests</td>
                                 <td>
-                                    {{-- <a href="{{ route('wedding.edit', $wedding->id) }}"
+                                    <a href="{{ route('wedding.edit', $wedding->id) }}"
                                         class="btn btn-outline-secondary">Edit</a>
                                     <form action="{{ route('wedding.destroy', $wedding->id) }}" method="POST"
                                         class="d-inline">
@@ -70,10 +70,10 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-other btn-outline-danger"
                                             onclick="return confirm('Are you sure?')">Delete</button>
-                                    </form> --}}
+                                    </form>
 
-                                    <a href="{{ route('wedding.show', $wedding->id) }}"
-                                        class="icon_view btn btn-outline-secondary"></a>
+                                    {{-- <a href="{{ route('wedding.show', $wedding->id) }}"
+                                        class="icon_view btn btn-outline-secondary"></a> --}}
                                 </td>
                             </tr>
                         @empty
