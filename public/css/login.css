@@ -18,6 +18,16 @@
     padding: 10px;
     margin-top: 15px;
     border-radius: 5px;
+    position: relative;
+    bottom: 85px;
+}
+.form-shift-up {
+    transform: translateY(-40px); /* Menyesuaikan nilai ini sesuai kebutuhan */
+    transition: transform 0.3s ease;
+}
+.route-register-shift-up {
+    transform: translateY(-45px); /* Menyesuaikan nilai ini sesuai kebutuhan */
+    transition: transform 0.3s ease;
 }
 
 .login-form {
@@ -26,22 +36,31 @@
 	border-radius: 4px;
 	text-align: center;
 	width: 350px;
+    max-width: 350px;
+    height: 425px;
+    /* max-height: 600px; */
+}
+.login-form h3 {
+	color: rgba(16, 20, 31, 0.89);
+    padding-top: 8px;
+	margin-bottom: 100px;
+	letter-spacing: 10px;
+}
+.login-form h3 a {
+    color: #dfa974;
 }
 .login-form .logo-img {
-    /* position: fixed; */
-    bottom: 40px;
+    position: relative;
+    bottom: 45px;
+	/* margin-bottom: 50px; */
     width: 150px;
-    height: 130px;
-    margin-bottom: 10px;
+    height: 150px;
 }
-.login-form .logo-img a {
-    display: inline-block;
-}
-.login-form form label {
-	font-size: 14px;
-	color: #707079;
-	display: block;
-	margin-bottom: 10px;
+
+.login-form form {
+    /* text-align: center; */
+    position: relative;
+    bottom: 50px;
 }
 .login-form form input {
 	border: none;
@@ -51,7 +70,7 @@
     padding: 8px 0;
     border-radius: 0;
 	margin-bottom: 30px;
-	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-family: 'Sogeo UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
 }
 .login-form form input::placeholder {
@@ -107,6 +126,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    bottom: 50px;
 }
 .login-form p a {
 	display: inline;
@@ -115,6 +136,7 @@
 	color: #dfa974;
 	display: block;
 	padding-left: 5px;
+    text-decoration: none;
 }
 .input-group {
     position: relative;

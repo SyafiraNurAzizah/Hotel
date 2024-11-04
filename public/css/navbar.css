@@ -28,12 +28,16 @@ body {
 
 .menu-item .logo-img {
     position: fixed;
-    top: -10px;
-    width: 110px;
-    height: 90px;
+    top: -15px;
+    left: 90px;
+    z-index: 1000;
 }
 .menu-item .logo-img a {
     display: inline-block;
+}
+.menu-item .logo a img {
+    width: 100px;
+    height: auto;
 }
 
 .menu-item .nav-menu {
@@ -45,7 +49,8 @@ body {
     padding-top: 0px;
     padding-bottom: 0px;
     position: fixed;
-    right: 250px;
+    /* right: 403px; */
+    right: 200px;
     top: -5px;
 }
 .menu-item .nav-menu .mainmenu li {
@@ -65,6 +70,7 @@ body {
     padding: 27px 0;
     position: relative;
     transition: all 0.3s;
+    font-weight: lighter;
 }
 .menu-item.scrolled .nav-menu .mainmenu li a {
     color: #19191a;
@@ -129,8 +135,10 @@ body {
     margin-left: 43px;
     padding: 27px 0px;
 }
-.menu-item .nav-menu .nav-right i {
-    font-size: 16px;
+.menu-item .nav-menu .nav-right .guest {
+    position: relative;
+    left: 40px;
+    /* font-size: 16px; */
     color: #ffffff;
     cursor: pointer;
     transition: 0.5s ease;
@@ -159,32 +167,47 @@ body {
     color: #19191a;
 }    
 
+.nav-menu .search-switch {
+    position: absolute;
+    top: 2px;
+    left: 839px;
+}
+.nav-menu.dropdown-present .search-switch {
+    top: 17px;
+}
+
 .nav-menu .nav-right .profile-user {
     display: inline-block;
     margin-left: 30px;
-    cursor: pointer;
     padding: 13px 0px 11px;
     position: relative;
-}
-.menu-item.scrolled .nav-menu .nav-right .profile-user {
+    left: 50px;
+    top: 2px;
     color: #19191a;
+    cursor: pointer;
+    /* background-color: green; */
 }
-.nav-menu .nav-right .profile-user:hover .user-dropdown {
-    top: 40px;
-    opacity: 1;
-    visibility: visible;
+.nav-menu .nav-right .profile-user span {
+    float: right;
+    /* position: relative;
+    top: 2px;
+    left: 50px; */
+    /* background-color: red; */
+    color: #dfa974;
+    cursor: pointer;
+    width: auto;
+    max-width: 75px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-.nav-menu .nav-right .profile-user p {
-    font-size: 16px;
-    color: #19191a;
-    text-transform: uppercase;
-    font-weight: 500;
-}
+
 .nav-menu .nav-right .profile-user .user-dropdown {
     position: absolute;
-    left: 0;
-    top: 70px;
-    width: 100px;
+    right: -5px;
+    top: 10px;
+    width: 150px;
+    height: 108px;
     background: #ffffff;
     display: block;
     padding: 10px 15px;
@@ -192,17 +215,71 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s;
-    margin-top: 0;
+    margin-top: 25px;
+    padding-right: 130px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: default;
+}
+.nav-menu .nav-right .profile-user:hover .user-dropdown {
+    top: 40px;
+    opacity: 1;
+    visibility: visible;
+}
+.nav-menu .nav-right .profile-user .user-dropdown .bridge {
+    height: 30px;
+    width: 60px;
+    background-color: transparent;
+    /* background-color: aqua; */
+    position: absolute;
+    left: 90px;
+    top: -20px;
+    cursor: default;
+}
+.nav-menu .nav-right .profile-user .user-dropdown ul {
+    cursor: pointer !important;
 }
 .nav-menu .nav-right .profile-user .user-dropdown ul li {
     list-style: none;
+    display: flex;
+    margin-bottom: 8px;
+    padding-left: 10px;
+    width: 125px;
+    height: 38px;
+    position: relative;
 }
-.nav-menu .nav-right .profile-user .user-dropdown a {
+.nav-menu .nav-right .profile-user .user-dropdown ul li:hover {
+    position: relative;
+}
+.nav-menu .nav-right .profile-user .user-dropdown ul li:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -7px;
+    right: -2px;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.027);
+    border-radius: 5px;
+    z-index: 0;
+}
+.nav-menu .nav-right .profile-user .user-dropdown ul li i {
+    padding-top: 11px;
+    color: black;
+}
+.nav-menu .nav-right .profile-user .user-dropdown ul li a {
+    position: relative;
+    z-index: 1;
     color: #19191a;
     text-decoration: none;
-    display: block;
-    padding: 5px 0;
+    padding-top: 8px;
+    margin-bottom: 16px;
+    padding-left: 20px;
+    letter-spacing: 1px;
 }
-.nav-menu .nav-right .profile-user .user-dropdown a:hover {
-    color: #dfa974;
+.nav-menu .nav-right .profile-user .user-dropdown .horizontal-line-dropdown {
+    position: absolute;
+    right: 16px;
+    bottom: 53px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    width: 115px;
 }
