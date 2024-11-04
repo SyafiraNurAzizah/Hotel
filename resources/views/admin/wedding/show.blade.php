@@ -6,22 +6,24 @@
 @section('content')
     <!-- Breadcrumb Section Begin -->
     <div class="breadcrumb-section">
-        <div class="container">
+        <div class="container mt-2">
             <div class="row">
-                <div class="col-lg-12">
-                    @foreach ($weddings as $wedding)
+                @foreach ($weddings as $wedding)
+                    <div class="col-lg-12">
                         <div class="breadcrumb-text m-5">
                             <div class="card-header">
                                 <h2>{{ $wedding->judul }}</h2>
 
                             </div>
                             <div class="description">
-                                <p>{{ $wedding->paket1 }}</p><p>{{ $wedding->paket2 }}</p>
+                                <p>{{ $wedding->paket1 }}</p>
+                                <p>{{ $wedding->paket2 }}</p>
                             </div>
                         </div>
-                    @endforeach
 
-                </div>
+                    </div>
+                @endforeach
+
             </div>
         </div>
     </div>
