@@ -38,13 +38,11 @@ class MeetingsController extends Controller
 
         // Mengambil detail ruangan berdasarkan ID ruangan
         $meetings = Meetings::findOrFail($roomId); // Pastikan ada model Room untuk mengambil data ruangan
-        $gallery = Gallery::where('meeting_id', $roomId)
-            ->get();
+
         return view('meeting.detailruang', [
             'location' => ucfirst($location),
             'hotels' => $hotels,
-            'room' => $meetings,
-            'gallery' => $gallery, // Menambahkan detail ruangan ke view
+            'room' => $meetings // Menambahkan detail ruangan ke view
         ]);
     }
 
