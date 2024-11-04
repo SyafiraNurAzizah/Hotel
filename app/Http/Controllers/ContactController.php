@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Post;
 
@@ -35,18 +36,36 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $request->validate(
-            [
-                'Nama' => 'required',
-                'Email' => 'required|max:128',
-                'Pesan' => 'nullable|max:555',
-            ], 
-        );
-        $contact = contact::create($request->all());
-        return redirect()->route('contact');
-    }
+
+     public function store(Request $request)
+     {
+         $request->validate([
+             'Nama' => 'required',
+             'Email' => 'required|max:128',
+             'Pesan' => 'nullable|max:555',
+         ]);
+     
+         $users = $request->all();
+         $users['user_id'] = Auth::id();
+     
+         $contact = Contact::create($users);
+     
+         return redirect()->route('contact')->with('success', 'Pesan berhasil dikirim.');
+     }
+
+
+    // public function store(Request $request)
+    // {
+    //     $request->validate(
+    //         [
+    //             'Nama' => 'required',
+    //             'Email' => 'required|max:128',
+    //             'Pesan' => 'nullable|max:555',
+    //         ], 
+    //     );
+    //     $contact = contact::create($request->all());
+    //     return redirect()->route('contact');
+    // }
 
     /**
      * Display the specified resource.
