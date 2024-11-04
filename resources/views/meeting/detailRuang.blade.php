@@ -11,7 +11,7 @@
                        <h2>{{ $location }} Rooms</h2>
                         <div class="bt-option">
                             <a href="{{ route('ruang', ['location' => strtolower($location)]) }}" class="active">Home</a>
-                            <span><a href="#">Gallery</a></span>
+                            {{-- <span><a href="#">Gallery</a></span> --}}
                             {{-- <span><a href="{{ route('gallery', ['location' => strtolower($location), 'roomId' => $roomId]) }}">Gallery</a></span> --}}
                         </div>
                     </div>
@@ -56,6 +56,18 @@
                         </div>
                     </div>
 
+
+                    @foreach ($gallery as $item)
+                    <div class="card-container">
+                            <div class="card">
+                                <img src="{{ asset('img/meetings/gallery/' . $item->foto) }}" alt="">
+                                <div class="card-content">
+                                    <h4 class="card-title">{{ $item->deskripsi }}</h4>
+                                </div>
+                            </div>
+                    </div>
+                    @endforeach
+                
                     <!-- Ulasan dan form tambah ulasan -->
                     {{-- <div class="rd-reviews">
                         <h4>Reviews</h4> --}}

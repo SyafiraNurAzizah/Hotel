@@ -11,7 +11,7 @@ class Gallery extends Model
 
     protected $table = 'gallery';
     protected $fillable = [
-        'hotel_id',
-        'fotos'
+        'meeting_id',
+        'foto'
     ];
 }
