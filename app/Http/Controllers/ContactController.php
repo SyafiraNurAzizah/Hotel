@@ -17,7 +17,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contact = contact::all();
+        return view('admin.contact.index', compact('contact'));
     }
 
     /**
@@ -37,35 +38,46 @@ class ContactController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function store(Request $request)
-     {
-         $request->validate([
-             'Nama' => 'required',
-             'Email' => 'required|max:128',
-             'Pesan' => 'nullable|max:555',
-         ]);
-     
-         $users = $request->all();
-         $users['user_id'] = Auth::id();
-     
-         $contact = Contact::create($users);
-     
-         return redirect()->route('contact')->with('success', 'Pesan berhasil dikirim.');
-     }
-
-
-    // public function store(Request $request)
+    //  public function store(Request $request)
     // {
-    //     $request->validate(
-    //         [
-    //             'Nama' => 'required',
-    //             'Email' => 'required|max:128',
-    //             'Pesan' => 'nullable|max:555',
-    //         ], 
-    //     );
-    //     $contact = contact::create($request->all());
-    //     return redirect()->route('contact');
+    //     // Validasi input form
+    //     $validateData = $request->validate([
+    //         'Nama' => 'required|string|max:255',
+    //         'Email' => 'required|email|max:128',
+    //         'Pesan' => 'nullable|string|max:555',
+    //     ]);
+
+    //     // Buat instansi baru dari model `contact`
+    //     $contact = new contact;
+    //     $contact->Nama = $validateData['Nama'];
+    //     $contact->Email = $validateData['Email'];
+    //     $contact->Pesan = $validateData['Pesan'];
+
+    //     // Jika pengguna sudah login, tambahkan ID pengguna
+    //     if (Auth::check()) {
+    //         $contact->user_id = Auth::id();
+    //     }
+
+    //     // Simpan data ke database
+    //     $contact->save();
+
+    //     // Redirect dengan pesan sukses
+    //     return redirect()->route('hotel')->with('success', 'Pesan berhasil dikirim.');
     // }
+
+
+    public function store(Request $request)
+    {
+        $request->validate(
+            [
+                'Nama' => 'required',
+                'Email' => 'required|max:128',
+                'Pesan' => 'nullable|max:555',
+            ], 
+        );
+        $contact = contact::create($request->all());
+        return redirect()->route('contact');
+    }
 
     /**
      * Display the specified resource.
