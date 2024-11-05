@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\BookingHotel;
 use App\Models\Hotels;
+use App\Models\PembayaranHotel;
 use App\Models\TipeKamar;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
-class BookingController extends Controller
+class BookingHotelController extends Controller
 {
     public function storeHotel(Request $request, $location, $nama_tipe)
     {
@@ -110,7 +111,7 @@ class BookingController extends Controller
             // $tipeKamar->save();
 
             // Redirect atau tampilkan pesan sukses
-            return redirect()->route('hotel.transaksi.pembayaran-hotel', [
+            return redirect()->route('hotel.transaksi.transaksi-hotel', [
                 'location' => ucfirst($location),
                 'hotels' => Hotels::where('nama_cabang', $location)->get(),
                 'room' => TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail(),
@@ -124,7 +125,7 @@ class BookingController extends Controller
     }
 
     
-    public function pembayaranHotel($location, $nama_tipe, $uuid)
+    public function transaksiHotel($location, $nama_tipe, $uuid)
     {
         // Mengambil semua hotel berdasarkan lokasi
         $hotels = Hotels::where('nama_cabang', $location)->get();
@@ -139,13 +140,72 @@ class BookingController extends Controller
         // Fetch the booking details using the UUID
         $booking = BookingHotel::with('user')->where('uuid', $uuid)->firstOrFail();
 
-        return view('hotel.transaksi.pembayaran-hotel', [
+        $pembayaran = PembayaranHotel::where('booking_hotel_id', $booking->id)->first();
+
+
+        return view('hotel.transaksi.transaksi-hotel', [
             'location' => ucfirst($location),
             'hotels' => $hotels,
             'room' => $room,
-            'booking' => $booking // Pass the booking data to the view
+            'booking' => $booking,
+            'pembayaran' => $pembayaran,
         ]);
     }
+
+
+    public function pembayaranHotel(Request $request, $location, $nama_tipe, $uuid)
+    {
+        // Validasi data dari request
+        $validatedData = $request->validate([
+            'booking_hotel_id' => 'required|exists:booking_hotel,id',
+            'metode_pembayaran' => 'required',
+            'bukti_pembayaran' => 'nullable',
+        ]);
+
+        // Simpan data pembayaran
+        $pembayaran = new PembayaranHotel();
+        $pembayaran->booking_hotel_id = $validatedData['booking_hotel_id'];
+        $pembayaran->metode_pembayaran = $validatedData['metode_pembayaran'];
+        $pembayaran->bukti_pembayaran = $validatedData['bukti_pembayaran'];
+        $pembayaran->save();
+
+        // Mengambil semua hotel berdasarkan lokasi
+        $hotels = Hotels::where('nama_cabang', $location)->get();
+        
+        // Mengambil data tipe kamar berdasarkan nama tipe
+        $room = TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail();
+
+        // Fetch the booking details using the UUID
+        $booking = BookingHotel::with('user')->where('uuid', $uuid)->firstOrFail();
+
+        // Mengalihkan ke halaman pembayaran hotel dengan parameter yang benar
+        return redirect()->route('hotel.transaksi.pembayaran-hotel', [
+            'location' => ucfirst($location),
+            'nama_tipe' => $room->nama_tipe, // Menambahkan parameter nama_tipe
+            'uuid' => $uuid, // Menambahkan parameter uuid
+        ]);
+    }
+
+    
+    public function konfirmasiPembayaranHotel($location, $nama_tipe, $uuid)
+    {
+        // Mengambil data booking berdasarkan UUID
+        $booking = BookingHotel::with('user')->where('uuid', $uuid)->firstOrFail();
+
+        // Mengambil semua hotel berdasarkan lokasi
+        $hotels = Hotels::where('nama_cabang', $location)->get();
+        
+        // Mengambil data tipe kamar berdasarkan nama tipe
+        $room = TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail();
+
+        // Mengirim data ke view
+        return view('hotel.transaksi.pembayaran-hotel', [
+            'hotels' => $hotels,
+            'room' => $room,
+            'booking' => $booking,
+        ]);
+    }
+
 
 
     public function cancelHotel($location, $nama_tipe, $uuid)

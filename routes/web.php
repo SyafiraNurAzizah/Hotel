@@ -27,8 +27,8 @@ Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('adm
 // Route::resource('admin/wedding', WeddingController::class);
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 
-Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
+// Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+// Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
 
 
 Route::resource('wedding', App\Http\Controllers\WeddingsController::class);
@@ -74,10 +74,12 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\UserAccessMidd
 
     // BOOKING //
 //hotel//
-    Route::get('/hotel/{location}/{nama_tipe}/transaksi/{uuid}', [App\Http\Controllers\BookingController::class, 'pembayaranHotel'])->name('hotel.transaksi.pembayaran-hotel')->middleware('remove.room.query');
-    Route::post('/hotel/{location}/{nama_tipe}/transaksi', [App\Http\Controllers\BookingController::class, 'storeHotel'])->name('booking.hotel.store');
+    Route::get('/hotel/{location}/{nama_tipe}/transaksi/{uuid}', [App\Http\Controllers\BookingHotelController::class, 'transaksiHotel'])->name('hotel.transaksi.transaksi-hotel')->middleware('remove.room.query');
+    Route::post('/hotel/{location}/{nama_tipe}/transaksi', [App\Http\Controllers\BookingHotelController::class, 'storeHotel'])->name('booking.hotel.store');
 
-    Route::post('/hotel/{location}/{nama_tipe}/{uuid}', [App\Http\Controllers\BookingController::class, 'cancelHotel'])->name('booking.hotel.cancel');
+    Route::get('/hotel/{location}/{nama_tipe}/transaksi/{uuid}/pembayaran', [App\Http\Controllers\BookingHotelController::class, 'konfirmasiPembayaranHotel'])->name('hotel.transaksi.pembayaran-hotel');
+    Route::post('/hotel/{location}/{nama_tipe}/transaksi/{uuid}/pembayaran', [App\Http\Controllers\BookingHotelController::class, 'pembayaranHotel'])->name('booking.hotel.pembayaran');
+    Route::post('/hotel/{location}/{nama_tipe}/{uuid}', [App\Http\Controllers\BookingHotelController::class, 'cancelHotel'])->name('booking.hotel.cancel');
 //---//
     // ----- //
     

@@ -24,26 +24,28 @@
                 <td>{{ $item->hotel->nama_cabang ?? 'N/A' }}</td>
                 
                 <td>
-                    @if($item->status == 'SELESAI')
-                        <span style="color: green; font-weight: bold;">{{ $item->status }}</span>
-                    @elseif($item->status == 'BELUM_SELESAI')
-                        <span style="color: orange; font-weight: bold;">{{ $item->status }}</span>
-                    @elseif($item->status == 'DIBATALKAN')
-                        <span style="color: red; font-weight: bold;">{{ $item->status }}</span>
+                    @if($item->status == 'selesai')
+                        <span style="color: green; font-weight: bold;">{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
+                    @elseif($item->status == 'belum_selesai')
+                        <span style="color: orange; font-weight: bold;">{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
+                    @elseif($item->status == 'dibatalkan')
+                        <span style="color: red; font-weight: bold;">{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
                     @else
-                        <span>{{ $item->status }}</span>
+                        <span>{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
                     @endif
                 </td>
                 
+                
                 <td>
-                    @if($item->status_pembayaran == 'DIBAYAR')
-                        <span style="color: green; font-weight: bold;">{{ $item->status_pembayaran }}</span>
-                    @elseif($item->status_pembayaran == 'BELUM_DIBAYAR')
-                        <span style="color: red; font-weight: bold;">{{ $item->status_pembayaran }}</span>
+                    @if($item->status_pembayaran == 'dibayar')
+                        <span style="color: green; font-weight: bold;">{{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}</span>
+                    @elseif($item->status_pembayaran == 'belum_dibayar')
+                        <span style="color: red; font-weight: bold;">{{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}</span>
                     @else
-                        <span>{{ $item->status_pembayaran }}</span>
+                        <span>{{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}</span>
                     @endif
                 </td>
+                
                 <td>Rp{{ number_format($item->jumlah_harga, 2) }}</td>
                 <td>
                     <a href="{{ route('admin.hotel.show', $item->id) }}" class="btn btn-info" title="Detail">

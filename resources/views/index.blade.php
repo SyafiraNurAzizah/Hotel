@@ -53,7 +53,7 @@
         <div class="hero-slider owl-carousel">
     
             <div class="hs-item set-bg" data-setbg="img/hero/1.jpg"></div>
-            <div class="hs-item set-bg" data-setbg="img/hero/2.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="img/hero/hero-5.jpg"></div>
             <div class="hs-item set-bg" data-setbg="img/hero/4.jpg"></div>
         </div>
         {{-- <div class="dark-layer-hero"></div> --}}
