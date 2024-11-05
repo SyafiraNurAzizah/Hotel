@@ -20,60 +20,60 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form action="{{ route('wedding.update', $wedding->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('wedding.update', $weddings->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
                         <label for="judul">Judul</label>
-                        <input type="text" name="judul" id="judul" class="form-control" value="{{ $wedding->judul }}">
+                        <input type="text" name="judul" id="judul" class="form-control" value="{{ $weddings->judul }}">
                     </div>
 
                     <div class="form-group">
                         <label for="judul_paket1">Paket 1</label>
-                        <input type="text" name="judul_paket1" id="judul_paket1" class="form-control" value="{{ $wedding->judul_paket1 }}">
+                        <input type="text" name="judul_paket1" id="judul_paket1" class="form-control" value="{{ $weddings->judul_paket1 }}">
                     </div>
                     
                     <div class="form-group">
                         <label for="paket1">Deskripsi Paket 1</label>
-                        <textarea name="paket1" id="paket1" class="form-control">{{ $wedding->paket1 }}</textarea>
+                        <textarea name="paket1" id="paket1" class="form-control">{{ $weddings->paket1 }}</textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="judul_paket2">Paket 2</label>
-                        <input type="text" name="judul_paket2" id="judul_paket2" class="form-control" value="{{ $wedding->judul_paket2 }}">
+                        <input type="text" name="judul_paket2" id="judul_paket2" class="form-control" value="{{ $weddings->judul_paket2 }}">
                     </div>
 
                     <div class="form-group">
                         <label for="paket2">Deskripsi Paket 2</label>
-                        <textarea name="paket2" id="paket2" class="form-control">{{ $wedding->paket2 }}</textarea>
+                        <textarea name="paket2" id="paket2" class="form-control">{{ $weddings->paket2 }}</textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="judul_paket3">Paket 3</label>
-                        <input type="text" name="judul_paket3" id="judul_paket3" class="form-control" value="{{ $wedding->judul_paket3 }}">
+                        <input type="text" name="judul_paket3" id="judul_paket3" class="form-control" value="{{ $weddings->judul_paket3 }}">
                     </div>
 
                     <div class="form-group">
                         <label for="paket3">Deskripsi Paket 3</label>
-                        <textarea name="paket3" id="paket3" class="form-control">{{ $wedding->paket3 }}</textarea>
+                        <textarea name="paket3" id="paket3" class="form-control">{{ $weddings->paket3 }}</textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="gambar">Gambar</label>
-                        <input type="file" name="gambar" id="gambar" class="form-control" value="{{ $wedding->gambar }}">
+                        <input type="file" name="gambar" id="gambar" class="form-control" value="{{ $weddings->gambar }}">
                     </div>                    
 
                     <div class="form-group">
                         <label for="harga">Harga</label>
-                        <input type="text" name="harga" id="harga" class="form-control" value="{{ $wedding->harga }}">
+                        <input type="text" name="harga" id="harga" class="form-control" value="{{ $weddings->harga }}">
                     </div>
                     
                     <div class="form-group">
                         <label for="kapasitas">Kapasitas</label>
-                        <input type="text" name="kapasitas" id="kapasitas" class="form-control" value="{{ $wedding->kapasitas }}">
+                        <input type="text" name="kapasitas" id="kapasitas" class="form-control" value="{{ $weddings->kapasitas }}">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-other btn-outline-secondary">Update</button>
 
                 </form>
 

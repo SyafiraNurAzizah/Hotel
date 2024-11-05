@@ -16,18 +16,18 @@ class WeddingsController extends Controller
 
     public function edit($id)
     {
-        $wedding = Wedding::find($id);
+        $weddings = Wedding::find($id);
 
-        if (!$wedding) {
+        if (!$weddings) {
             return redirect()->route('admin.wedding.index')->with('error', 'Data tidak ditemukan.');
         }
 
-        return view('admin.wedding.edit', compact('wedding'));
+        return view('admin.wedding.edit', compact('weddings'));
     }
 
     public function update(Request $request, $id)
     {
-        $wedding = Wedding::find($id);
+        $weddings = Wedding::find($id);
 
         $request->validate([
             'judul' => 'required',
@@ -43,36 +43,36 @@ class WeddingsController extends Controller
         ]);
 
         if ($request->hasFile('gambar')) {
-            if ($wedding->gambar && $wedding->gambar !== 'default.jpg') {
-                Storage::delete('public/uploads/' . $wedding->gambar);
+            if ($weddings->gambar && $weddings->gambar !== 'default.jpg') {
+                Storage::delete('public/uploads/' . $weddings->gambar);
             }
 
             $imageName = time() . '.' . $request->gambar->extension();
             $request->gambar->move(public_path('storage/uploads'), $imageName);
-            $wedding->gambar = $imageName;
+            $weddings->gambar = $imageName;
         }
 
         // Update other fields
-        $wedding->judul = $request->input('judul');
-        $wedding->judul_paket1 = $request->input('judul_paket1');
-        $wedding->judul_paket2 = $request->input('judul_paket2');
-        $wedding->judul_paket3 = $request->input('judul_paket3');
-        $wedding->paket1 = $request->input('paket1');
-        $wedding->paket2 = $request->input('paket2');
-        $wedding->paket3 = $request->input('paket3');
-        $wedding->harga = $request->input('harga');
-        $wedding->kapasitas = $request->input('kapasitas');
+        $weddings->judul = $request->input('judul');
+        $weddings->judul_paket1 = $request->input('judul_paket1');
+        $weddings->judul_paket2 = $request->input('judul_paket2');
+        $weddings->judul_paket3 = $request->input('judul_paket3');
+        $weddings->paket1 = $request->input('paket1');
+        $weddings->paket2 = $request->input('paket2');
+        $weddings->paket3 = $request->input('paket3');
+        $weddings->harga = $request->input('harga');
+        $weddings->kapasitas = $request->input('kapasitas');
 
-        $wedding->save();
+        $weddings->save();
 
         return redirect()->route('wedding.index')->with('success', 'Data wedding berhasil diupdate.');
     }
 
     public function destroy($id)
     {
-        $wedding = Wedding::find($id);
-        if ($wedding) {
-            $wedding->delete();
+        $weddings = Wedding::find($id);
+        if ($weddings) {
+            $weddings->delete();
             return redirect()->route('wedding.index')->with('success', 'Data weddings berhasil dihapus.');
         }
         return redirect()->route('wedding.index')->with('error', 'Data tidak ditemukan.');
