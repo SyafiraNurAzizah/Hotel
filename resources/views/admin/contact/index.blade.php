@@ -57,7 +57,7 @@
                                 </form> --}}
 
 
-                                <a href="{{ route('contact.show', $item->id) }}"
+                                <a href="{{ route('admin.contact.show', $item->id) }}"
                                         class="fa fa-eye btn btn-outline-secondary"></a>
                             </td>
                         </tr>

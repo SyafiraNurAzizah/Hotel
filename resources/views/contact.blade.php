@@ -36,9 +36,9 @@
                     </div>
                 </div>
                 <div class="col-lg-7 offset-lg-1">
-                    <form action="{{ route('contact.store') }}" class="contact-form">
-                        {{-- @csrf --}}
-                        {{-- <div class="row">
+                    <form action="{{ route('contact.store') }}" method="POST" class="contact-form">
+                        @csrf
+                        <div class="row">
                             <div class="col-lg-6">
                                 <label for="item">Nama</label>
                                 <input type="text" id="Nama" name="Nama" class="form-control" value="{{ Auth::user() ? Auth::user()->firstname : '' }}">
@@ -55,45 +55,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn">Submit Now</button> --}}
-
-
-                        {{ csrf_field() }}
-
-                    <h1>Beri Kami Masukan</h1>
-                    <div class="form-group">
-
-                        <label for="item">Nama</label>
-
-                        <input type="text" id="Nama" name="Nama" class="form-control">
-
-                    </div>
-
-
-
-                    <div class="form-group">
-
-                        <label for="noOfServings">Email</label>
-
-                        <input type="text" id="Email" name="Email" class="form-control">
-
-                    </div>
-
-
-
-                    <div class="form-group">
-
-                        <label for="servingSize">Pesan</label>
-
-                        <input type="text-area" id="Pesan" name="Pesan" class="form-control">
-
-                    </div>
-
-
-
-
-
-                    <button type="submit" class="btn btn-primary">Kirim</button>
+                        <button type="submit" class="btn">Submit Now</button>
 
                     </form>
                 </div>

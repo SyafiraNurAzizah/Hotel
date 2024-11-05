@@ -6,24 +6,21 @@
 @section('content')
     <!-- Breadcrumb Section Begin -->
     <div class="breadcrumb-section">
-        <div class="container mt-2">
+        <div class="container mt-6">
             <div class="row">
                 @foreach ($weddings as $wedding)
                     <div class="col-lg-12">
                         <div class="breadcrumb-text m-5">
-                            <div class="card-header">
-                                <h2>{{ $wedding->judul }}</h2>
-
-                            </div>
-                            <div class="description">
-                                <p>{{ $wedding->paket1 }}</p>
-                                <p>{{ $wedding->paket2 }}</p>
+                            <h2>{{ $wedding->judul }}</h2>
+                            <div class="bt-option">
+                                <a href="{{ route('index') }}">Beranda</a>
+                                <span>Data Weddings</span>
                             </div>
                         </div>
-
                     </div>
+                    
                 @endforeach
-
+                
             </div>
         </div>
     </div>

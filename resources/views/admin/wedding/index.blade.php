@@ -74,7 +74,7 @@
 
 
                                 <a href="{{ route('wedding.show', $wedding->id) }}"
-                                        class="icon_view btn btn-outline-secondary"></a>
+                                        class="fa fa-eye btn btn-outline-secondary"></a>
                             </td>
                         </tr>
                     @empty
