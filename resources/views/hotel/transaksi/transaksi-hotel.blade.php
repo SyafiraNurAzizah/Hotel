@@ -6,6 +6,18 @@
 
 <link rel="stylesheet" href="{{ asset('css/transaksi.css') }}">
 
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+
+
+@foreach ($hotels as $hotel)
+    <div class="previous">
+        <a href="{{ route('hotel.transaksi.transaksi-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+    </div>
+@endforeach
+
 
 <div class="container">
 
@@ -123,6 +135,12 @@
 
 </div>
 
+
+@foreach ($hotels as $hotel)
+    <div class="next">
+        <a href="{{ route('hotel.transaksi.transaksi-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}"><i class="bi bi-arrow-right"></i></a>
+    </div>
+@endforeach
 
 
 

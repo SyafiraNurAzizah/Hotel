@@ -3,6 +3,40 @@ body {
     background: linear-gradient(to right, #f9f9f9, #f1f1f1);
 }
 
+
+.previous {
+    position: fixed;
+    top: 300px;
+    left: 80px;
+    font-size: 30px;
+    cursor: pointer;
+    /* border: 1px solid #ffffff; */
+    background-color: #ffffff;
+    box-shadow: 0px 3px 5px 3px #2011010c;
+    border-radius: 50%;
+    padding: 10px;
+}
+.previous i {
+    color: #19191aa9;
+}
+
+.next {
+    position: fixed;
+    top: 300px;
+    left: 1230px;
+    font-size: 30px;
+    cursor: pointer;
+    /* border: 1px solid #ffffff; */
+    background-color: #ffffff;
+    box-shadow: 0px 3px 5px 3px #2011010c;
+    border-radius: 50%;
+    padding: 10px;
+}
+.next i {
+    color: #19191aa9;
+}
+
+
 .container {
     position: fixed;
     top: 48px;
@@ -15,6 +49,8 @@ body {
     background-color: #ffffff;
     border-radius: 5px;
     box-shadow: 0px 5px 10px 5px #2011010c; 
+
+    z-index: 5;
 }
 
 
