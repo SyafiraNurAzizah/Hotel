@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hotel - BIM</title>
+    <title>Berlian Hotel</title>
+    <link rel="icon" href="{{ asset('img/logo-title.png') }}" type="image/png">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <!-- Google Font -->
@@ -44,12 +45,12 @@
         <div id="main-content">
             @yield('content')
 
-            <div class="overlay" id="loginOverlay" style="display: none;">
-                @include('auth.login_form')
-            </div>
-            <div class="overlay" id="registerOverlay" style="display: none;">
-                @include('auth.register_form')
-            </div>
+            {{-- <div class="overlay" id="loginOverlay" style="display: none;"> --}}
+                @include('auth.login')
+            {{-- </div> --}}
+            {{-- <div class="overlay" id="registerOverlay" style="display: none;"> --}}
+                @include('auth.register')
+            {{-- </div> --}}
 
             <x-footer />
         </div>

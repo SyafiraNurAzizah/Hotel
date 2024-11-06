@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kontak_hotel', function (Blueprint $table) {
+        Schema::create('weddings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('hotel_id')->constrained('hotels')->onDelete('cascade');
-            $table->string('username');
-            $table->string('email');
-            $table->text('isi_pesan');
+            $table->string('judul')->nullable();
+            $table->string('gambar');           
+            $table->string('harga', 20, 2);  
+            $table->integer('kapasitas');     
+            $table->string('paket');
+            $table->text('deskripsi');       
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kontak_hotel');
+        Schema::dropIfExists('weddings');
     }
 };

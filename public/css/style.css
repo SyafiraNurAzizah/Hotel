@@ -1207,7 +1207,7 @@ ul, ol {
 	position: absolute;
 	bottom: 140px;
 	left: 5px;
-	width: 130px;
+	width: 110px;
     height: 110px;
 }
 .footer-section .footer-text .ft-about .logo-footer a {
@@ -1322,7 +1322,7 @@ ul, ol {
 
 .breadcrumb-section {
 	padding-top: 70px;
-	padding-bottom: 80px;
+	padding-bottom: 20px;
 }
 .breadcrumb-text {
 	text-align: center;
@@ -1494,7 +1494,7 @@ ul, ol {
   Room Section
 -----------------------*/
 
-/* .rooms-section {
+.rooms-section {
 	padding-top: 0;
 	padding-bottom: 80px;
 }
@@ -1560,13 +1560,13 @@ ul, ol {
 .room-pagination a:hover {
 	background: #dfa974;
 	color: #ffffff;
-} */
+} 
 /*-----------------------
   Room Details Section
 -------------------------*/
 
 .room-details-section {
-	padding-top: 0;
+	padding-top: 40px;
 	padding-bottom: 80px;
 }
 .room-details-item {
@@ -1574,6 +1574,9 @@ ul, ol {
 }
 .room-details-item img {
 	margin-bottom: 40px;
+	width: 750px !important;
+	height: 400px !important;
+	object-fit: cover;
 }
 .room-details-item .rd-text .rd-title {
 	overflow: hidden;
@@ -1774,7 +1777,7 @@ ul, ol {
 	display: inline-block;
 }
 .room-booking {
-	padding: 0 30px 0 40px;
+	padding: 0 0 0 70px;
 }
 .room-booking h3 {
 	color: #19191a;

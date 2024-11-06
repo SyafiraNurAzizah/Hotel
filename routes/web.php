@@ -1,9 +1,12 @@
 <?php
 
+use Illuminate\Console\Application;
 use App\Http\Controllers\RoomController;
 use Illuminate\Container\Attributes\Config;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\WeddingController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
@@ -12,7 +15,18 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 
 Route::get('/weedings', [App\Http\Controllers\HomeController::class, 'weedings'])->name('weedings');
 
+Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.wedding.index');
 
+Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edut');
+
+// Route::resource('admin/wedding', WeddingController::class);
+Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
+
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
+
+Route::resource('wedding', App\Http\Controllers\WeddingsController::class);
+
+// Route::get('/weddings/{id}', [App\Http\Controllers\WeddingsController::class, 'show'])->name('weddings.show');
 
 //---------------------------- LOGIN & REGISTER -----------------------------//
 Auth::routes();
@@ -23,7 +37,7 @@ Route::get('/login', function () {
 
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth.custom'])->group(function () {
     Route::get('/{firstname}-{lastname}', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
 });
 //----------------------------------------------------------------------------//
@@ -31,29 +45,41 @@ Route::middleware(['auth'])->group(function () {
 
 
 //------------------------------ ADMIN -----------------------------------//
-Route::group(['middleware' => ['auth', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
+Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
     Route::get('/admin', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('admin.index');
     Route::get('/admin/hotel', [App\Http\Controllers\HomeController::class, 'adminHotel'])->name('admin.hotel.index');
-
 });
 //----------------------------------------------------------------------------
 
 
+//------------------------------------ USER ----------------------------------//
+Route::group(['middleware' => ['auth.custom', App\Http\Middleware\UserAccessMiddleware::class]], function () {
 
-//------------------------------ ROLE --------------------------------//
-// Route::group(['middleware' => ['auth', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
-    
-// });
+    // BOOKING //
+//hotel//
+    Route::get('/hotel/{location}/{nama_tipe}/transaksi/{uuid}', [App\Http\Controllers\BookingHotelController::class, 'transaksiHotel'])->name('hotel.transaksi.transaksi-hotel')->middleware('remove.room.query');
+    Route::post('/hotel/{location}/{nama_tipe}/transaksi', [App\Http\Controllers\BookingHotelController::class, 'storeHotel'])->name('booking.hotel.store');
 
-Route::group(['middleware' => ['auth', App\Http\Middleware\UserAccessMiddleware::class]], function () {
+    Route::get('/hotel/{location}/{nama_tipe}/transaksi/{uuid}/pembayaran', [App\Http\Controllers\BookingHotelController::class, 'konfirmasiPembayaranHotel'])->name('hotel.transaksi.pembayaran-hotel');
+    Route::post('/hotel/{location}/{nama_tipe}/transaksi/{uuid}/pembayaran', [App\Http\Controllers\BookingHotelController::class, 'pembayaranHotel'])->name('booking.hotel.pembayaran');
+    Route::post('/hotel/{location}/{nama_tipe}/{uuid}', [App\Http\Controllers\BookingHotelController::class, 'cancelHotel'])->name('booking.hotel.cancel');
+//---//
+    // ----- //
     
 });
-//---------------------------------------------------------------------//
+//-------------------------------------------------------------------------------//
 
 
-
-//------------------------------- HOTEL -----------------------------------//
+//-------------------------------- HOTEL -----------------------------------//
 Route::get('/hotel', [App\Http\Controllers\HotelsController::class, 'index'])->name('hotel');
+
+Route::get('/hotel/{location}', [App\Http\Controllers\HotelsController::class, 'showRooms'])->name('rooms');
+
+Route::get('/hotel/{location}/{nama_tipe}', [App\Http\Controllers\HotelsController::class, 'showRoomsDetail'])->name('detail-hotel');
+
+Route::get('/hotel/{location}/fasilitas', [App\Http\Controllers\HotelsController::class, 'showFasilitas'])->name('fasilitas');
+//--------------------------------------------------------------------------//
+
 
 // ------------------------------------ Meetings----------------------------------//
 Route::get('/meeting', [App\Http\Controllers\MeetingsController::class, 'index'])->name('meeting');
@@ -66,13 +92,16 @@ Route::get('/meeting/{location}/{roomId}', [App\Http\Controllers\MeetingsControl
 //-----------------------------------------------------------------------------------//
 
 
+
+
+
+
+
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/hotel/{location}', [App\Http\Controllers\HotelsController::class, 'showRooms'])->name('rooms');
-Route::get('/hotel/{location}/fasilitas', [App\Http\Controllers\HotelsController::class, 'showFasilitas'])->name('fasilitas');
 //---------------------------------------------------------------------------//
 
 
@@ -109,5 +138,8 @@ Route::get('/detail/detail2', function () {
 // });
 
 // Route untuk halaman detail kamar
-Route::get('/rooms/{id}', [App\Http\Controllers\RoomController::class, 'show'])->name('room.show');
+
+
+
+// Route::get('/rooms/{id}', [App\Http\Controllers\RoomController::class, 'show'])->name('room.show');
 
