@@ -42,7 +42,7 @@
 
 
                                 <div class="btn-contact d-flex justify-content-between align-items-center my-3">
-                                    <a href="https://wa.me/+6285701481636?text=Halo%2C%20saya%20tertarik%20dengan%20paket%20wedding%20Anda."
+                                    <a href="https://wa.me/+628812721410?text=Halo%2C%20saya%20tertarik%20dengan%20paket%20wedding%20Anda."
                                         target="_blank"
                                         class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
                                         <i class="icon_phone me-2" style="margin-right: 8px;"></i> Contact

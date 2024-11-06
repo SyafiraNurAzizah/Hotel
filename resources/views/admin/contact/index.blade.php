@@ -33,7 +33,7 @@
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Pesan</th>
-                        <th>Aksi</th>
+                        <th>Tanggal</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,23 +43,7 @@
                             <td>{{ $item->Nama }}</td>
                             <td>{{ $item->Email }}</td>
                             <td>{{ $item->Pesan }}</td>
-                            
-                            <td>
-                                {{-- <a href="{{ route('wedding.edit', $wedding->id) }}"
-                                    class="btn btn-outline-secondary mb-1 mt-1">Edit</a>
-
-                                <form action="{{ route('wedding.destroy', $wedding->id) }}" method="POST"
-                                    class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-other btn-outline-danger mb-1 mt-1"
-                                        onclick="return confirm('Are you sure?')">Delete</button>
-                                </form> --}}
-
-
-                                <a href="{{ route('admin.contact.show', $item->id) }}"
-                                        class="fa fa-eye btn btn-outline-secondary"></a>
-                            </td>
+                            <td>{{ $item->created_at->format('d-m-Y, H:i') }}</td>
                         </tr>
                     @empty
                         <tr>
