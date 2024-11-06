@@ -28,4 +28,9 @@ class TipeKamar extends Model
     {
         return $this->belongsTo(Hotels::class); // Pastikan model Hotel sudah ada
     }
+
+    public function ratings()
+    {
+        return $this->hasMany('App\Models\Rating');
+    }
 }

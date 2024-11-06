@@ -24,9 +24,4 @@ class Rating extends Model
     {
         return $this->belongsTo('App\Models\TipeKamar');
     }
-
-    public function ratings ()
-    {
-        return $this->hasMany('App\Models\Rating');
-    }
 }

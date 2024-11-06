@@ -7,32 +7,29 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\WeddingController;
+use App\Http\Controllers\HotelsController;
+use Illuminate\Support\Facades\App;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
-// Route::get('/hotel', [App\Http\Controllers\HomeController::class, 'hotel'])->name('hotel');
-
-
+// ----------------------------------- WEDDINGS --------------------------------- //
 Route::get('/weedings', [App\Http\Controllers\HomeController::class, 'weedings'])->name('weedings');
-
-Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.wedding.index');
-
-Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edit');
-
-Route::get('/admin/wedding/{id}', [WeddingController::class, 'show'])->name('admin.wedding.show');
-
-// Route::resource('admin/wedding', WeddingController::class);
-Route::get('/admin/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('admin.contact.index');
-
-Route::get('/admin/contact/{id}', [App\Http\Controllers\ContactController::class, 'show'])->name('admin.contact.show');
-
-Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
-
-Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
-
 Route::resource('wedding', App\Http\Controllers\WeddingsController::class);
 
-// Route::get('/weddings/{id}', [App\Http\Controllers\WeddingsController::class, 'show'])->name('weddings.show');
+Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.wedding.index');
+Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edit');
+Route::get('/admin/wedding/{id}', [WeddingController::class, 'show'])->name('admin.wedding.show');
+
+// ----------------------------------- CONTACT --------------------------------- //
+Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
+
+Route::get('/admin/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('admin.contact.index');
+Route::get('/admin/contact/{id}', [App\Http\Controllers\ContactController::class, 'show'])->name('admin.contact.show');
+
+// ----------------------------------- RATING --------------------------------- //
+Route::get('/hotel/{id}', [App\Http\Controllers\HotelsController::class, 'showRating'])->name('hotel.show');
+Route::post('/ratings', [App\Http\Controllers\HotelsController::class, 'storeRating'])->name('ratings.store');
 
 //---------------------------- LOGIN & REGISTER -----------------------------//
 Auth::routes();
