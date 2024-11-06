@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BookingHotelController extends Controller
 {
@@ -153,6 +154,37 @@ class BookingHotelController extends Controller
     }
 
 
+
+    public function cancelHotel($location, $nama_tipe, $uuid)
+    {
+        // Retrieve the booking by its UUID
+        $booking = BookingHotel::where('uuid', $uuid)->firstOrFail();
+
+        // Check if the booking status is not already canceled
+        if ($booking->status !== 'dibatalkan') {
+            // Update the room availability
+            $tipeKamar = TipeKamar::findOrFail($booking->tipe_kamar_id);
+            $tipeKamar->jumlah_kamar_tersedia += $booking->jumlah_kamar;
+            $tipeKamar->save();
+
+            // Mark the booking as canceled
+            $booking->status = 'dibatalkan';
+            $booking->save();
+
+            return redirect()->route('detail-hotel', [
+                'location' => ucfirst($location),
+                'nama_tipe' => $nama_tipe
+            ])->with('success', 'Booking telah dibatalkan dan kamar tersedia kembali.');
+        }
+
+        // Handle case where booking is already canceled
+        return redirect()->route('detail-hotel', [
+            'location' => ucfirst($location),   
+            'nama_tipe' => $nama_tipe
+        ])->withErrors(['error' => 'Booking sudah dibatalkan sebelumnya.']);
+    }
+
+
     public function pembayaranHotel(Request $request, $location, $nama_tipe, $uuid)
     {
         // Validasi data dari request
@@ -186,11 +218,35 @@ class BookingHotelController extends Controller
         ]);
     }
 
-    
-    public function konfirmasiPembayaranHotel($location, $nama_tipe, $uuid)
+
+    public function updatePembayaranHotel(Request $request, $location, $nama_tipe, $uuid)
     {
-        // Mengambil data booking berdasarkan UUID
-        $booking = BookingHotel::with('user')->where('uuid', $uuid)->firstOrFail();
+        // Validasi data dari request
+        $validatedData = $request->validate([
+            'booking_hotel_id' => 'required|exists:booking_hotel,id',
+            'metode_pembayaran' => 'required',
+            'bukti_pembayaran' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // Ambil data pembayaran yang terkait dengan booking_hotel_id atau uuid
+        $pembayaran = PembayaranHotel::where('booking_hotel_id', $validatedData['booking_hotel_id'])->firstOrFail();
+
+        // Update metode pembayaran
+        $pembayaran->metode_pembayaran = $validatedData['metode_pembayaran'];
+
+        // Jika ada file bukti pembayaran yang baru, simpan dan ganti bukti pembayaran lama
+        if ($request->hasFile('bukti_pembayaran')) {
+            // Hapus bukti pembayaran lama jika ada
+            if ($pembayaran->bukti_pembayaran) {
+                Storage::delete('public/' . $pembayaran->bukti_pembayaran);
+            }
+
+            // Simpan bukti pembayaran baru
+            $path = $request->file('bukti_pembayaran')->store('images/hotels/bukti_pembayaran', 'public');
+            $pembayaran->bukti_pembayaran = $path;
+        }
+
+        $pembayaran->save();
 
         // Mengambil semua hotel berdasarkan lokasi
         $hotels = Hotels::where('nama_cabang', $location)->get();
@@ -198,55 +254,38 @@ class BookingHotelController extends Controller
         // Mengambil data tipe kamar berdasarkan nama tipe
         $room = TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail();
 
+        // Mengambil data booking menggunakan UUID
+        $booking = BookingHotel::with('user')->where('uuid', $uuid)->firstOrFail();
+
+        // Mengalihkan ke halaman pembayaran hotel dengan pesan sukses
+        return redirect()->route('hotel.transaksi.pembayaran-hotel', [
+            'location' => ucfirst($location),
+            'nama_tipe' => $room->nama_tipe,
+            'uuid' => $uuid,
+        ])->with('success', 'Bukti pembayaran berhasil diperbarui.');
+    }
+
+
+    
+    public function konfirmasiPembayaranHotel($location, $nama_tipe, $uuid)
+    {
+        // Mengambil semua hotel berdasarkan lokasi
+        $hotels = Hotels::where('nama_cabang', $location)->get();
+        
+        // Mengambil data tipe kamar berdasarkan nama tipe
+        $room = TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail();
+
+        // Mengambil data booking berdasarkan UUID
+        $booking = BookingHotel::with('user')->where('uuid', $uuid)->firstOrFail();
+
+        $pembayaran = PembayaranHotel::where('booking_hotel_id', $booking->id)->first();
+
         // Mengirim data ke view
         return view('hotel.transaksi.pembayaran-hotel', [
             'hotels' => $hotels,
             'room' => $room,
             'booking' => $booking,
+            'pembayaran' => $pembayaran
         ]);
     }
-
-
-
-    public function cancelHotel($location, $nama_tipe, $uuid)
-    {
-        // Retrieve the booking by its UUID
-        $booking = BookingHotel::where('uuid', $uuid)->firstOrFail();
-
-        // Check if the booking status is not already canceled
-        if ($booking->status !== 'dibatalkan') {
-            // Update the room availability
-            $tipeKamar = TipeKamar::findOrFail($booking->tipe_kamar_id);
-            $tipeKamar->jumlah_kamar_tersedia += $booking->jumlah_kamar;
-            $tipeKamar->save();
-
-            // Mark the booking as canceled
-            $booking->status = 'dibatalkan';
-            $booking->save();
-
-            return redirect()->route('detail-hotel', [
-                'location' => ucfirst($location),
-                'nama_tipe' => $nama_tipe
-            ])->with('success', 'Booking telah dibatalkan dan kamar tersedia kembali.');
-        }
-
-        // Handle case where booking is already canceled
-        return redirect()->route('detail-hotel', [
-            'location' => ucfirst($location),   
-            'nama_tipe' => $nama_tipe
-        ])->withErrors(['error' => 'Booking sudah dibatalkan sebelumnya.']);
-    }
-
-
-            // BookingHotel.php
-        public function user()
-        {
-            return $this->belongsTo(User::class);
-        }
-
-        public function hotel()
-        {
-            return $this->belongsTo(Hotels::class);
-        }
-
 }

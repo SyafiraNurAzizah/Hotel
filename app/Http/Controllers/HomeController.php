@@ -58,4 +58,19 @@ class HomeController extends Controller
     }
     
     
+    //FOOTER
+    public function termofus()
+    {
+        return view('termofus');
+    }
+
+    public function kebpolice()
+    {
+        return view('kebpolice');
+    }
+
+    public function privacyhotel()
+    {
+        return view('privacyhotel');
+    }
 }

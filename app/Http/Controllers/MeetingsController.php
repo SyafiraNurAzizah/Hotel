@@ -12,7 +12,7 @@ class MeetingsController extends Controller
 {
     public function index()
     {
-        $hotels = Hotels::all();
+        $hotels = Hotels::get();
         return view('meeting', compact('hotels'));
     }
 
@@ -39,11 +39,14 @@ class MeetingsController extends Controller
 
         // Mengambil detail ruangan berdasarkan ID ruangan
         $meetings = Meetings::findOrFail($roomId); // Pastikan ada model Room untuk mengambil data ruangan
+        $gallery = Gallery::where('meeting_id', $roomId)
+            ->get();
 
         return view('meeting.detailruang', [
             'location' => ucfirst($location),
             'hotels' => $hotels,
-            'room' => $meetings // Menambahkan detail ruangan ke view
+            'room' => $meetings,
+            'gallery' => $gallery
         ]);
     }
 

@@ -5,11 +5,6 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="ft-about">
-                        <div class="logo">
-                            <a href="#">
-                                <img src="{{ asset('img/berlian-white.png') }}" alt="" class="logo-footer">
-                            </a>
-                        </div>
                         <p>Kami menginspirasi dan menjangkau jutaan wisatawan di seluruh belahan dunia.</p>
                         <div class="fa-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -30,15 +25,10 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 offset-lg-1">
-                    <div class="ft-newslatter">
-                        <h6>Ketik Pesan</h6>
-                        <p>Kirimkan ulasan kepada Berlian Hotel</p>
-                        <form action="#" class="fn-form">
-                            <input type="text" placeholder="Email">
-                            <button type="submit"><i class="fa fa-send"></i></button>
-                        </form>
-                    </div>
+                <div class="logo">
+                    <a href="#">
+                        <img src="{{ asset('img/berlian-white.png') }}" alt="" class="logo-footer">
+                    </a>
                 </div>
             </div>
         </div>
@@ -48,10 +38,10 @@
             <div class="row">
                 <div class="col-lg-7">
                     <ul>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Terms of use</a></li>
-                        <li><a href="#">Privacy</a></li>
-                        <li><a href="#">Environmental Policy</a></li>
+                        <li><a href={{( route('contact'))}}>Contact</a></li>
+                        <li><a href={{( route('termofus'))}}>Terms of use</a></li>
+                        <li><a href={{( route('privacyhotel'))}}>Privacy</a></li>
+                        <li><a href={{ route('kebpolice')}}>Environmental Policy</a></li>
                     </ul>
                 </div>
                

@@ -79,6 +79,7 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\UserAccessMidd
 
     Route::get('/hotel/{location}/{nama_tipe}/transaksi/{uuid}/pembayaran', [App\Http\Controllers\BookingHotelController::class, 'konfirmasiPembayaranHotel'])->name('hotel.transaksi.pembayaran-hotel');
     Route::post('/hotel/{location}/{nama_tipe}/transaksi/{uuid}/pembayaran', [App\Http\Controllers\BookingHotelController::class, 'pembayaranHotel'])->name('booking.hotel.pembayaran');
+    Route::put('/hotel/{location}/{nama_tipe}/transaksi/{uuid}/pembayaran', [App\Http\Controllers\BookingHotelController::class, 'updatePembayaranHotel'])->name('booking.hotel.pembayaran.update');
     Route::post('/hotel/{location}/{nama_tipe}/{uuid}', [App\Http\Controllers\BookingHotelController::class, 'cancelHotel'])->name('booking.hotel.cancel');
 //---//
     // ----- //
@@ -159,3 +160,7 @@ Route::get('/rooms/{id}', [App\Http\Controllers\RoomController::class, 'show'])-
 
 Route::get('/hotel', [HotelsController::class, 'search'])->name('search.hotel');
 Route::get('/meeting', [MeetingsController::class, 'search'])->name('search.meeting');
+
+Route::get('/termofus', [HomeController::class, 'termofus'])->name('termofus');
+Route::get('/kebpolice', [HomeController::class, 'kebpolice'])->name('kebpolice');
+Route::get('/privacyhotel', [HomeController::class, 'privacyhotel'])->name('privacyhotel');
