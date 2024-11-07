@@ -15,11 +15,11 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 
 Route::get('/weedings', [App\Http\Controllers\HomeController::class, 'weedings'])->name('weedings');
 
-Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.wedding.index');
+// Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.wedding.index');
 
-Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edit');
+// Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edit');
 
-Route::get('/admin/wedding/{id}', [WeddingController::class, 'show'])->name('admin.wedding.show');
+// Route::get('/admin/wedding/{id}', [WeddingController::class, 'show'])->name('admin.wedding.show');
 
 // Route::resource('admin/wedding', WeddingController::class);
 Route::get('/admin/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('admin.contact.index');
@@ -54,6 +54,14 @@ Route::middleware(['auth.custom'])->group(function () {
 Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
     Route::get('/admin', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('admin.index');
     Route::get('/admin/hotel', [App\Http\Controllers\HomeController::class, 'adminHotel'])->name('admin.hotel.index');
+
+
+
+    Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.wedding.index');
+
+Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edit');
+
+Route::get('/admin/wedding/{id}', [WeddingController::class, 'show'])->name('admin.wedding.show');
 });
 //----------------------------------------------------------------------------
 

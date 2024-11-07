@@ -76,9 +76,9 @@
 
     <script>
         const loginOverlay = document.getElementById('loginOverlay');
-        const registerOverlay = document.getElementById('registerOverlay');
         const openLoginPopup = document.getElementById('openLoginPopup');
         const closeLoginPopup = document.getElementById('closeLoginPopup');
+        const registerOverlay = document.getElementById('registerOverlay');
         const openRegisterPopup = document.getElementById('openRegisterPopup');
         const closeRegisterPopup = document.getElementById('closeRegisterPopup');
 
@@ -100,6 +100,12 @@
             }
         });
 
+        // Tambahkan event listener pada tombol "Register" pada form login
+        loginOverlay.querySelector('#openRegisterPopup').addEventListener('click', function() {
+            registerOverlay.style.display = 'flex';
+            loginOverlay.style.display = 'none';
+        });
+
         // Buka pop-up registrasi ketika tombol registrasi di klik
         openRegisterPopup.addEventListener('click', function() {
             registerOverlay.style.display = 'flex';
@@ -116,12 +122,6 @@
             if (e.target === registerOverlay) {
                 registerOverlay.style.display = 'none';
             }
-        });
-
-        // Tambahkan event listener pada tombol "Register" pada form login
-        loginOverlay.querySelector('#openRegisterPopup').addEventListener('click', function() {
-            registerOverlay.style.display = 'flex';
-            loginOverlay.style.display = 'none';
         });
 
         // Tambahkan event listener pada tombol "Login" pada form registrasi

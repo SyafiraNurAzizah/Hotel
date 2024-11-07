@@ -19,6 +19,17 @@
 @endforeach
 
 
+{{-- <div class="page">
+    @foreach ($hotels as $hotel)
+        <p>Lokasi Hotel</p>
+        <p class="active">Informasi Booking</p>
+        <p>Informasi Pembayaran</p>    
+    @endforeach
+</div>
+
+<div class="horizontal-line-1"></div> --}}
+
+
 <div class="container">
 
     <div class="container-title">   
@@ -32,8 +43,6 @@
             <p>Berikut adalah detail pemesanan Anda:</p>
         </div>
     </div>
-
-    {{-- <div class="horizontal-line-1"></div> --}}
 
     <div class="container-isi">
         <div class="data-text">
@@ -91,7 +100,7 @@
                             <div class="dropdown-item" onclick="selectOption('Kartu Kredit/Debit')"><a>Kartu Kredit/Debit</a></div>
                             <div class="sub-dropdown">
                                 <a>Dompet Digital</a>
-                                <div class="sub-dropdown-content">
+                                <div class="sub-dropdown-content" style="height: 82px">
                                     <div onclick="selectOption('OVO')">OVO</div>
                                     <div onclick="selectOption('DANA')">DANA</div>
                                 </div>
@@ -138,7 +147,7 @@
 
 @foreach ($hotels as $hotel)
     <div class="next">
-        <a href="{{ route('hotel.transaksi.transaksi-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}"><i class="bi bi-arrow-right"></i></a>
+        <a href="{{ route('hotel.transaksi.pembayaran-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}"><i class="bi bi-arrow-right"></i></a>
     </div>
 @endforeach
 
