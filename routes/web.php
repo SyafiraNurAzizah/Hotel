@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\WeddingController;
-use App\Http\Controllers\HotelsController;
-use Illuminate\Support\Facades\App;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
@@ -28,8 +26,7 @@ Route::get('/admin/contact', [App\Http\Controllers\ContactController::class, 'in
 Route::get('/admin/contact/{id}', [App\Http\Controllers\ContactController::class, 'show'])->name('admin.contact.show');
 
 // ----------------------------------- RATING --------------------------------- //
-Route::get('/hotel/{id}', [App\Http\Controllers\HotelsController::class, 'showRating'])->name('hotel.show');
-Route::post('/ratings', [App\Http\Controllers\HotelsController::class, 'storeRating'])->name('ratings.store');
+Route::get('/hotel', [App\Http\Controllers\HotelsController::class, 'storeRating'])->name('hotel.store');
 
 //---------------------------- LOGIN & REGISTER -----------------------------//
 Auth::routes();

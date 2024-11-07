@@ -6,7 +6,6 @@ use App\Models\Fasilitas;
 use App\Models\Hotels;
 use App\Models\TipeKamar;
 use Illuminate\Http\Request;
-use App\Models\Rating;
 use Illuminate\Support\Facades\Auth;
 
 class HotelsController extends Controller
@@ -64,40 +63,6 @@ class HotelsController extends Controller
             'location' => ucfirst($location),
             'hotels' => $hotels
         ]);
-    }
-
-
-
-    // -------- Rating -------- //
-    public function indexRating()
-    {
-        $tipeKamar = TipeKamar::with('ratings.user')->get(); // Mengambil semua data
-        return view('ratings', compact('tipeKamar'));
-    }
-
-    public function storeRating(Request $request)
-    {
-        $request->validate([
-            'tipe_kamar_id' => 'required|integer',
-            'rating' => 'required|integer|min:1|max:5',
-            'comment' => 'required|string|max:500',
-        ]);
-
-        Rating::create([
-            'user_id' => Auth::id(),
-            'tipe_kamar_id' => $request->tipe_kamar_id,
-            'rating' => $request->rating,
-            'comment' => $request->comment,
-            'status' => 1,
-        ]);
-
-        return redirect()->back()->with('success', 'Rating dan komentar berhasil dikirim.');
-    }
-
-    public function showRating($id)
-    {
-        $tipeKamar = TipeKamar::with('ratings.user')->findOrFail($id);
-        return view('hotel', compact('tipeKamar'));
     }
 
 }

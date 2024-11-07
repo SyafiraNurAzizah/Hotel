@@ -12,7 +12,11 @@ class Rating extends Model
     protected $guarded = [];
 
     protected $fillable = [
+        'user_id',
+        'tipe_kamar_id',
+        'rating',
         'comment',
+        'status',
     ];
 
     public function user()
