@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BookingHotel;
 use App\Models\Hotels;
+use App\Models\TipeKamar;
 use App\Models\Users;
 
 class AdminHotelController extends Controller
@@ -43,6 +44,7 @@ public function edit($id)
 public function update(Request $request, $id)
 {
     $bookinghotel = BookingHotel::findOrFail($id);
+
     
     // Validasi data yang diterima
     $request->validate([

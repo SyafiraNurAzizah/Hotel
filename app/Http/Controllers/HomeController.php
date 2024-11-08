@@ -74,3 +74,4 @@ class HomeController extends Controller
         return view('privacyhotel');
     }
 }
+ 

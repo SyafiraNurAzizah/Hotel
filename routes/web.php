@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminHotelController;
 use App\Http\Controllers\Admin\WeddingController;
 use App\Http\Controllers\AdminHotelController as ControllersAdminHotelController;
+use App\Http\Controllers\BookingHotelController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Container\Attributes\Config;
@@ -22,9 +23,19 @@ Route::get('/weedings', [App\Http\Controllers\HomeController::class, 'weedings']
 
 Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.wedding.index');
 
-Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edut');
+Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edit');
+
+Route::get('/admin/wedding/{id}', [WeddingController::class, 'show'])->name('admin.wedding.show');
 
 // Route::resource('admin/wedding', WeddingController::class);
+
+Route::prefix('admin')->group(function () {
+    Route::get('/admin/contact', [ContactController::class, 'index'])->name('admin.contact.index');
+});
+
+
+Route::get('/admin/contact/{id}', [App\Http\Controllers\ContactController::class, 'show'])->name('admin.contact.show');
+
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 
 // Route::get('/contact', [ContactController::class, 'index'])->name('contact');
@@ -60,7 +71,7 @@ Route::group(['middleware' => ['auth', App\Http\Middleware\AdminAccessMiddleware
 });
 
 Route::get('/admin/hotel', [AdminHotelController::class, 'adminIndex'])->name('admin.hotel.index');
-Route::delete('admin/hotel/{id}', [AdminHotelController::class, 'destroy'])->name('admin.hotel.destroy');
+Route::delete('admin/hotel/{id}', [AdminHotelController::class, 'AdminDestroy'])->name('admin.hotel.destroy');
 Route::get('admin/hotel/{id}', [AdminHotelController::class, 'Adminshow'])->name('admin.hotel.show');
 Route::get('admin/hotel/{id}/edit', [AdminHotelController::class, 'edit'])->name('admin.hotel.edit');
 Route::put('admin/hotel/{id}', [AdminHotelController::class, 'update'])->name('admin.hotel.update');
@@ -160,6 +171,9 @@ Route::get('/rooms/{id}', [App\Http\Controllers\RoomController::class, 'show'])-
 
 Route::get('/hotel', [HotelsController::class, 'search'])->name('search.hotel');
 Route::get('/meeting', [MeetingsController::class, 'search'])->name('search.meeting');
+Route::get('/admin/create', [BookingHotelController::class, 'create'])->name('admin.hotel.create');
+Route::post('/admin/hotel/store', [BookingHotelController::class, 'store'])->name('admin.hotel.store')->middleware('auth');
+
 
 Route::get('/termofus', [HomeController::class, 'termofus'])->name('termofus');
 Route::get('/kebpolice', [HomeController::class, 'kebpolice'])->name('kebpolice');

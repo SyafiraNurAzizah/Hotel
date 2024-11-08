@@ -120,6 +120,5 @@ class HotelsController extends Controller
         // Kembalikan hasil pencarian ke view
         return view('hotel', compact('hotels', 'query'));
     }
-
-    
+   
 }

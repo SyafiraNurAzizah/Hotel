@@ -5,7 +5,8 @@
 <br><br><br><br><br>
 <div class="container">
     <h2 class="mb-4">Reservations Table</h2>
-    
+    <a href="{{ route('admin.hotel.create') }}" class="btn mb-3" style="background-color: #dfa974; color: white">+ Tambah Hotel</a>
+
     <table class="table table-bordered">
         <thead>
             <tr style="background-color: #dfa974">

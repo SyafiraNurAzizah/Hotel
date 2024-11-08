@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Wedding;
+use Illuminate\Support\Facades\Storage;
 
 class WeddingsController extends Controller
 {
@@ -13,69 +14,79 @@ class WeddingsController extends Controller
         return view('wedding.index', compact('weddings'));
     }
 
-    public function show($id)
-    {
-        $weddings = Wedding::findOrFail($id);
-        return view('wedding.show', compact('weddings'));
-    }
-
     public function edit($id)
     {
-        // Cari wedding berdasarkan id
-        $wedding = Wedding::find($id);
+        $weddings = Wedding::find($id);
 
-        // Periksa apakah wedding ditemukan
-        if (!$wedding) {
+        if (!$weddings) {
             return redirect()->route('admin.wedding.index')->with('error', 'Data tidak ditemukan.');
         }
 
-        // Tampilkan view edit dengan data wedding yang ingin diedit
-        return view('admin.wedding.edit', compact('wedding'));
+        return view('admin.wedding.edit', compact('weddings'));
     }
 
     public function update(Request $request, $id)
     {
-        $wedding = Wedding::find($id);
+        $weddings = Wedding::find($id);
 
-        // Validasi form jika diperlukan
         $request->validate([
-            'gambar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi file gambar
+            'judul' => 'required',
+            'judul_paket1' => 'required',
+            'judul_paket2' => 'required',
+            'judul_paket3' => 'required',
+            'gambar' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'paket1' => 'required',
+            'paket2' => 'required',
+            'paket3' => 'required',
+            'harga' => 'required',
+            'kapasitas' => 'required',
         ]);
 
-        // Cek apakah ada file gambar yang diupload
         if ($request->hasFile('gambar')) {
-            // Simpan gambar di folder public dan dapatkan path-nya
-            $gambarPath = $request->file('gambar')->store('uploads', 'public');
+            if ($weddings->gambar && $weddings->gambar !== 'default.jpg') {
+                Storage::delete('public/uploads/' . $weddings->gambar);
+            }
 
-            // Update path gambar di database
-            $wedding->gambar = '/storage/' . $gambarPath;
+            $imageName = time() . '.' . $request->gambar->extension();
+            $request->gambar->move(public_path('storage/uploads'), $imageName);
+            $weddings->gambar = $imageName;
         }
 
-        // Update data lainnya
-        $wedding->judul = $request->input('judul');
-        $wedding->judul_paket1 = $request->input('judul_paket1');
-        $wedding->judul_paket2 = $request->input('judul_paket2');
-        $wedding->judul_paket3 = $request->input('judul_paket3');
-        $wedding->harga = $request->input('harga');
-        $wedding->kapasitas = $request->input('kapasitas');
+        // Update other fields
+        $weddings->judul = $request->input('judul');
+        $weddings->judul_paket1 = $request->input('judul_paket1');
+        $weddings->judul_paket2 = $request->input('judul_paket2');
+        $weddings->judul_paket3 = $request->input('judul_paket3');
+        $weddings->paket1 = $request->input('paket1');
+        $weddings->paket2 = $request->input('paket2');
+        $weddings->paket3 = $request->input('paket3');
+        $weddings->harga = $request->input('harga');
+        $weddings->kapasitas = $request->input('kapasitas');
 
-        $wedding->save();
+        $weddings->save();
 
         return redirect()->route('wedding.index')->with('success', 'Data wedding berhasil diupdate.');
     }
 
     public function destroy($id)
     {
-        $weddings = wedding::find($id);
-        $weddings->delete();
-        return redirect()->route('wedding.index')->with('success', 'Data weddings berhasil dihapus.');
+        $weddings = Wedding::find($id);
+        if ($weddings) {
+            $weddings->delete();
+            return redirect()->route('wedding.index')->with('success', 'Data weddings berhasil dihapus.');
+        }
+        return redirect()->route('wedding.index')->with('error', 'Data tidak ditemukan.');
     }
 
     public function create()
     {
-        $weddings = wedding::all();
         return view('admin.wedding.create');
     }
 
+    public function show($id)
+    {
+        $weddings = Wedding::find($id);
+        return view('admin.wedding.show', compact('weddings'));
+    }
     
 }

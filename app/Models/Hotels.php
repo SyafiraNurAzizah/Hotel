@@ -21,4 +21,7 @@ class Hotels extends Model
     {
         return $this->hasMany(TipeKamar::class);
     }
+    // Model Hotel
+
+
 }
