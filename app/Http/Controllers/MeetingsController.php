@@ -11,7 +11,7 @@ class MeetingsController extends Controller
 {
     public function index()
     {
-        $hotels = Hotels::all();
+        $hotels = Hotels::get();
         return view('meeting', compact('hotels'));
     }
 
@@ -50,7 +50,7 @@ class MeetingsController extends Controller
             'location' => ucfirst($location),
             'hotels' => $hotels,
             'room' => $meetings,
-            'gallery' => $gallery, // Menambahkan detail ruangan ke view
+            'gallery' => $gallery
         ]);
     }
 
@@ -73,9 +73,5 @@ class MeetingsController extends Controller
 //         'room' => $room                   // Pass the room details to the view
 //     ]);
 // }
-
-
-
-
 
 }

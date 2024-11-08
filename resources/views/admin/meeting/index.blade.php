@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/wedding.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin-meeting.css') }}">
 @endpush
 
 @section('content')
@@ -11,10 +11,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text m-5">
-                        <h2>Admin Weddings</h2>
+                        <h2>Admin Meetings</h2>
                         <div class="bt-option">
                             <a href="{{ route('index') }}">Beranda</a>
-                            <span>Data Weddings</span>
+                            <span>Data Meetings</span>
                         </div>
                     </div>
                 </div>
@@ -25,43 +25,41 @@
 
     <section>
         <div class="container mt-6">
-            <a href="{{ route('wedding.create') }}"
+            {{-- <a href="{{ route('wedding.create') }}"
                 class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center mb-2">
                 <i class="icon_phone fs-2 me-2"></i> <!-- fs-2 memperbesar ukuran ikon -->
                 Tambah Paket
-            </a>
+            </a> --}}
 
 
             <table class="table table-custom">
                 <thead class="thead-custom">
                     <tr>
                         <th>No</th>
-                        <th>Judul</th>
-                        <th>Paket 1</th>
-                        <th>Paket 2</th>
-                        <th>Paket 3</th>
-                        <th>Gambar</th>
-                        <th>Harga</th>
+                        <th>Nama Ruang</th>
+                        <th>Harga per Jam</th>
+                        <th>Jumlah Ruang Tersedia</th>
+                        <th>Foto</th>
+                        <th>Status</th>
                         <th>Kapasitas</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($weddings as $wedding)
+                    @forelse($meetings as $meeting)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $wedding->judul }}</td>
-                            <td>{{ $wedding->judul_paket1 }}</td>
-                            <td>{{ $wedding->judul_paket2 }}</td>
-                            <td>{{ $wedding->judul_paket3 }}</td>
-                            <td><img src="{{ asset('/storage/uploads/' . $wedding->gambar) }}" alt="{{ $wedding->judul }}">
-                            </td>
+                            <td>{{ $meeting->nama_ruang }}</td>
+                            <td>{{ number_format($meeting->harga_per_jam, 2) }}</td>
+                            <td>{{ $meeting->jumlah_ruang_tersedia }}</td>
                             <td>
-                                {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }}
+                                {{-- <img src="{{ asset('/storage/uploads/' . $wedding->gambar) }}" alt="{{ $wedding->judul }}"> --}}
+                                <img src="{{ asset('storage/' . $meeting->foto) }}" alt="{{ $meeting->nama_ruang }}" width="100">
                             </td>
-                            <td>{{ $wedding->kapasitas }} guests</td>
+                            <td>{{ $meeting->status }}</td>
+                            <td>{{ $meeting->kapasitas }} guests</td>
                             <td>
-                                <a href="{{ route('wedding.show', $wedding->id) }}"
+                                <a href="{{ route('wedding.show', $meeting->id) }}"
                                         class="fa fa-eye btn btn-outline-secondary"></a>
                             </td>
                         </tr>

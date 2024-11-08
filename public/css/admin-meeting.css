@@ -1,0 +1,57 @@
+.container .modal .modal-body .icon_close {
+    float: right;
+    position: relative;
+    bottom: 8px;
+    left: 5px;
+}
+
+.deskripsi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.btn-contact {
+    display: flex;
+    gap: 1rem;
+    align-self: flex-end;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+
+.table-custom {
+    border: 2px solid #dfa974;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.thead-custom {
+    background-color: #dfa974;
+    color: black;
+}
+
+.table tbody tr:hover {
+    background-color: #f9f2e7; /* Warna latar saat hover */
+}
+
+.table-custom th, .table-custom td {
+    padding: 15px;
+    text-align: center;
+    border-color: #dfa974;
+}
+
+.table-custom img {
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #dfa974;
+}
+
+.no-data {
+    color: #dfa974;
+    font-style: italic;
+}
