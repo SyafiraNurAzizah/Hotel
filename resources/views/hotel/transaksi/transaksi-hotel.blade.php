@@ -10,26 +10,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
 
 
-@foreach ($hotels as $hotel)
-    <div class="previous">
-        <a href="{{ route('hotel.transaksi.transaksi-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}">
-            <i class="bi bi-arrow-left"></i>
-        </a>
-    </div>
-@endforeach
-
-
-{{-- <div class="page">
-    @foreach ($hotels as $hotel)
-        <p>Lokasi Hotel</p>
-        <p class="active">Informasi Booking</p>
-        <p>Informasi Pembayaran</p>    
-    @endforeach
-</div>
-
-<div class="horizontal-line-1"></div> --}}
-
-
 <div class="container">
 
     <div class="container-title">   
@@ -145,11 +125,50 @@
 </div>
 
 
-@foreach ($hotels as $hotel)
-    <div class="next">
-        <a href="{{ route('hotel.transaksi.pembayaran-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}"><i class="bi bi-arrow-right"></i></a>
-    </div>
-@endforeach
+
+@if(!$pembayaran)
+<div class="sidebar-pembayarannt">
+    <a href="{{ route('hotel.transaksi.lokasi-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}">
+        {{-- <span class="tooltip">Lokasi</span> --}}
+        <p class="bi bi-map">
+            <span class="tooltip">Lokasi</span>
+        </p>
+    </a>
+    <a href="{{ route('hotel.transaksi.transaksi-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}" class="active">
+        {{-- <span class="tooltip">Reservasi</span> --}}
+        <p class="bi bi-calendar2-check">
+            <span class="tooltip">Reservasi</span>
+        </p>
+    </a>
+</div>
+@else
+<div class="sidebar">
+    <a href="{{ route('hotel.transaksi.lokasi-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}">
+        {{-- <span class="tooltip">Lokasi</span> --}}
+        <p class="bi bi-map">
+            <span class="tooltip">Lokasi</span>
+        </p>
+    </a>
+    <a href="{{ route('hotel.transaksi.transaksi-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}" class="active">
+        {{-- <span class="tooltip">Reservasi</span> --}}
+        <p class="bi bi-calendar2-check">
+            <span class="tooltip">Reservasi</span>
+        </p>
+    </a>
+    <a href="{{ route('hotel.transaksi.pembayaran-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}">
+        {{-- <span class="tooltip">Pembayaran</span> --}}
+        <p class="bi bi-cash-coin">
+            <span class="tooltip">Pembayaran</span>
+        </p>
+    </a>
+</div>
+
+<div class="bukti-reservasi">
+    <p class="bi bi-file-earmark-arrow-down">
+        <span class="tooltip">Bukti Reservasi</span>
+    </p>
+</div>
+@endif
 
 
 

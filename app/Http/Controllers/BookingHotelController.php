@@ -288,4 +288,27 @@ class BookingHotelController extends Controller
             'pembayaran' => $pembayaran
         ]);
     }
+
+
+    function lokasiHotel(Request $request, $location, $nama_tipe, $uuid)
+    {
+        // Mengambil semua hotel berdasarkan lokasi
+        $hotels = Hotels::where('nama_cabang', $location)->get();
+        
+        // Mengambil data tipe kamar berdasarkan nama tipe
+        $room = TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail();
+
+        // Mengambil data booking berdasarkan UUID
+        $booking = BookingHotel::with('user')->where('uuid', $uuid)->firstOrFail();
+
+        $pembayaran = PembayaranHotel::where('booking_hotel_id', $booking->id)->first();
+
+        // Mengirim data ke view
+        return view('hotel.transaksi.lokasi-hotel', [
+            'hotels' => $hotels,
+            'room' => $room,
+            'booking' => $booking,
+            'pembayaran' => $pembayaran
+        ]);
+    }
 }

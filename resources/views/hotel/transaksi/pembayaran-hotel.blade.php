@@ -10,24 +10,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
 
 
-{{-- @foreach ($hotels as $hotel)
-    <div class="previous">
-        <a href="{{ route('hotel.transaksi.transaksi-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}"><i class="bi bi-arrow-left"></i></a>
-    </div>
-@endforeach --}}
-
-
-{{-- <div class="page">
-    @foreach ($hotels as $hotel)
-        <p>Lokasi Hotel</p>
-        <p>Informasi Booking</p>
-        <p class="active">Informasi Pembayaran</p>    
-    @endforeach
-</div>
-
-<div class="horizontal-line-1"></div> --}}
-
-
 <div class="container">
     <div class="container-card">
         @if ($pembayaran->metode_pembayaran == 'DANA')
@@ -102,10 +84,10 @@
 
         @if ($pembayaran->metode_pembayaran == 'DANA' || $pembayaran->metode_pembayaran == 'OVO')
             <p>Lakukan pembayaran ke nomor telepon yang tertera.</p>
-            <p style="top: 270px; line-height: 20px; width: 380px;">Unggah bukti transfer Anda di formulir bawah ini. Verifikasi akan dilakukan dalam 1x24 jam.</p>
+            <p style="top: 270px; line-height: 20px; width: 360px;">Unggah bukti transfer Anda di formulir bawah ini. Verifikasi akan dilakukan dalam 1x24 jam.</p>
         @elseif ($pembayaran->metode_pembayaran == 'BCA' || $pembayaran->metode_pembayaran == 'BRI' || $pembayaran->metode_pembayaran == 'BNI' || $pembayaran->metode_pembayaran == 'Mandiri')
             <p>Lakukan pembayaran ke nomor rekening yang tertera.</p>
-            <p style="top: 270px; line-height: 20px; width: 380px;">Unggah bukti transfer Anda di formulir bawah ini. Verifikasi akan dilakukan dalam 1x24 jam.</p>
+            <p style="top: 270px; line-height: 20px; width: 360px;">Unggah bukti transfer Anda di formulir bawah ini. Verifikasi akan dilakukan dalam 1x24 jam.</p>
         @endif
 
 
@@ -184,6 +166,33 @@
     @endif
 </div>
 
+
+<div class="sidebar">
+    <a href="{{ route('hotel.transaksi.lokasi-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}">
+        {{-- <span class="tooltip">Lokasi</span> --}}
+        <p class="bi bi-map">
+            <span class="tooltip">Lokasi</span>
+        </p>
+    </a>
+    <a href="{{ route('hotel.transaksi.transaksi-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}">
+        {{-- <span class="tooltip">Reservasi</span> --}}
+        <p class="bi bi-calendar2-check">
+            <span class="tooltip">Reservasi</span>
+        </p>
+    </a>
+    <a href="{{ route('hotel.transaksi.pembayaran-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}" class="active">
+        {{-- <span class="tooltip">Pembayaran</span> --}}
+        <p class="bi bi-cash-coin">
+            <span class="tooltip">Pembayaran</span>
+        </p>
+    </a>
+</div>
+
+<div class="bukti-reservasi">
+    <p class="bi bi-file-earmark-arrow-down">
+        <span class="tooltip">Bukti Reservasi</span>
+    </p>
+</div>
 
 
 
