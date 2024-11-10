@@ -53,7 +53,7 @@ Route::middleware(['auth.custom'])->group(function () {
 
 
 //------------------------------ ADMIN -----------------------------------//
-Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
+// Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
     Route::get('/admin', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('admin.index');
     Route::get('/admin/hotel', [App\Http\Controllers\HomeController::class, 'adminHotel'])->name('admin.hotel.index');
 
@@ -62,9 +62,12 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMid
     Route::get('/admin/wedding/{id}', [WeddingController::class, 'show'])->name('admin.wedding.show');
 
     Route::get('/admin/meeting', [MeetingController::class, 'index'])->name('admin.meeting.index');
+    Route::get('/admin/meeting/create', [MeetingController::class, 'create'])->name('admin.meeting.create');
+    Route::post('/admin/meeting', [MeetingController::class, 'store'])->name('admin.meeting.store');
     Route::get('/admin/meeting/{id}', [MeetingController::class, 'edit'])->name('admin.meeting.edit');
-    Route::get('/admin/meeting/{id}', [MeetingController::class, 'show'])->name('admin.meeting.show');
-});
+    Route::post('/admin/meeting/{id}', [MeetingController::class, 'update'])->name('admin.meeting.update');
+    Route::delete('/admin/meeting/{id}', [MeetingController::class, 'destroy'])->name('admin.meeting.destroy');
+// });
 //----------------------------------------------------------------------------
 
 
