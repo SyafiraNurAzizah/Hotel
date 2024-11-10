@@ -6,48 +6,34 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            /* Jarak antar kartu */
             justify-content: center;
-            /* Pusatkan grid */
         }
 
         .card-container {
             flex: 1 1 300px;
-            /* Atur lebar minimum kartu */
             max-width: 300px;
-            /* Atur lebar maksimum kartu */
         }
 
         .card {
             border: 1px solid #ccc;
-            /* Gaya border */
             border-radius: 8px;
-            /* Gaya sudut */
             overflow: hidden;
-            /* Sembunyikan overflow */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            /* Tambahkan bayangan */
             transition: transform 0.3s;
-            /* Efek transisi */
         }
 
         .card:hover {
             transform: scale(1.05);
-            /* Efek hover */
         }
 
         .card img {
             width: 100%;
-            /* Gambar memenuhi lebar kartu */
             height: auto;
-            /* Tinggi otomatis untuk menjaga rasio */
         }
 
         .card-content {
             padding: 16px;
-            /* Ruang di dalam konten kartu */
             text-align: center;
-            /* Pusatkan teks */
         }
 
         .appointment-form {
@@ -56,7 +42,7 @@
             background: rgba(255, 255, 255, 0.9);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
         }
 
@@ -189,16 +175,12 @@
         }
 
         @keyframes shake {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateX(0);
             }
-
             25% {
                 transform: translateX(-5px);
             }
-
             75% {
                 transform: translateX(5px);
             }
@@ -230,8 +212,6 @@
                         <h2>{{ $location }} Rooms</h2>
                         <div class="bt-option">
                             <a href="{{ route('ruang', ['location' => strtolower($location)]) }}" class="active">Home</a>
-                            {{-- <span><a href="#">Gallery</a></span> --}}
-                            {{-- <span><a href="{{ route('gallery', ['location' => strtolower($location), 'roomId' => $roomId]) }}">Gallery</a></span> --}}
                         </div>
                     </div>
                 </div>
@@ -268,7 +248,6 @@
                             <p class="f-para">{{ $room->deskripsi }}</p>
                         </div>
                     </div>
-
 
                     @foreach ($gallery as $item)
                         <div class="card-container">
@@ -310,7 +289,6 @@
                                 <div class="col-lg-6">
                                     <input type="text" placeholder="Email*">
                                 </div>
-
                             </div>
                             <textarea placeholder="Your Review"></textarea>
                             <button type="submit">Submit Now</button>
@@ -327,52 +305,57 @@
                             <label for="name">Nama Lengkap</label>
                             <div class="input-group">
                                 <i class="fas fa-user"></i>
-                                <input type="text" id="name" class="form-control"
-                                    placeholder="Masukan nama lengkap">
+                                <input type="text" id="name" name="name" class="form-control" required>
                             </div>
-                            <div class="error-message" id="nameError">Masukan nama yang valid</div>
+                            <p class="error-message" id="nameError">Please enter your full name.</p>
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email</label>
                             <div class="input-group">
                                 <i class="fas fa-envelope"></i>
-                                <input type="email" id="email" class="form-control" placeholder="Masukan email">
+                                <input type="email" id="email" name="email" class="form-control" required>
                             </div>
-                            <div class="error-message" id="emailError">Masukan email yang valid</div>
+                            <p class="error-message" id="emailError">Please enter a valid email.</p>
                         </div>
 
                         <div class="form-group">
-                            <label for="date">Tanggal</label>
+                            <label for="phone">Phone</label>
+                            <div class="input-group">
+                                <i class="fas fa-phone"></i>
+                                <input type="text" id="phone" name="phone" class="form-control" required>
+                            </div>
+                            <p class="error-message" id="phoneError">Please enter a valid phone number.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">Date</label>
                             <div class="input-group">
                                 <i class="fas fa-calendar"></i>
-                                <input type="date" id="date" class="form-control" min="">
+                                <input type="date" id="date" name="date" class="form-control" required>
                             </div>
-                            <div class="error-message" id="dateError">Masukan tanggal yang valid</div>
+                            <p class="error-message" id="dateError">Please select a date.</p>
                         </div>
 
                         <div class="form-group">
-                            <label>Preferred Time</label>
-                            <div class="time-slots" id="timeSlots">
-                                <div class="time-slot" data-time="09:00">9:00 AM</div>
-                                <div class="time-slot" data-time="10:00">10:00 AM</div>
-                                <div class="time-slot" data-time="11:00">11:00 AM</div>
-                                <div class="time-slot" data-time="14:00">2:00 PM</div>
-                                <div class="time-slot" data-time="15:00">3:00 PM</div>
-                                <div class="time-slot" data-time="16:00">4:00 PM</div>
+                            <label for="time">Time</label>
+                            <div class="time-slots">
+                                <div class="time-slot" data-time="08:00 AM">08:00 AM</div>
+                                <div class="time-slot" data-time="09:00 AM">09:00 AM</div>
+                                <div class="time-slot" data-time="10:00 AM">10:00 AM</div>
+                                <div class="time-slot" data-time="11:00 AM">11:00 AM</div>
+                                <div class="time-slot" data-time="12:00 PM">12:00 PM</div>
+                                <div class="time-slot" data-time="01:00 PM">01:00 PM</div>
+                                <div class="time-slot" data-time="02:00 PM">02:00 PM</div>
+                                <div class="time-slot" data-time="03:00 PM">03:00 PM</div>
                             </div>
-                            <div class="error-message" id="timeError">Pilih waktu yang tepat</div>
                         </div>
 
                         <div class="form-group">
-                            <label for="message">Message (Optional)</label>
-                            <textarea id="message" class="form-control" rows="4"></textarea>
+                            <button type="submit" class="submit-btn">Book Now</button>
                         </div>
-
-                        <button type="submit" class="submit-btn">
-                            Reservasi
-                        </button>
                     </form>
+                    <div class="success-message" id="successMessage">Your reservation was successfully made!</div>
                 </div>
             </div>
         </div>
