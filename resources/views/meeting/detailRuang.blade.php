@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="{{ asset('css/detailmeet.css') }}">
 @section('content')
     <style>
         .gallery-grid {
@@ -59,7 +59,7 @@
                         <h2>{{ $location }} Rooms</h2>
                         <div class="bt-option">
                             <a href="{{ route('ruang', ['location' => strtolower($location)]) }}" class="active">Home</a>
-                            <span><a href="#">Gallery</a></span>
+                            {{-- <span><a href="#">Gallery</a></span> --}}
                             {{-- <span><a href="{{ route('gallery', ['location' => strtolower($location), 'roomId' => $roomId]) }}">Gallery</a></span> --}}
                         </div>
                     </div>
@@ -105,6 +105,19 @@
                             <p class="f-para">{{ $room->deskripsi }}</p> <!-- Menggunakan deskripsi dari model -->
                         </div>
                     </div>
+
+
+                    @foreach ($gallery as $item)
+                    <div class="card-container">
+                            <div class="card">
+                                <img src="{{ asset('img/meetings/gallery/' . $item->foto) }}" alt="">
+                                <div class="card-content">
+                                    <h4 class="card-title">{{ $item->deskripsi }}</h4>
+                                </div>
+                            </div>
+                    </div>
+                    @endforeach
+                
                     <div class="row">
                         <div class="gallery-grid">
                             @foreach ($gallery as $item)
@@ -120,6 +133,7 @@
                         </div>
     
                     </div>
+
                     <!-- Ulasan dan form tambah ulasan -->
                     <div class="rd-reviews">
                         <h4>Reviews</h4>
@@ -151,12 +165,12 @@
                                 <input type="datetime-local" class="date-input" id="date-in">
                                 {{-- <i class="icon_calendar"></i> --}}
                             </div>
-                            <div class="select-option">
+                            {{-- <div class="select-option">
                                 <label for="guest">Guests:</label>
                                 <select id="guest">
                                     <option value="">3 Adults</option>
                                 </select>
-                            </div>
+                            </div> --}}
                             <div class="select-option">
                                 <label for="room">Room:</label>
                                 <select id="room">

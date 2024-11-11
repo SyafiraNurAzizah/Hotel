@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HotelsController;
 use App\Http\Controllers\MeetingsController;
-use App\Http\Controllers\SearchController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
@@ -21,7 +20,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 
 Route::get('/weedings', [App\Http\Controllers\HomeController::class, 'weedings'])->name('weedings');
 
-Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.wedding.index');
+// Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.wedding.index');
 
 Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edit');
 
@@ -66,18 +65,8 @@ Route::middleware(['auth.custom'])->group(function () {
 Route::group(['middleware' => ['auth', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
     Route::get('/admin', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('admin.index');
     Route::get('/admin/hotel', [App\Http\Controllers\HomeController::class, 'adminHotel'])->name('admin.hotel.index');
-    Route::get('/admin/meeting' ,[MeetingsController::class, 'adminMeetting'])->name('admin.meetings.index');
-    Route::get('/admin/contact', [App\Http\Controllers\HomeController::class, 'adminContact'])->name('admin.contact');
 });
-
-Route::get('/admin/hotel', [AdminHotelController::class, 'adminIndex'])->name('admin.hotel.index');
-Route::delete('admin/hotel/{id}', [AdminHotelController::class, 'AdminDestroy'])->name('admin.hotel.destroy');
-Route::get('admin/hotel/{id}', [AdminHotelController::class, 'Adminshow'])->name('admin.hotel.show');
-Route::get('admin/hotel/{id}/edit', [AdminHotelController::class, 'edit'])->name('admin.hotel.edit');
-Route::put('admin/hotel/{id}', [AdminHotelController::class, 'update'])->name('admin.hotel.update');
-
-
-//----------------------------------------------------------------------t------
+//----------------------------------------------------------------------------
 
 
 //------------------------------------ USER ----------------------------------//
@@ -116,6 +105,8 @@ Route::get('/meeting', [App\Http\Controllers\MeetingsController::class, 'index']
 Route::get('/meeting/{location}', [App\Http\Controllers\MeetingsController::class, 'showRuang'])->name('ruang');
 
 Route::get('/meeting/{location}/{roomId}', [App\Http\Controllers\MeetingsController::class, 'detail'])->name('detail');
+
+
 
 // Route::get('/meeting/{location}/{roomId}/gallery', [App\Http\Controllers\MeetingsController::class, 'showGallery'])->name('gallery');
 //-----------------------------------------------------------------------------------//

@@ -38,7 +38,12 @@ class MeetingsController extends Controller
         $hotels = Hotels::where('nama_cabang', $location)->get();
 
         // Mengambil detail ruangan berdasarkan ID ruangan
+        $meetings = Meetings::findOrFail($roomId);
+        
+        $gallery = Gallery::where('meeting_id', $roomId)->get();
+
         $meetings = Meetings::findOrFail($roomId); // Pastikan ada model Room untuk mengambil data ruangan
+
         $gallery = Gallery::where('meeting_id', $roomId)
             ->get();
 

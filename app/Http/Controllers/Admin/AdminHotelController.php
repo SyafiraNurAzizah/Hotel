@@ -11,12 +11,10 @@ use App\Models\Users;
 
 class AdminHotelController extends Controller
 {
-    public function AdminIndex()
-{
-    $bookinghotels = BookingHotel::with(['user', 'hotel'])->get();
-    return view('admin.hotel.index', compact('bookinghotels'));
-}
-
+    public function AdminIndex() {
+        $bookinghotels = BookingHotel::all(); // Mengambil semua data dari tabel booking hotels
+        return view('nama_view', compact('bookinghotels'));
+    }
 
     public function Adminshow($id)
 {
@@ -32,18 +30,18 @@ public function AdminDestroy($id)
     $bookinghotels = BookingHotel::findOrFail($id);
     $bookinghotels->delete();
 
-    return redirect()->route('admin.hotel.index');
+    return redirect()->route('admin.hotel.index', compact('bookinghotels'))->with('success', 'Pemesan hotel berhasil dihapus.');
 }
 public function edit($id)
 {
     // Ambil data pemesanan hotel berdasarkan ID
-    $bookinghotel = BookingHotel::with(['hotel', 'user'])->findOrFail($id);
+    $bookinghotels = BookingHotel::with(['hotel', 'user'])->findOrFail($id);
 
-    return view('admin.hotel.edit', compact('bookinghotel'));
+    return view('admin.hotel.edit', compact('bookinghotels'));
 }
 public function update(Request $request, $id)
 {
-    $bookinghotel = BookingHotel::findOrFail($id);
+    $bookinghotels = BookingHotel::findOrFail($id);
 
     
     // Validasi data yang diterima
@@ -54,10 +52,10 @@ public function update(Request $request, $id)
     ]);
 
     // Update data pemesanan
-    $bookinghotel->status = $request->status;
-    $bookinghotel->status_pembayaran = $request->status_pembayaran;
-    $bookinghotel->jumlah_harga = $request->jumlah_harga;
-    $bookinghotel->save();
+    $bookinghotels->status = $request->status;
+    $bookinghotels->status_pembayaran = $request->status_pembayaran;
+    $bookinghotels->jumlah_harga = $request->jumlah_harga;
+    $bookinghotels->save();
 
     return redirect()->route('admin.hotel.index')->with('success', 'Pemesan hotel berhasil diupdate.');
 }
