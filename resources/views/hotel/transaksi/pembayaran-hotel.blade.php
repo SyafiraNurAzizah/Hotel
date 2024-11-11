@@ -202,87 +202,84 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-    // Fungsi untuk preview gambar setelah dipilih
-    document.getElementById('file-input').addEventListener('change', function(event) {
-        const fileInput = event.target;
-        const previewContainer = document.getElementById('preview-container');
-        const previewImage = document.getElementById('preview-image');
-        const fileLabel = document.querySelector('.file-label');
+        // Fungsi untuk preview gambar setelah dipilih
+        document.getElementById('file-input').addEventListener('change', function(event) {
+            const fileInput = event.target;
+            const previewContainer = document.getElementById('preview-container');
+            const previewImage = document.getElementById('preview-image');
+            const fileLabel = document.querySelector('.file-label');
 
-        if (fileInput.files && fileInput.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                previewImage.src = e.target.result;
-                previewContainer.style.display = 'block';
-                fileLabel.style.display = 'none'; // Sembunyikan label setelah preview muncul
-            };
-            reader.readAsDataURL(fileInput.files[0]);
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                    fileLabel.style.display = 'none'; // Sembunyikan label setelah preview muncul
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+
+            // Klik pada preview untuk mengubah gambar kembali
+            previewImage.addEventListener('click', function() {
+                fileInput.click(); // Membuka input file saat gambar preview diklik
+            });
+        });
+
+
+        // Element-elemen overlay dan tombol pop-up
+        const formBuktiOverlay = document.getElementById('formBuktiOverlay');
+        const openFormBuktiPopup = document.getElementById('openFormBuktiPopup');
+        const closeFormBuktiPopup = document.getElementById('closeFormBuktiPopup');
+
+        const buktiOverlay = document.getElementById('buktiOverlay');
+        const openBuktiPopup = document.getElementById('openBuktiPopup');
+        const closeBuktiPopup = document.getElementById('closeBuktiPopup');
+
+        // Buka form bukti pembayaran jika tombol openFormBuktiPopup diklik
+        if (openFormBuktiPopup) {
+            openFormBuktiPopup.addEventListener('click', function(event) {
+                event.preventDefault(); // Mencegah action default dari link
+                formBuktiOverlay.style.display = 'flex';
+                buktiOverlay.style.display = 'none';
+            });
+        }
+        // Tutup form bukti pembayaran jika tombol closeFormBuktiPopup diklik
+        if (closeFormBuktiPopup) {
+            closeFormBuktiPopup.addEventListener('click', function() {
+                formBuktiOverlay.style.display = 'none';
+            });
+        }
+        // Tutup form bukti pembayaran jika area di luar form diklik
+        if (formBuktiOverlay) {
+            formBuktiOverlay.addEventListener('click', function(e) {
+                if (e.target === formBuktiOverlay) {
+                    formBuktiOverlay.style.display = 'none';
+                }
+            });
         }
 
-        // Klik pada preview untuk mengubah gambar kembali
-        previewImage.addEventListener('click', function() {
-            fileInput.click(); // Membuka input file saat gambar preview diklik
-        });
-    });
-
-    // Element-elemen overlay dan tombol pop-up
-    const formBuktiOverlay = document.getElementById('formBuktiOverlay');
-    const openFormBuktiPopup = document.getElementById('openFormBuktiPopup');
-    const closeFormBuktiPopup = document.getElementById('closeFormBuktiPopup');
-
-    const buktiOverlay = document.getElementById('buktiOverlay');
-    const openBuktiPopup = document.getElementById('openBuktiPopup');
-    const closeBuktiPopup = document.getElementById('closeBuktiPopup');
-
-    // Buka form bukti pembayaran jika tombol openFormBuktiPopup diklik
-    if (openFormBuktiPopup) {
-        openFormBuktiPopup.addEventListener('click', function(event) {
-            event.preventDefault(); // Mencegah action default dari link
-            formBuktiOverlay.style.display = 'flex';
-            buktiOverlay.style.display = 'none';
-        });
-    }
-
-    // Tutup form bukti pembayaran jika tombol closeFormBuktiPopup diklik
-    if (closeFormBuktiPopup) {
-        closeFormBuktiPopup.addEventListener('click', function() {
-            formBuktiOverlay.style.display = 'none';
-        });
-    }
-
-    // Tutup form bukti pembayaran jika area di luar form diklik
-    if (formBuktiOverlay) {
-        formBuktiOverlay.addEventListener('click', function(e) {
-            if (e.target === formBuktiOverlay) {
+        // Buka tampilan bukti pembayaran jika tombol openBuktiPopup diklik
+        if (openBuktiPopup) {
+            openBuktiPopup.addEventListener('click', function(event) {
+                event.preventDefault(); // Mencegah action default dari link
+                buktiOverlay.style.display = 'flex';
                 formBuktiOverlay.style.display = 'none';
-            }
-        });
-    }
-
-    // Buka tampilan bukti pembayaran jika tombol openBuktiPopup diklik
-    if (openBuktiPopup) {
-        openBuktiPopup.addEventListener('click', function(event) {
-            event.preventDefault(); // Mencegah action default dari link
-            buktiOverlay.style.display = 'flex';
-            formBuktiOverlay.style.display = 'none';
-        });
-    }
-
-    // Tutup tampilan bukti pembayaran jika tombol closeBuktiPopup diklik
-    if (closeBuktiPopup) {
-        closeBuktiPopup.addEventListener('click', function() {
-            buktiOverlay.style.display = 'none';
-        });
-    }
-
-    // Tutup tampilan bukti pembayaran jika area di luar tampilan diklik
-    if (buktiOverlay) {
-        buktiOverlay.addEventListener('click', function(e) {
-            if (e.target === buktiOverlay) {
+            });
+        }
+        // Tutup tampilan bukti pembayaran jika tombol closeBuktiPopup diklik
+        if (closeBuktiPopup) {
+            closeBuktiPopup.addEventListener('click', function() {
                 buktiOverlay.style.display = 'none';
-            }
-        });
-    }
-});
+            });
+        }
+        // Tutup tampilan bukti pembayaran jika area di luar tampilan diklik
+        if (buktiOverlay) {
+            buktiOverlay.addEventListener('click', function(e) {
+                if (e.target === buktiOverlay) {
+                    buktiOverlay.style.display = 'none';
+                }
+            });
+        }
+    });
 
 </script>
