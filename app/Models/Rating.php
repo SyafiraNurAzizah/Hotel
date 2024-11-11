@@ -16,7 +16,6 @@ class Rating extends Model
         'tipe_kamar_id',
         'rating',
         'comment',
-        'status',
     ];
 
     public function user()

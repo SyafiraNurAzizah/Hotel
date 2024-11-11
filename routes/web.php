@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\WeddingController;
+use App\Http\Controllers\Admin\HotelsController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
@@ -24,9 +25,6 @@ Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store']
 
 Route::get('/admin/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('admin.contact.index');
 Route::get('/admin/contact/{id}', [App\Http\Controllers\ContactController::class, 'show'])->name('admin.contact.show');
-
-// ----------------------------------- RATING --------------------------------- //
-Route::get('/hotel', [App\Http\Controllers\HotelsController::class, 'storeRating'])->name('hotel.store');
 
 //---------------------------- LOGIN & REGISTER -----------------------------//
 Auth::routes();
@@ -81,6 +79,8 @@ Route::get('/hotel/{location}/{nama_tipe}', [App\Http\Controllers\HotelsControll
 Route::get('/hotel/{location}/fasilitas', [App\Http\Controllers\HotelsController::class, 'showFasilitas'])->name('fasilitas');
 //--------------------------------------------------------------------------//
 
+// ----------------------------------- RATING --------------------------------- //
+Route::post('/rating/{nama_tipe}', [App\Http\Controllers\HotelsController::class, 'storeRating'])->name('rating.store');
 
 // ------------------------------------ Meetings----------------------------------//
 Route::get('/meeting', [App\Http\Controllers\MeetingsController::class, 'index'])->name('meeting');

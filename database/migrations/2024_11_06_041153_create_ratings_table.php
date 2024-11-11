@@ -17,7 +17,6 @@ return new class extends Migration
             $table->integer('tipe_kamar_id');
             $table->integer('rating');
             $table->text('comment');
-            $table->integer('status');
 
             $table->timestamps();
         });
