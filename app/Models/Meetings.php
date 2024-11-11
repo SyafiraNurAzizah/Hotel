@@ -11,7 +11,7 @@ class Meetings extends Model
 
     protected $table = 'meetings';
     protected $fillable = [
-       'hotel_id',
+        'hotel_id',
         'nama_ruang',
         'deskripsi',
         'harga_per_jam',

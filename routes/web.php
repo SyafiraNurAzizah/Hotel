@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HotelsController;
+use App\Http\Controllers\MeetingBookingController;
 use App\Http\Controllers\MeetingsController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
@@ -62,9 +63,20 @@ Route::middleware(['auth.custom'])->group(function () {
 
 
 //------------------------------ ADMIN -----------------------------------//
-Route::group(['middleware' => ['auth', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
+Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
     Route::get('/admin', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('admin.index');
     Route::get('/admin/hotel', [App\Http\Controllers\HomeController::class, 'adminHotel'])->name('admin.hotel.index');
+
+    Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.wedding.index');
+    Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edit');
+    Route::get('/admin/wedding/{id}', [WeddingController::class, 'show'])->name('admin.wedding.show');
+
+    Route::get('/admin/meeting', [MeetingsController::class, 'index'])->name('admin.meeting.index');
+    Route::get('/admin/meeting/create', [MeetingsController::class, 'create'])->name('admin.meeting.create');
+    Route::post('/admin/meeting', [MeetingsController::class, 'store'])->name('admin.meeting.store');
+    Route::get('/admin/meeting/{id}', [MeetingsController::class, 'edit'])->name('admin.meeting.edit');
+    Route::post('/admin/meeting/{id}', [MeetingsController::class, 'update'])->name('admin.meeting.update');
+    Route::delete('/admin/meeting/{id}', [MeetingsController::class, 'destroy'])->name('admin.meeting.destroy');
 });
 //----------------------------------------------------------------------------
 
@@ -81,7 +93,12 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\UserAccessMidd
     Route::post('/hotel/{location}/{nama_tipe}/transaksi/{uuid}/pembayaran', [App\Http\Controllers\BookingHotelController::class, 'pembayaranHotel'])->name('booking.hotel.pembayaran');
     Route::put('/hotel/{location}/{nama_tipe}/transaksi/{uuid}/pembayaran', [App\Http\Controllers\BookingHotelController::class, 'updatePembayaranHotel'])->name('booking.hotel.pembayaran.update');
     Route::post('/hotel/{location}/{nama_tipe}/{uuid}', [App\Http\Controllers\BookingHotelController::class, 'cancelHotel'])->name('booking.hotel.cancel');
-//---//
+
+
+
+//Booking Meeting//
+Route::resource('meeting_bookings', MeetingBookingController::class);
+
     // ----- //
     
 });

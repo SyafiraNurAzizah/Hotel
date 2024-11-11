@@ -6,51 +6,204 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            /* Jarak antar kartu */
             justify-content: center;
-            /* Pusatkan grid */
         }
 
         .card-container {
             flex: 1 1 300px;
-            /* Atur lebar minimum kartu */
             max-width: 300px;
-            /* Atur lebar maksimum kartu */
         }
 
         .card {
             border: 1px solid #ccc;
-            /* Gaya border */
             border-radius: 8px;
-            /* Gaya sudut */
             overflow: hidden;
-            /* Sembunyikan overflow */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            /* Tambahkan bayangan */
             transition: transform 0.3s;
-            /* Efek transisi */
         }
 
         .card:hover {
             transform: scale(1.05);
-            /* Efek hover */
         }
 
         .card img {
             width: 100%;
-            /* Gambar memenuhi lebar kartu */
             height: auto;
-            /* Tinggi otomatis untuk menjaga rasio */
         }
 
         .card-content {
             padding: 16px;
-            /* Ruang di dalam konten kartu */
             text-align: center;
-            /* Pusatkan teks */
+        }
+
+        .appointment-form {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h2 {
+            color: #1e3c72;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1e3c72;
+            font-weight: 500;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1e3c72;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-control:focus {
+            border-color: #1e3c72;
+            box-shadow: 0 0 10px rgba(30, 60, 114, 0.2);
+            outline: none;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .form-control.error {
+            border-color: #e74c3c;
+        }
+
+        .form-control.success {
+            border-color: #2ecc71;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .time-slot {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .time-slot:hover {
+            background: rgba(30, 60, 114, 0.1);
+        }
+
+        .time-slot.selected {
+            background: #1e3c72;
+            color: white;
+            border-color: #1e3c72;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #1e3c72;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background: #2a5298;
+            transform: translateY(-2px);
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            color: #2ecc71;
+            margin-top: 20px;
+            font-size: 1.1em;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(46, 204, 113, 0.1);
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px);
+            }
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        .shake {
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @media (max-width: 480px) {
+            .appointment-form {
+                padding: 20px;
+            }
+
+            .form-header h2 {
+                font-size: 1.5em;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
-    <!-- Breadcrumb Section Begin -->
     <div class="breadcrumb-section">
         <div class="container">
             <div class="row">
@@ -59,7 +212,7 @@
                         <h2>{{ $location }} Rooms</h2>
                         <div class="bt-option">
                             <a href="{{ route('ruang', ['location' => strtolower($location)]) }}" class="active">Home</a>
-                            {{-- <span><a href="#">Gallery</a></span> --}}
+                            <span><a href="#">Gallery</a></span>
                             {{-- <span><a href="{{ route('gallery', ['location' => strtolower($location), 'roomId' => $roomId]) }}">Gallery</a></span> --}}
                         </div>
                     </div>
@@ -67,57 +220,36 @@
             </div>
         </div>
     </div>
-    <!-- Breadcrumb Section End -->
-
-    <!-- Room Details Section Begin -->
     <section class="room-details-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
                     <div class="room-details-item">
-                        <img src="{{ asset('img/meetings/rooms/' . $room->foto) }}" alt="">
-                        <!-- Menggunakan path gambar ruangan dari model -->
+                        <img src="{{ $room->foto }}" alt="">
                         <div class="rd-text">
                             <div class="rd-title">
-                                <h3>{{ $room->nama_ruang }}</h3> <!-- Menggunakan nama ruang dari model -->
-                                {{-- <div class="rdt-right">
-                                    <a href="#">Booking Now</a>
-                                </div> --}}
+                                <h3>{{ $room->nama_ruang }}</h3>
                             </div>
                             <h2> Rp.{{ $room->harga_per_jam }}<span>/Jam</span></h2>
-                            <!-- Menggunakan harga per jam dari model -->
                             <table>
                                 <tbody>
                                     <tr>
                                         <td class="r-o">Ukuran:</td>
-                                        <td>{{ $room->ukuran_ruang }} m²</td> <!-- Menggunakan ukuran ruang dari model -->
+                                        <td>{{ $room->ukuran_ruang }} m²</td>
                                     </tr>
                                     <tr>
                                         <td class="r-o">Kapasitas:</td>
-                                        <td>{{ $room->kapasitas }} orang</td> <!-- Menggunakan kapasitas dari model -->
+                                        <td>{{ $room->kapasitas }} orang</td>
                                     </tr>
                                     <tr>
                                         <td class="r-o">Fasilitas:</td>
-                                        <td>{{ $room->fasilitas }}</td> <!-- Menggunakan fasilitas dari model -->
+                                        <td>{{ $room->fasilitas }}</td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <p class="f-para">{{ $room->deskripsi }}</p> <!-- Menggunakan deskripsi dari model -->
+                            <p class="f-para">{{ $room->deskripsi }}</p>
                         </div>
                     </div>
-
-
-                    @foreach ($gallery as $item)
-                    <div class="card-container">
-                            <div class="card">
-                                <img src="{{ asset('img/meetings/gallery/' . $item->foto) }}" alt="">
-                                <div class="card-content">
-                                    <h4 class="card-title">{{ $item->deskripsi }}</h4>
-                                </div>
-                            </div>
-                    </div>
-                    @endforeach
-                
                     <div class="row">
                         <div class="gallery-grid">
                             @foreach ($gallery as $item)
@@ -131,13 +263,11 @@
                                 </div>
                             @endforeach
                         </div>
-    
-                    </div>
 
+                    </div>
                     <!-- Ulasan dan form tambah ulasan -->
                     <div class="rd-reviews">
                         <h4>Reviews</h4>
-                        <!-- Ulasan bisa ditampilkan di sini -->
                     </div>
                     <div class="review-add">
                         <h4>Add Review</h4>
@@ -149,7 +279,6 @@
                                 <div class="col-lg-6">
                                     <input type="text" placeholder="Email*">
                                 </div>
-
                             </div>
                             <textarea placeholder="Your Review"></textarea>
                             <button type="submit">Submit Now</button>
@@ -157,20 +286,32 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="room-booking">
-                        <h3>Your Reservation</h3>
-                        <form action="#" class="ra-form">
-                            <div class="check-date">
-                                <label for="date-in">Check In:</label>
-                                <input type="datetime-local" class="date-input" id="date-in">
-                                {{-- <i class="icon_calendar"></i> --}}
+                    <form class="appointment-form" id="appointmentForm">
+                        <div class="form-header">
+                            <h2>Reservasi</h2>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap</label>
+                            <div class="input-group">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="name" name="name" class="form-control" required>
                             </div>
-                            {{-- <div class="select-option">
+                            <p class="error-message" id="nameError">Please enter your full name.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <div class="input-group">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="select-option">
                                 <label for="guest">Guests:</label>
                                 <select id="guest">
                                     <option value="">3 Adults</option>
                                 </select>
-                            </div> --}}
+                            </div>
                             <div class="select-option">
                                 <label for="room">Room:</label>
                                 <select id="room">
@@ -178,16 +319,30 @@
                                     <!-- Menggunakan nama ruang dari model -->
                                 </select>
                             </div>
-                            <button type="submit">Check Availability</button>
-                        </form>
-                    </div>
-                </div>                
+                            <p class="error-message" id="dateError">Please select a date.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="time">Time</label>
+                            <div class="time-slots">
+                                <div class="time-slot" data-time="08:00 AM">08:00 AM</div>
+                                <div class="time-slot" data-time="09:00 AM">09:00 AM</div>
+                                <div class="time-slot" data-time="10:00 AM">10:00 AM</div>
+                                <div class="time-slot" data-time="11:00 AM">11:00 AM</div>
+                                <div class="time-slot" data-time="12:00 PM">12:00 PM</div>
+                                <div class="time-slot" data-time="01:00 PM">01:00 PM</div>
+                                <div class="time-slot" data-time="02:00 PM">02:00 PM</div>
+                                <div class="time-slot" data-time="03:00 PM">03:00 PM</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="submit-btn">Book Now</button>
+                        </div>
+                    </form>
+                    <div class="success-message" id="successMessage">Your reservation was successfully made!</div>
+                </div>
             </div>
         </div>
-
     </section>
-    <!-- Room Details Section End -->
-
-    <!-- Footer Section Begin -->
-    <!-- (footer code di sini) -->
 @endsection
