@@ -5,7 +5,11 @@
 @endpush
 
 @section('content')
-<br><br><br><br>
+<br><br><br>
+<div class="back-button">
+    <h3><a href="javascript:history.back()" class="btn btn-back">←</a></h3>
+</div>
+<br>
     <section class="room-details-section spad">
         <div class="container">
             <div class="row">

@@ -2,9 +2,37 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/rooms.css') }}">
+<style>
+/* CSS untuk Tombol Kembali */
+.back-button {
+    position: fixed;
+    top: 90px; /* Sesuaikan posisi vertikal */
+    left: 40px; /* Sesuaikan posisi horizontal */
+	
+}
+
+.btn-back {
+    background-color: #dfa974;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50% ;
+    text-decoration: none;
+    font-size: 20px;
+
+    transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: #c97a5b;
+}
+
+</style>
 @endpush
 
 @section('content')
+<div class="back-button">
+    <h3><a href="javascript:history.back()" class="btn btn-back">←</a></h3>
+</div>
 <!-- Breadcrumb Section Begin -->
 <div class="breadcrumb-section">
     <div class="container">
@@ -37,7 +65,7 @@
                         @foreach ($hotel->tipe_ruang as $room)
                             <div class="col-lg-4 col-md-6">
                                 <div class="room-item">
-                                    <img src="{{ asset('img/meetings/rooms/' . $room->foto) }}" alt="">
+                                    <img src="{{ $room->foto }}" alt="">
                                     <div class="ri-text">
                                         <h4>{{ $room->nama_ruang }}</h4>
                                         <h3>Rp{{ $room->harga_per_jam }}<span> /Jam</span></h3>
