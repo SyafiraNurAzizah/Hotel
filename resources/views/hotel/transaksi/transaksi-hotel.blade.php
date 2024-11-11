@@ -189,15 +189,6 @@
     <div class="bukti">
         <span class="close" id="closeBuktiReservasiPopup"></span>
 
-        {{-- <div class="buktiReservasi">
-            <h1>Tes</h1>
-        </div>
-
-        <button id="saveBuktiReservasi">Simpan sebagai Gambar</button> --}}
-
-
-
-
         @foreach ($hotels as $hotel)
         <div id="buktiReservasi">
             <h1>Reservasi Hotel</h1>
@@ -339,13 +330,14 @@
 
 
         var hotelName = @json($hotels->first()->nama_cabang);
+        var uuid = @json($booking->uuid).substring(0, 5);
         
         document.getElementById('saveBuktiReservasi').addEventListener('click', function () {
             html2canvas(document.getElementById('buktiReservasi')).then(function (canvas) {
                 // Konversi kanvas menjadi data URL gambar
                 let link = document.createElement('a');
                 link.href = canvas.toDataURL("image/png");
-                link.download = 'Bukti Pembayaran - Hotel Berlian ' + hotelName + '.png';
+                link.download = 'Bukti Pembayaran - Hotel Berlian ' + hotelName + ' #' + uuid + '.png';
                 link.click();
             });
         });
