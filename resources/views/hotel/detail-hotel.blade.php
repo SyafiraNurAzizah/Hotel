@@ -147,11 +147,11 @@
 @endpush --}}
 
 @section('content')
-<br><br><br>
-<div class="back-button">
-    <h3><a href="javascript:history.back()" class="btn btn-back">←</a></h3>
-</div>
-<br>
+    <br><br><br>
+    <div class="back-button">
+        <h3><a href="javascript:history.back()" class="btn btn-back">←</a></h3>
+    </div>
+    <br>
     <section class="room-details-section spad">
         <div class="container">
             <div class="row">
@@ -239,8 +239,8 @@
                             <input type="hidden" id="rating" name="rating" value="0"> {{-- Hidden input untuk menyimpan nilai rating --}}
 
                             <div class="form-group">
-                                <label for="rating">Berikan Rating Anda:</label>
-                                <div id="star-rating" style="font-size: 24px; color: #f5b917;">
+                                <h5 class="rating mb-2">Berikan Rating Anda :</h5>
+                                <div id="star-rating">
                                     {{-- Bintang-bintang yang dapat diklik --}}
                                     @for ($i = 1; $i <= 5; $i++)
                                         <i class="icon_star" data-value="{{ $i }}" style="cursor: pointer;"></i>
@@ -249,15 +249,37 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="comment">Comment:</label>
-                                <textarea name="comment" id="comment" rows="3" class="form-control" placeholder="Masukkan komentar Anda"></textarea>
+                                {{-- <label for="comment">Comment:</label> --}}
+                                <textarea name="comment" id="comment" rows="2" class="form-control" placeholder="Masukkan komentar Anda"></textarea>
                             </div>
 
-                            <button type="submit" class="btn mt-2">Submit Rating</button>
+                            <button type="submit" class="btn mt-2" style="background-color: #dfa974; color: #fff;">Submit
+                                Rating</button>
                         </form>
 
 
-
+                        <div class="review mt-5">
+                            <h4>Reviews</h4>
+                            <div class="review-item">
+                                <div class="ri-pic">
+                                    <img src="img/room/avatar/avatar-1.jpg" alt="">
+                                </div>
+                                <div class="ri-text">
+                                    <span>27 Aug 2019</span>
+                                    <div class="rating">
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star-half_alt"></i>
+                                    </div>
+                                    <h5>Brandon Kelley</h5>
+                                    <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
+                                        magnam.</p>
+                                </div>
+                            </div>
+                        </div>
 
 
 
@@ -544,7 +566,7 @@
                 stars.forEach(star => {
                     if (star.getAttribute('data-value') <= rating) {
                         star.classList.add(
-                        'filled'); // Beri kelas filled jika rating bintang lebih kecil atau sama
+                            'filled'); // Beri kelas filled jika rating bintang lebih kecil atau sama
                     } else {
                         star.classList.remove('filled'); // Hilangkan kelas filled jika rating lebih besar
                     }
@@ -557,20 +579,17 @@
 @push('styles')
     <style>
         #star-rating .icon_star {
-            font-size: 30px;
+            font-size: 20px;
             color: #e0e0e0;
-            /* Warna default (abu-abu) */
             transition: color 0.2s ease;
         }
 
         #star-rating .icon_star.filled {
             color: #f5b917;
-            /* Warna kuning untuk bintang yang terisi */
         }
 
         #star-rating .icon_star:hover {
             color: #f5b917;
-            /* Warna kuning saat hover */
         }
     </style>
 @endpush
