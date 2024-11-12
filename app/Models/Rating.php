@@ -27,4 +27,9 @@ class Rating extends Model
     {
         return $this->belongsTo('App\Models\TipeKamar');
     }
+
+    // public function userRating()
+    // {
+    //     return $this->belongsTo(User::class, 'user_id');
+    // }
 }

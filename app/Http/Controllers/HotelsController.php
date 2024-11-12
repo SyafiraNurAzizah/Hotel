@@ -111,9 +111,6 @@ class HotelsController extends Controller
 
     public function storeRating(Request $request, $nama_tipe)
     {
-        $ratings = Rating::with('user')->where('tipe_kamar_id', $request->tipe_kamar_id)->get();
-        return view('room.show', compact('room', 'ratings'));
-                
         if (!Auth::check()) {// Cek apakah pengguna sudah login
             return redirect()->route('login')->with('error', 'You must be logged in to submit a rating.');
         }
@@ -135,6 +132,25 @@ class HotelsController extends Controller
 
         return redirect()->back()->with('success', 'Thank you for your rating!');
     }
+
+    public function showRating($location, $nama_tipe)
+    {
+        $hotels = Hotels::where('nama_cabang', $location)->get();
+
+        $room = TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail();
+
+        foreach ($hotels as $hotel) {
+            $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
+        }
+
+        return view('hotel.rating', [
+            'location' => ucfirst($location),
+            'hotels' => $hotels,
+            'room' => $room
+        ])
+        ->with('success', 'Thank you for your rating!');
+    }
+
     public function search(Request $request)
     {
         $query = $request->input('query');

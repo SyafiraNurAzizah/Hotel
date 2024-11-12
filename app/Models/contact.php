@@ -11,7 +11,6 @@ class contact extends Model
 
     protected $table = 'contact';
     protected $fillable = [
-        // 'user_id',
         'Nama',
         'Email',
         'Pesan',

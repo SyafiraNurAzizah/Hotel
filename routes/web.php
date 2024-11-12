@@ -124,6 +124,10 @@ Route::get('/hotel/{location}/fasilitas', [App\Http\Controllers\HotelsController
 
 // ----------------------------------- RATING --------------------------------- //
 Route::post('/rating/{nama_tipe}', [App\Http\Controllers\HotelsController::class, 'storeRating'])->name('rating.store');
+Route::get('/rating/{nama_tipe}', [App\Http\Controllers\HotelsController::class, 'showRating'])->name('rating.show');
+
+Route::get('review', [App\Http\Controllers\HotelsController::class, 'index'])->name('admin.review.index');    
+// ---------------------------------------------------------------------------- //
 
 // ------------------------------------ Meetings----------------------------------//
 Route::get('/meeting', [App\Http\Controllers\MeetingsController::class, 'index'])->name('meeting');

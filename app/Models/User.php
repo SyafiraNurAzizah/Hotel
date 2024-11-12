@@ -21,7 +21,7 @@ class User extends Authenticatable
         'firstname',
         'lastname',
         'email',
-        'password', 
+        'password',
         'no_telp',
         'role',
     ];
@@ -60,4 +60,8 @@ class User extends Authenticatable
         return $this->hasOne(ProfileUser::class, 'user_id');
     }
 
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class, 'user_id');
+    }
 }

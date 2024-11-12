@@ -163,11 +163,19 @@
                                 <h3>{{ $room->nama_tipe }}</h3>
                                 <div class="rdt-right">
                                     <div class="rating">
+                                        @for ($i = 1; $i <= $room->ratings->avg('rating'); $i++)
+                                            <i class="icon_star"></i>
+                                        @endfor
+                                        @for ($i = $room->ratings->avg('rating') + 1; $i <= 5; $i++)
+                                            <i class="icon_star-empty"></i>
+                                        @endfor
+
+
+                                        {{-- <i class="icon_star"></i>
                                         <i class="icon_star"></i>
                                         <i class="icon_star"></i>
                                         <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star-half_alt"></i>
+                                        <i class="icon_star-half_alt"></i> --}}
                                     </div>
                                 </div>
                             </div>
@@ -201,85 +209,67 @@
 
 
                     <div class="rd-reviews">
+                        {{-- RATING FORM --}}
+                        <div class="rating mb-5">
+                            <form action="{{ route('rating.store', $room->nama_tipe) }}" method="POST" class="rating-form">
+                                @csrf
+                                <input type="hidden" name="tipe_kamar_id" value="{{ $room->id }}">
+                                <input type="hidden" id="rating" name="rating" value="0"> {{-- Hidden input untuk menyimpan nilai rating --}}
 
-                        {{-- RATING --}}
-                        {{-- <form action="{{ route('hotels.storeRating') }}" method="POST" class="contact-form">
-                            @csrf
-                            <input type="hidden" name="tipe_kamar_id" value="{{ $room->id }}">
+                                <div class="form-group">
+                                    <h5 class="rating mb-2">Berikan Rating Anda :</h5>
+                                    <div id="star-rating">
+                                        {{-- Bintang-bintang yang dapat diklik --}}
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <i class="icon_star" data-value="{{ $i }}"
+                                                style="cursor: pointer;"></i>
+                                        @endfor
+                                    </div>
+                                </div>
 
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="ri-text" style="margin-bottom: 15px;">
-                                        <h5>Bradon</h5>
-                                        <div class="rating" style="color: #f5b917; font-size: 16px;">
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star-half_alt"></i>
+                                <div class="form-group">
+                                    {{-- <label for="comment">Comment:</label> --}}
+                                    <textarea name="comment" id="comment" rows="2" class="form-control" placeholder="Masukkan komentar Anda"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn mt-2"
+                                    style="background-color: #dfa974; color: #fff;">Submit</button>
+                            </form>
+                        </div>
+
+
+                        {{-- REVIEW --}}
+                        <div class="reviews">
+                            <h4>Reviews</h4>
+                            @forelse ($room->ratings as $rating)
+                                <div class="review">
+                                    <div class="review-item">
+                                        <div class="ri-pic">
+                                            <img src="img/room/avatar/avatar-1.jpg" alt="">
+                                        </div>
+                                        <div class="ri-text">
+                                            <h5 class="m-0">{{ $rating->user->firstname }}</h5>
+                                            <span>{{ $rating->created_at->format('Y-m-d') }}</span>
+                                            <div class="rating">
+                                                @for ($i = 1; $i <= $rating->rating; $i++)
+                                                    <i class="icon_star"></i>
+                                                @endfor
+                                                @for ($i = $rating->rating + 1; $i <= 5; $i++)
+                                                    <i class="icon_star-empty"></i>
+                                                @endfor
+                                            </div>
+                                            <p class="mt-2">{{ $rating->comment }}</p>
                                         </div>
                                     </div>
+
+
                                 </div>
-
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <label for="servingSize">Pesan</label>
-                                        <input type="text-area" id="comment" name="comment" class="form-control">
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="btn" style="margin-left: 15px">Submit Now</button>
-                            </div>
-                        </form> --}}
-
-                        {{-- Rating Form --}}
-                        <form action="{{ route('rating.store', $room->nama_tipe) }}" method="POST" class="rating-form">
-                            @csrf
-                            <input type="hidden" name="tipe_kamar_id" value="{{ $room->id }}">
-                            <input type="hidden" id="rating" name="rating" value="0"> {{-- Hidden input untuk menyimpan nilai rating --}}
-
-                            <div class="form-group">
-                                <h5 class="rating mb-2">Berikan Rating Anda :</h5>
-                                <div id="star-rating">
-                                    {{-- Bintang-bintang yang dapat diklik --}}
-                                    @for ($i = 1; $i <= 5; $i++)
-                                        <i class="icon_star" data-value="{{ $i }}" style="cursor: pointer;"></i>
-                                    @endfor
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                {{-- <label for="comment">Comment:</label> --}}
-                                <textarea name="comment" id="comment" rows="2" class="form-control" placeholder="Masukkan komentar Anda"></textarea>
-                            </div>
-
-                            <button type="submit" class="btn mt-2" style="background-color: #dfa974; color: #fff;">Submit
-                                Rating</button>
-                        </form>
-
-
-                        <div class="review mt-5">
-                            <h4>Reviews</h4>
-                            <div class="review-item">
-                                <div class="ri-pic">
-                                    <img src="img/room/avatar/avatar-1.jpg" alt="">
-                                </div>
-                                <div class="ri-text">
-                                    <span>27 Aug 2019</span>
-                                    <div class="rating">
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star-half_alt"></i>
-                                    </div>
-                                    <h5>Brandon Kelley</h5>
-                                    <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                        adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
-                                        magnam.</p>
-                                </div>
-                            </div>
+                            @empty
+                                <P>Belum ada rating</P>
+                            @endforelse
                         </div>
+
+
 
 
 
