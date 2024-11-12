@@ -48,11 +48,30 @@ class HomeController extends Controller
     {
         return view('admin.hotel.index');
     }
-
-    public function adminWedding()
+    public function adminMeetings()
     {
-        return view('admin.wedding.index');
+        return view('admin.meetings.index');
+    }
+    public function adminWeddings()
+    {
+        return view('admin.weddings.index');
     }
     
+    
+    //FOOTER
+    public function termofus()
+    {
+        return view('termofus');
+    }
+
+    public function kebpolice()
+    {
+        return view('kebpolice');
+    }
+
+    public function privacyhotel()
+    {
+        return view('privacyhotel');
+    }
 }
  

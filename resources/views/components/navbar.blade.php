@@ -1,5 +1,11 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+@push('styles')
+<style>
+    /* Search icon and bar styling */
 
+
+</style>
+@endpush
 <header class="header-section">
     <div class="menu-item">
         <div class="container">
@@ -27,7 +33,7 @@
                                     <li class="{{ Request::is('meeting') || Request::is('meeting/*') ? 'active' : '' }}"><a href="{{ url('meeting') }}">Meetings</a></li>
                                     <li class="{{ Request::is('wedding') ? 'active' : '' }}"><a href="{{ route('wedding.index') }}">Weedings</a></li>
                                     <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">Contact</a></li>
-                                @elseif (Auth::check() && Auth::user()->role == 'admin')
+                                    @elseif (Auth::check() && Auth::user()->role == 'admin')
                                     <li class="{{ Request::is('admin') ? 'active' : '' }}"><a href="{{ route('admin.index') }}">ADMIN</a></li>
                                     <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ route('admin.hotel.index') }}">Hotel</a></li>
                                     <li class="{{ Request::is('wedding') ? 'active' : '' }}"><a href="{{ route('admin.wedding.index') }}">Weedings</a></li>
@@ -35,9 +41,8 @@
                                 @endif
                             </ul>
                         </nav>                        
-                        <div class="nav-right search-switch">
-                            <i class="icon_search"></i>
-                        </div>
+                       
+                        
                         <div class="nav-right login-button">
                             @if (Auth::check() && Auth::user()->role == 'user')
                                 <div class="profile-user">
@@ -92,6 +97,7 @@
     </div>
 </header>
 
+
 @push('scripts')
     <script>
         window.addEventListener('scroll', function() {
@@ -142,5 +148,24 @@
         } else {
             navMenu.classList.remove('dropdown-present');
         }
+
+
+
+        //search
+        document.addEventListener('DOMContentLoaded', function() {
+    const searchIcon = document.getElementById('search-icon');
+    const searchBar = document.getElementById('search-bar');
+
+    searchIcon.addEventListener('click', function() {
+        searchBar.classList.toggle('active');
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!searchBar.contains(event.target) && !searchIcon.contains(event.target)) {
+            searchBar.classList.remove('active');
+        }
+    });
+});
+
     </script>
 @endpush

@@ -5,6 +5,12 @@
 @endpush
 
 @section('content')
+
+<div class="back-button">
+    <h3><a href="javascript:history.back()" class="btn btn-back">←</a></h3>
+</div>
+
+<br><br><br><br>
 <!-- Breadcrumb Section Begin -->
 <div class="breadcrumb-section">
     <div class="container">

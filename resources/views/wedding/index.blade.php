@@ -11,10 +11,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text m-5">
                         <h2>Wedding Rooms</h2>
-                        <div class="bt-option">
-                            <a href="{{ route('index') }}">Beranda</a>
-                            <span>Rooms</span>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

@@ -46,7 +46,6 @@ class UserSeeder extends Seeder
             'no_telp' => '1234567891',
             'role' => 'admin', 
         ]);
-
         
     }
 }
