@@ -239,7 +239,7 @@
                             <input type="hidden" id="rating" name="rating" value="0"> {{-- Hidden input untuk menyimpan nilai rating --}}
 
                             <div class="form-group">
-                                <label for="rating">Brandon</label>
+                                <label for="rating">Berikan Rating Anda:</label>
                                 <div id="star-rating" style="font-size: 24px; color: #f5b917;">
                                     {{-- Bintang-bintang yang dapat diklik --}}
                                     @for ($i = 1; $i <= 5; $i++)
@@ -250,10 +250,10 @@
 
                             <div class="form-group">
                                 <label for="comment">Comment:</label>
-                                <textarea name="comment" id="comment" rows="3" class="form-control"></textarea>
+                                <textarea name="comment" id="comment" rows="3" class="form-control" placeholder="Masukkan komentar Anda"></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-primary mt-2">Submit Rating</button>
+                            <button type="submit" class="btn mt-2">Submit Rating</button>
                         </form>
 
 

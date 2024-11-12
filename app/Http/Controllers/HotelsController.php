@@ -111,8 +111,10 @@ class HotelsController extends Controller
 
     public function storeRating(Request $request, $nama_tipe)
     {
-        // Cek apakah pengguna sudah login
-        if (!Auth::check()) {
+        $ratings = Rating::with('user')->where('tipe_kamar_id', $request->tipe_kamar_id)->get();
+        return view('room.show', compact('room', 'ratings'));
+                
+        if (!Auth::check()) {// Cek apakah pengguna sudah login
             return redirect()->route('login')->with('error', 'You must be logged in to submit a rating.');
         }
 
