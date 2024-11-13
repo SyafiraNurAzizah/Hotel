@@ -11,18 +11,18 @@ use Illuminate\Support\Facades\Auth;
 
 class HotelsController extends Controller
 {
-    
+
     // Method untuk menampilkan daftar hotel
     public function index()
     {
         // Ambil semua hotel
         $hotels = Hotels::all();
-        
+
         // Tampilkan halaman yang sesuai berdasarkan role user
         return Auth::check() && Auth::user()->role == 'admin'
             ? redirect()->route('admin.hotel.index') // Jika admin, redirect ke halaman admin
             : view('hotel', compact('hotels')); // Jika user biasa, tampilkan halaman hotel
-            
+
     }
 
     // Method untuk menampilkan kamar berdasarkan lokasi
@@ -40,11 +40,11 @@ class HotelsController extends Controller
             ? view('admin.hotel.rooms', [
                 'location' => ucfirst($location),
                 'hotels' => $hotels
-              ])
+            ])
             : view('hotel.rooms', [
                 'location' => ucfirst($location),
                 'hotels' => $hotels
-              ]);
+            ]);
     }
 
     public function showRoomsDetail($location, $nama_tipe)
@@ -79,11 +79,11 @@ class HotelsController extends Controller
             ? view('admin.hotel.fasilitas', [
                 'location' => ucfirst($location),
                 'hotels' => $hotels
-              ])
+            ])
             : view('hotel.fasilitas', [
                 'location' => ucfirst($location),
                 'hotels' => $hotels
-              ]);
+            ]);
     }
 
     // Method untuk halaman admin, menampilkan daftar hotel
@@ -109,9 +109,12 @@ class HotelsController extends Controller
         ]);
     }
 
+
+
+    // ---------------------------- RATING ---------------------------- //
     public function storeRating(Request $request, $nama_tipe)
     {
-        if (!Auth::check()) {// Cek apakah pengguna sudah login
+        if (!Auth::check()) { // Cek apakah pengguna sudah login
             return redirect()->route('login')->with('error', 'You must be logged in to submit a rating.');
         }
 
@@ -148,18 +151,26 @@ class HotelsController extends Controller
             'hotels' => $hotels,
             'room' => $room
         ])
-        ->with('success', 'Thank you for your rating!');
+            ->with('success', 'Thank you for your rating!');
     }
 
-    public function indexAdminReview()
+    public function indexAdminReview($id)
     {
-        return view('admin.review.index');
+        // Assuming you have a relationship between hotel and ratings
+        $ratings = Rating::where('hotel_id', $id)->get();
+
+        // Calculate the number of reviews for each rating value (1 to 5 stars)
+        $ratingCounts = [1, 2, 3, 4, 5];
+        $ratingData = [];
+
+        foreach ($ratingCounts as $rating) {
+            $ratingData[$rating] = $ratings->where('rating', $rating)->count();
+        }
+
+        // Pass the data to the view
+        return view('admin.review.index', compact('ratingData'));
     }
-
-    // public function storeAdminReview()
-    // {
-
-    // }
+    // -------------------------------------------------- //
 
 
 
@@ -169,11 +180,10 @@ class HotelsController extends Controller
 
         // Lakukan pencarian berdasarkan nama atau lokasi hotel
         $hotels = Hotels::where('nama_cabang', 'LIKE', "%{$query}%")
-                       ->orWhere('alamat', 'LIKE', "%{$query}%")
-                       ->get();
+            ->orWhere('alamat', 'LIKE', "%{$query}%")
+            ->get();
 
         // Kembalikan hasil pencarian ke view
         return view('hotel', compact('hotels', 'query'));
     }
-   
 }
