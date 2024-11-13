@@ -56,7 +56,7 @@ class ContactController extends Controller
          }
      
          if ($contact->save()) {
-             return redirect()->route('hotel')->with('success', 'Pesan berhasil dikirim.');
+             return redirect()->route('contact')->with('success', 'Pesan berhasil dikirim.');
          } else {
              return back()->with('error', 'Pesan gagal dikirim.');
          }

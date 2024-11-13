@@ -151,6 +151,18 @@ class HotelsController extends Controller
         ->with('success', 'Thank you for your rating!');
     }
 
+    public function indexAdminReview()
+    {
+        return view('admin.review.index');
+    }
+
+    // public function storeAdminReview()
+    // {
+
+    // }
+
+
+
     public function search(Request $request)
     {
         $query = $request->input('query');

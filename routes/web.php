@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminHotelController;
+use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
 use App\Http\Controllers\Admin\WeddingController;
 use App\Http\Controllers\AdminHotelController as ControllersAdminHotelController;
 use App\Http\Controllers\BookingHotelController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HotelsController;
 use App\Http\Controllers\MeetingBookingController;
 use App\Http\Controllers\MeetingsController;
+use App\Http\Controllers\ReviewController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
@@ -84,6 +86,11 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMid
     Route::get('/admin/meeting/{id}', [MeetingsController::class, 'edit'])->name('admin.meeting.edit');
     Route::post('/admin/meeting/{id}', [MeetingsController::class, 'update'])->name('admin.meeting.update');
     Route::delete('/admin/meeting/{id}', [MeetingsController::class, 'destroy'])->name('admin.meeting.destroy');
+
+
+    Route::get('/admin/review', [HotelsController::class, 'indexAdminReview'])->name('admin.review.index');
+    // Route::get('/admin/review', [HotelsController::class, 'showRating'])->name('admin.review.show');
+
 });
 //----------------------------------------------------------------------------
 
@@ -125,8 +132,6 @@ Route::get('/hotel/{location}/fasilitas', [App\Http\Controllers\HotelsController
 // ----------------------------------- RATING --------------------------------- //
 Route::post('/rating/{nama_tipe}', [App\Http\Controllers\HotelsController::class, 'storeRating'])->name('rating.store');
 Route::get('/rating/{nama_tipe}', [App\Http\Controllers\HotelsController::class, 'showRating'])->name('rating.show');
-
-Route::get('review', [App\Http\Controllers\HotelsController::class, 'index'])->name('admin.review.index');    
 // ---------------------------------------------------------------------------- //
 
 // ------------------------------------ Meetings----------------------------------//
