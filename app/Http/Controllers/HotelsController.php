@@ -154,22 +154,22 @@ class HotelsController extends Controller
             ->with('success', 'Thank you for your rating!');
     }
 
-    public function indexAdminReview($id)
-    {
-        // Assuming you have a relationship between hotel and ratings
-        $ratings = Rating::where('hotel_id', $id)->get();
+    // public function indexAdminReview($id)
+    // {
+    //     // Assuming you have a relationship between hotel and ratings
+    //     $ratings = Rating::where('hotel_id', $id)->get();
 
-        // Calculate the number of reviews for each rating value (1 to 5 stars)
-        $ratingCounts = [1, 2, 3, 4, 5];
-        $ratingData = [];
+    //     // Calculate the number of reviews for each rating value (1 to 5 stars)
+    //     $ratingCounts = [1, 2, 3, 4, 5];
+    //     $ratingData = [];
 
-        foreach ($ratingCounts as $rating) {
-            $ratingData[$rating] = $ratings->where('rating', $rating)->count();
-        }
+    //     foreach ($ratingCounts as $rating) {
+    //         $ratingData[$rating] = $ratings->where('rating', $rating)->count();
+    //     }
 
-        // Pass the data to the view
-        return view('admin.review.index', compact('ratingData'));
-    }
+    //     // Pass the data to the view
+    //     return view('admin.review.index', compact('ratingData'));
+    // }
     // -------------------------------------------------- //
 
 

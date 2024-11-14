@@ -88,7 +88,7 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMid
     Route::delete('/admin/meeting/{id}', [MeetingsController::class, 'destroy'])->name('admin.meeting.destroy');
 
 
-    Route::get('/admin/review/{id}', [HotelsController::class, 'indexAdminReview'])->name('admin.review.index');
+    Route::get('/admin/review', [HotelsController::class, 'indexAdminReview'])->name('admin.review.index');
     // Route::get('/admin/review/{id}', [HotelsController::class, 'showAdminReview'])->name('admin.review.show');
 
 });
