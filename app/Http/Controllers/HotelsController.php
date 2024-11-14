@@ -154,22 +154,49 @@ class HotelsController extends Controller
             ->with('success', 'Thank you for your rating!');
     }
 
-    // public function indexAdminReview($id)
-    // {
-    //     // Assuming you have a relationship between hotel and ratings
-    //     $ratings = Rating::where('hotel_id', $id)->get();
+    public function indexAdminReview()
+    {
+        // // Assuming you have a relationship between hotel and ratings
+        // $ratings = Rating::where('hotel_id', $id)->get();
 
-    //     // Calculate the number of reviews for each rating value (1 to 5 stars)
-    //     $ratingCounts = [1, 2, 3, 4, 5];
-    //     $ratingData = [];
+        // // Calculate the number of reviews for each rating value (1 to 5 stars)
+        // $ratingCounts = [1, 2, 3, 4, 5];
+        // $ratingData = [];
 
-    //     foreach ($ratingCounts as $rating) {
-    //         $ratingData[$rating] = $ratings->where('rating', $rating)->count();
-    //     }
+        // foreach ($ratingCounts as $rating) {
+        //     $ratingData[$rating] = $ratings->where('rating', $rating)->count();
+        // }
 
-    //     // Pass the data to the view
-    //     return view('admin.review.index', compact('ratingData'));
-    // }
+        // Pass the data to the view
+        // return view('admin.review.index', compact('ratingData'));
+        return view('admin.review.index');
+    }
+
+    public function showAdminRating($location, $nama_tipe)
+    {
+        $hotels = Hotels::where('nama_cabang', $location)->get();
+
+        $room = TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail();
+
+        foreach ($hotels as $hotel) {
+            $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
+        }
+
+        return view('hotel.rating', [
+            'location' => ucfirst($location),
+            'hotels' => $hotels,
+            'room' => $room
+        ])
+            ->with('success', 'Thank you for your rating!');
+    }
+
+    public function destroyAdminReview($id)
+    {
+        Rating::where('id', $id)->delete();
+        $room = TipeKamar::with('hotel')->where('id', $id)->firstOrFail();
+
+        return redirect()->route('admin.review.index')->with('success', 'Review deleted successfully.');
+    }
     // -------------------------------------------------- //
 
 

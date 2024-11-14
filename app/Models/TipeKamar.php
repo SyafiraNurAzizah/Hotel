@@ -34,4 +34,9 @@ class TipeKamar extends Model
         return $this->hasMany('App\Models\Rating');
     }
     
+    public function review()
+    {
+        return $this->hasMany('App\Models\Rating');
+    }
+
 }
