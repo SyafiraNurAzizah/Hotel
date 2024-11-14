@@ -1,24 +1,21 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 
 @section('content')
-    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
-        <div class="container-xl px-4">
-            <div class="page-header-content pt-4">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-auto mt-4">
-                        <h1 class="page-header-title">
-                            <div class="page-header-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                                </svg></div>
-                            Edit Ruangan Meeting
-                        </h1>
+<!-- Breadcrumb Section Begin -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text m-5">
+                    <h2>Edit Meetings</h2>
+                    <div class="bt-option">
+                        <a href="{{ route('index') }}">Beranda</a>
+                        <span>Data Meetings</span>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
 
     <div class="container-xl px-4 mt-n10">
         <div class="row card h-100 p-3">

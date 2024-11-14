@@ -109,6 +109,18 @@
                         </div>
                     </div>
                 </div> --}}
+
+                {{-- <form class="appointment-form" id="appointmentForm" method="POST" action="{{ route('bookings.store') }}">
+                    @csrf
+                    <!-- form fields go here as before -->
+                </form> --}}
+                @if(session('success'))
+    <div class="success-message">
+        {{ session('success') }}
+    </div>
+@endif
+
+                
             </div>
         </div>
     </section>

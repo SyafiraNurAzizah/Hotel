@@ -41,7 +41,7 @@ class MeetingsController extends Controller
         
         $gallery = Gallery::where('meeting_id', $roomId)->get();
 
-        $meetings = Meetings::findOrFail($roomId); // Pastikan ada model Room untuk mengambil data ruangan
+        // $meetings = Meetings::findOrFail($roomId); 
 
         $gallery = Gallery::where('meeting_id', $roomId)
             ->get();
@@ -73,5 +73,6 @@ class MeetingsController extends Controller
 //         'room' => $room                   // Pass the room details to the view
 //     ]);
 // }
+
 
 }

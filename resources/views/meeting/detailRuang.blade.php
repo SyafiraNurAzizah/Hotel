@@ -296,10 +296,15 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <form class="appointment-form" id="appointmentForm">
+                    @foreach($hotels as $hotel)
+                    <form action="{{ route('booking.meeting.store', ['location' => strtolower($location), 'roomId' => $room->id]) }}" method="POST" class="appointment-form" id="appointmentForm">
+                        @csrf
                         <div class="form-header">
                             <h2>Reservasi</h2>
                         </div>
+
+                        <input type="hidden" name="hotel_id" value="{{ $hotel->id }}">
+                        <input type="hidden" name="meeting_id" value="{{ $room->id }}">
 
                         <div class="form-group">
                             <label for="name">Nama Lengkap</label>
@@ -338,8 +343,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="time">Time</label>
-                            <div class="time-slots">
+                            <label for="startTime">Start Time</label>
+                            <input type="hidden" id="startTime" name="start_time">
+                            <div class="time-slots" id="startTimeSlots">
                                 <div class="time-slot" data-time="08:00 AM">08:00 AM</div>
                                 <div class="time-slot" data-time="09:00 AM">09:00 AM</div>
                                 <div class="time-slot" data-time="10:00 AM">10:00 AM</div>
@@ -350,14 +356,71 @@
                                 <div class="time-slot" data-time="03:00 PM">03:00 PM</div>
                             </div>
                         </div>
-
+                        
+                        <div class="form-group">
+                            <label for="endTime">End Time</label>
+                            <input type="hidden" id="endTime" name="end_time">
+                            <div class="time-slots" id="endTimeSlots">
+                                <div class="time-slot" data-time="09:00 AM">09:00 AM</div>
+                                <div class="time-slot" data-time="10:00 AM">10:00 AM</div>
+                                <div class="time-slot" data-time="11:00 AM">11:00 AM</div>
+                                <div class="time-slot" data-time="12:00 PM">12:00 PM</div>
+                                <div class="time-slot" data-time="01:00 PM">01:00 PM</div>
+                                <div class="time-slot" data-time="02:00 PM">02:00 PM</div>
+                                <div class="time-slot" data-time="03:00 PM">03:00 PM</div>
+                                <div class="time-slot" data-time="04:00 PM">04:00 PM</div>
+                            </div>
+                        </div>
+                        
                         <div class="form-group">
                             <button type="submit" class="submit-btn">Book Now</button>
                         </div>
                     </form>
+                    @endforeach
                     <div class="success-message" id="successMessage">Your reservation was successfully made!</div>
                 </div>
             </div>
         </div>
     </section>
 @endsection
+
+
+
+@push('scripts')
+<script>
+    const startTimeSlots = document.querySelectorAll('#startTimeSlots .time-slot');
+    const endTimeSlots = document.querySelectorAll('#endTimeSlots .time-slot');
+    const startTimeInput = document.getElementById('startTime');
+    const endTimeInput = document.getElementById('endTime');
+
+    startTimeSlots.forEach(startSlot => {
+        startSlot.addEventListener('click', () => {
+            const selectedStartTime = startSlot.getAttribute('data-time');
+            startTimeInput.value = selectedStartTime;
+
+            startTimeSlots.forEach(s => s.classList.remove('selected'));
+            startSlot.classList.add('selected');
+
+            endTimeSlots.forEach(endSlot => {
+                const endTime = endSlot.getAttribute('data-time');
+                endSlot.style.display = isValidEndTime(selectedStartTime, endTime) ? 'block' : 'none';
+            });
+        });
+    });
+
+    endTimeSlots.forEach(endSlot => {
+        endSlot.addEventListener('click', () => {
+            const selectedEndTime = endSlot.getAttribute('data-time');
+            endTimeInput.value = selectedEndTime;
+
+            endTimeSlots.forEach(s => s.classList.remove('selected'));
+            endSlot.classList.add('selected');
+        });
+    });
+
+    function isValidEndTime(startTime, endTime) {
+        const parseTime = timeStr => new Date(`1970/01/01 ${timeStr}`);
+        return parseTime(endTime) > parseTime(startTime);
+    }
+</script>
+@endpush
