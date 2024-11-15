@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/rooms.css') }}">
+<link rel="stylesheet" href="{{ asset('css/hotel/rooms.css') }}">
 <style>
     /* Card Container */
 .room-item {

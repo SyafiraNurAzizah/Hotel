@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/detail-hotel.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/hotel/detail-hotel.css') }}">
 @endpush
 
 @section('content')
@@ -209,16 +209,38 @@
     </section>
 
 
-    {{-- @if ($errors->has('booking_error'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ $errors->first('booking_error') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+    <div class="overlay" id="errorKetersediaanKamar">
+        <div class="bukti">
+            <span class="close" id="closeErrorKetersediaanKamarPopup"></span>
+            
+            <div id="ketersediaanKamar">
+                <div class="circle-1">
+                    <div class="circle-2">
+                        <i class="bi bi-exclamation-circle"></i>
+                    </div>
+                </div>
+                <h1>Kamar Tidak Tersedia</h1>
+                <p>Mohon maaf, kamar yang Anda pilih tidak tersedia untuk tanggal ini.</p>
+            </div>
         </div>
-    @endif --}}
+    </div>
 
 
+    <div class="overlay" id="errorKapasitasKamar">
+        <div class="bukti">
+            <span class="close" id="closeErrorKapasitasKamarPopup"></span>
+            
+            <div id="kapasitasKamar">
+                <div class="circle-1">
+                    <div class="circle-2">
+                        <i class="bi bi-exclamation-circle"></i>
+                    </div>
+                </div>
+                <h1>Jumlah Tamu Tidak Sesuai</h1>
+                <p>Mohon maaf, jumlah tamu tidak sesuai dengan kapasitas kamar.</p>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
@@ -248,7 +270,28 @@
                 // Jika jumlah tamu melebihi kapasitas total, tampilkan peringatan
                 if (jumlahTamu > kapasitasTotal) {
                     event.preventDefault(); // Hentikan pengiriman form
-                    alert('Jumlah tamu melebihi kapasitas kamar. Silakan kurangi jumlah tamu atau tambahkan kamar.');
+
+
+                    const errorKapasitasKamarOverlay = document.getElementById('errorKapasitasKamar');
+                    errorKapasitasKamarOverlay.style.display = 'flex';  // Menampilkan overlay
+
+                    const closeErrorKapasitasKamarPopup = document.getElementById('closeErrorKapasitasKamarPopup');
+                    
+                    // Menutup popup jika tombol close diklik
+                    if (closeErrorKapasitasKamarPopup) {
+                        closeErrorKapasitasKamarPopup.addEventListener('click', function() {
+                            errorKapasitasKamarOverlay.style.display = 'none';  // Menutup overlay
+                        });
+                    }
+
+                    // Menutup popup jika area luar popup diklik
+                    errorKapasitasKamarOverlay.addEventListener('click', function(e) {
+                        if (e.target === errorKapasitasKamarOverlay) {
+                            errorKapasitasKamarOverlay.style.display = 'none';  // Menutup overlay
+                        }
+                    });
+
+
                     console.log('Form dihentikan karena kapasitas terlampaui');
                 } else {
                     console.log('Form lanjut dikirim');
@@ -257,6 +300,31 @@
         });
     });
 
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Cek apakah session error ada
+        @if(session('kamarTersediaError'))
+            // Menampilkan popup jika session error ada
+            const errorKetersediaanKamarOverlay = document.getElementById('errorKetersediaanKamar');
+            errorKetersediaanKamarOverlay.style.display = 'flex';  // Menampilkan overlay
+
+            const closeErrorKetersediaanKamarPopup = document.getElementById('closeErrorKetersediaanKamarPopup');
+            
+            // Menutup popup jika tombol close diklik
+            if (closeErrorKetersediaanKamarPopup) {
+                closeErrorKetersediaanKamarPopup.addEventListener('click', function() {
+                    errorKetersediaanKamarOverlay.style.display = 'none';  // Menutup overlay
+                });
+            }
+
+            // Menutup popup jika area luar popup diklik
+            errorKetersediaanKamarOverlay.addEventListener('click', function(e) {
+                if (e.target === errorKetersediaanKamarOverlay) {
+                    errorKetersediaanKamarOverlay.style.display = 'none';  // Menutup overlay
+                }
+            });
+        @endif
+    });
 </script>
 
 @endpush

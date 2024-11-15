@@ -19,55 +19,57 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($bookinghotels as $item)
-            <tr>
-                <td>{{ $item->user->firstname ?? 'N/A' }}</td>
-                <td>{{ $item->hotel->nama_cabang ?? 'N/A' }}</td>
-                
-                <td>
-                    @if($item->status == 'selesai')
-                        <span style="color: green; font-weight: bold;">{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
-                    @elseif($item->status == 'belum_selesai')
-                        <span style="color: orange; font-weight: bold;">{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
-                    @elseif($item->status == 'dibatalkan')
-                        <span style="color: red; font-weight: bold;">{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
-                    @else
-                        <span>{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
-                    @endif
-                </td>
-                
-                
-                <td>
-                    @if($item->status_pembayaran == 'dibayar')
-                        <span style="color: green; font-weight: bold;">{{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}</span>
-                    @elseif($item->status_pembayaran == 'belum_dibayar')
-                        <span style="color: red; font-weight: bold;">{{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}</span>
-                    @else
-                        <span>{{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}</span>
-                    @endif
-                </td>
-                
-                <td>Rp{{ number_format($item->jumlah_harga, 2) }}</td>
-                <td>
-                    <a href="{{ route('admin.hotel.show', $item->id) }}" class="btn btn-info" title="Detail">
-                        <i class="fas fa-info-circle"></i> <!-- Ikon detail -->
-                    </a>
-                    <a href="{{ route('admin.hotel.edit', $item->id) }}" class="btn btn-warning" title="Edit">
-                        <i class="fas fa-edit"></i> <!-- Ikon edit -->
-                    </a>
-                    <form action="{{ route('admin.hotel.destroy', $item->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger" title="Hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus?');">
-                            <i class="fas fa-trash"></i> <!-- Ikon hapus -->
-                        </button>
-                    </form>
-                </td>
-                
-                
-            </tr>
+            @foreach($hotels as $hotel)
+                @if($hotel->bookings) <!-- Check if there are any bookings -->
+                    @foreach($hotel->bookings as $item)
+                        <tr>
+                            <td>{{ $item->user->firstname ?? 'N/A' }}</td>
+                            <td>{{ $hotel->nama_cabang ?? 'N/A' }}</td>
+        
+                            <td>
+                                @if($item->status == 'selesai')
+                                    <span style="color: green; font-weight: bold;">{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
+                                @elseif($item->status == 'belum_selesai')
+                                    <span style="color: orange; font-weight: bold;">{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
+                                @elseif($item->status == 'dibatalkan')
+                                    <span style="color: red; font-weight: bold;">{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
+                                @else
+                                    <span>{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
+                                @endif
+                            </td>
+        
+                            <td>
+                                @if($item->status_pembayaran == 'dibayar')
+                                    <span style="color: green; font-weight: bold;">{{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}</span>
+                                @elseif($item->status_pembayaran == 'belum_dibayar')
+                                    <span style="color: red; font-weight: bold;">{{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}</span>
+                                @else
+                                    <span>{{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}</span>
+                                @endif
+                            </td>
+        
+                            <td>Rp{{ number_format($item->jumlah_harga, 2, ',', '.') }}</td>
+                            <td>
+                                <a href="{{ route('admin.hotel.show', $item->id) }}" class="btn btn-info" title="Detail">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
+                                <a href="{{ route('admin.hotel.edit', $item->id) }}" class="btn btn-warning" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form action="{{ route('admin.hotel.destroy', $item->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" title="Hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus?');">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
             @endforeach
         </tbody>
+        
     </table>
     <form action="" id ="form-delete" method="POST" style="d:inline;">
         @csrf

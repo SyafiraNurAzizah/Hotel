@@ -4,7 +4,7 @@
 {{-- ------------------------------------------------------------------------------------------------------- --}}
 
 
-<link rel="stylesheet" href="{{ asset('css/transaksi.css') }}">
+<link rel="stylesheet" href="{{ asset('css/hotel/transaksi/transaksi.css') }}">
 
 {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">

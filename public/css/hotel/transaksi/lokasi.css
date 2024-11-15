@@ -465,13 +465,15 @@ body {
 #buktiReservasi .body .b-3 {
     display: flex;
     position: relative;
-    bottom: 115px;
+    bottom: 112px;
     left: 25px;
 }
 #buktiReservasi .body .b-3 p {
     margin-left: auto;
     text-align: right;
     white-space: nowrap;
+    position: relative;
+    top: 3px;
 }
 
 #buktiReservasi .body .b-4 {

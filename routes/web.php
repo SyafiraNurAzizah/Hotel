@@ -181,8 +181,14 @@ Route::get('/rooms/{id}', [App\Http\Controllers\RoomController::class, 'show'])-
 
 Route::get('/hotel', [HotelsController::class, 'search'])->name('search.hotel');
 Route::get('/meeting', [MeetingsController::class, 'search'])->name('search.meeting');
-Route::get('/admin/create', [BookingHotelController::class, 'create'])->name('admin.hotel.create');
+
+Route::get('/admin/hotel', [BookingHotelController::class, 'index'])->name('admin.hotel.index');
+Route::get('/admin/hotel/{id}', [BookingHotelController::class, 'show'])->name('admin.hotel.show');
+Route::get('/admin/admin/create', [BookingHotelController::class, 'create'])->name('admin.hotel.create');
 Route::post('/admin/hotel/store', [BookingHotelController::class, 'store'])->name('admin.hotel.store')->middleware('auth');
+Route::get('/admin/hotel/{id}/edit', [BookingHotelController::class, 'edit'])->name('admin.hotel.edit');
+Route::put('/admin/hotel/{id}', [BookingHotelController::class, 'update'])->name('admin.hotel.update');
+Route::delete('/admin/hotel/{id}', [BookingHotelController::class, 'destroy'])->name('admin.hotel.destroy');
 
 
 Route::get('/termofus', [HomeController::class, 'termofus'])->name('termofus');

@@ -33,7 +33,7 @@
                                     <li class="{{ Request::is('meeting') || Request::is('meeting/*') ? 'active' : '' }}"><a href="{{ url('meeting') }}">Meetings</a></li>
                                     <li class="{{ Request::is('wedding') ? 'active' : '' }}"><a href="{{ route('wedding.index') }}">Weedings</a></li>
                                     <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">Contact</a></li>
-                                    @elseif (Auth::check() && Auth::user()->role == 'admin')
+                                @elseif (Auth::check() && Auth::user()->role == 'admin')
                                     <li class="{{ Request::is('admin') ? 'active' : '' }}"><a href="{{ route('admin.index') }}">ADMIN</a></li>
                                     <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ route('admin.hotel.index') }}">Hotel</a></li>
                                     <li class="{{ Request::is('wedding') ? 'active' : '' }}"><a href="{{ route('admin.wedding.index') }}">Weedings</a></li>
