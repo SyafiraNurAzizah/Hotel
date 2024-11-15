@@ -7,16 +7,20 @@ use Illuminate\Http\Request;
 use App\Models\BookingHotel;
 use App\Models\Hotels;
 use App\Models\TipeKamar;
+use App\Models\User;
 use App\Models\Users;
 
 class AdminHotelController extends Controller
 {
-    public function AdminIndex() {
-        $bookinghotels = BookingHotel::all(); // Mengambil semua data dari tabel booking hotels
-        return view('nama_view', compact('bookinghotels'));
+    public function AdminIndex()
+    {
+        $bookinghotel = BookingHotel::with(['hotel', 'user'])->get();
+
+        // Kirim data ke view
+        return view('admin.hotel.firstindex', compact('bookinghotel'));
     }
 
-    public function Adminshow($id)
+    public function AdminShow($id)
 {
     // Mengambil data booking berdasarkan ID
     $bookinghotels = BookingHotel::with(['hotel', 'user'])->findOrFail($id);
@@ -59,5 +63,17 @@ public function update(Request $request, $id)
 
     return redirect()->route('admin.hotel.index')->with('success', 'Pemesan hotel berhasil diupdate.');
 }
+
+public function ShowReservation(Request $request)
+{
+    $query = $request->get('query');
+    if ($query) {
+        $hotels = Hotels::where('nama_cabang', 'like', '%' . $query . '%')->get();
+    } else {
+        $hotels = Hotels::all();
+    }
+    return view('admin.hotel.index', compact('hotels', 'query'));
+}
+
 
 }

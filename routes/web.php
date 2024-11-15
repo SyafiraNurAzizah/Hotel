@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\AdminHotelController;
 use App\Http\Controllers\Admin\WeddingController;
-use App\Http\Controllers\AdminHotelController as ControllersAdminHotelController;
 use App\Http\Controllers\BookingHotelController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RoomController;
@@ -77,6 +76,15 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMid
     Route::get('/admin/meeting/{id}', [MeetingsController::class, 'edit'])->name('admin.meeting.edit');
     Route::post('/admin/meeting/{id}', [MeetingsController::class, 'update'])->name('admin.meeting.update');
     Route::delete('/admin/meeting/{id}', [MeetingsController::class, 'destroy'])->name('admin.meeting.destroy');
+
+    // Route CRUD untuk Admin Hotel
+    Route::get('/admin/hotel', [AdminHotelController::class, 'AdminIndex'])->name('admin.hotel.firstindex');                // Untuk daftar hotel
+    Route::get('/admin/hotel/{id}', [AdminHotelController::class, 'AdminShow'])->name('admin.hotel.show');              // Untuk detail data
+    Route::get('/admin/hotel/{id}/edit', [AdminHotelController::class, 'edit'])->name('admin.hotel.edit');              // Untuk form edit
+    Route::post('/admin/hotel/{id}/update', [AdminHotelController::class, 'update'])->name('admin.hotel.update');       // Untuk update data
+    Route::delete('/admin/hotel/{id}', [AdminHotelController::class, 'AdminDestroy'])->name('admin.hotel.destroy');     // Untuk menghapus data
+    Route::get('/admin/hotel/{location}', [AdminHotelController::class, 'ShowReservation'])->name('admin.hotel.index');  // Untuk daftar reservasi
+
 });
 //----------------------------------------------------------------------------
 
