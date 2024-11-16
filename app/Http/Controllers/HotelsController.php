@@ -46,6 +46,21 @@ class HotelsController extends Controller
               ]);
     }
 
+    public function showFasilitas($location)
+    {
+        $hotels = Hotels::where('nama_cabang', $location)->get();
+
+        // Ambil fasilitas untuk setiap hotel
+        foreach ($hotels as $hotel) {
+            $hotel->fasilitas = Fasilitas::where('hotel_id', $hotel->id)->get();
+        }
+        
+        return view('hotel.fasilitas', [
+            'location' => ucfirst($location),
+            'hotels' => $hotels
+        ]);
+    }
+
     public function showRoomsDetail($location, $nama_tipe)
     {
         $hotels = Hotels::where('nama_cabang', $location)->get();
@@ -64,26 +79,26 @@ class HotelsController extends Controller
     }
 
     // Method untuk menampilkan fasilitas berdasarkan lokasi
-    public function showFasilitas($location)
-    {
-        $hotels = Hotels::where('nama_cabang', $location)->get();
+    // public function showFasilitas($location)
+    // {
+    //     $hotels = Hotels::where('nama_cabang', $location)->get();
 
-        // Ambil fasilitas untuk setiap hotel
-        foreach ($hotels as $hotel) {
-            $hotel->fasilitas = Fasilitas::where('hotel_id', $hotel->id)->get();
-        }
+    //     // Ambil fasilitas untuk setiap hotel
+    //     foreach ($hotels as $hotel) {
+    //         $hotel->fasilitas = Fasilitas::where('hotel_id', $hotel->id)->get();
+    //     }
 
-        // Cek role user dan tampilkan halaman fasilitas yang sesuai
-        return Auth::check() && Auth::user()->role == 'admin'
-            ? view('admin.hotel.fasilitas', [
-                'location' => ucfirst($location),
-                'hotels' => $hotels
-              ])
-            : view('hotel.fasilitas', [
-                'location' => ucfirst($location),
-                'hotels' => $hotels
-              ]);
-    }
+    //     // Cek role user dan tampilkan halaman fasilitas yang sesuai
+    //     return Auth::check() && Auth::user()->role == 'admin'
+    //         ? view('admin.hotel.fasilitas', [
+    //             'location' => ucfirst($location),
+    //             'hotels' => $hotels
+    //           ])
+    //         : view('hotel.fasilitas', [
+    //             'location' => ucfirst($location),
+    //             'hotels' => $hotels
+    //           ]);
+    // }
 
     // Method untuk halaman admin, menampilkan daftar hotel
     public function adminIndex()

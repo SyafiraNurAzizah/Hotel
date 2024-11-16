@@ -36,7 +36,9 @@ class HomeController extends Controller
     {
         $user = User::where('firstname', $firstname)->where('lastname', $lastname)->firstOrFail();
 
-        return view('profile', ['user' => $user]);
+        $bookings = $user->bookings;
+
+        return view('profile', ['user' => $user, 'bookings' => $bookings]);
     }
 
 

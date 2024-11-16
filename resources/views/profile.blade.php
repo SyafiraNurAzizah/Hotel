@@ -29,6 +29,49 @@
 
 <div class="horizontal-line"></div>
 
+<div class="container">
+    <table class="table table-custom">
+        <thead class="thead-custom">
+            <tr>
+                <th>No</th>
+                <th>Judul</th>
+                <th>Paket 1</th>
+                <th>Paket 2</th>
+                <th>Paket 3</th>
+                <th>Gambar</th>
+                <th>Harga</th>
+                <th>Kapasitas</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($bookings as $item)
+                <tr>
+                    {{-- <td>{{ $loop->iteration }}</td> --}}
+                    <td>{{ substr($item->uuid, 0, 5) }}</td>
+                    <td>{{ $item->hotel->nama_cabang }}</td>
+                    <td>{{ $item->tipe_kamar->nama_tipe }}</td>
+                    {{-- <td>{{ $item->judul_paket2 }}</td>
+                    <td>{{ $item->judul_paket3 }}</td> --}}
+                    {{-- <td>
+                        <img src="{{ asset('/storage/uploads/' . $wedding->gambar) }}" alt="{{ $wedding->judul }}">
+                    </td>
+                    <td>
+                        {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }}
+                    </td>
+                    <td>{{ $wedding->kapasitas }} guests</td>
+                    <td>
+                        <a href="{{ route('wedding.show', $wedding->id) }}" class="fa fa-eye btn btn-outline-secondary"></a>
+                    </td> --}}
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="8" class="no-data">No data available</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+</div>
 
 
 <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
