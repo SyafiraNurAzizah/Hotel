@@ -27,52 +27,6 @@
     </div>
 </div>
 
-<div class="horizontal-line"></div>
-
-<div class="container">
-    <table class="table table-custom">
-        <thead class="thead-custom">
-            <tr>
-                <th>No</th>
-                <th>Judul</th>
-                <th>Paket 1</th>
-                <th>Paket 2</th>
-                <th>Paket 3</th>
-                <th>Gambar</th>
-                <th>Harga</th>
-                <th>Kapasitas</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($bookings as $item)
-                <tr>
-                    {{-- <td>{{ $loop->iteration }}</td> --}}
-                    <td>{{ substr($item->uuid, 0, 5) }}</td>
-                    <td>{{ $item->hotel->nama_cabang }}</td>
-                    <td>{{ $item->tipe_kamar->nama_tipe }}</td>
-                    {{-- <td>{{ $item->judul_paket2 }}</td>
-                    <td>{{ $item->judul_paket3 }}</td> --}}
-                    {{-- <td>
-                        <img src="{{ asset('/storage/uploads/' . $wedding->gambar) }}" alt="{{ $wedding->judul }}">
-                    </td>
-                    <td>
-                        {{ is_numeric($wedding->harga) ? number_format((float) $wedding->harga, 2) : $wedding->harga }}
-                    </td>
-                    <td>{{ $wedding->kapasitas }} guests</td>
-                    <td>
-                        <a href="{{ route('wedding.show', $wedding->id) }}" class="fa fa-eye btn btn-outline-secondary"></a>
-                    </td> --}}
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="8" class="no-data">No data available</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
-</div>
-
 
 <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -117,17 +71,18 @@
                     <div class="bottom-line"></div>
                 </div>
                 <div class="profile-part">
-                    <p>{{ Auth::user()->profile_user->jenis_kelamin }}</p>
+                    <p>{{ $userProfile->jenis_kelamin }}</p>
                     <div class="bottom-line"></div>
                 </div>
                 <div class="profile-part">
-                    <p>{{ Auth::user()->profile_user->tanggal_lahir }}</p>
+                    <p>{{ $userProfile->tanggal_lahir }}</p>
                     <div class="bottom-line"></div>
                 </div>
                 <div class="profile-part">
-                    <p class="profile-alamat">{{ Auth::user()->profile_user->alamat }}</p>
+                    <p class="profile-alamat">{{ $userProfile->alamat }}</p>
                     <div class="bottom-line-alamat"></div>
                 </div>
+                
             </div>
 
             <button type="button" class="viewEditProfileButton profile-button" data-bs-toggle="modal" data-bs-target="#viewEditProfileModal">Edit Profil</button>
@@ -209,13 +164,13 @@
                     <input type="text" class="form-control" id="phone" name="no_telp" value="{{ old('no_telp', Auth::user()->no_telp) }}" placeholder="Nomor Telepon" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="gender" name="jenis_kelamin" value="{{ old('jenis_kelamin', Auth::user()->profile_user->jenis_kelamin) }}" placeholder="Jenis Kelamin" required>
+                    <input type="text" class="form-control" id="gender" name="jenis_kelamin" value="{{ old('jenis_kelamin', $userProfile->jenis_kelamin) }}" placeholder="Jenis Kelamin" required>
                 </div>
                 <div class="form-group">
-                    <input type="date" class="form-control" id="dob" name="tanggal_lahir" value="{{ old('tanggal_lahir', Auth::user()->profile_user->tanggal_lahir) }}" placeholder="Tanggal Lahir" required>
+                    <input type="date" class="form-control" id="dob" name="tanggal_lahir" value="{{ old('tanggal_lahir', $userProfile->tanggal_lahir) }}" placeholder="Tanggal Lahir" required>
                 </div>
                 <div class="profile-part">
-                    <p class="profile-alamat">{{ Auth::user()->profile_user->alamat }}</p>
+                    <p class="profile-alamat">{{ $userProfile->alamat }}</p>
                     <div class="bottom-line-alamat"></div>
                 </div>
             </div>
@@ -224,6 +179,74 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+<div class="horizontal-line"></div>
+
+<div class="container">
+    <table class="table table-custom">
+        <thead class="thead-custom">
+            <tr>
+                <th>id</th>
+                <th>Hotel</th>
+                <th>Tipe Kamar</th>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($bookings as $item)
+                <tr onclick="window.location='{{ route('hotel.transaksi.transaksi-hotel', ['location' => strtolower($item->hotel->nama_cabang), 'nama_tipe' => $item->tipe_kamar->nama_tipe, 'uuid' => $item->uuid]) }}'" style="cursor: pointer;">
+                    <td><strong>#{{ substr($item->uuid, 0, 5) }}</strong></td>
+                    <td>{{ $item->hotel->nama_cabang }}</td>
+                    <td>{{ $item->tipe_kamar->nama_tipe }}</td>
+                    <td>{{ \Carbon\Carbon::parse($item->check_in)->format('d F Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($item->check_out)->format('d F Y') }}</td>
+                    <td>
+                        @if ($item->status == 'selesai')
+                            {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
+                            
+                            <span style="background: #4c8baf44; color: #14386d; padding: 5px 15px; border-radius: 5px;">
+                                {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                            </span>
+                        @elseif($item->status == 'belum_selesai')
+                            {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
+
+                            <span style="background: #eba91b5b; color: #ca7607; padding: 5px 15px; border-radius: 5px;">
+                                {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                            </span>
+                        @elseif($item->status == 'sedang_diproses')
+                            {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
+
+                            <span style="background: #4caf4f73; color: #146d17; padding: 5px 15px; border-radius: 5px; font-weight: bold;">
+                                {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                            </span>
+                        @elseif($item->status == 'dibatalkan')
+                            {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
+                        
+                            <span style="background: #e2323238; color: #6d1414; padding: 5px 15px; border-radius: 5px;">
+                                {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                            </span>
+                        @else
+                            <span>{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
+                        @endif
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="8" class="no-data">No data available</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+</div>
+
+
 
 @endsection
 

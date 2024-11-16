@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\AdminHotelController;
 use App\Http\Controllers\Admin\WeddingController;
-use App\Http\Controllers\AdminHotelController as ControllersAdminHotelController;
 use App\Http\Controllers\BookingHotelController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RoomController;
@@ -62,33 +61,54 @@ Route::middleware(['auth.custom'])->group(function () {
 
 
 
+
+
 //------------------------------ ADMIN -----------------------------------//
 Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
+
+//----------------------------------------------- ADMIN HOTEL -------------------------------------------------//
     Route::get('/admin', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('admin.index');
     Route::get('/admin/hotel', [App\Http\Controllers\HomeController::class, 'adminHotel'])->name('admin.hotel.index');
 
     Route::get('/admin/hotel', [BookingHotelController::class, 'index'])->name('admin.hotel.index');
-Route::get('/admin/hotel/{id}', [BookingHotelController::class, 'show'])->name('admin.hotel.show');
-Route::get('/admin/admin/create', [BookingHotelController::class, 'create'])->name('admin.hotel.create');
-Route::post('/admin/hotel/store', [BookingHotelController::class, 'store'])->name('admin.hotel.store')->middleware('auth');
-Route::get('/admin/hotel/{id}/edit', [BookingHotelController::class, 'edit'])->name('admin.hotel.edit');
-Route::put('/admin/hotel/{id}', [BookingHotelController::class, 'update'])->name('admin.hotel.update');
-Route::delete('/admin/hotel/{id}', [BookingHotelController::class, 'destroy'])->name('admin.hotel.destroy');
+    Route::get('/admin/hotel/{id}', [BookingHotelController::class, 'show'])->name('admin.hotel.show');
+    Route::get('/admin/admin/create', [BookingHotelController::class, 'create'])->name('admin.hotel.create');
+    Route::post('/admin/hotel/store', [BookingHotelController::class, 'store'])->name('admin.hotel.store')->middleware('auth');
+    Route::get('/admin/hotel/{id}/edit', [BookingHotelController::class, 'edit'])->name('admin.hotel.edit');
+    Route::put('/admin/hotel/{id}', [BookingHotelController::class, 'update'])->name('admin.hotel.update');
+    Route::delete('/admin/hotel/{id}', [BookingHotelController::class, 'destroy'])->name('admin.hotel.destroy');
+
+    // Route CRUD untuk Admin Hotel
+    Route::get('/admin/hotel', [AdminHotelController::class, 'AdminIndex'])->name('admin.hotel.firstindex');            // Untuk daftar hotel
+    Route::get('/admin/booking/{city}', [AdminHotelController::class, 'showByCity'])->name('admin.hotel.index');
+    Route::get('/admin/hotel/{id}', [AdminHotelController::class, 'AdminShow'])->name('admin.hotel.show');              // Untuk detail data
+    Route::get('/admin/hotel/{id}/edit', [AdminHotelController::class, 'edit'])->name('admin.hotel.edit');              // Untuk form edit
+    Route::post('/admin/hotel/{id}/update', [AdminHotelController::class, 'update'])->name('admin.hotel.update');       // Untuk update data
+    Route::delete('/admin/hotel/{id}', [AdminHotelController::class, 'AdminDestroy'])->name('admin.hotel.destroy');     // Untuk menghapus data
+//-------------------------------------------------------------------------------------------------------------//
 
 
-
+//---------------------------------------------- ADMIN WEDDING ------------------------------------------------//
     Route::get('/admin/wedding', [WeddingController::class, 'index'])->name('admin.wedding.index');
     Route::get('/admin/wedding/{id}', [WeddingController::class, 'edit'])->name('admin.wedding.edit');
     Route::get('/admin/wedding/{id}', [WeddingController::class, 'show'])->name('admin.wedding.show');
+//-------------------------------------------------------------------------------------------------------------//
 
+
+//---------------------------------------------- ADMIN MEETING ------------------------------------------------//
     Route::get('/admin/meeting', [MeetingsController::class, 'index'])->name('admin.meeting.index');
     Route::get('/admin/meeting/create', [MeetingsController::class, 'create'])->name('admin.meeting.create');
     Route::post('/admin/meeting', [MeetingsController::class, 'store'])->name('admin.meeting.store');
     Route::get('/admin/meeting/{id}', [MeetingsController::class, 'edit'])->name('admin.meeting.edit');
     Route::post('/admin/meeting/{id}', [MeetingsController::class, 'update'])->name('admin.meeting.update');
     Route::delete('/admin/meeting/{id}', [MeetingsController::class, 'destroy'])->name('admin.meeting.destroy');
+//-------------------------------------------------------------------------------------------------------------//
+
 });
 //----------------------------------------------------------------------------
+
+
+
 
 
 //------------------------------------ USER ----------------------------------//
