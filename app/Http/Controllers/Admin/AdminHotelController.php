@@ -14,10 +14,23 @@ class AdminHotelController extends Controller
 {
     public function AdminIndex()
     {
-        $bookinghotel = BookingHotel::with(['hotel', 'user'])->get();
+        $bookinghotel = BookingHotel::all();
 
         // Kirim data ke view
         return view('admin.hotel.firstindex', compact('bookinghotel'));
+    }
+    public function showByCity($city)
+    {
+        // Ambil data booking berdasarkan kota
+        $bookinghotel = BookingHotel::whereHas('hotel', function ($query) use ($city) {
+            $query->where('nama_cabang', ucfirst($city));
+        })->get();
+
+        // Kirim data ke view dan sertakan nama kota
+        return view('admin.hotel.index', [
+            'bookinghotel' => $bookinghotel,
+            'city' => ucfirst($city)
+        ]);
     }
 
     public function AdminShow($id)
