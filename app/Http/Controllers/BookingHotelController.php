@@ -387,6 +387,7 @@ class BookingHotelController extends Controller
                                 ->where('check_out', '>=', $checkOut);
                     });
             })
+            ->whereNotIn('status', ['selesai', 'dibatalkan'])
             ->get();
 
         // Hitung jumlah kamar yang sudah dipesan untuk setiap hari dalam rentang tanggal

@@ -1,5 +1,9 @@
 .room-booking {
-	padding: 0 0 0 70px;
+    /* padding: 0 0 0 70px; */
+	padding: 40px 40px 40px 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    left: 50px;
 }
 .room-booking h3 {
 	color: #19191a;
@@ -18,20 +22,23 @@
 }
 .room-booking form .check-date input {
 	width: 100%;
-	height: 50px;
+	height: 45px;
 	border: 1px solid #ebebeb;
-	border-radius: 2px;
+	border-radius: 7px;
 	font-size: 16px;
 	color: #19191a;
-	text-transform: uppercase;
-	font-weight: 500;
-	padding-left: 20px;
+	padding-left: 50px;
+    padding-right: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.room-booking form .check-date input:focus {
+    border: 2px solid #222736; 
 }
 .room-booking form .check-date i {
-	color: #dfa974;
+	color: #2227362c;
 	position: absolute;
-	right: 18px;
-	bottom: 17px;
+	left: 18px;
+	bottom: 10px;
 }
 .room-booking form .select-option {
 	margin-bottom: 15px;
@@ -42,44 +49,88 @@
 	display: block;
 	margin-bottom: 10px;
 }
-.room-booking form .select-option .nice-select {
-	border-radius: 2px;
+.room-booking form .select-option input[type="number"] {
+	border-radius: 7px;
 	border: 1px solid #ebebeb;
-	height: 50px;
-	line-height: 50px;
-	outline: none;
-	padding-left: 20px;
+	height: 40px;
+	padding-left: 50px;
+    padding-right: 10px;
 	width: 100%;
-	float: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.room-booking form .select-option .nice-select:after {
-	border-bottom: 2px solid #dfa974;
-	border-right: 2px solid #dfa974;
-	height: 10px;
-	margin-top: 0;
-	right: 20px;
-	width: 10px;
-	top: 36%;
+.room-booking form .select-option input[type="number"]:focus {
+    border: 2px solid #222736;
 }
-.room-booking form .select-option .nice-select span {
+.room-booking form .select-option i {
+    color: #2227362c;
+	position: absolute;
+	left: 57px;
+	top: 330px;
+}
+.room-booking form .tamu-option {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.room-booking form .tamu-option label {
+    font-size: 14px;
+    color: #707079;
+    display: block;
+    margin-bottom: 10px;
+}
+.room-booking form .tamu-option .group input[type="number"] {
+    border-radius: 7px;
+	border: 1px solid #ebebeb;
+	height: 40px;
+	padding-left: 20px;
+    padding-right: 10px;
+	width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.room-booking form .tamu-option .group input[type="number"]:focus {
+    border: 2px solid #222736;
+}
+.room-booking form .note {
+	position: relative;
+	margin-bottom: 15px;
+}
+.room-booking form .note label {
+	font-size: 14px;
+	color: #707079;
+	display: block;
+	margin-bottom: 10px;
+}
+.room-booking form .note textarea {
+	width: 100%;
+	height: 75px;
+	border: 1px solid #ebebeb;
+	border-radius: 7px;
 	font-size: 16px;
 	color: #19191a;
-	text-transform: uppercase;
-	font-weight: 500;
+	padding-left: 50px;
+    padding-right: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.room-booking form .select-option .nice-select .list {
-	margin-top: 0;
-	width: 100%;
+.room-booking form .note textarea:focus {
+    border: 2px solid #222736; 
+}
+.room-booking form .note i {
+	color: #2227362c;
+	position: absolute;
+	left: 18px;
+	bottom: 30px;
 }
 .room-booking form button {
 	display: block;
 	font-size: 14px;
 	text-transform: uppercase;
-	border: 1px solid #dfa974;
-	border-radius: 2px;
-	color: #dfa974;
+	/* border: 1px solid #222736; */
+    border: none;
+    background-color: #222736;
+	border-radius: 50px;
+	color: #ffffff;
 	font-weight: 500;
-	background: transparent;
+	/* background: transparent; */
 	width: 100%;
 	height: 46px;
 	margin-top: 30px;

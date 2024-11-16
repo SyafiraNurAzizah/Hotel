@@ -41,7 +41,7 @@
     margin-bottom: 10px;
 }
 
-.primary-btn {
+/* .primary-btn {
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -56,7 +56,7 @@
 .primary-btn:hover {
 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
+} */
 
 /* Responsiveness */
 @media (max-width: 768px) {
@@ -108,8 +108,9 @@
                 <div class="breadcrumb-text">
                     <h2>{{ $location }}</h2>
                     <div class="bt-option">
-                        <a href="{{ route('rooms', ['location' => strtolower($location)]) }}" class="active">Kamar</a>
-                        <span><a href="{{ route('fasilitas', ['location' => strtolower($location)]) }}">Fasilitas</a></span>
+                        <a href="{{ route('rooms', ['location' => strtolower($location)]) }}" class="active">Kamar</a></span>
+                        <i class="bi bi-chevron-right" style="font-size: 10px"></i>
+                        <a href="{{ route('fasilitas', ['location' => strtolower($location)]) }}">Fasilitas</a>
                     </div>
                 </div>
             </div>
@@ -161,13 +162,13 @@
                 @endforeach
             @endif
         </div>
-        <div class="col-lg-12">
+        {{-- <div class="col-lg-12">
             <div class="room-pagination">
                 <a href="#">1</a>
                 <a href="#">2</a>
                 <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
             </div>
-        </div>
+        </div> --}}
     </div>
 </section>
 <!-- Rooms Section End -->

@@ -143,61 +143,36 @@
                                 </div>
                 
                                 <div class="check-date">
-                                    <label for="check_in">Check In:</label>
+                                    <label for="check_in">Check In</label>
                                     <input type="text" class="date-input" id="check_in" name="check_in">
-                                    <i class="icon_calendar"></i>
+                                    <i class="bi bi-calendar2-fill"></i>
                                 </div>
                                 <div class="check-date">
-                                    <label for="check_out">Check Out:</label>
+                                    <label for="check_out">Check Out</label>
                                     <input type="text" class="date-input" id="check_out" name="check_out">
-                                    <i class="icon_calendar"></i>
+                                    <i class="bi bi-calendar2-fill"></i>
                                 </div>
                                 <div class="select-option">
-                                    <label for="tamu_dewasa">Dewasa:</label>
-                                    <select class="tamu_dewasa" id="tamu_dewasa" name="tamu_dewasa">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                    </select>
+                                    <label for="jumlah_kamar">Kamar</label>
+                                    <input type="number" class="jumlah_kamar" id="jumlah_kamar" name="jumlah_kamar" min="1" value="1">
+                                    <i class="fa-solid fa-bed"></i>
                                 </div>
-                                <div class="select-option">
-                                    <label for="tamu_anak">Anak:</label>
-                                    <select class="tamu_anak" id="tamu_anak" name="tamu_anak">
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                    </select>
+                                <div class="tamu-option">
+                                    <div class="group">
+                                        <label for="tamu_dewasa">Dewasa</label>
+                                        <input type="number" class="tamu_dewasa" id="tamu_dewasa" name="tamu_dewasa" min="1" value="1">
+                                    </div>
+                                    <div class="group">
+                                        <label for="tamu_anak">Anak</label>
+                                        <input type="number" class="tamu_anak" id="tamu_anak" name="tamu_anak" min="0" value="0">
+                                    </div>
                                 </div>
-                                <div class="select-option">
-                                    <label for="jumlah_kamar">Kamar:</label>
-                                    <select class="jumlah_kamar" id="jumlah_kamar" name="jumlah_kamar">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                    </select>
+                                <div class="note">
+                                    <label for="pesan">Pesan</label>
+                                    <textarea type="text" class="pesan" id="pesan" name="pesan"></textarea>
+                                    <i class="bi bi-chat-left-text-fill"></i>
                                 </div>
-                                <div class="check-date">
-                                    <label for="pesan">Pesan:</label>
-                                    <input type="text" class="pesan" id="pesan" name="pesan">
-                                    <i class="bi bi-chat"></i>
-                                </div>
-                                <button type="submit">Check Availability</button>
+                                <button type="submit">Cek Ketersediaan</button>
                             </form>
                         </div>
                     @endforeach

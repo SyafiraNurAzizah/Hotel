@@ -36,30 +36,26 @@ class HomeController extends Controller
     }
 
     public function profile($firstname, $lastname)
-{
-    $user = User::where('firstname', $firstname)->where('lastname', $lastname)->firstOrFail();
+    {
+        $user = User::where('firstname', $firstname)->where('lastname', $lastname)->firstOrFail();
 
-    $bookings = $user->bookings;
+        $bookings = $user->bookings;
 
-    // Safe check for the profile_user of the authenticated user
-    $userProfile = Auth::user()->profile_user ?? null;
+        // Safe check for the profile_user of the authenticated user
+        $userProfile = Auth::user()->profile_user ?? null;
 
-    // If profile_user is not found, use default values
-    if (!$userProfile) {
-        $userProfile = (object) [
-            'jenis_kelamin' => 'Data tidak tersedia',
-            'tanggal_lahir' => 'Data tidak tersedia',
-            'alamat' => 'Data tidak tersedia'
-        ];
+        // If profile_user is not found, use default values
+        if (!$userProfile) {
+            $userProfile = (object) [
+                'jenis_kelamin' => 'Data tidak tersedia',
+                'tanggal_lahir' => 'Data tidak tersedia',
+                'alamat' => 'Data tidak tersedia'
+            ];
+        }
+
+        // Pass user profile along with the other data to the view
+        return view('profile', ['user' => $user, 'bookings' => $bookings, 'userProfile' => $userProfile]);
     }
-
-    $hotels = Hotels::all();
-
-    // $room = TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail();
-
-    // Pass user profile along with the other data to the view
-    return view('profile', ['user' => $user, 'bookings' => $bookings, 'userProfile' => $userProfile, 'hotels' => $hotels]);
-}
 
 
 
