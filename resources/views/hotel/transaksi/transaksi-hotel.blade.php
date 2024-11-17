@@ -72,59 +72,63 @@
 
     <div class="container-metode-pembayaran">
         @foreach($hotels as $hotel)
-            @if(!$pembayaran)
-                <form action="{{ route('booking.hotel.pembayaran', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}" method="POST">
-                    @csrf 
-    
-                    <p>Metode Pembayaran</p>
-    
-                    <div class="dropdown" id="mainDropdown">
-                        <button type="button" id="dropdownButton">Pilih Metode Pembayaran</button>
-                        <div class="dropdown-content" id="dropdownContent">
-                            <div class="dropdown-item" onclick="selectOption('Cash')"><a>Cash</a></div>
-                            <div class="dropdown-item" onclick="selectOption('Kartu Kredit/Debit')"><a>Kartu Kredit/Debit</a></div>
-                            <div class="sub-dropdown">
-                                <a>Dompet Digital</a>
-                                <div class="sub-dropdown-content" style="height: 82px">
-                                    <div onclick="selectOption('OVO')">OVO</div>
-                                    <div onclick="selectOption('DANA')">DANA</div>
+            @if($booking->status !== 'dibatalkan' && $booking->status !== 'selesai')
+                @if(!$pembayaran)
+                    <form action="{{ route('booking.hotel.pembayaran', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}" method="POST">
+                        @csrf 
+        
+                        <p>Metode Pembayaran</p>
+        
+                        <div class="dropdown" id="mainDropdown">
+                            <button type="button" id="dropdownButton">Pilih Metode Pembayaran</button>
+                            <div class="dropdown-content" id="dropdownContent">
+                                <div class="dropdown-item" onclick="selectOption('Cash')"><a>Cash</a></div>
+                                <div class="dropdown-item" onclick="selectOption('Kartu Kredit/Debit')"><a>Kartu Kredit/Debit</a></div>
+                                <div class="sub-dropdown">
+                                    <a>Dompet Digital</a>
+                                    <div class="sub-dropdown-content" style="height: 82px">
+                                        <div onclick="selectOption('OVO')">OVO</div>
+                                        <div onclick="selectOption('DANA')">DANA</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="sub-dropdown">
-                                <a>Transfer Bank</a>
-                                <div class="sub-dropdown-content">
-                                    <div onclick="selectOption('BCA')">BCA</div>
-                                    <div onclick="selectOption('BRI')">BRI</div>
-                                    <div onclick="selectOption('BNI')">BNI</div>
-                                    <div onclick="selectOption('Mandiri')">Mandiri</div>
+                                <div class="sub-dropdown">
+                                    <a>Transfer Bank</a>
+                                    <div class="sub-dropdown-content">
+                                        <div onclick="selectOption('BCA')">BCA</div>
+                                        <div onclick="selectOption('BRI')">BRI</div>
+                                        <div onclick="selectOption('BNI')">BNI</div>
+                                        <div onclick="selectOption('Mandiri')">Mandiri</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+        
+                        <input type="hidden" name="booking_hotel_id" value="{{ $booking->id }}">
+                        <input type="text" id="dropdownInput" name="metode_pembayaran" placeholder="Pilihan Anda" readonly hidden>
+                        <input type="hidden" name="bukti_pembayaran" accept="image/*">
+        
+                        <button type="submit" class="button-pembayaran">Pesan</button>
+                    </form>
+                @else
+                    <div class="pembayaran-exsist">
+                        <p>Metode Pembayaran</p>
+                        <h3>{{ $pembayaran->metode_pembayaran }}</h3>
+                        <div class="horizontal-line-pembayaran-exsist"></div>
                     </div>
-    
-                    <input type="hidden" name="booking_hotel_id" value="{{ $booking->id }}">
-                    <input type="text" id="dropdownInput" name="metode_pembayaran" placeholder="Pilihan Anda" readonly hidden>
-                    <input type="hidden" name="bukti_pembayaran" accept="image/*">
-    
-                    <button type="submit" class="button-pembayaran">Pesan</button>
-                </form>
-            @else
-            <div class="pembayaran-exsist">
-                <p>Metode Pembayaran</p>
-                <h3>{{ $pembayaran->metode_pembayaran }}</h3>
-                <div class="horizontal-line-pembayaran-exsist"></div>
-            </div>
+                @endif
             @endif
         @endforeach
     </div>
     
-    @if(!$pembayaran)
-        @foreach($hotels as $hotel)
-            <form action="{{ route('booking.hotel.cancel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}" method="POST" class="form-batal">
-                @csrf
-                <button type="submit" class="btn btn-danger">Batalkan Pemesanan</button>
-            </form>
-        @endforeach
+    @if($booking->status !== 'dibatalkan' && $booking->status !== 'selesai')
+        @if(!$pembayaran)
+            @foreach($hotels as $hotel)
+                <form action="{{ route('booking.hotel.cancel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}" method="POST" class="form-batal">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Batalkan Pemesanan</button>
+                </form>
+            @endforeach
+        @endif
     @endif
 
 </div>

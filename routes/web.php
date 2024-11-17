@@ -56,6 +56,7 @@ Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logou
 
 Route::middleware(['auth.custom'])->group(function () {
     Route::get('/{firstname}-{lastname}', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
+    Route::put('/{firstname}-{lastname}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
 });
 //----------------------------------------------------------------------------//
 

@@ -1,9 +1,16 @@
 .breadcrumb-section {
-	padding-top: 140px;
+	padding-top: 120px;
 	/* padding-bottom: 80px; */
 }
 .breadcrumb-text {
 	text-align: center;
+}
+.breadcrumb-text img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
 }
 .breadcrumb-text h2 {
 	font-size: 44px;
@@ -40,24 +47,162 @@
 }
 
 
-.modal .modal-dialog .modal-content {
-    position: relative;
-    left: 70px;
-    /* top: 50px; */
-    border-radius: 7px;
-    width: 350px;
-    height: 530px;
+.modal .modal-dialog {
+    position: fixed;
+    padding-left: 315px;
 }
-.modal .modal-dialog .modal-content .profile-title {
+
+.modal .modal-dialog .modal-content {
+    border-radius: 7px;
+    border: none;
+    box-shadow: 0 7px 20px -10px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+    min-width: 750px;
+    height: 570px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.modal .modal-dialog .modal-content .form-left .form-group-img {
+    border-radius: 50%;
+    width: 225px;
+    height: 225px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 50px;
+    left: 50px;
+}
+.modal .modal-dialog .modal-content .form-left .form-group-img img {
+    width: 100%;
+    height: 225px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.modal .modal-dialog .modal-content .form-left .form-group-img input[type="file"] {
+    display: none;
+}
+
+
+.modal .modal-dialog .modal-content .form-left .form-group-label label {
+    border: 1px dashed #19191a6e;
+    background-color: #19191a2a;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 225px;
+    height: 225px;
+    position: relative;
+    bottom: 175px;
+    left: 50px;
+    /* right: 192px; */
+}
+.modal .modal-dialog .modal-content .form-left .form-group-label label:hover {
+    background-color: #19191a6e;
+}
+.modal .modal-dialog .modal-content .form-left .form-group-label label i {
+    display: inline-block;
+    color: #19191a96;
+    font-size: 20px;
+    position: relative;
+    top: 105px;
+}
+.modal .modal-dialog .modal-content .form-left .form-group-label .preview-container {
+    display: none;
+    position: relative;
+    bottom: 175px;
+    left: 50px;
+}
+.modal .modal-dialog .modal-content .form-left .form-group-label #preview-image {
+    width: 225px;
+    height: 225px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.modal .modal-dialog .modal-content .form-left .form-group-label #preview-image:hover {
+    background-color: #19191a6e;
+    cursor: pointer;
+}
+
+
+.modal .modal-dialog .modal-content .form-right .form-group {
+    display: flex;
+    position: relative;
+    bottom: 410px;
+    left: 340px;
+    gap: -10px;
+}
+.modal .modal-dialog .modal-content .form-right .form-group label {
+    font-size: 14px;
+    color: #19191a6e;
+    /* font-weight: 500; */
+    margin-bottom: 10px;
+    width: 50px;
+}
+.modal .modal-dialog .modal-content .form-right .form-group .form-control {
+    border: none;
+    /* border-bottom: 1px solid #dfa974; */
+    background-color: #19191a0a;
+    border-radius: 5px;
+    width: 270px;
+    height: 35px;
+    position: relative;
+    top: 5px;
+    left: 30px;
+    margin-bottom: 20px;
+    /* background-color: transparent; */
+}
+.modal .modal-dialog .modal-content .form-right .form-group .form-control:focus {
+    border: 1px solid #222736;
+    box-shadow: none;
+}
+.modal .modal-dialog .modal-content .form-right .form-group .radio-group {
+    position: relative;
+    top: 10px;
+    left: 35px;
+    margin-right: 110px;
+}
+.modal .modal-dialog .modal-content form button {
+    position: relative;
+    bottom: 500px;
+    left: 75px;
+    background-color: #ffffff;
+    border: 1px solid rgba(16, 20, 31, 0.89);
+    opacity: 75%;
+    color: rgba(16, 20, 31, 0.89);
+    padding: 7px 56px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 25px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+.modal .modal-dialog .modal-content form button:hover {
+    background-color: rgba(16, 20, 31, 0.89);
+    color: #ffffff;
+    border: 1px solid rgba(16, 20, 31, 0.89);
+    opacity: 100%;
+}
+
+
+
+
+
+
+
+
+/* .modal .modal-dialog .modal-content .profile-title {
     text-align: center;
     color: rgba(16, 20, 31, 0.89);
     font-size: 25px;
     font-weight: 700;
     padding-top: 25px;
-    /* font-family: "Lora", serif; */
 }
 .modal .modal-dialog .modal-content .btn-close {
-    /* background-color: rgba(0, 0, 0, 0.068); */
     background-color: transparent;
     color: #dfa974;
     font-size: 22.5px;
@@ -68,7 +213,6 @@
     position: relative;
     left: 87.5%;
     bottom: 50px;
-    /* top: -37.5px */
 }
 .modal .modal-dialog .modal-content .btn-close i {
     position: relative;
@@ -78,7 +222,6 @@
 .modal .modal-dialog .modal-content .btn-close:hover {
     color: #ffffff;
     background-color: #dfaa7459;
-    /* background-color: rgba(0, 0, 0, 0.068); */
 }
 .modal .modal-dialog .modal-content .modal-body p {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -143,7 +286,7 @@
     background-color: #ffffff !important;
 }
 .modal .modal-dialog .modal-content .modal-body .profile-part .profile-alamat::-webkit-scrollbar-thumb {
-    background-color: #dfaa74 !important; /* Warna scrollbar */
+    background-color: #dfaa74 !important;
 }
 
 
@@ -154,7 +297,7 @@
     gap: 260px;
     position: relative;
     right: 290px;
-}
+} */
 
 /* #viewEditProfileModal .modal-dialog .modal-content .submit-profile {
     position: absolute;
@@ -175,10 +318,8 @@
 } */
 
 
-#viewModal .modal-dialog .modal-content p {
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+/* #viewModal .modal-dialog .modal-content p {
     font-weight: 500;
-    /* color: #19191a; */
     width: 240px;
     text-align: center;
     position: relative;
@@ -189,7 +330,7 @@
     position: relative;
     bottom: 129px;
     left: 302px;
-}
+} */
 
 
 
@@ -197,7 +338,7 @@
     width: 250px;
 } */
 
-.modal .modal-dialog .modal-content .modal-body .form-group input {
+/* .modal .modal-dialog .modal-content .modal-body .form-group input {
     border: none;
     border-bottom: 1px solid #ced4da;
     outline: none;
@@ -207,8 +348,7 @@
 	margin-bottom: 30px;
 	font-family: 'Sogeo UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
-    /* width: 250px; */
-}
+} */
 
 
 

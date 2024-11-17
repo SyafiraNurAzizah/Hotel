@@ -13,6 +13,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text">
+                    @if (isset($profile) && $profile->foto)
+                        <img src="{{ asset('storage/' . $profile->foto) }}" alt="Foto Profil" class="profile-image">
+                    @else
+                        <img src="{{ asset('img/profile-default.jpg') }}" alt="Foto Profil" class="profile-image">
+                    @endif
+                    
                     <h2>{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</h2>
                     <div class="bt-option">
                         <span>{{ Auth::user()->email }}</span>
@@ -31,19 +37,119 @@
 <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <p class="profile">Informasi yang Anda berikan akan digunakan untuk verifikasi akun, memastikan keamanan, serta memberikan layanan yang lebih sesuai dengan kebutuhan Anda.</p>
+
+            <form action="{{ route('updateProfile', ['firstname' => Auth::user()->firstname, 'lastname' => Auth::user()->lastname]) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+
+                <div class="form-left">
+                    <div class="form-group-img">
+                        @if (isset($profile) && $profile->foto)
+                            <img src="{{ asset('storage/' . $profile->foto) }}" alt="Foto Profil" class="profile-image">
+                        @endif
+
+                        <input type="file" name="foto" id="foto" class="form-control">
+                    </div>
+                    <div class="form-group-label">
+                        <label for="foto" class="file-label"><i class="fa-solid fa-image"></i></label>
+                        <div class="preview-container" id="preview-container" style="display: none;"> <!-- Sembunyikan container preview secara default -->
+                            <img id="preview-image" alt="Preview Gambar" />
+                        </div>
+                    </div>
+
+                    {{-- <div class="form-group" style="display: flex; width: 300px; position: relative; bottom: 150px; left: 30px;">
+                        <div class="group-name">
+                            <input type="text" name="firstname" id="firstname" class="form-control" value="{{ Auth::user()->firstname }}" required style="text-align: right; font-size: 22px; font-weight: 500; letter-spacing: 1px; border: none;">
+                        </div>
+                        <div class="group-name">
+                            <input type="text" name="lastname" id="lastname" class="form-control" value="{{ Auth::user()->lastname }}" required style="text-align: left; font-size: 22px; font-weight: 500; letter-spacing: 1px; border: none;">
+                        </div>
+                    </div> --}}
+
+                    
+                    {{-- <div class="form-group" style="display: flex; gap: 10px;">
+                        <div class="group-name">
+                            <label for="firstname">Nama Depan</label>
+                            <input type="text" name="firstname" id="firstname" class="form-control" value="{{ Auth::user()->firstname }}" required>
+                        </div>
+                        <div class="group-name">
+                            <label for="lastname">Nama Belakang</label>
+                            <input type="text" name="lastname" id="lastname" class="form-control" value="{{ Auth::user()->lastname }}" required>
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" value="{{ Auth::user()->email }}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="no_telp">Nomor Telepon</label>
+                        <input type="text" name="no_telp" id="no_telp" class="form-control" value="{{ Auth::user()->no_telp }}">
+                    </div> --}}
+                </div>
+                
+                <div class="form-right">
+                    <div class="form-group">
+                        <label for="firstname">Nama Depan</label>
+                        <input type="text" name="firstname" id="firstname" class="form-control" value="{{ Auth::user()->firstname }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastname">Nama Belakang</label>
+                        <input type="text" name="lastname" id="lastname" class="form-control" value="{{ Auth::user()->lastname }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" style="position: relative; top: 10px;">Email</label>
+                        <p id="email" class="form-control" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">{{ Auth::user()->email }}</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="no_telp">Nomor Telepon</label>
+                        <input type="text" name="no_telp" id="no_telp" class="form-control" value="{{ Auth::user()->no_telp }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alamat" style="position: relative; top: 10px;">Alamat</label>
+                        <input type="text" name="alamat" id="alamat" class=" form-control" value="{{ $profile->alamat ?? '' }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tanggal_lahir">Tanggal Lahir</label>
+                        <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control" value="{{ $profile->tanggal_lahir ?? '' }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="form-control" value="{{ $profile->jenis_kelamin ?? '' }}">
+                    </div>
+                </div>
+                
+
+                <button type="submit" class="btn btn-primary">Edit Profil</button>
+            </form>
+
+
+
+
+
+
+
+
+            {{-- <p class="profile">Informasi yang Anda berikan akan digunakan untuk verifikasi akun, memastikan keamanan, serta memberikan layanan yang lebih sesuai dengan kebutuhan Anda.</p>
 
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 <i class="bi bi-x"></i>
             </button>
 
-            <button type="button" class="viewProfileButton profile-button" data-bs-toggle="modal" data-bs-target="#viewProfileModal">Profil</button>
+            <button type="button" class="viewProfileButton profile-button" data-bs-toggle="modal" data-bs-target="#viewProfileModal">Profil</button> --}}
         </div>
     </div>
 </div>
 
 
-<div class="modal fade" id="viewProfileModal" tabindex="-1" aria-labelledby="viewProfileModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="viewProfileModal" tabindex="-1" aria-labelledby="viewProfileModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <p class="profile-title">Profil</p>
@@ -88,10 +194,10 @@
             <button type="button" class="viewEditProfileButton profile-button" data-bs-toggle="modal" data-bs-target="#viewEditProfileModal">Edit Profil</button>
         </div>
     </div>
-</div>
+</div> --}}
 
 
-<div class="modal fade" id="viewEditProfileModal" tabindex="-1" aria-labelledby="viewEditProfileModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="viewEditProfileModal" tabindex="-1" aria-labelledby="viewEditProfileModalLabel" aria-hidden="true"> --}}
     {{-- <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -131,7 +237,7 @@
 
 
 
-    <div class="modal-dialog modal-dialog-centered">
+    {{-- <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <p class="profile-title">Edit Profil</p>
 
@@ -178,7 +284,7 @@
             <button type="submit" class="profile-button">Simpan</button>
         </div>
     </div>
-</div>
+</div> --}}
 
 
 
@@ -211,25 +317,25 @@
                         @if ($item->status == 'selesai')
                             {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
                             
-                            <span style="background: #4c8baf44; color: #14386d; padding: 5px 15px; border-radius: 5px;">
+                            <span style="background: #E9F1FE; color: #1967D3; padding: 5px 15px; border-radius: 5px;">
                                 {{ ucwords(str_replace('_', ' ', $item->status)) }}
                             </span>
                         @elseif($item->status == 'belum_selesai')
                             {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
 
-                            <span style="background: #eba91b5b; color: #ca7607; padding: 5px 15px; border-radius: 5px;">
+                            <span style="background: #FDF6E4; color: #B06001; padding: 5px 15px; border-radius: 5px;">
                                 {{ ucwords(str_replace('_', ' ', $item->status)) }}
                             </span>
                         @elseif($item->status == 'sedang_diproses')
                             {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
 
-                            <span style="background: #4caf4f73; color: #146d17; padding: 5px 15px; border-radius: 5px; font-weight: bold;">
+                            <span style="background: #E7F2EA; color: #137333; padding: 5px 15px; border-radius: 5px;">
                                 {{ ucwords(str_replace('_', ' ', $item->status)) }}
                             </span>
                         @elseif($item->status == 'dibatalkan')
                             {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
                         
-                            <span style="background: #e2323238; color: #6d1414; padding: 5px 15px; border-radius: 5px;">
+                            <span style="background: #FCEAEA; color: #C5211F; padding: 5px 15px; border-radius: 5px;">
                                 {{ ucwords(str_replace('_', ' ', $item->status)) }}
                             </span>
                         @else
@@ -252,4 +358,30 @@
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('foto').addEventListener('change', function(event) {
+            const fileInput = event.target;
+            const previewContainer = document.getElementById('preview-container');
+            const previewImage = document.getElementById('preview-image');
+            const fileLabel = document.querySelector('.file-label');
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                    fileLabel.style.display = 'none'; // Sembunyikan label setelah preview muncul
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+
+            // Klik pada preview untuk mengubah gambar kembali
+            previewImage.addEventListener('click', function() {
+                fileInput.click(); // Membuka input file saat gambar preview diklik
+            });
+        });
+    });
+</script>
 @endpush
