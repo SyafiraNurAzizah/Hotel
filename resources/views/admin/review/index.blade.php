@@ -148,7 +148,7 @@
 
                     {{-- <div class="rd-reviews">
                         <h3 class="mb-4">Reviews</h3>
-                        <div class="review-item">
+                        <div class="review-item mb-4">
                             <div class="ri-pic">
                                 <img src="img/room/avatar/avatar-1.jpg" alt="">
                             </div>
@@ -166,9 +166,8 @@
                                     consectetur,
                                     adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
                                     magnam.</p>
-                                <form action="{{ route('admin.review.destroy', $room->id) }}" method="POST" id="form-delete"><input type="hidden" name="_method" value="DELETE"><input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
+                                <button type="reset" class="btn btn-outline-danger btn-sm mt-2">Delete</button>
+                                
                             </div>
                         </div>
                         <div class="review-item">
@@ -189,6 +188,7 @@
                                     consectetur,
                                     adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
                                     magnam.</p>
+                                    <button type="reset" class="btn btn-outline-danger btn-sm mt-2">Delete</button>
                             </div>
                         </div>
                         <div class="review-item">
@@ -209,6 +209,7 @@
                                     consectetur,
                                     adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
                                     magnam.</p>
+                                    <button type="reset" class="btn btn-outline-danger btn-sm mt-2">Delete</button>
                             </div>
                         </div>
                     </div> --}}

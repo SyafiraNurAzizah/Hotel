@@ -23,7 +23,7 @@
     </div>
     <!-- Breadcrumb Section End -->
 
-    <section class="my-5">
+    <section class="mb-5">
         <div class="container">
 
             {{-- <table class="table table-custom">
@@ -53,50 +53,37 @@
                 </tbody>
             </table> --}}
 
-            {{-- @forelse ($contact as $item)
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $item->name }}</h5>
-                        <p class="card-text">{{ $item->email }}</p>
-                        <p class="card-text">{{ $item->message }}</p>
-                        <p class="card-text">{{ $item->created_at->format('d-m-Y, H:i') }}</p>
-                    </div>
-                </div> --}}
-
-
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="card shadow-lg p-3" style="widht: 18rem; border-radius: 20px;">
-                        <div class="ri-pic">
-                            <img src="img/room/avatar/avatar-1.jpg" alt="">
-                        </div>
+                    <div class="row">
                         @forelse ($contact as $item)
-                        <div class="ri-text">
-                            <h4>{{ $item->Nama }}</h4>
-                            <p>{{ $item->created_at->format('Y-m-d') }}</p>
-                            <h6 class="mt-2">{{ $item->Pesan }}</h6>
-
-                            <div class="btn-contact d-flex justify-content-between align-items-center my-3">
-                                <a href="https://wa.me/+628812721410?text=Halo%2C%20saya%20tertarik%20dengan%20paket%20wedding%20Anda."
-                                    target="_blank"
-                                    class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
-                                    <i class="icon_phone me-2" style="margin-right: 8px;"></i> Delete
-                                </a>
-                                <a href="mailto:istiqomahkhoerunnisa@gmail.com?subject=Informasi%20Paket%20Wedding&body=Halo,%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20paket%20wedding%20Anda."
-                                    class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
-                                    <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail </a>
-
+                            <div class="col-lg-4">
+                                <div class="card shadow-lg p-3" style="width: 18rem; border-radius: 20px; background-color: #efebdf;">
+                                    <div class="ri-pic">
+                                        <img src="img/room/avatar/avatar-1.jpg" alt="">
+                                    </div>
+                                    <div class="ri-text">
+                                        <h4>{{ $item->Nama }}</h4>
+                                        <p>{{ $item->created_at->format('Y-m-d') }}</p>
+                                        <h6 class="mt-2">{{ $item->Pesan }}</h6>
+                    
+                                        <div class="btn-contact d-flex justify-content-between align-items-center my-3">
+                                            <a href="https://wa.me/+628812721410?text=Halo%2C%20saya%20tertarik%20dengan%20paket%20wedding%20Anda."
+                                                target="_blank"
+                                                class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
+                                                <i class="icon_phone me-2" style="margin-right: 8px;"></i> Delete
+                                            </a>
+                                            <a href="mailto:istiqomahkhoerunnisa@gmail.com?subject=Informasi%20Paket%20Wedding&body=Halo,%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20paket%20wedding%20Anda."
+                                                class="btn btn-outline-secondary w-35 gmail-btn d-flex align-items-center">
+                                                <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail 
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
                         @empty
                             <p>No data available</p>
                         @endforelse
-                        
                     </div>
-                </div>
-
-
-            </div>
+                    
 
         </div>
     </section>

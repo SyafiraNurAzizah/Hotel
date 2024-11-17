@@ -172,23 +172,27 @@ class HotelsController extends Controller
         return view('admin.review.index');
     }
 
-    public function showAdminRating($location, $nama_tipe)
-    {
-        $hotels = Hotels::where('nama_cabang', $location)->get();
+    public function showAdminReview($location, $nama_tipe)
+{
+    // Retrieve all hotels in the specified location
+    $hotels = Hotels::where('nama_cabang', $location)->get();
 
-        $room = TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail();
+    // Find the room type (TipeKamar) with the given name and load related ratings
+    $room = TipeKamar::with(['hotel', 'ratings.user'])->where('nama_tipe', $nama_tipe)->firstOrFail();
 
-        foreach ($hotels as $hotel) {
-            $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
-        }
-
-        return view('hotel.rating', [
-            'location' => ucfirst($location),
-            'hotels' => $hotels,
-            'room' => $room
-        ])
-            ->with('success', 'Thank you for your rating!');
+    // Add room types to each hotel for display purposes
+    foreach ($hotels as $hotel) {
+        $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
     }
+
+    // Pass data to the view
+    return view('hotel.rating', [
+        'location' => ucfirst($location),
+        'hotels' => $hotels,
+        'room' => $room
+    ])->with('success', 'Thank you for your rating!');
+}
+
 
     public function destroyAdminReview($id)
     {

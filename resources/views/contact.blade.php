@@ -21,7 +21,7 @@
                             <tbody>
                                 <tr>
                                     <td class="c-o">Address:</td>
-                                    <td>856 Cordia Extension Apt. 356, Lake, US</td>
+                                    <td>Jl. Mayjend Sungkono Selabaya Kalimanah Purbalingga.</td>
                                 </tr>
                                 <tr>
                                     <td class="c-o">Phone:</td>
@@ -61,9 +61,7 @@
                 </div>
             </div>
             <div class="map">
-                <iframe
-                    src="https://www.google.com/maps/place/Jasa+Snack+%26+Catering+-+Intan+Snack/@-7.3856822,109.3628782,17z/data=!3m1!4b1!4m6!3m5!1s0x2e655963f663e173:0xea07d8955a926292!8m2!3d-7.3856875!4d109.3654531!16s%2Fg%2F11v9jkjhjk?entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D"
-                    height="470" style="border:0;" allowfullscreen=""></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.554256046068!2d109.34410847357361!3d-7.403735972900789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6559b9ff8d3795%3A0xa58daaef273f4e44!2sSMK%20Negeri%201%20Purbalingga!5e0!3m2!1sid!2sid!4v1731643103192!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
