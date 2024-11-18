@@ -77,5 +77,4 @@ class MeetingsController extends Controller
     }
     
 
-
 }
