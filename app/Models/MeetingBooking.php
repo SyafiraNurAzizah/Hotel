@@ -9,8 +9,16 @@ class MeetingBooking extends Model
 {
     use HasFactory;
 
+    protected $table = 'bookings';
     protected $fillable = [
-        'user_id', 'meeting_room', 'date', 'start_time', 'end_time', 'notes'
+        'hotel_id',
+        'meeting_id',
+        'name',
+        'email',
+        'phone',
+        'date',
+        'start_time',
+        'end_time',
     ];
 
     // Relasi dengan User (User bisa memiliki banyak booking)

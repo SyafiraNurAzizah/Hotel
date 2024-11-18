@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-@extends('layouts.app')
-
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('css/admin-meeting.css') }}">
-@endpush
-
-@section('content')
-    <!-- Breadcrumb Section Begin -->
-    <div class="breadcrumb-section">
-        <div class="container mt-6">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text m-5">
-                        <h2>Admin Meetings</h2>
-                        <div class="bt-option">
-                            <a href="{{ route('index') }}">Beranda</a>
-                            <span>Data Meetings</span>
-                        </div>
-=======
 @extends('admin.layouts.app')
 
 @section('content')
@@ -34,79 +14,24 @@
                                 </svg></div>
                             Data Ruangan Meeting
                         </h1>
->>>>>>> 3585dbecfb44f5b81067295e2cd3bd961e375dc1
                     </div>
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-    </div>
-    <!-- Breadcrumb Section End -->
+    </header>
 
     <section>
         <div class="container mt-6">
-            {{-- <a href="{{ route('wedding.create') }}"
+            <a href="{{ route('admin.meeting.create') }}"
                 class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center mb-2">
                 <i class="icon_phone fs-2 me-2"></i> <!-- fs-2 memperbesar ukuran ikon -->
-                Tambah Paket
-            </a> --}}
+                Tambah Ruangan
+            </a>
 
 
             <table class="table table-custom">
                 <thead class="thead-custom">
                     <tr>
-                        <th>No</th>
-                        <th>Nama Ruang</th>
-                        <th>Harga per Jam</th>
-                        <th>Jumlah Ruang Tersedia</th>
-                        <th>Foto</th>
-                        <th>Status</th>
-                        <th>Kapasitas</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($meetings as $meeting)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $meeting->nama_ruang }}</td>
-                            <td>{{ number_format($meeting->harga_per_jam, 2) }}</td>
-                            <td>{{ $meeting->jumlah_ruang_tersedia }}</td>
-                            <td>
-                                {{-- <img src="{{ asset('/storage/uploads/' . $wedding->gambar) }}" alt="{{ $wedding->judul }}"> --}}
-                                <img src="{{ asset('storage/' . $meeting->foto) }}" alt="{{ $meeting->nama_ruang }}" width="100">
-                            </td>
-                            <td>{{ $meeting->status }}</td>
-                            <td>{{ $meeting->kapasitas }} guests</td>
-                            <td>
-                                <a href="{{ route('wedding.show', $meeting->id) }}"
-                                        class="fa fa-eye btn btn-outline-secondary"></a>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="8" class="no-data">No data available</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- Breadcrumb Section End -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-@endsection
-=======
-    </header>
-
-    <div class="container-xl px-4 mt-n10">
-        <div class="row card h-100 p-3">
-            <div class="container mt-6">
-                <a href="{{ route('admin.meeting.create') }}" class="btn btn-primary btn-sm mb-3">Tambah Ruang Meeting</a>
-                <table class="table table-bordered">
-                    <thead class="thead-light">
-                        <tr>
                             <th>No</th>
                             <th>Nama Ruang</th>
                             <th>Harga per Jam</th>
@@ -115,8 +40,7 @@
                             <th>Status</th>
                             <th>Kapasitas</th>
                             <th>Aksi</th>
-                        </tr>
-                    </thead>
+                    </tr>
                     <tbody>
                         @forelse($meetings as $meeting)
                             <tr>
@@ -154,7 +78,6 @@
     </div>
 
 @endsection
-
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -176,4 +99,3 @@
         }
     </script>
 @endpush
->>>>>>> 3585dbecfb44f5b81067295e2cd3bd961e375dc1

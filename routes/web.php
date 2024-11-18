@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminHotelController;
+use App\Http\Controllers\Admin\AdminMeetingController;
 use App\Http\Controllers\Admin\WeddingController;
 use App\Http\Controllers\BookingHotelController;
 use App\Http\Controllers\ContactController;
@@ -85,6 +86,11 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMid
     Route::post('/admin/hotel/{id}/update', [AdminHotelController::class, 'update'])->name('admin.hotel.update');       // Untuk update data
     Route::delete('/admin/hotel/{id}', [AdminHotelController::class, 'AdminDestroy'])->name('admin.hotel.destroy');     // Untuk menghapus data  // Untuk daftar reservasi
 
+    // Route CRUD untuk Admin Meeting
+    Route::get('/admin/meeting', [AdminMeetingController::class, 'AdminIndex'])->name('admin.meetingss.firstindex');// Untuk daftar meeting
+    Route::get('/admin/meeting/{id}', [AdminMeetingController::class, 'showByCity'])->name('admin.meetingss.index');                
+    // Route::get('/admin/meeting/{id}', [AdminMeetingController::class, 'show'])->name('admin.meeting.show');
+
 });
 //----------------------------------------------------------------------------
 
@@ -101,11 +107,14 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\UserAccessMidd
     Route::post('/hotel/{location}/{nama_tipe}/transaksi/{uuid}/pembayaran', [App\Http\Controllers\BookingHotelController::class, 'pembayaranHotel'])->name('booking.hotel.pembayaran');
     Route::put('/hotel/{location}/{nama_tipe}/transaksi/{uuid}/pembayaran', [App\Http\Controllers\BookingHotelController::class, 'updatePembayaranHotel'])->name('booking.hotel.pembayaran.update');
     Route::post('/hotel/{location}/{nama_tipe}/{uuid}', [App\Http\Controllers\BookingHotelController::class, 'cancelHotel'])->name('booking.hotel.cancel');
+//hotel//
 
-
-
-//Booking Meeting//
-Route::resource('meeting_bookings', MeetingBookingController::class);
+//meeting//
+    // Route::resource('meeting_bookings', MeetingBookingController::class);
+    // Route::post('/bookings', [App\Http\Controllers\MeetingBookingController::class, 'store'])->name('bookings.store');
+    Route::get('/meeting/{location}/{roomId}/transaksi/{id}', [MeetingBookingController::class, 'transaksiMeeting'])->name('meeting.transaksi.transaksi-meeting')->middleware('remove.room.query');
+    Route::post('/meeting/{location}/{roomId}/transaksi', [MeetingBookingController::class, 'storeMeeting'])->name('booking.meeting.store');
+//meeting//
 
     // ----- //
     
