@@ -86,6 +86,21 @@
 .btn i {
     margin-right: 5px;
 }
+
+/* CSS untuk input pencarian */
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    padding: 8px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+}
 </style>
 @endpush
 
@@ -101,9 +116,15 @@
         <i class="fas fa-plus-circle"></i> Tambah Hotel
     </a>
 
+    <!-- Kontainer untuk input pencarian -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="Cari ID...">
+    </div>
+
     <table class="table table-bordered">
         <thead>
             <tr>
+                <th><i class="fas fa-user"></i> ID</th>
                 <th><i class="fas fa-user"></i> User ID</th>
                 <th><i class="fas fa-hotel"></i> Hotel ID</th>
                 <th><i class="fas fa-tasks"></i> Status</th>
@@ -112,9 +133,10 @@
                 <th><i class="fas fa-cog"></i> Aksi</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="bookingTable">
             @forelse($bookinghotel as $item)
                 <tr>
+                    <td>{{ substr($item->uuid, 0, 5) }}</td>
                     <td>{{ $item->user->firstname ?? 'N/A' }}</td>
                     <td>{{ $item->hotel->nama_cabang ?? 'N/A' }}</td>
                     <td>
@@ -166,10 +188,29 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" style="text-align: center">Tidak ada data booking di Hotel {{ $city }}</td>
+                    <td colspan="7" style="text-align: center">Tidak ada data booking di Hotel {{ $city }}</td>
                 </tr>
             @endforelse
         </tbody>
     </table>
 </div>
+
+@push('scripts')
+<script>
+// JavaScript untuk filter pencarian
+document.getElementById('searchInput').addEventListener('keyup', function() {
+    var input = this.value.toLowerCase();
+    var tableRows = document.querySelectorAll('#bookingTable tr');
+
+    tableRows.forEach(function(row) {
+        var rowData = row.textContent.toLowerCase();
+        if (rowData.includes(input)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+</script>
+@endpush
 @endsection
