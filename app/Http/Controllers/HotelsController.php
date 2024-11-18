@@ -156,24 +156,88 @@ class HotelsController extends Controller
 
     public function indexAdminReview()
     {
-        // $hotels = Hotels::where('nama_cabang', $location)->get();
-
+        // Ambil semua data TipeKamar beserta relasi ratings
         $room = TipeKamar::with('ratings')->get();
 
+        // Total Reviews
+        $totalReviews = $room->flatMap->ratings->count();
+
+        // Average Rating
+        $averageRating = $room->flatMap->ratings->avg('rating') ?? 0;
+
+        // filter
+        // $year = date('Y');
+        // $month = date('m');
+        // $day = date('d');
+
+        // $filteredRoom = $room->flatMap->ratings->where('created_at', '>=', $year . '-' . $month . '-' . $day)->get();
+
+        // Hitung jumlah ulasan berdasarkan rating
+        $ratingsCount = Rating::selectRaw('rating, COUNT(*) as count')
+            ->groupBy('rating')
+            ->orderBy('rating', 'asc')
+            ->pluck('count', 'rating');
+
+        // Label (rating values) dan data (jumlah ulasan)
+        $labels = $ratingsCount->keys()->toArray();
+        $data = $ratingsCount->values()->toArray();
+
+        // Kirim data ke view
         return view('admin.review.index', [
-            // 'location' => ucfirst($location),
-            // 'hotels' => $hotels,
-            'room' => $room
+            'room' => $room,
+            'totalReviews' => $totalReviews,
+            'averageRating' => $averageRating,
+            'labels' => $labels,
+            'data' => $data,
+            // 'year' => $year,
+            // 'month' => $month,
+            // 'filteredRoom' => $filteredRoom
         ]);
     }
 
-//  
-
-    public function destroyReview($id)
+    public function destroyAdminReview($id)
     {
-        Rating::where('id', $id)->delete();
-        return redirect()->back()->with('success', 'Review deleted successfully.');
+        // Cari data rating berdasarkan ID
+        $rating = Rating::find($id);
+
+        // Jika rating tidak ditemukan, tampilkan pesan error
+        if (!$rating) {
+            return redirect()->back()->with('error', 'Review not found.');
+        }
+
+        // Hapus data rating
+        $rating->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Review deleted successfully!');
     }
+
+
+
+    // public function indexAdminReview()
+    // {
+    //     // Ambil semua data TipeKamar beserta relasi ratings
+    //     $room = TipeKamar::with('ratings')->get();
+
+    //     // Hitung jumlah ulasan berdasarkan rating
+    //     $ratingsCount = Rating::selectRaw('rating, COUNT(*) as count')
+    //         ->groupBy('rating')
+    //         ->orderBy('rating', 'asc')
+    //         ->pluck('count', 'rating');
+
+    //     // Label (rating values) dan data (jumlah ulasan)
+    //     $labels = $ratingsCount->keys()->toArray();
+    //     $data = $ratingsCount->values()->toArray();
+
+    //     // Kirim data ke view
+    //     return view('admin.review.index', [
+    //         'room' => $room,
+    //         'labels' => $labels,
+    //         'data' => $data
+    //     ]);
+    // }
+
+
 
     public function showAdminReview($location, $nama_tipe)
     {
@@ -185,6 +249,10 @@ class HotelsController extends Controller
             $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
         }
 
+        $ratingData = Rating::where('tipe_kamar_id', $room->id)->get();
+
+        $room->ratings = $ratingData;
+
         return view('admin.review.index', [
             'location' => ucfirst($location),
             'hotels' => $hotels,
@@ -194,16 +262,16 @@ class HotelsController extends Controller
 
 
 
+    // public function destroyAdminReview($id)
+    // {
+    //     $rating = Rating::find($id);
 
-
-
-    public function destroyAdminReview($id)
-    {
-        Rating::where('id', $id)->delete();
-        $room = TipeKamar::with('hotel')->where('id', $id)->firstOrFail();
-
-        return redirect()->route('admin.review.index')->with('success', 'Review deleted successfully.');
-    }
+    //     if (!$rating) {
+    //         $rating->delete();
+    //         return redirect()->back()->with('error', 'Review not found.');
+    //     }
+    //     return redirect()->back()->with('success', 'Review deleted successfully!');
+    // }
     // -------------------------------------------------- //
 
 
