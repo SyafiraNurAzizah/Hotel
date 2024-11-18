@@ -23,12 +23,14 @@
     </a>
     <div class="stepbystep">
         <a href="{{ route('admin.hotel.tamu') }}">
-            <i class="fa-solid fa-user" style="position: relative; bottom: 4px; left: 20px; color: #222736"></i>
+            <i class="fa-solid fa-user" style="position: relative; bottom: 4px; color: #222736"></i>
         </a>
         <div class="garis" style="position: relative; left: 12px; border-color: #222736"></div>
         <a href="{{ route('admin.hotel.create') }}">
-            <i class="fa-solid fa-bed" style="padding-right: 60px; position: relative; left: 5px; color: #222736"></i>
+            <i class="fa-solid fa-bed" style="padding-right: 60px; position: relative; left: 28px; color: #222736"></i>
         </a>
+        <div class="garis" style="border-color: #222736"></div>
+        <i class="fa-solid fa-money-check" style="color: #222736"></i>
     </div>
 </div>
 
@@ -40,7 +42,7 @@
 
 <div class="container">
     <div class="card">
-        <form action="{{ route('admin.hotel.store') }}" method="POST">
+        {{-- <form action="{{ route('admin.hotel.store') }}" method="POST">
             @csrf
 
             <div class="form-group-user">
@@ -155,23 +157,11 @@
                 <label class="form-label">Total Harga (Rp)</label>
                 <input type="number" name="jumlah_harga" class="form-control" placeholder="Total Harga" required min="0" id="jumlah_harga" readonly>
             </div>
-
-            <div class="form-group-pembayaran">
-                <div class="form-group-group">
-                <label class="form-label">Metode Pembayaran</label>
-                <select name="metode_pembayaran" class="form-control" required>
-                    <option value="Cash">Tunai</option>
-                    <option value="Kartu Kredit/Debit">Kartu Kredit/Debit</option>
-                    <option value="DANA">DANA</option>
-                    <option value="OVO">OVO</option>
-                </select>
-                </div>
-            </div>
             
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
-        </form>
+        </form> --}}
     </div>
 </div>
 
@@ -199,137 +189,4 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
-<script>
-const tamu = @json($tamu); // Mengambil data tamu dari server
-
-function updateVisitorNameFromInput() {
-    const userIdInput = document.getElementById('tamu_id_input').value;
-    const visitorNameInput = document.getElementById('visitor_name');
-
-    // Cek apakah input kosong
-    if (userIdInput === '') {
-        visitorNameInput.value = ''; // Kosongkan input nama pengunjung
-        visitorNameInput.placeholder = "Masukkan Tamu ID untuk melihat nama"; // Reset placeholder
-        visitorNameInput.classList.remove('error-placeholder'); // Hapus kelas error
-        return; // Keluar dari fungsi
-    }
-
-    // Mencari tamu berdasarkan ID
-    const visitor = tamu.find(tamu => tamu.id == userIdInput);
-
-    if (visitor) {
-        // Jika tamu ditemukan, tampilkan nama lengkap
-        visitorNameInput.value = `${visitor.nama}`; // Gantilah sesuai dengan kolom nama di tabel tamu
-        visitorNameInput.placeholder = "Masukkan Tamu ID untuk melihat nama"; // Reset placeholder
-        visitorNameInput.classList.remove('error-placeholder'); // Hapus kelas error
-    } else {
-        // Jika tidak ditemukan, tampilkan pesan kesalahan di placeholder
-        visitorNameInput.value = '';
-        visitorNameInput.placeholder = 'Tamu dengan ID tersebut belum tersedia';
-        visitorNameInput.classList.add('error-placeholder'); // Tambahkan kelas error
-    }
-};
-
-
-
-function showRoomSelect(hotelId) {
-    // Sembunyikan semua select tipe kamar
-    var allSelects = document.getElementsByClassName('room-select');
-    for(var i = 0; i < allSelects.length; i++) {
-        allSelects[i].style.display = 'none';
-    }
-    
-    // Tampilkan select yang sesuai
-    if(hotelId) {
-        document.getElementById('room_select_' + hotelId).style.display = 'block';
-        document.getElementById('room_select_default').style.display = 'none';
-    } else {
-        document.getElementById('room_select_default').style.display = 'block';
-    }
-}
-
-// Jalankan saat halaman dimuat
-document.addEventListener('DOMContentLoaded', function() {
-    // Tampilkan select default
-    document.getElementById('room_select_default').style.display = 'block';
-    
-    // Sembunyikan select lainnya
-    var allSelects = document.getElementsByClassName('room-select');
-    for(var i = 0; i < allSelects.length; i++) {
-        if(allSelects[i].id !== 'room_select_default') {
-            allSelects[i].style.display = 'none';
-        }
-    }
-});
-
-
-function calculateTotalPrice() {
-    const roomSelect = document.querySelector('select[name="tipe_kamar_id"]:not([style*="display: none"])'); // Ambil select yang terlihat
-    const jumlahKamar = parseInt(document.querySelector('input[name="jumlah_kamar"]').value) || 0; // Ambil jumlah kamar
-    const checkInDate = new Date(document.querySelector('input[name="check_in"]').value);
-    const checkOutDate = new Date(document.querySelector('input[name="check_out"]').value);
-    
-    // Hitung jumlah malam
-    const timeDifference = checkOutDate - checkInDate;
-    const jumlahMalam = Math.ceil(timeDifference / (1000 * 3600 * 24)); // Menghitung jumlah malam
-
-    if (roomSelect && roomSelect.selectedIndex > 0) { // Pastikan ada tipe kamar yang dipilih
-        const hargaPerMalam = parseFloat(roomSelect.options[roomSelect.selectedIndex].getAttribute('data-harga'));
-        const totalHarga = hargaPerMalam * jumlahKamar * jumlahMalam; // Hitung total harga
-
-        // Update total harga di input
-        document.getElementById('jumlah_harga').value = totalHarga.toFixed(2); // Tampilkan dengan 2 desimal
-    } else {
-        document.getElementById('jumlah_harga').value = 0; // Reset jika tidak ada kamar yang dipilih
-    }
-}
-
-// Panggil fungsi calculateTotalPrice ketika ada perubahan
-document.addEventListener('DOMContentLoaded', function() {
-    // Tampilkan select default
-    document.getElementById('room_select_default').style.display = 'block';
-    
-    // Sembunyikan select lainnya
-    var allSelects = document.getElementsByClassName('room-select');
-    for(var i = 0; i < allSelects.length; i++) {
-        if(allSelects[i].id !== 'room_select_default') {
-            allSelects[i].style.display = 'none';
-        }
-    }
-
-    // Tambahkan event listener untuk menghitung total harga
-    document.querySelector('select[name="tipe_kamar_id"]').addEventListener('change', calculateTotalPrice);
-    document.querySelector('input[name="jumlah_kamar"]').addEventListener('input', calculateTotalPrice);
-    document.querySelector('input[name="check_in"]').addEventListener('change', calculateTotalPrice); // Tambahkan event listener untuk check in
-    document.querySelector('input[name="check_out"]').addEventListener('change', calculateTotalPrice); // Tambahkan event listener untuk check out
-});
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Cek apakah session error ada
-    @if(session('kamarTersediaError'))
-        // Menampilkan popup jika session error ada
-        const errorKetersediaanKamarOverlay = document.getElementById('errorKetersediaanKamar');
-        errorKetersediaanKamarOverlay.style.display = 'flex';  // Menampilkan overlay
-
-        const closeErrorKetersediaanKamarPopup = document.getElementById('closeErrorKetersediaanKamarPopup');
-        
-        // Menutup popup jika tombol close diklik
-        if (closeErrorKetersediaanKamarPopup) {
-            closeErrorKetersediaanKamarPopup.addEventListener('click', function() {
-                errorKetersediaanKamarOverlay.style.display = 'none';  // Menutup overlay
-            });
-        }
-
-        // Menutup popup jika area luar popup diklik
-        errorKetersediaanKamarOverlay.addEventListener('click', function(e) {
-            if (e.target === errorKetersediaanKamarOverlay) {
-                errorKetersediaanKamarOverlay.style.display = 'none';  // Menutup overlay
-            }
-        });
-    @endif
-});
-</script>
 @endpush

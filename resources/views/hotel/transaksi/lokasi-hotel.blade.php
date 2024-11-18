@@ -88,7 +88,7 @@
 
 
 <div class="kembali">
-    <a href="{{ route('profile', ['firstname' => auth()->user()->firstname, 'lastname' => auth()->user()->lastname]) }}">
+    <a href="{{ route('profile', ['id' => auth()->user()->id, 'firstname' => auth()->user()->firstname, 'lastname' => auth()->user()->lastname]) }}">
         <p>Kembali</p>
     </a>
 </div>

@@ -36,9 +36,9 @@ class HomeController extends Controller
         return view('contact');
     }
 
-    public function profile($firstname, $lastname)
+    public function profile($id, $firstname, $lastname)
     {
-        $user = User::where('firstname', $firstname)->where('lastname', $lastname)->firstOrFail();
+        $user = User::where('id', $id)->firstOrFail();
 
         $bookings = $user->bookings;
 
@@ -61,7 +61,7 @@ class HomeController extends Controller
         return view('profile', ['user' => $user, 'bookings' => $bookings, 'userProfile' => $userProfile, 'profile' => $profile]);
     }
 
-    public function updateProfile(Request $request, $currentFirstname, $currentLastname)
+    public function updateProfile(Request $request, $firstname, $lastname)
     {
         // Validate the incoming request data
         $request->validate([
@@ -76,8 +76,8 @@ class HomeController extends Controller
         ]);
 
         // Update the users table
-        $user = User::where('firstname', $currentFirstname)
-                    ->where('lastname', $currentLastname)
+        $user = User::where('firstname', $firstname)
+                    ->where('lastname', $lastname)
                     ->first();
 
         if ($user) {

@@ -50,7 +50,7 @@
                                     <div class="user-dropdown">
                                         <div class="bridge"></div>
                                         <ul>
-                                            <li onclick="window.location.href='{{ route('profile', ['firstname' => auth()->user()->firstname, 'lastname' => auth()->user()->lastname]) }}'">
+                                            <li onclick="window.location.href='{{ route('profile', ['id' => auth()->user()->id, 'firstname' => auth()->user()->firstname, 'lastname' => auth()->user()->lastname]) }}'">
                                                 <i class="fa-regular fa-user"></i>
                                                 <a>Profil</a>
                                             </li>
@@ -71,7 +71,7 @@
                                     <div class="user-dropdown">
                                         <div class="bridge"></div>
                                         <ul>
-                                            <li onclick="window.location.href='{{ route('profile', ['firstname' => auth()->user()->firstname, 'lastname' => auth()->user()->lastname]) }}'">
+                                            <li onclick="window.location.href='{{ route('profile', ['id' => auth()->user()->id, 'firstname' => auth()->user()->firstname, 'lastname' => auth()->user()->lastname]) }}'">
                                                 <i class="fa-regular fa-user"></i>
                                                 <a>Profil</a>
                                             </li>

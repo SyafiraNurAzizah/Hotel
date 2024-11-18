@@ -55,14 +55,28 @@ Route::get('/login', function () {
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth.custom'])->group(function () {
-    Route::get('/{firstname}-{lastname}', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
-    Route::put('/{firstname}-{lastname}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
+    Route::get('/{id}/{firstname}-{lastname}', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
+    Route::put('/{id}/{firstname}-{lastname}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
 });
 //----------------------------------------------------------------------------//
 
 
 
 
+
+//------------------------------ ADMIN SPECIAL -----------------------------------//
+Route::get('/admin/hotel/reservasi', [BookingHotelController::class, 'create'])
+    ->middleware(['auth.custom', App\Http\Middleware\AdminAccessMiddleware::class])
+    ->name('admin.hotel.create');
+
+Route::get('admin/hotel/daftar-pengunjung', [BookingHotelController::class, 'daftarPengunjungAdmin'])
+    ->middleware(['auth.custom', App\Http\Middleware\AdminAccessMiddleware::class])
+    ->name('admin.hotel.list-tamu');
+
+Route::get('/admin/hotel/pengunjung', [BookingHotelController::class, 'pengunjungAdmin'])
+    ->middleware(['auth.custom', App\Http\Middleware\AdminAccessMiddleware::class])
+    ->name('admin.hotel.tamu');
+//----------------------------------------------------------------------------------//
 
 //------------------------------ ADMIN -----------------------------------//
 Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMiddleware::class]], function () {
@@ -73,11 +87,19 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMid
 
     Route::get('/admin/hotel', [BookingHotelController::class, 'index'])->name('admin.hotel.index');
     Route::get('/admin/hotel/{id}', [BookingHotelController::class, 'show'])->name('admin.hotel.show');
-    Route::get('/admin/admin/create', [BookingHotelController::class, 'create'])->name('admin.hotel.create');
+    // Route::get('/admin/admin/create', [BookingHotelController::class, 'create'])->name('admin.hotel.create');
     Route::post('/admin/hotel/store', [BookingHotelController::class, 'store'])->name('admin.hotel.store')->middleware('auth');
     Route::get('/admin/hotel/{id}/edit', [BookingHotelController::class, 'edit'])->name('admin.hotel.edit');
     Route::put('/admin/hotel/{id}', [BookingHotelController::class, 'update'])->name('admin.hotel.update');
     Route::delete('/admin/hotel/{id}', [BookingHotelController::class, 'destroy'])->name('admin.hotel.destroy');
+    // Route::get('/admin/hotel/tamu', [BookingHotelController::class, 'pengunjungAdmin'])->name('admin.hotel.tamu');
+    // Route::get('admin/hotel/daftar-pengunjung', [BookingHotelController::class, 'daftarPengunjungAdmin'])->name('admin.hotel.list-tamu');
+    Route::post('/admin/hotel/tamu', [BookingHotelController::class, 'tambahPengunjungAdmin'])->name('admin.hotel.store.tamu');
+    Route::get('/admin/hotel/pembayaran/{uuid}', [BookingHotelController::class, 'pembayaranAdmin'])->name('admin.hotel.pembayaran');
+
+    Route::get('/test', function () {
+        return 'Test route works!';
+    });
 
     // Route CRUD untuk Admin Hotel
     Route::get('/admin/hotel', [AdminHotelController::class, 'AdminIndex'])->name('admin.hotel.firstindex');            // Untuk daftar hotel
@@ -106,7 +128,8 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMid
 //-------------------------------------------------------------------------------------------------------------//
 
 });
-//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------//
+
 
 
 

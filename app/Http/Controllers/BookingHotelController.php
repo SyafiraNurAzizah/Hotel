@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\BookingHotel;
 use App\Models\Hotels;
 use App\Models\PembayaranHotel;
+use App\Models\Tamu;
 use App\Models\TipeKamar;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -339,9 +340,10 @@ class BookingHotelController extends Controller
         // $room = TipeKamar::all();
         $room = TipeKamar::select('id', 'hotel_id', 'nama_tipe', 'harga_per_malam')->get();
 
+        $tamu = Tamu::all();
 
         // Kirim data tersebut ke view 'admin.hotel.create'
-        return view('admin.hotel.create', compact('users', 'hotels', 'room'));
+        return view('admin.hotel.create', compact('users', 'hotels', 'room', 'tamu'));
     }
 
 
@@ -353,7 +355,7 @@ class BookingHotelController extends Controller
     {
         // Validasi data yang diterima dari permintaan
         $validatedData = $request->validate([
-            'user_id' => 'required|exists:users,id',
+            'tamu_id' => 'required|exists:tamu,id',
             'hotel_id' => 'required|exists:hotels,id',
             'tipe_kamar_id' => 'required|exists:tipe_kamar,id',
             'check_in' => 'required|date',
@@ -363,7 +365,8 @@ class BookingHotelController extends Controller
             'jumlah_kamar' => 'required|integer|min:1',
             'status' => 'required|in:belum_selesai,selesai,dibatalkan',
             'status_pembayaran' => 'required|in:belum_dibayar,dibayar',
-            'pesan' => 'nullable|string'
+            'pesan' => 'nullable|string',
+            'metode_pembayaran' => 'nullable|string',
         ]);
 
         // Ambil data tipe kamar yang dipilih untuk mendapatkan harga
@@ -430,7 +433,7 @@ class BookingHotelController extends Controller
 
         // Buat objek booking baru
         $booking = new BookingHotel();
-        $booking->user_id = $validatedData['user_id'];
+        $booking->tamu_id = $validatedData['tamu_id'];
         $booking->uuid = Str::uuid();
         $booking->hotel_id = $validatedData['hotel_id'];
         $booking->tipe_kamar_id = $validatedData['tipe_kamar_id'];
@@ -450,7 +453,14 @@ class BookingHotelController extends Controller
             $room->jumlah_kamar_tersedia -= $validatedData['jumlah_kamar'];
             $room->save();
 
-            return redirect()->route('admin.hotel.index')->with('success', 'Reservasi berhasil dibuat.');
+
+            // Simpan data pembayaran
+            $pembayaran = new PembayaranHotel();
+            $pembayaran->booking_hotel_id = $booking->id; // Menghubungkan pembayaran dengan booking
+            $pembayaran->metode_pembayaran = $validatedData['metode_pembayaran'];
+            $pembayaran->save();
+
+            return redirect()->route('admin.hotel.create')->with('success', 'Reservasi berhasil dibuat.');
         } else {
             return back()->withErrors(['error' => 'Gagal menyimpan data booking.']);
         }
@@ -472,5 +482,42 @@ class BookingHotelController extends Controller
         return view('admin.hotel.show', compact('booking'));
     }
 
+    public function daftarPengunjungAdmin()
+    {
+        $tamu = Tamu::all(); // Ambil semua data tamu
+        return view('admin.hotel.list-tamu', compact('tamu'));
+    }
     
+    public function pengunjungAdmin()
+    {
+        $tamu = Tamu::all(); // Ambil semua data tamu
+        return view('admin.hotel.tamu', compact('tamu')); // Pastikan view ini ada
+    }
+
+    public function tambahPengunjungAdmin(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nama' => 'required|string',
+            'no_identitas' => 'required|string',
+            'no_telp' => 'required|string',
+        ]);
+
+        // $validatedData['no_identitas'] = strtoupper($validatedData['no_identitas']);
+    
+        Tamu::create($validatedData);
+    
+        return redirect()->route('admin.hotel.create')->with('success', 'Data tamu berhasil ditambahkan.');
+    }
+
+    public function pembayaranAdmin($uuid)
+    {
+        $booking = BookingHotel::where('uuid', $uuid)->firstOrFail();
+        $pembayaran = PembayaranHotel::where('booking_hotel_id', $booking->id)->first();
+
+        return view('admin.hotel.pembayaran', compact('booking', 'pembayaran'));
+    }
+
+
+
+
 }

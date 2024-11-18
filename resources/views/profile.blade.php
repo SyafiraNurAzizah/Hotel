@@ -38,7 +38,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
-            <form action="{{ route('updateProfile', ['firstname' => Auth::user()->firstname, 'lastname' => Auth::user()->lastname]) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('updateProfile', ['id' => Auth::user()->id, 'firstname' => Auth::user()->firstname, 'lastname' => Auth::user()->lastname]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
