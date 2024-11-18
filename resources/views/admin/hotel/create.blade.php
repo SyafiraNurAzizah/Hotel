@@ -147,11 +147,6 @@
             </div>
 
             <div class="form-group">
-                <label class="form-label">Pesan (Opsional)</label>
-                <textarea name="pesan" class="form-control" rows="3" placeholder="Masukkan pesan" style="height: 150px;"></textarea>
-            </div>
-
-            <div class="form-group">
                 <label class="form-label">Total Harga (Rp)</label>
                 <input type="number" name="jumlah_harga" class="form-control" placeholder="Total Harga" required min="0" id="jumlah_harga" readonly>
             </div>
@@ -166,6 +161,11 @@
                     <option value="OVO">OVO</option>
                 </select>
                 </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Pesan (Opsional)</label>
+                <textarea name="pesan" class="form-control" rows="3" placeholder="Masukkan pesan" style="height: 150px;"></textarea>
             </div>
             
             <div class="form-group">

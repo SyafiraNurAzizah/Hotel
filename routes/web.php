@@ -95,7 +95,6 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMid
     // Route::get('/admin/hotel/tamu', [BookingHotelController::class, 'pengunjungAdmin'])->name('admin.hotel.tamu');
     // Route::get('admin/hotel/daftar-pengunjung', [BookingHotelController::class, 'daftarPengunjungAdmin'])->name('admin.hotel.list-tamu');
     Route::post('/admin/hotel/tamu', [BookingHotelController::class, 'tambahPengunjungAdmin'])->name('admin.hotel.store.tamu');
-    Route::get('/admin/hotel/pembayaran/{uuid}', [BookingHotelController::class, 'pembayaranAdmin'])->name('admin.hotel.pembayaran');
 
     Route::get('/test', function () {
         return 'Test route works!';

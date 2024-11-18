@@ -172,7 +172,7 @@
                                     <textarea type="text" class="pesan" id="pesan" name="pesan"></textarea>
                                     <i class="bi bi-chat-left-text-fill"></i>
                                 </div>
-                                <button type="submit">Periksa Ketersediaan</button>
+                                <button type="submit">Reservasi Sekarang</button>
                             </form>
                         </div>
                     @endforeach

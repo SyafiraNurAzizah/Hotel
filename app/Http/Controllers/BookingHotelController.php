@@ -509,14 +509,6 @@ class BookingHotelController extends Controller
         return redirect()->route('admin.hotel.create')->with('success', 'Data tamu berhasil ditambahkan.');
     }
 
-    public function pembayaranAdmin($uuid)
-    {
-        $booking = BookingHotel::where('uuid', $uuid)->firstOrFail();
-        $pembayaran = PembayaranHotel::where('booking_hotel_id', $booking->id)->first();
-
-        return view('admin.hotel.pembayaran', compact('booking', 'pembayaran'));
-    }
-
 
 
 
