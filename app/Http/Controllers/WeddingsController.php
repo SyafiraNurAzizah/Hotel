@@ -83,48 +83,10 @@ class WeddingsController extends Controller
         return view('admin.wedding.create');
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'judul' => 'required',
-            'judul_paket1' => 'required',
-            'judul_paket2' => 'required',
-            'judul_paket3' => 'required',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'harga' => 'required',
-            'kapasitas' => 'required',
-            'paket1' => 'required',
-            'paket2' => 'required',
-            'paket3' => 'required',
-        ]);
-
-        $imageName = time() . '.' . $request->gambar->extension();
-        $request->gambar->move(public_path('storage/uploads'), $imageName);
-
-        Wedding::create([
-            'judul' => $request->input('judul'),
-            'judul_paket1' => $request->input('judul_paket1'),
-            'judul_paket2' => $request->input('judul_paket2'),
-            'judul_paket3' => $request->input('judul_paket3'),
-            'gambar' => $imageName,
-            'harga' => $request->input('harga'),
-            'kapasitas' => $request->input('kapasitas'),
-            'paket1' => $request->input('paket1'),
-            'paket2' => $request->input('paket2'),
-            'paket3' => $request->input('paket3'),
-        ]);
-
-        return redirect()->route('wedding.index')->with('success', 'Data weddings berhasil ditambahkan.');
-    }
-
     public function show($id)
     {
         $weddings = Wedding::find($id);
-
-        if (!$weddings) {
-            return redirect()->route('wedding.index')->with('error', 'Data tidak ditemukan');
-        }
-
         return view('admin.wedding.show', compact('weddings'));
     }
+    
 }

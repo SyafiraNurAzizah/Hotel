@@ -178,10 +178,10 @@ body {
 
 .nav-menu .nav-right .profile-user {
     display: inline-block;
-    margin-left: 30px;
+    margin-left: 10px;
     padding: 13px 0px 11px;
     position: relative;
-    left: 50px;
+    left: 20px;
     top: 2px;
     color: #19191a;
     cursor: pointer;
@@ -283,3 +283,10 @@ body {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     width: 115px;
 }
+
+
+.nav-right .search-switch {
+    position: relative;
+}
+
+

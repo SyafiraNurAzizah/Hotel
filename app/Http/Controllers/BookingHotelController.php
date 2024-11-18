@@ -288,4 +288,63 @@ class BookingHotelController extends Controller
             'pembayaran' => $pembayaran
         ]);
     }
+
+    public function create()
+    {
+        // Ambil data pengguna, hotel, dan tipe kamar dari database
+        $users = User::all();
+        $hotels = Hotels::all();
+        $roomstype = TipeKamar::all();
+
+        // Kirim data tersebut ke view 'admin.hotel.create'
+        return view('admin.hotel.create', compact('users', 'hotels', 'roomstype'));
+    }
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'hotel_id' => 'required|exists:hotels,id',
+            'tipe_kamar_id' => 'required|exists:tipe_kamar,id',
+            'check_in' => 'required|date',
+            'check_out' => 'required|date|after:check_in',
+            'tamu_dewasa' => 'required|integer|min:1',
+            'tamu_anak' => 'nullable|integer|min:0',
+            'jumlah_kamar' => 'required|integer|min:1',
+            'status' => 'required|in:belum_selesai,selesai,dibatalkan',
+            'status_pembayaran' => 'required|in:belum_dibayar,dibayar',
+            'pesan' => 'nullable|string'
+        ]);
+    
+        // Ambil data tipe kamar yang dipilih untuk mendapatkan harga
+        $roomType = TipeKamar::find($validatedData['tipe_kamar_id']);
+        
+        if (!$roomType) {
+            return back()->with('error', 'Tipe kamar tidak ditemukan.');
+        }
+    
+        // Hitung jumlah harga berdasarkan tipe kamar dan jumlah kamar yang dipesan
+        $jumlah_harga = $roomType->harga * $validatedData['jumlah_kamar'];
+    
+        // Buat objek booking baru
+        $booking = new BookingHotel();
+        $booking->user_id = $request->user()->id;
+        $booking->uuid = Str::uuid();
+        $booking->hotel_id = $validatedData['hotel_id'];
+        $booking->tipe_kamar_id = $validatedData['tipe_kamar_id'];
+        $booking->check_in = $validatedData['check_in'];
+        $booking->check_out = $validatedData['check_out'];
+        $booking->tamu_dewasa = $validatedData['tamu_dewasa'];
+        $booking->tamu_anak = $validatedData['tamu_anak'];
+        $booking->jumlah_kamar = $validatedData['jumlah_kamar'];
+        $booking->jumlah_harga = $jumlah_harga;  // Harga otomatis dihitung
+        $booking->pesan = $validatedData['pesan'];
+        $booking->status = $validatedData['status'];
+        $booking->status_pembayaran = $validatedData['status_pembayaran'];
+    
+        // Simpan booking ke database
+        $booking->save();
+    
+        return redirect()->route('admin.hotel.index')->with('success', 'Reservasi berhasil dibuat.');
+    }
+    
 }

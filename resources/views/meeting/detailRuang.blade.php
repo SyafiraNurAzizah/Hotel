@@ -212,6 +212,8 @@
                         <h2>{{ $location }} Rooms</h2>
                         <div class="bt-option">
                             <a href="{{ route('ruang', ['location' => strtolower($location)]) }}" class="active">Home</a>
+                            <span><a href="#">Gallery</a></span>
+                            {{-- <span><a href="{{ route('gallery', ['location' => strtolower($location), 'roomId' => $roomId]) }}">Gallery</a></span> --}}
                         </div>
                     </div>
                 </div>
@@ -248,18 +250,6 @@
                             <p class="f-para">{{ $room->deskripsi }}</p>
                         </div>
                     </div>
-
-                    @foreach ($gallery as $item)
-                        <div class="card-container">
-                            <div class="card">
-                                <img src="{{ asset('img/meetings/gallery/' . $item->foto) }}" alt="">
-                                <div class="card-content">
-                                    <h4 class="card-title">{{ $item->deskripsi }}</h4>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-
                     <div class="row">
                         <div class="gallery-grid">
                             @foreach ($gallery as $item)
@@ -275,7 +265,7 @@
                         </div>
 
                     </div>
-
+                    <!-- Ulasan dan form tambah ulasan -->
                     <div class="rd-reviews">
                         <h4>Reviews</h4>
                     </div>
@@ -321,23 +311,18 @@
                                 <i class="fas fa-envelope"></i>
                                 <input type="email" id="email" name="email" class="form-control" required>
                             </div>
-                            <p class="error-message" id="emailError">Please enter a valid email.</p>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <div class="input-group">
-                                <i class="fas fa-phone"></i>
-                                <input type="text" id="phone" name="phone" class="form-control" required>
+                            <div class="select-option">
+                                <label for="guest">Guests:</label>
+                                <select id="guest">
+                                    <option value="">3 Adults</option>
+                                </select>
                             </div>
-                            <p class="error-message" id="phoneError">Please enter a valid phone number.</p>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="date">Date</label>
-                            <div class="input-group">
-                                <i class="fas fa-calendar"></i>
-                                <input type="date" id="date" name="date" class="form-control" required>
+                            <div class="select-option">
+                                <label for="room">Room:</label>
+                                <select id="room">
+                                    <option value="">{{ $room->nama_ruang }}</option>
+                                    <!-- Menggunakan nama ruang dari model -->
+                                </select>
                             </div>
                             <p class="error-message" id="dateError">Please select a date.</p>
                         </div>

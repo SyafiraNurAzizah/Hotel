@@ -47,15 +47,47 @@
 }
 .room-pagination a:hover {
     background: #dfa974;
-    color: #ffffff;
+    color: #ffffff;
 }
 
 
+/* Search Bar */
+.breadcrumb-text {
+    text-align: center;
+    padding-top: 20px; /* Beri ruang atas untuk elemen pencarian */
+}
 
+.search-container {
+    display: inline-block;
+    width: 100%;
+    max-width: 600px; /* Batasi lebar maksimal pencarian */
+    margin: 0 auto 20px auto; /* Atur margin atas dan bawah */
+}
 
-.container .modal .modal-body .icon_close {
-    float: right;
-    position: relative;
-    bottom: 8px;
-    left: 5px;
+.search-input {
+    width: 90%; /* Panjang input */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 23px;
+    margin-left: 6%;
+}
+
+.search-btn {
+    padding: 10px 15px;
+    background-color: #dfa974;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.search-btn i {
+    font-size: 18px;
+}
+
+.search-container form {
+    display: flex; /* Buat input dan tombol dalam satu baris */
+    justify-content: center; /* Tempatkan di tengah */
 }

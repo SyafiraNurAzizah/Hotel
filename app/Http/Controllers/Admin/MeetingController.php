@@ -20,7 +20,7 @@ class MeetingController extends Controller
     public function create()
     {
         $hotels = Hotels::all();
-        return view('admin.meeting.create', compact('hotels'));
+        return view('admin.meeting.add', compact('hotels'));
     }
 
     public function store(Request $request)

@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\User;
+use App\Models\Hotels;
+use App\Http\Controllers\Admin\AdminHotelController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,8 +28,19 @@ class BookingHotel extends Model
         'status_pembayaran',
     ];
 
+
+    public function hotel()
+    {
+        return $this->belongsTo(Hotels::class, 'hotel_id');
+    }
+
+    // Definisikan relasi dengan model User
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function tipe_kamar()
+    {
+        return $this->belongsTo(TipeKamar::class, 'tipe_kamar_id');
     }
 }
