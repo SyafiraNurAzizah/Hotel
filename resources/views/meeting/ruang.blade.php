@@ -26,6 +26,8 @@
     background-color: #c97a5b;
 }
 
+
+
 </style>
 @endpush
 

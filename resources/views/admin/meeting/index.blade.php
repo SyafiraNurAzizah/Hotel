@@ -20,13 +20,18 @@
         </div>
     </header>
 
-    <div class="container-xl px-4 mt-n10">
-        <div class="row card h-100 p-3">
-            <div class="container mt-6">
-                <a href="{{ route('admin.meeting.create') }}" class="btn btn-primary btn-sm mb-3">Tambah Ruang Meeting</a>
-                <table class="table table-bordered">
-                    <thead class="thead-light">
-                        <tr>
+    <section>
+        <div class="container mt-6">
+            <a href="{{ route('admin.meeting.create') }}"
+                class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center mb-2">
+                <i class="icon_phone fs-2 me-2"></i> <!-- fs-2 memperbesar ukuran ikon -->
+                Tambah Ruangan
+            </a>
+
+
+            <table class="table table-custom">
+                <thead class="thead-custom">
+                    <tr>
                             <th>No</th>
                             <th>Nama Ruang</th>
                             <th>Harga per Jam</th>
@@ -35,8 +40,7 @@
                             <th>Status</th>
                             <th>Kapasitas</th>
                             <th>Aksi</th>
-                        </tr>
-                    </thead>
+                    </tr>
                     <tbody>
                         @forelse($meetings as $meeting)
                             <tr>
@@ -74,7 +78,6 @@
     </div>
 
 @endsection
-
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
