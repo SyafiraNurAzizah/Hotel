@@ -56,7 +56,7 @@
                     <div class="row">
                         @forelse ($contact as $item)
                             <div class="col-lg-4">
-                                <div class="card shadow-lg p-3" style="width: 18rem; border-radius: 20px; background-color: #efebdf;">
+                                <div class="card shadow-lg p-4" style="width: 18rem; border-radius: 20px; background-color: #efebdf;">
                                     <div class="ri-pic">
                                         <img src="img/room/avatar/avatar-1.jpg" alt="">
                                     </div>
@@ -68,8 +68,8 @@
                                         <div class="btn-contact d-flex justify-content-between align-items-center my-3">
                                             <a href="https://wa.me/+628812721410?text=Halo%2C%20saya%20tertarik%20dengan%20paket%20wedding%20Anda."
                                                 target="_blank"
-                                                class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
-                                                <i class="icon_phone me-2" style="margin-right: 8px;"></i> Delete
+                                                class="btn btn-outline-danger w-35 contact-btn d-flex align-items-center">
+                                                <i class="icon_trash me-2" style="margin-right: 8px;"></i> Delete
                                             </a>
                                             <a href="mailto:istiqomahkhoerunnisa@gmail.com?subject=Informasi%20Paket%20Wedding&body=Halo,%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20paket%20wedding%20Anda."
                                                 class="btn btn-outline-secondary w-35 gmail-btn d-flex align-items-center">

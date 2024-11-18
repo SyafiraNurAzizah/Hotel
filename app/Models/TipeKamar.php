@@ -31,7 +31,9 @@ class TipeKamar extends Model
 
     public function ratings()
     {
-        return $this->hasMany('App\Models\Rating');
+        // return $this->hasMany('App\Models\Rating');
+        return $this->hasMany(Rating::class, 'tipe_kamar_id'); 
+
     }
     
     public function review()

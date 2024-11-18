@@ -156,42 +156,45 @@ class HotelsController extends Controller
 
     public function indexAdminReview()
     {
-        // // Assuming you have a relationship between hotel and ratings
-        // $ratings = Rating::where('hotel_id', $id)->get();
+        // $hotels = Hotels::where('nama_cabang', $location)->get();
 
-        // // Calculate the number of reviews for each rating value (1 to 5 stars)
-        // $ratingCounts = [1, 2, 3, 4, 5];
-        // $ratingData = [];
+        $room = TipeKamar::with('ratings')->get();
 
-        // foreach ($ratingCounts as $rating) {
-        //     $ratingData[$rating] = $ratings->where('rating', $rating)->count();
-        // }
+        return view('admin.review.index', [
+            // 'location' => ucfirst($location),
+            // 'hotels' => $hotels,
+            'room' => $room
+        ]);
+    }
 
-        // Pass the data to the view
-        // return view('admin.review.index', compact('ratingData'));
-        return view('admin.review.index');
+//  
+
+    public function destroyReview($id)
+    {
+        Rating::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Review deleted successfully.');
     }
 
     public function showAdminReview($location, $nama_tipe)
-{
-    // Retrieve all hotels in the specified location
-    $hotels = Hotels::where('nama_cabang', $location)->get();
+    {
+        $hotels = Hotels::where('nama_cabang', $location)->get();
 
-    // Find the room type (TipeKamar) with the given name and load related ratings
-    $room = TipeKamar::with(['hotel', 'ratings.user'])->where('nama_tipe', $nama_tipe)->firstOrFail();
+        $room = TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail();
 
-    // Add room types to each hotel for display purposes
-    foreach ($hotels as $hotel) {
-        $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
+        foreach ($hotels as $hotel) {
+            $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
+        }
+
+        return view('admin.review.index', [
+            'location' => ucfirst($location),
+            'hotels' => $hotels,
+            'room' => $room
+        ]);
     }
 
-    // Pass data to the view
-    return view('hotel.rating', [
-        'location' => ucfirst($location),
-        'hotels' => $hotels,
-        'room' => $room
-    ])->with('success', 'Thank you for your rating!');
-}
+
+
+
 
 
     public function destroyAdminReview($id)

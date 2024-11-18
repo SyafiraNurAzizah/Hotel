@@ -90,7 +90,9 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMid
 
     Route::get('/admin/review', [HotelsController::class, 'indexAdminReview'])->name('admin.review.index');
     Route::get('/admin/review/{id}', [HotelsController::class, 'destroyAdminReview='])->name('admin.review.destroy');
-    Route::get('/admin/review/{nama_tipe}', [HotelsController::class, 'showAdminReview'])->name('admin.review.show');
+    Route::get('/admin/review/{location}/{nama_tipe}', [App\Http\Controllers\HotelsController::class, 'showAdminReview'])->name('admin.review.show');
+
+    // Route::get('/admin/review/{nama_tipe}', [HotelsController::class, 'showAdminReview'])->name('admin.review.show');
 
 });
 //----------------------------------------------------------------------------

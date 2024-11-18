@@ -30,27 +30,33 @@
                         <p>Peningkatan ulasan pada tahun ini</p>
                     </div>
                     {{-- <div class="col-lg-4" style="background-color: #f5b917"> --}}
-                    <div class="col-lg-3 p-3" style="background-color: #efebdf; border-radius: 25px">
-                        <h3 class="mb-2">Average Rating</h3>
-                        <div class="d-flex align-items-center">
-                            <h4 class="px-2 py-1">4.5</h4>
-                            <div class="rating" style="color: #f5b917">
-                                {{-- @for ($i = 1; $i <= $room->ratings->avg('rating'); $i++)
-                                <i class="icon_star"></i>
-                            @endfor
-                            @for ($i = $room->ratings->avg('rating') + 1; $i <= 5; $i++)
-                                <i class="icon_star-empty"></i>
-                            @endfor --}}
+                    {{-- @forelse ($room as $item)
+                        @foreach ($item->ratings as $rating) --}}
+                            <div class="col-lg-3 p-3" style="background-color: #efebdf; border-radius: 25px">
+                                <h3 class="mb-2">Average Rating</h3>
+                                <div class="d-flex align-items-center">
+                                    <h4 class="px-2 py-1">10k</h4>
+                                    <div class="rating" style="color: #f5b917">
+                                        {{-- @for ($i = 1; $i <= $rating->avg('rating'); $i++)
+                                            <i class="icon_star"></i>
+                                        @endfor
+                                        @for ($i = $rating->avg('rating') + 1; $i <= 5; $i++)
+                                            <i class="icon_star-empty"></i>
+                                        @endfor --}}
 
-                                <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
                                 <i class="icon_star"></i>
                                 <i class="icon_star"></i>
                                 <i class="icon_star"></i>
                                 <i class="icon_star-half_alt"></i>
+                                    </div>
+                                </div>
+                                <p>Average rating on this year</p>
                             </div>
-                        </div>
-                        <p>Average rating on this year</p>
-                    </div>
+                        {{-- @endforeach
+                    @empty
+                        <p>No reviews yet.</p>
+                    @endforelse --}}
                     {{-- <div class="col-lg-4" style="background-color: #f5b917"> --}}
                     <div class="col-lg-3 p-3" style="background-color: #efebdf; border-radius: 25px">
                         <h3 class="mb-2">Bar Chart Review</h3>
@@ -71,15 +77,13 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    {{-- <section>
-        <div class="container">
-            <div class="row">
-                <div class="reviews">
-                    <h4>Reviews</h4>
-                    @forelse ($room->ratings as $rating)
+
+
+            {{-- <div class="reviews">
+                <h4>Admin Reviews</h4>
+                @forelse ($room as $item)
+                    @foreach ($item->ratings as $rating)
                         <div class="review">
                             <div class="review-item">
                                 <div class="ri-pic">
@@ -99,18 +103,112 @@
                                     <p class="mt-2">{{ $rating->comment }}</p>
                                 </div>
                             </div>
-
-
                         </div>
-                    @empty
-                        <P>Belum ada rating</P>
-                    @endforelse
+                    @endforeach
+                @empty
+                    <p>No reviews yet.</p>
+                @endforelse
+            </div> --}}
+
+
+            {{-- menampilkan data --}}
+            {{-- <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Admin Reviews</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover" id="tableExport" style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>Rating</th>
+                                            <th>Komentar</th>
+                                            <th>Tanggal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($room as $item)
+                                            @foreach ($item->ratings as $rating)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $rating->user->firstname }}</td>
+                                                <td>
+                                                    @for ($i = 1; $i <= $rating->rating; $i++)
+                                                        <i class="icon_star"></i>
+                                                    @endfor
+                                                </td>
+                                                <td>{{ $rating->comment }}</td>
+                                                <td>{{ $rating->created_at->format('d-m-Y, H:i') }}</td>
+                                            </tr>
+                                            @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="8" class="no-data">No data available</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+
+
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="rd-reviews">
+                        <div class="reviews">
+                            <h3 class="mb-3">Reviews</h3>
+                            @forelse ($room as $item)
+                                @foreach ($item->ratings as $rating)
+                                    <div class="review d-flex justify-content-between align-items-start">
+                                        <div class="review-item">
+                                            <div class="ri-pic">
+                                                <img src="img/room/avatar/avatar-1.jpg" alt="">
+                                            </div>
+                                            <div class="ri-text">
+                                                <h5 class="m-0">{{ $rating->user->firstname }}</h5>
+                                                <span>{{ $rating->created_at->format('Y-m-d') }}</span>
+                                                <div class="rating">
+                                                    @for ($i = 1; $i <= $rating->rating; $i++)
+                                                        <i class="icon_star" style="float: right;"></i>
+                                                    @endfor
+                                                    @for ($i = $rating->rating + 1; $i <= 5; $i++)
+                                                        <i class="icon_star-empty"></i>
+                                                    @endfor
+                                                </div>
+                                                <p class="mt-2">{{ $rating->comment }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="aksi">
+                                            <a href="#" class="btn btn-outline-danger d-flex align-items-center">
+                                                <i class="icon_trash"></i> Delete
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @empty
+                                <p>No reviews yet.</p>
+                            @endforelse
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
 
-    <section>
+    {{-- <section>
         <div class="container">
             <div class="row">
                 <div class="col-lg-10">
@@ -144,9 +242,9 @@
                                 <P>Belum ada rating</P>
                             @endforelse
                         </div>
-                    </div>
+                    </div> --}}
 
-                    {{-- <div class="rd-reviews">
+    {{-- <div class="rd-reviews">
                         <h3 class="mb-4">Reviews</h3>
                         <div class="review-item mb-4">
                             <div class="ri-pic">
@@ -213,10 +311,10 @@
                             </div>
                         </div>
                     </div> --}}
-                </div>
+    {{-- </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection
 
 @push('scripts')
