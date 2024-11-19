@@ -170,6 +170,7 @@
                 </tr>
             @endforelse
         </tbody>
+        
     </table>
 </div>
 @endsection

@@ -17,7 +17,17 @@ class Hotels extends Model
         'foto_hotel',
     ];
 
-    public function tipeKamars()
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id'); // Assuming 'user_id' is the foreign key
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(BookingHotel::class, 'hotel_id');
+    }
+
+    public function tipeKamar()
     {
         return $this->hasMany(TipeKamar::class);
     }

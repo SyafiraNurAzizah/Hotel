@@ -15,7 +15,11 @@ class ProfileUser extends Model
         'alamat',
         'tanggal_lahir',
         'jenis_kelamin',
+        'foto'
     ];
 
-    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

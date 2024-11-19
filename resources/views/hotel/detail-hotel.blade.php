@@ -132,7 +132,7 @@
         font-size: 16px;
     } --}}
 
-{{-- /* Responsive for mobile */
+    {{-- /* Responsive for mobile */
     @media (max-width: 768px) {
         .rd-title {
             flex-direction: column;
@@ -355,22 +355,16 @@
 
 
                 </div>
-
-
-
-
-
                 <div class="col-lg-4">
                     @foreach ($hotels as $hotel)
                         <div class="room-booking">
                             {{-- <h3>Your Reservation at {{ $hotel->nama_cabang }} - {{ $room->nama_tipe }}</h3> --}}
                             <h3>Your Reservation</h3>
-                            <form
-                                action="{{ route('booking.hotel.store', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe]) }}"
-                                method="POST">
+                            <form action="{{ route('booking.hotel.store', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe]) }}" method="POST">
                                 @csrf
 
                                 <div class="hotel-input">
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                     <input type="hidden" name="hotel_id" value="{{ $hotel->id }}">
                                     <input type="hidden" name="tipe_kamar_id" value="{{ $room->id }}"
                                         data-kapasitas="{{ $room->kapasitas }}">
@@ -379,61 +373,36 @@
                                 </div>
 
                                 <div class="check-date">
-                                    <label for="check_in">Check In:</label>
+                                    <label for="check_in">Check In</label>
                                     <input type="text" class="date-input" id="check_in" name="check_in">
-                                    <i class="icon_calendar"></i>
+                                    <i class="bi bi-calendar2-fill"></i>
                                 </div>
                                 <div class="check-date">
-                                    <label for="check_out">Check Out:</label>
+                                    <label for="check_out">Check Out</label>
                                     <input type="text" class="date-input" id="check_out" name="check_out">
-                                    <i class="icon_calendar"></i>
+                                    <i class="bi bi-calendar2-fill"></i>
                                 </div>
                                 <div class="select-option">
-                                    <label for="tamu_dewasa">Dewasa:</label>
-                                    <select class="tamu_dewasa" id="tamu_dewasa" name="tamu_dewasa">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                    </select>
+                                    <label for="jumlah_kamar">Kamar</label>
+                                    <input type="number" class="jumlah_kamar" id="jumlah_kamar" name="jumlah_kamar" min="1" value="1">
+                                    <i class="fa-solid fa-bed"></i>
                                 </div>
-                                <div class="select-option">
-                                    <label for="tamu_anak">Anak:</label>
-                                    <select class="tamu_anak" id="tamu_anak" name="tamu_anak">
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                    </select>
+                                <div class="tamu-option">
+                                    <div class="group">
+                                        <label for="tamu_dewasa">Dewasa</label>
+                                        <input type="number" class="tamu_dewasa" id="tamu_dewasa" name="tamu_dewasa" min="1" value="1">
+                                    </div>
+                                    <div class="group">
+                                        <label for="tamu_anak">Anak</label>
+                                        <input type="number" class="tamu_anak" id="tamu_anak" name="tamu_anak" min="0" value="0">
+                                    </div>
                                 </div>
-                                <div class="select-option">
-                                    <label for="jumlah_kamar">Kamar:</label>
-                                    <select class="jumlah_kamar" id="jumlah_kamar" name="jumlah_kamar">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                    </select>
+                                <div class="note">
+                                    <label for="pesan">Pesan</label>
+                                    <textarea type="text" class="pesan" id="pesan" name="pesan"></textarea>
+                                    <i class="bi bi-chat-left-text-fill"></i>
                                 </div>
-                                <div class="check-date">
-                                    <label for="pesan">Pesan:</label>
-                                    <input type="text" class="pesan" id="pesan" name="pesan">
-                                    <i class="bi bi-chat"></i>
-                                </div>
-                                <button type="submit">Check Availability</button>
+                                <button type="submit">Reservasi Sekarang</button>
                             </form>
                         </div>
                     @endforeach
@@ -444,52 +413,75 @@
     </section>
 
 
-    {{-- @if ($errors->has('booking_error'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ $errors->first('booking_error') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+    <div class="overlay" id="errorKetersediaanKamar">
+        <div class="bukti">
+            <span class="close" id="closeErrorKetersediaanKamarPopup"></span>
+            
+            <div id="ketersediaanKamar">
+                <div class="circle-1">
+                    <div class="circle-2">
+                        <i class="bi bi-exclamation-circle"></i>
+                    </div>
+                </div>
+                <h1>Kamar Tidak Tersedia</h1>
+                <p>Mohon maaf, kamar yang Anda pilih tidak tersedia untuk tanggal ini.</p>
+            </div>
         </div>
-    @endif --}}
+    </div>
 
 
+    <div class="overlay" id="errorKapasitasKamar">
+        <div class="bukti">
+            <span class="close" id="closeErrorKapasitasKamarPopup"></span>
+            
+            <div id="kapasitasKamar">
+                <div class="circle-1">
+                    <div class="circle-2">
+                        <i class="bi bi-exclamation-circle"></i>
+                    </div>
+                </div>
+                <h1>Jumlah Tamu Tidak Sesuai</h1>
+                <p>Mohon maaf, jumlah tamu tidak sesuai dengan kapasitas kamar.</p>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
-    <script>
-        // $(function() {
-        //     $("#date-in").datepicker({
-        //         dateFormat: 'yy-mm-dd',
-        //         onSelect: function() {
-        //             updateCheckout();
-        //         }
-        //     });
-        //     $("#date-out").datepicker({
-        //         dateFormat: 'yy-mm-dd'
-        //     });
-        // });
 
-        // function updateCheckout() {
-        //     const checkinInput = document.getElementById('date-in');
-        //     const checkoutInput = document.getElementById('date-out');
+<script>
+    // $(function() {
+    //     $("#date-in").datepicker({
+    //         dateFormat: 'yy-mm-dd',
+    //         onSelect: function() {
+    //             updateCheckout();
+    //         }
+    //     });
+    //     $("#date-out").datepicker({
+    //         dateFormat: 'yy-mm-dd'
+    //     });
+    // });
 
-        //     const checkinDate = new Date(checkinInput.value);
-        //     if (!isNaN(checkinDate.getTime())) {
-        //         checkinDate.setDate(checkinDate.getDate() + 1);
-        //         const year = checkinDate.getFullYear();
-        //         const month = String(checkinDate.getMonth() + 1).padStart(2, '0');
-        //         const day = String(checkinDate.getDate()).padStart(2, '0');
-        //         checkoutInput.value = `${year}-${month}-${day}`;
-        //     } else {
-        //         checkoutInput.value = '';
-        //     }
-        // };
+    // function updateCheckout() {
+    //     const checkinInput = document.getElementById('date-in');
+    //     const checkoutInput = document.getElementById('date-out');
+
+    //     const checkinDate = new Date(checkinInput.value);
+    //     if (!isNaN(checkinDate.getTime())) {
+    //         checkinDate.setDate(checkinDate.getDate() + 1);
+    //         const year = checkinDate.getFullYear();
+    //         const month = String(checkinDate.getMonth() + 1).padStart(2, '0');
+    //         const day = String(checkinDate.getDate()).padStart(2, '0');
+    //         checkoutInput.value = `${year}-${month}-${day}`;
+    //     } else {
+    //         checkoutInput.value = '';
+    //     }
+    // };
 
 
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const forms = document.querySelectorAll('.room-booking form');
+    document.addEventListener('DOMContentLoaded', function () {
+        const forms = document.querySelectorAll('.room-booking form');
 
             forms.forEach(function(form) {
                 form.addEventListener('submit', function(event) {
@@ -510,76 +502,18 @@
                     const kapasitasTotal = jumlahKamar * kapasitasKamar;
                     console.log('Kapasitas total:', kapasitasTotal);
 
-                    // Jika jumlah tamu melebihi kapasitas total, tampilkan peringatan
-                    if (jumlahTamu > kapasitasTotal) {
-                        event.preventDefault(); // Hentikan pengiriman form
-                        alert(
-                            'Jumlah tamu melebihi kapasitas kamar. Silakan kurangi jumlah tamu atau tambahkan kamar.'
-                        );
-                        console.log('Form dihentikan karena kapasitas terlampaui');
-                    } else {
-                        console.log('Form lanjut dikirim');
-                    }
-                });
+                // Jika jumlah tamu melebihi kapasitas total, tampilkan peringatan
+                if (jumlahTamu > kapasitasTotal) {
+                    event.preventDefault(); // Hentikan pengiriman form
+                    alert('Jumlah tamu melebihi kapasitas kamar. Silakan kurangi jumlah tamu atau tambahkan kamar.');
+                    console.log('Form dihentikan karena kapasitas terlampaui');
+                } else {
+                    console.log('Form lanjut dikirim');
+                }
             });
         });
+    });
 
+</script>
 
-
-        // RATING //
-        document.addEventListener('DOMContentLoaded', function() {
-            const stars = document.querySelectorAll('#star-rating .icon_star');
-            const ratingInput = document.getElementById('rating');
-            let currentRating = 0;
-
-            // Set event listener untuk setiap ikon bintang
-            stars.forEach(star => {
-                star.addEventListener('click', function() {
-                    currentRating = this.getAttribute('data-value'); // Ambil nilai data-value
-                    ratingInput.value = currentRating; // Update nilai rating tersembunyi
-                    updateStarDisplay(currentRating); // Perbarui tampilan bintang
-                });
-
-                // Efek hover pada bintang
-                star.addEventListener('mouseenter', function() {
-                    updateStarDisplay(this.getAttribute('data-value'));
-                });
-
-                // Reset tampilan bintang saat hover hilang
-                star.addEventListener('mouseleave', function() {
-                    updateStarDisplay(currentRating);
-                });
-            });
-
-            // Fungsi untuk memperbarui tampilan bintang
-            function updateStarDisplay(rating) {
-                stars.forEach(star => {
-                    if (star.getAttribute('data-value') <= rating) {
-                        star.classList.add(
-                            'filled'); // Beri kelas filled jika rating bintang lebih kecil atau sama
-                    } else {
-                        star.classList.remove('filled'); // Hilangkan kelas filled jika rating lebih besar
-                    }
-                });
-            }
-        });
-    </script>
-@endpush
-
-@push('styles')
-    <style>
-        #star-rating .icon_star {
-            font-size: 20px;
-            color: #e0e0e0;
-            transition: color 0.2s ease;
-        }
-
-        #star-rating .icon_star.filled {
-            color: #f5b917;
-        }
-
-        #star-rating .icon_star:hover {
-            color: #f5b917;
-        }
-    </style>
 @endpush

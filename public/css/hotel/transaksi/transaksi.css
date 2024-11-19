@@ -1,0 +1,861 @@
+body {
+    /* background-color: rgb(243, 243, 243); */
+    background: linear-gradient(to right, #f9f9f9, #f1f1f1);
+    position: fixed;
+}
+
+
+/* .back {
+    position: fixed;
+    top: 50px;
+    left: 25px;
+} */
+
+
+.container {
+    position: fixed;
+    top: 48px;
+    left: 178px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    height: 540px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px 5px #2011010c; 
+
+    /* z-index: 5; */
+}
+
+
+.container .container-title {
+    position: fixed;
+}
+
+.container .container-title .container-left {
+    position: relative;
+    left: 180px;
+}
+.container .container-title .container-left img {
+    width: 95px;
+    height: 95px;
+    position: relative;
+    bottom: 110px;
+    right: 440px;
+}
+.container .container-title .container-left h1 {
+    color: #19191a;
+    position: relative;
+    bottom: 135px;
+    right: 427px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    font-family: "Lora", serif;
+}
+.container .container-title .container-left h2 {
+    color: #19191a;
+    position: relative;
+    bottom: 186px;
+    right: 345px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    font-family: "Lora", serif;
+}
+
+.container .container-title .container-right {
+    color: #19191aa9;
+    font-family: 'Cabin', sans-serif;
+    font-size: 15px;
+    position: relative;
+    bottom: 248px;
+    left: 189px;
+    line-height: 0.7;
+}
+
+
+.container .container-isi .data-text {
+    position: fixed;
+    top: 207px;
+    left: 240px;
+    /* right: 930px; */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.container .container-isi .data-text .container-is-booking-text {
+    margin-bottom: -45px;
+    padding: 5px;
+}
+.container .container-isi .data-text .container-is-booking-text p {
+    /* font-size: 15px; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #19191aa9;
+}
+.container .container-isi .data-text .container-is-booking-text h3 {
+    font-family: 'Lora', serif;
+    font-size: 21px;
+    font-weight: 500;
+    color: #19191ac9;
+    /* color: #dfa974; */
+    letter-spacing: 1px;
+    position: relative;
+    bottom: 15px;
+}
+
+.container .container-isi .data-harga {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    top: 480px;
+    right: 750px;
+    width: 350px;
+    max-width: 350px;
+    height: 70px;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    text-align: left;
+    padding: 10px;
+    overflow: hidden;
+}
+.container .container-isi .data-harga h3 {
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #19191aa9;
+    margin: 0;
+    flex: 1;
+    position: relative;
+    right: 8px;
+}
+.container .container-isi .data-harga h2 {
+    color: #dfa974;
+    margin: 0;
+    margin-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    left: 9px;
+}
+
+
+.container .container-isi .data-number {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    width: 420px;
+    position: fixed;
+    left: 680px;
+    bottom: 280px;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+.container .container-isi .data-number .container-isi-booking-number {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.container .container-isi .data-number .container-isi-booking-number h2 {
+    color: #dfa974;
+    font-size: 29px;
+}
+.container .container-isi .data-number .container-isi-booking-number p {
+    color: #19191aa9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.5px;
+    position: relative;
+    bottom: 15px;
+}
+.container .container-isi .data-number .vertical-line {
+    border-left: 1px solid rgba(0, 0, 0, 0.15);
+    height: 90px;
+}
+
+
+
+
+
+.container .form-batal {
+    position: fixed;
+    top: 502px;
+    left: 932px;
+    /* top: 238px;
+    left: 215px; */
+}
+.container .form-batal button {
+    /* background-color: #dfa974; */
+    background-color: #ffffff;
+    border: 1px solid rgba(16, 20, 31, 0.89);
+    /* border: 1px solid #dfa974; */
+    opacity: 50%;
+    color: rgba(16, 20, 31, 0.89);
+    /* color: #dfa974; */
+    padding: 7px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+
+.container .container-metode-pembayaran {
+    position: fixed;
+    top: 379px;
+    left: 678px;
+    width: 418px;
+    height: 175px;
+    /* border-radius: 5px;
+    box-shadow: 0px 5px 10px 5px #2011010c;  */
+    /* border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px; */
+}
+.container .container-metode-pembayaran  p {
+    color: #19191aa9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    top: 2px;
+}
+.container .container-metode-pembayaran .dropdown {
+    position: relative;
+    bottom: 1px;
+    right: 102px;
+    display: inline-block;
+}
+.container .container-metode-pembayaran .dropdown #dropdownButton { 
+    width: 224px;
+    height: 40px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+    color: #19191ac9;
+    position: relative;
+    top: 10px;
+    left: 104px;
+    font-size: 19px;
+    font-weight: 500;
+    font-family: 'Lora', serif;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    text-align: left;
+}
+.container .container-metode-pembayaran .dropdown #dropdownContent {
+    display: none;
+    position: absolute;
+    top: -200px;
+    left: 103px;
+    width: 180px;
+    height: 173px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: default;
+    font-size: 15px;
+    font-family: 'Carbon', sans-serif;
+}
+.container .container-metode-pembayaran .dropdown:hover #dropdownContent {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.container .container-metode-pembayaran .dropdown .dropdown-item {
+    list-style: none;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    padding: 10px;
+    width: 86%;
+    color: #19191ac9;
+    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+    border-radius: 5px;
+    position: relative;
+    left: 2px;
+}
+.container .container-metode-pembayaran .dropdown .sub-dropdown-content div {
+    list-style: none;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    padding: 10px;
+    width: 78%;
+    color: #19191ac9;
+    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+    border-radius: 5px;
+    position: relative;
+    left: 2px;
+}
+.container .container-metode-pembayaran .dropdown .dropdown-item a {
+    position: relative;
+    left: 10px;
+}
+.container .container-metode-pembayaran .dropdown .dropdown-item:hover {
+    width: 86%;
+    background-color: rgba(0, 0, 0, 0.034)
+}
+.container .container-metode-pembayaran .dropdown .sub-dropdown:hover,
+.container .container-metode-pembayaran .dropdown .sub-dropdown-content div:hover {
+    width: 78%;
+    background-color: rgba(0, 0, 0, 0.034);
+}
+.container .container-metode-pembayaran .dropdown .dropdown-content .horizontal-line-dropdown {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    width: 85%;
+    position: relative;
+    left: 13px;
+    bottom: 4px;
+}
+.container .container-metode-pembayaran .dropdown .sub-dropdown {
+    position: relative;
+    /* top: 8px; */
+    left: 2px;
+    margin-bottom: 9px;
+    color: #19191ac9;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    width: 88%;
+}
+.container .container-metode-pembayaran .dropdown .sub-dropdown a {
+    position: relative;
+    left: 10px;
+}
+.container .container-metode-pembayaran .dropdown .sub-dropdown-content {
+    display: none;
+    position: absolute;
+    left: 100%;
+    bottom: -5px;
+    background-color: #f1f1f1;
+    width: 100px;
+    max-height: 171px;
+    padding: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    /* z-index: 1; */
+}
+.container .container-metode-pembayaran .dropdown .sub-dropdown:hover .sub-dropdown-content {
+    display: block;
+}
+.container .container-metode-pembayaran form .button-pembayaran {
+    /* background-color: #dfa974; */
+    background-color: #ffffff;
+    border: 1px solid rgba(16, 20, 31, 0.89);
+    opacity: 80%;
+    color: rgba(16, 20, 31, 0.89);
+    padding: 7px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 25px;
+    position: fixed;
+    /* top: 500px;
+    left: 1015px; */
+    top: 502px;
+    left: 680px;
+}
+
+
+.container .container-metode-pembayaran .pembayaran-exsist {
+    position: fixed;
+    right: 374px;
+}
+.container .container-metode-pembayaran .pembayaran-exsist  p {
+    color: #19191aa9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    /* top: 20px; */
+    right: 90px;
+}
+.container .container-metode-pembayaran .pembayaran-exsist h3 {
+    color: #19191ac9;
+    position: relative;
+    top: 14px;
+    right: 82px;
+    font-size: 19px;
+    font-weight: 500;
+    font-family: 'Lora', serif;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    text-align: left;
+}
+.container .container-metode-pembayaran .pembayaran-exsist .horizontal-line-pembayaran-exsist {
+    position: relative;
+    top: 4px;
+    right: 88px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    width: 224px;
+    /* align-items: center; */
+}
+
+
+
+
+.sidebar {
+    width: 70px;
+    height: 220px;
+    background-color: #ffffff;
+    box-shadow: 0 7px 20px -10px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    /* float: right; */
+    position: relative;
+    top: 170px;
+    left: 1305px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.sidebar p {
+    position: relative;
+    top: 20px;
+    left: 20px;
+	/* color: rgba(16, 20, 31, 0.89); */
+    color: #19191a77;
+    font-size: 18px;
+}
+.sidebar a.active p {
+    color: #dfa974 !important;
+}
+.sidebar a p .tooltip {
+    visibility: hidden;
+    width: 100px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 135%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+}
+.sidebar p:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.sidebar-pembayarannt {
+    width: 70px;
+    height: 153px;
+    background-color: #ffffff;
+    box-shadow: 0 7px 20px -10px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    /* float: right; */
+    position: relative;
+    top: 237px;
+    left: 1305px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.sidebar-pembayarannt p {
+    position: relative;
+    top: 20px;
+    left: 20px;
+	/* color: rgba(16, 20, 31, 0.89); */
+    color: #19191a77;
+    font-size: 18px;
+}
+.sidebar-pembayarannt a.active p {
+    color: #dfa974 !important;
+}
+.sidebar-pembayarannt a p .tooltip {
+    visibility: hidden;
+    width: 100px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 135%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+}
+.sidebar-pembayarannt p:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.bukti-reservasi {
+    width: 70px;
+    height: 70px;
+    background-color: #ffffff;
+    box-shadow: 0 7px 20px -10px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    /* float: right; */
+    position: relative;
+    top: 170px;
+    left: 1305px;
+}
+.bukti-reservasi p {
+    position: relative;
+    top: 27px;
+    left: 20px;
+    color: #19191aa9;
+    font-size: 18px;
+}
+.bukti-reservasi p .tooltip {
+    visibility: hidden;
+    width: 110px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 135%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+}
+.bukti-reservasi p:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.kembali {
+    width: 150px;
+    height: 40px;
+    background-color: #ffffff;
+    box-shadow: 0 7px 20px -10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    /* float: right; */
+    position: fixed;
+    top: 548px;
+    left: 1275px;
+    display: flex;
+    flex-direction: column;
+}
+.kembali a {
+    text-decoration: none;
+}
+.kembali a p {
+    position: relative;
+    bottom: 5px;
+    left: 15px;
+    color: #19191aa9;
+    font-size: 17px;
+    font-family: 'Cabin', sans-serif;
+}
+.kembali a.active p {
+    color: #dfa974 !important;
+}
+
+
+
+
+
+
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(16, 20, 31, 0.616);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.bukti {
+    background: #ffffff;
+    /* padding: 40px; */
+    border-radius: 25px;
+    text-align: center;
+    width: 355px;
+    /* max-width: 350px; */
+    height: 570px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+}
+.bukti button {
+    background-color: #19191a;
+    border: 1px solid #19191a;
+    /* opacity: 75%; */
+    color: #ffffff;
+    padding: 15px 63px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 12px;
+    margin-top: 515px;
+    margin-bottom: 0;
+    white-space: nowrap;
+    position: fixed;
+
+    opacity: 20px;
+    /* display: none; */
+}
+
+.bukti #buktiReservasi {
+    /* background-color: rosybrown; */
+    position: relative;
+    top: 10px;
+    width: 340px;
+    height: 610px;
+}
+#buktiReservasi h1 {
+    font-weight: lighter;
+    position: fixed;
+    bottom: 520px;
+    right: 629px;
+}
+
+#buktiReservasi .head {
+    position: fixed;
+    top: 42px;
+}
+#buktiReservasi .head .left {
+    font-family: 'Cabin', sans-serif;
+}
+#buktiReservasi .head .left h4 {
+    font-weight: normal;
+    /* font-family: 'Cabin', sans-serif; */
+    letter-spacing: 1px;
+    position: relative;
+    top: 50px;
+    left: 26px;
+}
+#buktiReservasi .head .left p {
+    text-align: left;
+    font-size: 12px;
+    color: #19191aa9;
+    position: relative;
+    top: 35px;
+    left: 25px;
+}
+#buktiReservasi .head .right {
+    font-family: 'Cabin', sans-serif;
+}
+#buktiReservasi .head .right h4 {
+    text-align: right;
+    font-weight: normal;
+    /* font-family: 'Cabin', sans-serif; */
+    letter-spacing: 1px;
+    position: relative;
+    bottom: 27px;
+    left: 195px;
+    /* left: 53px; */
+}
+#buktiReservasi .head .right p {
+    font-size: 12px;
+    color: #19191aa9;
+    position: relative;
+    bottom: 42px;
+    left: 225px;
+}
+
+#buktiReservasi .body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: fixed;
+    top: 215px;
+}
+#buktiReservasi .body .b-1 h5 {
+    font-weight: normal;
+    letter-spacing: 1px;
+    color: #19191a77;
+    position: relative;
+    bottom: 40px;
+    right: 113px;
+}
+#buktiReservasi .body .b-1 .p {
+    text-align: left;
+    font-size: 12px;
+    color: #19191aa9;
+    position: relative;
+    bottom: 50px;
+    left: 25px;
+}
+#buktiReservasi .body .b-1 .p p {
+    margin-bottom: 35px;
+}
+#buktiReservasi .body .b-1 .h4 h4 {
+    text-align: left;
+    font-weight: normal;
+    /* font-family: 'Cabin', sans-serif; */
+    letter-spacing: 1px;
+    position: relative;
+    bottom: 131px;
+    left: 25px;
+}
+#buktiReservasi .body .b-2 {
+    position: relative;
+    /* bottom: 5px; */
+}
+#buktiReservasi .body .b-2 h5 {
+    font-weight: normal;
+    letter-spacing: 1px;
+    color: #19191a77;
+    position: relative;
+    bottom: 125px;
+    right: 85px;
+}
+#buktiReservasi .body .b-2 .checkin {
+    position: relative;
+    bottom: 155px;
+    left: 25px;
+    display: flex;
+}
+#buktiReservasi .body .b-2 .checkin h4 {
+    text-align: left;
+    font-weight: normal;
+    /* font-family: 'Cabin', sans-serif; */
+    letter-spacing: 1px;
+    position: relative;
+}
+#buktiReservasi .body .b-2 .checkin p {
+    text-align: right;
+    font-weight: normal;
+    font-size: 13px;
+    /* font-family: 'Cabin', sans-serif; */
+    letter-spacing: 1px;
+    position: relative;
+    top: 10px;
+    left: 95px;
+    color: #19191a;
+}
+#buktiReservasi .body .b-2 .garis {
+    width: 289px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    position: relative;
+    bottom: 165px;
+    left: 25px;
+}
+#buktiReservasi .body .b-2 .checkout {
+    width: 289px;
+    position: relative;
+    bottom: 172px;
+    left: 25px;
+    display: flex;
+}
+#buktiReservasi .body .b-2 .checkout h4 {
+    text-align: left;
+    font-weight: normal;
+    /* font-family: 'Cabin', sans-serif; */
+    letter-spacing: 1px;
+    position: relative;
+}
+#buktiReservasi .body .b-2 .checkout p {
+    text-align: right;
+    font-weight: normal;
+    font-size: 13px;
+    /* font-family: 'Cabin', sans-serif; */
+    letter-spacing: 1px;
+    position: relative;
+    top: 10px;
+    left: 81px;
+    color: #19191a;
+}
+#buktiReservasi .body .b-2 .angka {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    width: 289px;
+    position: fixed;
+    bottom: 129px;
+    left: 538px;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+#buktiReservasi .body .b-2 .angka .data {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+#buktiReservasi .body .b-2 .angka .data h4 {
+    color: #19191a;
+    position: relative;
+    bottom: 13px;
+}
+#buktiReservasi .body .b-2 .angka .data p {
+    text-align: right;
+    color: #19191aa9;
+    position: relative;
+    bottom: 28px;
+    left: 2px;
+    font-size: smaller;
+    font-size: 12px;
+}
+#buktiReservasi .body .b-2 .angka .garis-2 {
+    border-left: 1px solid rgba(0, 0, 0, 0.15);
+    height: 50px;
+}
+
+#buktiReservasi .body .b-3 {
+    display: flex;
+    position: relative;
+    bottom: 112px;
+    left: 25px;
+}
+#buktiReservasi .body .b-3 p {
+    margin-left: auto;
+    text-align: right;
+    white-space: nowrap;
+    position: relative;
+    top: 3px;
+}
+
+#buktiReservasi .body .b-4 {
+    display: flex;
+    /* background-color: #19191a; */
+    /* border: 1px solid rgba(0, 0, 0, 0.15); */
+    height: 48px;
+    /* opacity: 75%; */
+    color: #ffffff;
+    /* padding: 15px 63px; */
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 12px;
+    /* margin-top: 515px; */
+    margin-bottom: 0;
+    white-space: nowrap;
+    position: relative;
+    bottom: 110px;
+    left: 24px;
+
+    /* display: none; */
+}
+#buktiReservasi .body .b-4 img {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    bottom: 5px;
+    left: 50px;
+    opacity: 40%;
+}
+#buktiReservasi .body .b-4 h4 {
+    color: #19191aa9;
+    letter-spacing: 1px;
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    font-weight: lighter;
+    position: relative;
+    bottom: 7px;
+    left: 57px;
+}

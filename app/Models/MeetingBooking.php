@@ -11,14 +11,16 @@ class MeetingBooking extends Model
 
     protected $table = 'bookings';
     protected $fillable = [
+        'uuid',
+        'user_id',
         'hotel_id',
         'meeting_id',
-        'name',
-        'email',
-        'phone',
         'date',
         'start_time',
         'end_time',
+        'tipe_meja',
+        'jumlah_harga',
+        'pesan',
     ];
 
     // Relasi dengan User (User bisa memiliki banyak booking)
