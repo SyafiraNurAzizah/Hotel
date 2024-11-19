@@ -68,12 +68,16 @@ class HotelsController extends Controller
     public function showFasilitas($location)
     {
         $hotels = Hotels::where('nama_cabang', $location)->get();
-
+        
+        if ($hotels->isEmpty()) {
+            abort(404, 'Hotel not found');
+        }
+    
         // Ambil fasilitas untuk setiap hotel
         foreach ($hotels as $hotel) {
             $hotel->fasilitas = Fasilitas::where('hotel_id', $hotel->id)->get();
         }
-
+    
         // Cek role user dan tampilkan halaman fasilitas yang sesuai
         return Auth::check() && Auth::user()->role == 'admin'
             ? view('admin.hotel.fasilitas', [
@@ -85,7 +89,7 @@ class HotelsController extends Controller
                 'hotels' => $hotels
             ]);
     }
-
+    
     // Method untuk halaman admin, menampilkan daftar hotel
     public function adminIndex()
     {

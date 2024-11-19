@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\AdminHotelController;
 use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
 use App\Http\Controllers\Admin\WeddingController;
-use App\Http\Controllers\AdminHotelController as ControllersAdminHotelController;
 use App\Http\Controllers\BookingHotelController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RoomController;
@@ -91,6 +90,13 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMid
     Route::get('/admin/review', [HotelsController::class, 'indexAdminReview'])->name('admin.review.index');
     Route::get('/admin/review/{location}/{nama_tipe}', [App\Http\Controllers\HotelsController::class, 'showAdminReview'])->name('admin.review.show');
     Route::delete('/admin/review/{id}', [App\Http\Controllers\HotelsController::class, 'destroyAdminReview'])->name('admin.review.destroy');
+    // Route CRUD untuk Admin Hotel
+    Route::get('/admin/hotel', [AdminHotelController::class, 'AdminIndex'])->name('admin.hotel.firstindex');                // Untuk daftar hotel
+    Route::get('/admin/booking/{city}', [AdminHotelController::class, 'showByCity'])->name('admin.hotel.index');
+    Route::get('/admin/hotel/{id}', [AdminHotelController::class, 'AdminShow'])->name('admin.hotel.show');              // Untuk detail data
+    Route::get('/admin/hotel/{id}/edit', [AdminHotelController::class, 'edit'])->name('admin.hotel.edit');              // Untuk form edit
+    Route::post('/admin/hotel/{id}/update', [AdminHotelController::class, 'update'])->name('admin.hotel.update');       // Untuk update data
+    Route::delete('/admin/hotel/{id}', [AdminHotelController::class, 'AdminDestroy'])->name('admin.hotel.destroy');     // Untuk menghapus data  // Untuk daftar reservasi
 
 });
 //----------------------------------------------------------------------------
@@ -108,11 +114,14 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\UserAccessMidd
     Route::post('/hotel/{location}/{nama_tipe}/transaksi/{uuid}/pembayaran', [App\Http\Controllers\BookingHotelController::class, 'pembayaranHotel'])->name('booking.hotel.pembayaran');
     Route::put('/hotel/{location}/{nama_tipe}/transaksi/{uuid}/pembayaran', [App\Http\Controllers\BookingHotelController::class, 'updatePembayaranHotel'])->name('booking.hotel.pembayaran.update');
     Route::post('/hotel/{location}/{nama_tipe}/{uuid}', [App\Http\Controllers\BookingHotelController::class, 'cancelHotel'])->name('booking.hotel.cancel');
+//hotel//
 
-
-
-//Booking Meeting//
-Route::resource('meeting_bookings', MeetingBookingController::class);
+//meeting//
+    // Route::resource('meeting_bookings', MeetingBookingController::class);
+    // Route::post('/bookings', [App\Http\Controllers\MeetingBookingController::class, 'store'])->name('bookings.store');
+    Route::get('/meeting/{location}/{roomId}/transaksi/{id}', [MeetingBookingController::class, 'transaksiMeeting'])->name('meeting.transaksi.transaksi-meeting')->middleware('remove.room.query');
+    Route::post('/meeting/{location}/{roomId}/transaksi', [MeetingBookingController::class, 'storeMeeting'])->name('booking.meeting.store');
+//meeting//
 
     // ----- //
     
@@ -128,6 +137,7 @@ Route::get('/hotel/{location}', [App\Http\Controllers\HotelsController::class, '
 Route::get('/hotel/{location}/{nama_tipe}', [App\Http\Controllers\HotelsController::class, 'showRoomsDetail'])->name('detail-hotel');
 
 Route::get('/hotel/{location}/fasilitas', [App\Http\Controllers\HotelsController::class, 'showFasilitas'])->name('fasilitas');
+
 //--------------------------------------------------------------------------//
 
 // ----------------------------------- RATING --------------------------------- //

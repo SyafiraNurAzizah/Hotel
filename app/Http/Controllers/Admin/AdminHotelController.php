@@ -7,16 +7,33 @@ use Illuminate\Http\Request;
 use App\Models\BookingHotel;
 use App\Models\Hotels;
 use App\Models\TipeKamar;
+use App\Models\User;
 use App\Models\Users;
 
 class AdminHotelController extends Controller
 {
-    public function AdminIndex() {
-        $bookinghotels = BookingHotel::all(); // Mengambil semua data dari tabel booking hotels
-        return view('nama_view', compact('bookinghotels'));
+    public function AdminIndex()
+    {
+        $bookinghotel = BookingHotel::all();
+
+        // Kirim data ke view
+        return view('admin.hotel.firstindex', compact('bookinghotel'));
+    }
+    public function showByCity($city)
+    {
+        // Ambil data booking berdasarkan kota
+        $bookinghotel = BookingHotel::whereHas('hotel', function ($query) use ($city) {
+            $query->where('nama_cabang', ucfirst($city));
+        })->get();
+
+        // Kirim data ke view dan sertakan nama kota
+        return view('admin.hotel.index', [
+            'bookinghotel' => $bookinghotel,
+            'city' => ucfirst($city)
+        ]);
     }
 
-    public function Adminshow($id)
+    public function AdminShow($id)
 {
     // Mengambil data booking berdasarkan ID
     $bookinghotels = BookingHotel::with(['hotel', 'user'])->findOrFail($id);
@@ -59,5 +76,17 @@ public function update(Request $request, $id)
 
     return redirect()->route('admin.hotel.index')->with('success', 'Pemesan hotel berhasil diupdate.');
 }
+
+public function ShowReservation(Request $request)
+{
+    $query = $request->get('query');
+    if ($query) {
+        $hotels = Hotels::where('nama_cabang', 'like', '%' . $query . '%')->get();
+    } else {
+        $hotels = Hotels::all();
+    }
+    return view('admin.hotel.index', compact('hotels', 'query'));
+}
+
 
 }

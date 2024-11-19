@@ -47,11 +47,22 @@
 }
 .room-pagination a:hover {
     background: #dfa974;
-    color: #ffffff;
+    color: #ffffff;
 }
 
 
+/* Search Bar */
+.breadcrumb-text {
+    text-align: center;
+    padding-top: 20px; /* Beri ruang atas untuk elemen pencarian */
+}
 
+.search-container {
+    display: inline-block;
+    width: 100%;
+    max-width: 600px; /* Batasi lebar maksimal pencarian */
+    margin: 0 auto 20px auto; /* Atur margin atas dan bawah */
+}
 
 .container .modal .modal-body .icon_close {
     float: right;
