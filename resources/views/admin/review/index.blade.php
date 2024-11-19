@@ -1,21 +1,56 @@
 @extends('layouts.app')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/wedding.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .breadcrumb-section {
+            background: url('/images/breadcrumb-bg.jpg') center center/cover no-repeat;
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .breadcrumb-text {
+            text-align: center;
+            color: white;
+        }
+
+        .breadcrumb-text h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .bt-option a {
+            color: #dfa974;
+            font-weight: bold;
+        }
+
+        .bt-option span {
+            color: #fff;
+        }
+    </style>
 @endpush
 
 @section('content')
+    <!-- Breadcrumb Section Begin -->
     <div class="breadcrumb-section">
-        <div class="container">
+        <div class="container mt-5">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="breadcrumb-text py-5">
-                        <h2>Admin Review</h2>
+                    <div class="breadcrumb-text">
+                        <h2><i class="fas fa-address-book"></i> Review</h2>
+                        <div class="bt-option">
+                            <a href="{{ route('index') }}"><i class="fas fa-home"></i> Beranda</a>
+                            <span><i class="fas fa-envelope"></i> Data Review</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Breadcrumb Section End -->
 
 
     <section>

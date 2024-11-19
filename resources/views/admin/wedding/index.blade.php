@@ -2,19 +2,49 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/wedding.css') }}">
+
+    <style>
+        .breadcrumb-text {
+            text-align: center;
+            color: white;
+        }
+
+        .breadcrumb-text h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .bt-option a {
+            color: #dfa974;
+            font-weight: bold;
+        }
+
+        .bt-option span {
+            color: #fff;
+        }
+
+        .thead-custom th {
+            background-color: #dfa974;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+    </style>
 @endpush
 
 @section('content')
     <!-- Breadcrumb Section Begin -->
     <div class="breadcrumb-section">
-        <div class="container mt-6">
+        <div class="container mt-5">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="breadcrumb-text m-5">
-                        <h2>Admin Weddings</h2>
+                    <div class="breadcrumb-text">
+                        <h2><i class="fas fa-address-book"></i> Wedding</h2>
                         <div class="bt-option">
-                            <a href="{{ route('index') }}">Beranda</a>
-                            <span>Data Weddings</span>
+                            <a href="{{ route('index') }}"><i class="fas fa-home"></i> Beranda</a>
+                            <span><i class="fas fa-envelope"></i> Data Wedding</span>
                         </div>
                     </div>
                 </div>
@@ -37,9 +67,9 @@
                     <tr>
                         <th>No</th>
                         <th>Judul</th>
-                        <th>Paket 1</th>
-                        <th>Paket 2</th>
-                        <th>Paket 3</th>
+                        <th><i class="fas fa-tasks"></i> Paket 1</th>
+                        <th><i class="fas fa-tasks"></i> Paket 2</th>
+                        <th><i class="fas fa-tasks"></i> Paket 3</th>
                         <th>Gambar</th>
                         <th>Harga</th>
                         <th>Kapasitas</th>
@@ -62,7 +92,7 @@
                             <td>{{ $wedding->kapasitas }} guests</td>
                             <td>
                                 <a href="{{ route('wedding.show', $wedding->id) }}"
-                                        class="fa fa-eye btn btn-outline-secondary"></a>
+                                    class="fa fa-eye btn btn-outline-secondary"></a>
                             </td>
                         </tr>
                     @empty

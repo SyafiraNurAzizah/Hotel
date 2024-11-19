@@ -35,7 +35,7 @@
                                     <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">Contact</a></li>
                                     @elseif (Auth::check() && Auth::user()->role == 'admin')
                                     <li class="{{ Request::is('admin') ? 'active' : '' }}"><a href="{{ route('admin.index') }}">ADMIN</a></li>
-                                    <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ route('admin.hotel.index') }}">Hotel</a></li>
+                                    <li class="{{ Request::is('hotel') ? 'active' : '' }}"><a href="{{ route('admin.hotel.firstindex') }}">Hotel</a></li>
                                     <li class="{{ Request::is('wedding') ? 'active' : '' }}"><a href="{{ route('admin.wedding.index') }}">Weeding</a></li>
                                     <li class="{{ Request::is('review') ? 'active' : '' }}"><a href="{{ route('admin.review.index') }}">Review</a></li>
                                     <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{ route('admin.contact.index') }}">Contact</a></li>

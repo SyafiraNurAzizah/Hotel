@@ -40,6 +40,7 @@
             border-spacing: 0 10px;
             width: 100%;
             margin-top: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
         }
 
         .table-custom th, .table-custom td {
@@ -92,7 +93,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2><i class="fas fa-address-book"></i> Admin Contact</h2>
+                        <h2><i class="fas fa-address-book"></i> Contact</h2>
                         <div class="bt-option">
                             <a href="{{ route('index') }}"><i class="fas fa-home"></i> Beranda</a>
                             <span><i class="fas fa-envelope"></i> Data Contact</span>
@@ -132,9 +133,9 @@
                         </tr>
                     @endforelse
                 </tbody>
-            </table> --}}
+            </table> 
 
-                    <div class="row">
+                    {{-- <div class="row">
                         @forelse ($contact as $item)
                             <div class="col-lg-4">
                                 <div class="card shadow-lg p-4" style="width: 18rem; border-radius: 20px; background-color: #efebdf;">
@@ -163,7 +164,7 @@
                         @empty
                             <p>No data available</p>
                         @endforelse
-                    </div>
+                    </div> --}}
                     
 
         </div>
