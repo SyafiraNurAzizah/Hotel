@@ -23,8 +23,8 @@
 .room-booking form .check-date input {
 	width: 100%;
 	height: 45px;
-	border: 1px solid #ebebeb;
-	border-radius: 7px;
+	border: 1px solid #19191a38;
+	border-radius: 0 8px 8px 0; /* Sudut kanan atas dan bawah membulat */
 	font-size: 16px;
 	color: #19191a;
 	padding-left: 50px;
@@ -35,7 +35,7 @@
     border: 2px solid #222736; 
 }
 .room-booking form .check-date i {
-	color: #2227362c;
+	color: #2227361e;
 	position: absolute;
 	left: 18px;
 	bottom: 10px;
@@ -51,7 +51,8 @@
 }
 .room-booking form .select-option input[type="number"] {
 	border-radius: 7px;
-	border: 1px solid #ebebeb;
+    border: 1px solid #19191a38;
+	border-radius: 0 8px 8px 0; /* Sudut kanan atas dan bawah membulat */
 	height: 40px;
 	padding-left: 50px;
     padding-right: 10px;
@@ -62,7 +63,7 @@
     border: 2px solid #222736;
 }
 .room-booking form .select-option i {
-    color: #2227362c;
+	color: #2227361e;
 	position: absolute;
 	left: 57px;
 	top: 330px;
@@ -80,7 +81,7 @@
 }
 .room-booking form .tamu-option .group input[type="number"] {
     border-radius: 7px;
-	border: 1px solid #ebebeb;
+    border: 1px solid #19191a38;
 	height: 40px;
 	padding-left: 20px;
     padding-right: 10px;
@@ -103,8 +104,8 @@
 .room-booking form .note textarea {
 	width: 100%;
 	height: 75px;
-	border: 1px solid #ebebeb;
-	border-radius: 7px;
+	border: 1px solid #19191a38;
+	border-radius: 0 8px 8px 0; /* Sudut kanan atas dan bawah membulat */
 	font-size: 16px;
 	color: #19191a;
 	padding-left: 50px;
@@ -115,7 +116,7 @@
     border: 2px solid #222736; 
 }
 .room-booking form .note i {
-	color: #2227362c;
+	color: #2227361e;
 	position: absolute;
 	left: 18px;
 	bottom: 30px;

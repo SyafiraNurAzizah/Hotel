@@ -217,7 +217,6 @@ class BookingHotelController extends Controller
         return redirect()->route('hotel.transaksi.pembayaran-hotel', [
             'location' => ucfirst($location),
             'nama_tipe' => $room->nama_tipe, // Menambahkan parameter nama_tipe
-            'uuid' => $uuid, // Menambahkan parameter uuid
         ]);
     }
 

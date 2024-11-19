@@ -136,6 +136,7 @@
                                 @csrf
                 
                                 <div class="hotel-input">
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                     <input type="hidden" name="hotel_id" value="{{ $hotel->id }}">
                                     <input type="hidden" name="tipe_kamar_id" value="{{ $room->id }}" data-kapasitas="{{ $room->kapasitas }}">
                                     <input type="hidden" name="status" value="belum_selesai">
