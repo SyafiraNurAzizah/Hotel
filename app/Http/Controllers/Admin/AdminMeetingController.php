@@ -17,9 +17,13 @@ class AdminMeetingController extends Controller
 
     public function showByCity()
     {
-        $bookings = Meetings::all();
+        $bookings = MeetingBooking::all();
         return view('admin.meetingss.index', compact('bookings'));
     }
 
-   
+   public function show()
+   {
+    $bookings = MeetingBooking::all();
+    return view('admin.meetingss.index', compact('bookings'));
+   }
 }

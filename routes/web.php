@@ -89,7 +89,7 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMid
     // Route CRUD untuk Admin Meeting
     Route::get('/admin/meeting', [AdminMeetingController::class, 'AdminIndex'])->name('admin.meetingss.firstindex');// Untuk daftar meeting
     Route::get('/admin/meeting/{id}', [AdminMeetingController::class, 'showByCity'])->name('admin.meetingss.index');                
-    // Route::get('/admin/meeting/{id}', [AdminMeetingController::class, 'show'])->name('admin.meeting.show');
+    Route::get('/admin/meeting/{id}', [AdminMeetingController::class, 'show'])->name('admin.meetingss.show');
 
 });
 //----------------------------------------------------------------------------

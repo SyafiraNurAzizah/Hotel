@@ -117,90 +117,84 @@
     </a>
 
     <!-- Kontainer untuk input pencarian -->
-    <div class="search-container">
-        <input type="text" id="searchInput" class="search-input" placeholder="Cari Nama...">
-    </div>
+<div class="search-container">
+    <input type="text" id="searchInput" class="search-input" placeholder="Cari Nama...">
+</div>
 
-    <table class="table table-bordered">
-        <thead>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Hotel ID</th>
+            <th>Meeting ID</th>
+            <th>Tanggal</th>
+            <th>Status</th>
+            <th>Status Pembayaran</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody id="bookingTable">
+        @forelse($bookings as $item)
             <tr>
-                <th>ID</th>
-                <th>Hotel ID</th>
-                <th>Meeting ID</th>
-                <th>Nama</th>
-                <th>Tanggal</th>
-                <th>Waktu Mulai</th>
-                <th>Waktu Selesai</th>
-                <th>Status</th>
-                <th>Status Pembayaran</th>
-                {{-- <th>Aksi</th> --}}
+                <td>{{ substr($item->uuid, 0, 5) }}</td>
+                <td>{{ $item->hotel_id }}</td>
+                <td>{{ $item->meeting_id }}</td>
+                <td>{{ $item->date }}</td>
+                <td>
+                    @if($item->status == 'selesai')
+                        <span style="color: green; font-weight: bold;">
+                            <i class="fas fa-check-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                        </span>
+                    @elseif($item->status == 'belum_selesai')
+                        <span style="color: orange; font-weight: bold;">
+                            <i class="fas fa-hourglass-half"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                        </span>
+                    @elseif($item->status == 'sedang_diproses')
+                        <span style="color: blue; font-weight: bold;">
+                            <i class="fas fa-spinner"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                        </span>
+                    @elseif($item->status == 'dibatalkan')
+                        <span style="color: red; font-weight: bold;">
+                            <i class="fas fa-times-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                        </span>
+                    @else
+                        <span>{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
+                    @endif
+                </td>
+                <td>
+                    @if($item->status_pembayaran == 'dibayar')
+                        <span style="color: green; font-weight: bold;">
+                            <i class="fas fa-check-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}
+                        </span>
+                    @else
+                        <span style="color: red; font-weight: bold;">
+                            <i class="fas fa-times-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}
+                        </span>
+                    @endif
+                </td>
+                <td>
+                    <a href="{{ route('admin.meetingss.show', $item->id) }}" class="btn btn-info" title="Detail">
+                        <i class="fas fa-info-circle"></i> Detail
+                    </a>
+                    {{-- <a href="{{ route('admin.meeting.edit', $booking->id) }}" class="btn btn-warning" title="Edit">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <form action="{{ route('admin.meeting.destroy', $booking->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" title="Hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus?');">
+                            <i class="fas fa-trash"></i> Hapus
+                        </button>
+                    </form> --}}
+                </td>
             </tr>
-        </thead>
-        <tbody id="bookingTable">
-            @forelse($bookings as $item)
-                <tr>
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->hotel_id }}</td>
-                    <td>{{ $item->meeting_id }}</td>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->date }}</td>
-                    <td>{{ $item->start_time }}</td>
-                    <td>{{ $item->end_time }}</td>
-                    <td>
-                        @if($item->status == 'selesai')
-                            <span style="color: green; font-weight: bold;">
-                                <i class="fas fa-check-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
-                            </span>
-                        @elseif($item->status == 'belum_selesai')
-                            <span style="color: orange; font-weight: bold;">
-                                <i class="fas fa-hourglass-half"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
-                            </span>
-                        @elseif($item->status == 'sedang_diproses')
-                            <span style="color: blue; font-weight: bold;">
-                                <i class="fas fa-spinner"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
-                            </span>
-                        @elseif($item->status == 'dibatalkan')
-                            <span style="color: red; font-weight: bold;">
-                                <i class="fas fa-times-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
-                            </span>
-                        @else
-                            <span>{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
-                        @endif
-                    </td>
-                    <td>
-                        @if($item->status_pembayaran == 'dibayar')
-                            <span style="color: green; font-weight: bold;">
-                                <i class="fas fa-check-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}
-                            </span>
-                        @else
-                            <span style="color: red; font-weight: bold;">
-                                <i class="fas fa-times-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}
-                            </span>
-                        @endif
-                    </td>
-                    <td>
-                        {{-- <a href="{{ route('admin.meeting.show', $item->id) }}" class="btn btn-info" title="Detail">
-                            <i class="fas fa-info-circle"></i> Detail
-                        </a> --}}
-                        {{-- <a href="{{ route('admin.meeting.edit', $booking->id) }}" class="btn btn-warning" title="Edit">
-                            <i class="fas fa-edit"></i> Edit
-                        </a>
-                        <form action="{{ route('admin.meeting.destroy', $booking->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger" title="Hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus?');">
-                                <i class="fas fa-trash"></i> Hapus
-                            </button>
-                        </form> --}}
-                    </td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="12" style="text-align: center">Tidak ada data booking meeting.</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
+        @empty
+            <tr>
+                <td colspan="12" style="text-align: center">Tidak ada data booking meeting.</td>
+            </tr>
+        @endforelse
+    </tbody>
+</table>
 </div>
 
 @push('scripts')
