@@ -153,8 +153,15 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\UserAccessMidd
 //meeting//
     // Route::resource('meeting_bookings', MeetingBookingController::class);
     // Route::post('/bookings', [App\Http\Controllers\MeetingBookingController::class, 'store'])->name('bookings.store');
+    Route::get('/meeting/{location}/{roomId}/transaksi/{uuid}/lokasi', [MeetingBookingController::class, 'lokasiMeeting'])->name('meeting.transaksi.lokasi-meeting');
+
     Route::get('/meeting/{location}/{roomId}/transaksi/{uuid}', [MeetingBookingController::class, 'transaksiMeeting'])->name('meeting.transaksi.transaksi-meeting')->middleware('remove.room.query');
     Route::post('/meeting/{location}/{roomId}/transaksi/', [MeetingBookingController::class, 'storeMeeting'])->name('booking.meeting.store');
+
+    Route::get('/meeting/{location}/{roomId}/transaksi/{uuid}/pembayaran', [MeetingBookingController::class, 'konfirmasiPembayaranMeeting'])->name('meeting.transaksi.pembayaran-meeting');
+    Route::post('/meeting/{location}/{roomId}/transaksi/{uuid}/pembayaran', [MeetingBookingController::class, 'pembayaranMeeting'])->name('booking.meeting.pembayaran');
+    Route::put('/meeting/{location}/{roomId}/transaksi/{uuid}/pembayaran', [MeetingBookingController::class, 'updatePembayaranMeeting'])->name('booking.meeting.pembayaran.update');
+    Route::post('/meeting/{location}/{roomId}/{uuid}', [MeetingBookingController::class, 'cancelMeeting'])->name('booking.meeting.cancel');
 //meeting//
 
     // ----- //

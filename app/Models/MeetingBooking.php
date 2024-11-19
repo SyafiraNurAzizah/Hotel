@@ -18,7 +18,6 @@ class MeetingBooking extends Model
         'date',
         'start_time',
         'end_time',
-        'tipe_meja',
         'jumlah_harga',
         'pesan',
     ];
