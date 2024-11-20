@@ -289,7 +289,8 @@
 
 
 <div class="icon-table">
-    <i class="fa-solid fa-bed active" onclick="showTable('table-bed', this)"></i>
+    <i class="fa-solid fa-bed active" onclick="showTable('table-bed', this)" style="margin-right: 20px"></i>
+    <div class="vertical-line"></div>
     <i class="fa-solid fa-users" onclick="showTable('table-users', this)"></i>
 </div>
 
@@ -453,56 +454,29 @@
 
 
     function showTable(tableId, clickedIcon) {
-    // Sembunyikan semua tabel
-    const tables = document.querySelectorAll('.table-container');
-    tables.forEach(table => {
-        table.style.display = 'none';
-    });
+        // Sembunyikan semua tabel
+        const tables = document.querySelectorAll('.table-container');
+        tables.forEach(table => {
+            table.style.display = 'none';
+        });
 
-    // Tampilkan tabel yang dipilih
-    const selectedTable = document.getElementById(tableId);
-    if (selectedTable) {
-        selectedTable.style.display = 'block';
+        // Tampilkan tabel yang dipilih
+        const selectedTable = document.getElementById(tableId);
+        if (selectedTable) {
+            selectedTable.style.display = 'block';
+        }
+
+        // Ganti kelas aktif pada ikon
+        const icons = document.querySelectorAll('.icon-table i');
+        icons.forEach(icon => {
+            icon.classList.remove('active');
+            icon.style.display = 'inline-block'; // Pastikan ikon terlihat
+        });
+
+        // Sembunyikan ikon yang tidak aktif
+        clickedIcon.classList.add('active');
+        clickedIcon.style.display = 'inline-block'; // Pastikan ikon terlihat
     }
-
-    // Ganti kelas aktif pada ikon
-    const icons = document.querySelectorAll('.icon-table i');
-    icons.forEach(icon => {
-        icon.classList.remove('active');
-        icon.style.display = 'inline-block'; // Pastikan ikon terlihat
-    });
-
-    // Sembunyikan ikon yang tidak aktif
-    clickedIcon.classList.add('active');
-    clickedIcon.style.display = 'inline-block'; // Pastikan ikon terlihat
-}
     
 </script>
 @endpush
-
-
-
-{{-- function showTable(tableId, clickedIcon) {
-    // Sembunyikan semua tabel
-    const tables = document.querySelectorAll('.table-container');
-    tables.forEach(table => {
-        table.style.display = 'none';
-    });
-
-    // Tampilkan tabel yang dipilih
-    const selectedTable = document.getElementById(tableId);
-    if (selectedTable) {
-        selectedTable.style.display = 'block';
-    }
-
-    // Ganti kelas aktif pada ikon
-    const icons = document.querySelectorAll('.icon-table i');
-    icons.forEach(icon => {
-        icon.classList.remove('active');
-        icon.style.display = 'inline-block'; // Pastikan ikon terlihat
-    });
-
-    // Sembunyikan ikon yang tidak aktif
-    clickedIcon.classList.add('active');
-    clickedIcon.style.display = 'inline-block'; // Pastikan ikon terlihat
-} --}}
