@@ -11,22 +11,22 @@
 </div>
 
 
-<h2>Reservasi Hotel</h2>
+<h2>Reservasi Meeting</h2>
 
 
 <br>
 
 
 <div class="step">
-    <a href="{{ route('admin.hotel.list-tamu') }}">
+    <a href="{{ route('admin.meeting.list-tamu') }}">
         <i class="fa-solid fa-users" style="position: relative; top: 80px; left: 210px; color: #222736"></i>
     </a>
     <div class="stepbystep">
-        <a href="{{ route('admin.hotel.tamu') }}">
+        <a href="{{ route('admin.meeting.tamu') }}">
             <i class="fa-solid fa-user" style="position: relative; bottom: 4px; left: 20px; color: #222736"></i>
         </a>
         <div class="garis" style="position: relative; left: 12px; border-color: #222736"></div>
-        <a href="{{ route('admin.hotel.create') }}">
+        <a href="{{ route('admin.meeting.reservasi') }}">
             <i class="fa-solid fa-bed" style="padding-right: 60px; position: relative; left: 5px; color: #222736"></i>
         </a>
     </div>
@@ -40,7 +40,7 @@
 
 <div class="container">
     <div class="card">
-        <form action="{{ route('admin.hotel.store') }}" method="POST">
+        <form action="{{ route('admin.meeting.store') }}" method="POST">
             @csrf
 
             <div class="form-group-user">
@@ -65,43 +65,43 @@
                     </select>
                 </div>
                 <div class="form-group-group">
-                    <label class="form-label">Tipe Kamar</label>
+                    <label class="form-label">Ruang Meeting</label>
                 
-                    <input type="text" id="room_select_default" class="form-control room-select" readonly placeholder="Pilih Tipe Kamar" style="width: 663px;">
+                    <input type="text" id="room_select_default" class="form-control room-select" readonly placeholder="Pilih Ruang Meeting" style="width: 663px;">
                     
                     <!-- Select untuk Hotel 1 -->
-                    <select name="tipe_kamar_id" id="room_select_1" class="form-control room-select" style="display: none; width: 663px;">
-                        <option value="" disabled selected>Pilih Tipe Kamar</option>
-                        @foreach($room as $item)
+                    <select name="meeting_id" id="room_select_1" class="form-control room-select" style="display: none; width: 663px;">
+                        <option value="" disabled selected>Pilih Ruang Meeting</option>
+                        @foreach($meetings as $item)
                             @if($item->hotel_id == 1)
-                                <option value="{{ $item->id }}" data-harga="{{ $item->harga_per_malam }}" data-kapasitas="{{ $item->kapasitas }}">{{ $item->nama_tipe }} - Rp {{ number_format($item->harga_per_malam, 2, ',', '.') }}</option>
+                                <option value="{{ $item->id }}" data-harga="{{ $item->harga_per_jam }}" data-kapasitas="{{ $item->kapasitas }}">{{ $item->nama_ruang }} - Rp {{ number_format($item->harga_per_jam, 2, ',', '.') }}</option>
                             @endif
                         @endforeach
                     </select>
             
                     <!-- Select untuk Hotel 2 -->
-                    <select name="tipe_kamar_id" id="room_select_2" class="form-control room-select" style="display: none; width: 663px;">
-                        <option value="" disabled selected>Pilih Tipe Kamar</option>
-                        @foreach($room as $item)
+                    <select name="meeting_id" id="room_select_2" class="form-control room-select" style="display: none; width: 663px;">
+                        <option value="" disabled selected>Pilih Ruang Meeting</option>
+                        @foreach($meetings as $item)
                             @if($item->hotel_id == 2)
-                                <option value="{{ $item->id }}" data-harga="{{ $item->harga_per_malam }}" data-kapasitas="{{ $item->kapasitas }}">{{ $item->nama_tipe }} - Rp {{ number_format($item->harga_per_malam, 2, ',', '.') }}</option>
+                            <option value="{{ $item->id }}" data-harga="{{ $item->harga_per_jam }}" data-kapasitas="{{ $item->kapasitas }}">{{ $item->nama_ruang }} - Rp {{ number_format($item->harga_per_jam, 2, ',', '.') }}</option>
                             @endif
                         @endforeach
                     </select>
             
                     <!-- Select untuk Hotel 3 -->
-                    <select name="tipe_kamar_id" id="room_select_3" class="form-control room-select" style="display: none; width: 663px;">
-                        <option value="" disabled selected>Pilih Tipe Kamar</option>
-                        @foreach($room as $item)
+                    <select name="meeting_id" id="room_select_3" class="form-control room-select" style="display: none; width: 663px;">
+                        <option value="" disabled selected>Pilih Ruang Meeting</option>
+                        @foreach($meetings as $item)
                             @if($item->hotel_id == 3)
-                                <option value="{{ $item->id }}" data-harga="{{ $item->harga_per_malam }}" data-kapasitas="{{ $item->kapasitas }}">{{ $item->nama_tipe }} - Rp {{ number_format($item->harga_per_malam, 2, ',', '.') }}</option>
+                                <option value="{{ $item->id }}" data-harga="{{ $item->harga_per_jam }}" data-kapasitas="{{ $item->kapasitas }}">{{ $item->nama_ruang }} - Rp {{ number_format($item->harga_per_jam, 2, ',', '.') }}</option>
                             @endif
                         @endforeach
                     </select>
                 </div>
             </div>
 
-            <div class="form-group-angka">
+            {{-- <div class="form-group-angka">
                 <div class="form-group-group">
                     <label class="form-label">Jumlah Kamar</label>
                     <input type="number" name="jumlah_kamar" class="form-control" placeholder="Jumlah Kamar" required min="1">
@@ -114,16 +114,27 @@
                     <label class="form-label">Tamu Anak</label>
                     <input type="number" name="tamu_anak" class="form-control" placeholder="Anak-anak" required min="0" style="width: 316.5px;">
                 </div>
+            </div> --}}
+
+            <div class="form-group">
+                {{-- <div class="form-group-group"> --}}
+                    <label class="form-label">Tanggal</label>
+                    <input type="date" name="date" class="form-control" required>
+                {{-- </div>
+                <div class="form-group-group">
+                    <label class="form-label">Check Out</label>
+                    <input type="date" name="check_out" class="form-control" required>
+                </div> --}}
             </div>
 
             <div class="form-group-tanggal">
                 <div class="form-group-group">
-                    <label class="form-label">Check In</label>
-                    <input type="date" name="check_in" class="form-control" required>
+                    <label class="form-label">Jam Mulai</label>
+                    <input type="time" name="start_time" class="form-control" required onchange="setMinutesToZero(this)">
                 </div>
                 <div class="form-group-group">
-                    <label class="form-label">Check Out</label>
-                    <input type="date" name="check_out" class="form-control" required>
+                    <label class="form-label">Jam Selesai</label>
+                    <input type="time" name="end_time" class="form-control" required onchange="setMinutesToZero(this)">
                 </div>
             </div>
 
@@ -265,46 +276,61 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-function calculateTotalPrice() {
-    const roomSelect = document.querySelector('select[name="tipe_kamar_id"]:not([style*="display: none"])'); // Ambil select yang terlihat
-    const jumlahKamar = parseInt(document.querySelector('input[name="jumlah_kamar"]').value) || 0; // Ambil jumlah kamar
-    const checkInDate = new Date(document.querySelector('input[name="check_in"]').value);
-    const checkOutDate = new Date(document.querySelector('input[name="check_out"]').value);
-    
-    // Hitung jumlah malam
-    const timeDifference = checkOutDate - checkInDate;
-    const jumlahMalam = Math.ceil(timeDifference / (1000 * 3600 * 24)); // Menghitung jumlah malam
-
-    if (roomSelect && roomSelect.selectedIndex > 0) { // Pastikan ada tipe kamar yang dipilih
-        const hargaPerMalam = parseFloat(roomSelect.options[roomSelect.selectedIndex].getAttribute('data-harga'));
-        const totalHarga = hargaPerMalam * jumlahKamar * jumlahMalam; // Hitung total harga
-
-        // Update total harga di input
-        document.getElementById('jumlah_harga').value = totalHarga.toFixed(2); // Tampilkan dengan 2 desimal
-    } else {
-        document.getElementById('jumlah_harga').value = 0; // Reset jika tidak ada kamar yang dipilih
-    }
+function setMinutesToZero(input) {
+    const timeValue = input.value;
+    const [hours] = timeValue.split(':');
+    input.value = `${hours}:00`;
+    calculateTotalPrice();
 }
 
-// Panggil fungsi calculateTotalPrice ketika ada perubahan
-document.addEventListener('DOMContentLoaded', function() {
-    // Tampilkan select default
-    document.getElementById('room_select_default').style.display = 'block';
-    
-    // Sembunyikan select lainnya
-    var allSelects = document.getElementsByClassName('room-select');
-    for(var i = 0; i < allSelects.length; i++) {
-        if(allSelects[i].id !== 'room_select_default') {
-            allSelects[i].style.display = 'none';
+
+function calculateTotalPrice() {
+    const startTime = document.querySelector('input[name="start_time"]').value;
+    const endTime = document.querySelector('input[name="end_time"]').value;
+    const roomSelects = document.getElementsByClassName('room-select'); // Ambil semua select
+    let selectedRoom = null;
+
+    // Temukan select yang terlihat
+    for (let i = 0; i < roomSelects.length; i++) {
+        if (roomSelects[i].style.display === 'block') {
+            selectedRoom = roomSelects[i];
+            break;
         }
     }
 
-    // Tambahkan event listener untuk menghitung total harga
-    document.querySelector('select[name="tipe_kamar_id"]').addEventListener('change', calculateTotalPrice);
-    document.querySelector('input[name="jumlah_kamar"]').addEventListener('input', calculateTotalPrice);
-    document.querySelector('input[name="check_in"]').addEventListener('change', calculateTotalPrice); // Tambahkan event listener untuk check in
-    document.querySelector('input[name="check_out"]').addEventListener('change', calculateTotalPrice); // Tambahkan event listener untuk check out
+    if (startTime && endTime && selectedRoom) {
+        const selectedOption = selectedRoom.options[selectedRoom.selectedIndex];
+        const hargaPerJam = selectedOption.dataset.harga;
+
+        if (hargaPerJam) {
+            const start = new Date(`1970-01-01T${startTime}:00`);
+            const end = new Date(`1970-01-01T${endTime}:00`);
+
+            // Hitung selisih waktu dalam jam
+            const hoursDiff = (end - start) / (1000 * 60 * 60);
+
+            if (hoursDiff > 0) {
+                const totalPrice = hoursDiff * parseFloat(hargaPerJam);
+                document.getElementById('jumlah_harga').value = totalPrice.toFixed(2); // Set total harga
+            } else {
+                document.getElementById('jumlah_harga').value = 0; // Reset jika waktu tidak valid
+            }
+        }
+    }
+}
+
+// Pasang event listener untuk waktu mulai dan selesai
+document.querySelector('input[name="start_time"]').addEventListener('change', calculateTotalPrice);
+document.querySelector('input[name="end_time"]').addEventListener('change', calculateTotalPrice);
+
+// Pasang event listener untuk perubahan ruang meeting
+document.querySelectorAll('.room-select').forEach(select => {
+    select.addEventListener('change', calculateTotalPrice);
 });
+
+
+
+
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -331,5 +357,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     @endif
 });
+
+
+
 </script>
 @endpush

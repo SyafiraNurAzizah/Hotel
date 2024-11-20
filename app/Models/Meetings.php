@@ -21,6 +21,5 @@ class Meetings extends Model
         'ukuran_ruang',
         'foto',
         'status',
-
     ];
 }

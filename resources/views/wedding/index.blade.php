@@ -46,8 +46,8 @@
                                     </a>
                                     <a href="mailto:istiqomahkhoerunnisa@gmail.com?subject=Informasi%20Paket%20Wedding&body=Halo,%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20paket%20wedding%20Anda."
                                         class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
-                                        <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail </a>
-
+                                        <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail 
+                                    </a>
                                 </div>
 
 

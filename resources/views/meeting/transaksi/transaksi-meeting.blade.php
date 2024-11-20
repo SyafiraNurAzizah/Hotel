@@ -4,7 +4,7 @@
 {{-- ------------------------------------------------------------------------------------------------------- --}}
 
 
-<link rel="stylesheet" href="{{ asset('css/hotel/transaksi/transaksi.css') }}">
+<link rel="stylesheet" href="{{ asset('css/meeting/transaksi/transaksi.css') }}">
 
 {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
@@ -36,12 +36,12 @@
                 <h3>{{ $booking->user->firstname }} {{ $booking->user->lastname }}</h3>
             </div>
             <div class="container-is-booking-text">
-                <p>Check-In</p>
-                <h3>{{ \Carbon\Carbon::parse($booking->check_in)->format('d F Y') }}</h3>
+                <p>Tanggal</p>
+                <h3>{{ \Carbon\Carbon::parse($booking->date)->format('d F Y') }}</h3>
             </div>
             <div class="container-is-booking-text">
-                <p>Check-Out</p>
-                <h3>{{ \Carbon\Carbon::parse($booking->check_out)->format('d F Y') }}</h3>
+                <p>Jam</p>
+                <h3>{{ $booking->start_time }} - {{ $booking->end_time }}</h3>
             </div>            
         </div>
 
@@ -52,98 +52,98 @@
             <h2>Rp{{ number_format($booking->jumlah_harga, 2, ',', '.') }}</h2>
         </div>
 
-        <div class="data-number">
-            <div class="container-isi-booking-number">
-                <h2>{{ $booking->jumlah_kamar }}</h2>
-                <p>Kamar</p>
-            </div>
-            <div class="vertical-line"></div>
-            <div class="container-isi-booking-number">
-                <h2>{{ $booking->tamu_dewasa }}</h2>
-                <p>Dewasa</p>
-            </div>
-            <div class="vertical-line"></div>
-            <div class="container-isi-booking-number">
-                <h2>{{ $booking->tamu_anak }}</h2>
-                <p>Anak</p>
-            </div>
+        <div class="data-note">
+            <p>Catatan Pemesan</p>
+            <h4>{{ $booking->pesan ?? '-' }}</h4>
         </div>
-    </div>
 
-    <div class="container-metode-pembayaran">
-        @foreach($hotels as $hotel)
-            @if($booking->status !== 'dibatalkan' && $booking->status !== 'selesai')
-                {{-- @if(!$pembayaran) --}}
-                    {{-- <form action="{{ route('booking.hotel.pembayaran', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}" method="POST"> --}}
-                    <form action="#" method="POST">
-                        @csrf 
-        
-                        <p>Metode Pembayaran</p>
-        
-                        <div class="dropdown" id="mainDropdown">
-                            <button type="button" id="dropdownButton">Pilih Metode Pembayaran</button>
-                            <div class="dropdown-content" id="dropdownContent">
-                                <div class="dropdown-item" onclick="selectOption('Cash')"><a>Cash</a></div>
-                                <div class="dropdown-item" onclick="selectOption('Kartu Kredit/Debit')"><a>Kartu Kredit/Debit</a></div>
-                                <div class="sub-dropdown">
-                                    <a>Dompet Digital</a>
-                                    <div class="sub-dropdown-content" style="height: 82px">
-                                        <div onclick="selectOption('OVO')">OVO</div>
-                                        <div onclick="selectOption('DANA')">DANA</div>
+        {{-- <div class="btn-contact d-flex justify-content-between align-items-center my-3">
+            <a href="https://wa.me/+628812721410?text=Halo%2C%20saya%20tertarik%20dengan%20paket%20wedding%20Anda."
+                target="_blank"
+                class="btn btn-outline-secondary w-35 contact-btn d-flex align-items-center">
+                <i class="icon_phone me-2" style="margin-right: 8px;"></i> Contact
+            </a>
+            <a href="mailto:istiqomahkhoerunnisa@gmail.com?subject=Informasi%20Paket%20Wedding&body=Halo,%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20paket%20wedding%20Anda."
+                class="btn btn-outline-secondary w-35 gmail-btn d-flx align-items-center">
+                <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail 
+            </a>
+        </div> --}}
+
+        <div class="container-metode-pembayaran">
+            @foreach($hotels as $hotel)
+                @if($booking->status !== 'dibatalkan' && $booking->status !== 'selesai')
+                    @if(!$pembayaran)
+                        <form action="{{ route('booking.meeting.pembayaran', ['location' => strtolower($hotel->nama_cabang), 'roomId' => $meetings->id, 'uuid' => $booking->uuid]) }}" method="POST">
+                        {{-- <form action="#" method="POST"> --}}
+                            @csrf 
+            
+                            <p>Metode Pembayaran</p>
+            
+                            <div class="dropdown" id="mainDropdown">
+                                <button type="button" id="dropdownButton">Pilih Metode Pembayaran</button>
+                                <div class="dropdown-content" id="dropdownContent">
+                                    <div class="dropdown-item" onclick="selectOption('Cash')"><a>Cash</a></div>
+                                    <div class="dropdown-item" onclick="selectOption('Kartu Kredit/Debit')"><a>Kartu Kredit/Debit</a></div>
+                                    <div class="sub-dropdown">
+                                        <a>Dompet Digital</a>
+                                        <div class="sub-dropdown-content" style="height: 82px">
+                                            <div onclick="selectOption('OVO')">OVO</div>
+                                            <div onclick="selectOption('DANA')">DANA</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="sub-dropdown">
-                                    <a>Transfer Bank</a>
-                                    <div class="sub-dropdown-content">
-                                        <div onclick="selectOption('BCA')">BCA</div>
-                                        <div onclick="selectOption('BRI')">BRI</div>
-                                        <div onclick="selectOption('BNI')">BNI</div>
-                                        <div onclick="selectOption('Mandiri')">Mandiri</div>
+                                    <div class="sub-dropdown">
+                                        <a>Transfer Bank</a>
+                                        <div class="sub-dropdown-content">
+                                            <div onclick="selectOption('BCA')">BCA</div>
+                                            <div onclick="selectOption('BRI')">BRI</div>
+                                            <div onclick="selectOption('BNI')">BNI</div>
+                                            <div onclick="selectOption('Mandiri')">Mandiri</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+            
+                            <input type="hidden" name="booking_meeting_id" value="{{ $booking->id }}">
+                            <input type="text" id="dropdownInput" name="metode_pembayaran" placeholder="Pilihan Anda" readonly hidden>
+                            <input type="hidden" name="bukti_pembayaran" accept="image/*">
+            
+                            <button type="submit" class="button-pembayaran">Pesan</button>
+                        </form>
+                    @else
+                        <div class="pembayaran-exsist">
+                            <p>Metode Pembayaran</p>
+                            <h3>{{ $pembayaran->metode_pembayaran }}</h3>
+                            <div class="horizontal-line-pembayaran-exsist"></div>
                         </div>
-        
-                        <input type="hidden" name="booking_hotel_id" value="{{ $booking->id }}">
-                        <input type="text" id="dropdownInput" name="metode_pembayaran" placeholder="Pilihan Anda" readonly hidden>
-                        <input type="hidden" name="bukti_pembayaran" accept="image/*">
-        
-                        <button type="submit" class="button-pembayaran">Pesan</button>
-                    </form>
-                {{-- @else --}}
-                    <div class="pembayaran-exsist">
-                        <p>Metode Pembayaran</p>
-                        {{-- <h3>{{ $pembayaran->metode_pembayaran }}</h3> --}}
-                        <div class="horizontal-line-pembayaran-exsist"></div>
-                    </div>
-                {{-- @endif --}}
-            @endif
-        @endforeach
-    </div>
-    
-    {{-- @if($booking->status !== 'dibatalkan' && $booking->status !== 'selesai')
-        @if(!$pembayaran)
-            @foreach($hotels as $hotel)
-                <form action="{{ route('booking.hotel.cancel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}" method="POST" class="form-batal">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Batalkan Pemesanan</button>
-                </form>
+                    @endif
+                @endif
             @endforeach
+        </div>
+    
+        @if($booking->status !== 'dibatalkan' && $booking->status !== 'selesai')
+            @if(!$pembayaran)
+                @foreach($hotels as $hotel)
+                    <form action="{{ route('booking.meeting.cancel', ['location' => strtolower($hotel->nama_cabang), 'roomId' => $meetings->id, 'uuid' => $booking->uuid]) }}" method="POST" class="form-batal">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Batalkan Pemesanan</button>
+                    </form>
+                @endforeach
+            @endif
         @endif
-    @endif --}}
 
+    </div>
 </div>
 
 
 
-{{-- @if(!$pembayaran)
+@if(!$pembayaran)
 <div class="sidebar-pembayarannt">
-    <a href="{{ route('hotel.transaksi.lokasi-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}">
+    <a href="{{ route('meeting.transaksi.lokasi-meeting', ['location' => strtolower($hotel->nama_cabang), 'roomId' => $meetings->id, 'uuid' => $booking->uuid]) }}">
         <p class="bi bi-map">
             <span class="tooltip">Lokasi</span>
         </p>
     </a>
-    <a href="{{ route('hotel.transaksi.transaksi-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}" class="active">
+    <a href="{{ route('meeting.transaksi.transaksi-meeting', ['location' => strtolower($hotel->nama_cabang), 'roomId' => $meetings->id, 'uuid' => $booking->uuid]) }}" class="active">
         <p class="bi bi-calendar2-check">
             <span class="tooltip">Reservasi</span>
         </p>
@@ -151,17 +151,17 @@
 </div>
 @else
 <div class="sidebar">
-    <a href="{{ route('hotel.transaksi.lokasi-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}">
+    <a href="{{ route('meeting.transaksi.lokasi-meeting', ['location' => strtolower($hotel->nama_cabang), 'roomId' => $meetings->id, 'uuid' => $booking->uuid]) }}">
         <p class="bi bi-map">
             <span class="tooltip">Lokasi</span>
         </p>
     </a>
-    <a href="{{ route('hotel.transaksi.transaksi-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}" class="active">
+    <a href="{{ route('meeting.transaksi.transaksi-meeting', ['location' => strtolower($hotel->nama_cabang), 'roomId' => $meetings->id, 'uuid' => $booking->uuid]) }}" class="active">
         <p class="bi bi-calendar2-check">
             <span class="tooltip">Reservasi</span>
         </p>
     </a>
-    <a href="{{ route('hotel.transaksi.pembayaran-hotel', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe, 'uuid' => $booking->uuid]) }}">
+    <a href="{{ route('meeting.transaksi.pembayaran-meeting', ['location' => strtolower($hotel->nama_cabang), 'roomId' => $meetings->id, 'uuid' => $booking->uuid]) }}">
         <p class="bi bi-cash-coin">
             <span class="tooltip">Pembayaran</span>
         </p>
@@ -175,7 +175,7 @@
         </p>
     </a>
 </div>
-@endif --}}
+@endif
 
 
 <div class="kembali">
@@ -191,7 +191,7 @@
 
         @foreach ($hotels as $hotel)
         <div id="buktiReservasi">
-            <h1>Reservasi Hotel</h1>
+            <h1>Reservasi Meeting</h1>
 
             <div class="head">
                 <div class="left">
@@ -222,30 +222,13 @@
                 <div class="b-2">
                     <h5>RESERVASI</h5>
                     <div class="checkin">
-                        <h4>Check In</h4>
-                        <p>{{ \Carbon\Carbon::parse($booking->check_in)->format('d F Y') }}</p>
+                        <h4>Tanggal</h4>
+                        <p>{{ \Carbon\Carbon::parse($booking->date)->format('d F Y') }}</p>
                     </div>
                     <div class="garis"></div>
                     <div class="checkout">
-                        <h4>Check Out</h4>
-                        <p>{{ \Carbon\Carbon::parse($booking->check_out)->format('d F Y') }}</p>
-                    </div>
-
-                    <div class="angka">
-                        <div class="data">
-                            <h4>{{ $booking->jumlah_kamar }}</h4>
-                            <p>Kamar</p>
-                        </div>
-                        <div class="garis-2"></div>
-                        <div class="data">
-                            <h4>{{ $booking->tamu_dewasa }}</h4>
-                            <p>Dewasa</p>
-                        </div>
-                        <div class="garis-2"></div>
-                        <div class="data">
-                            <h4>{{ $booking->tamu_anak }}</h4>
-                            <p>Anak</p>
-                        </div>
+                        <h4>Jam</h4>
+                        <p>{{ $booking->start_time }} - {{ $booking->end_time }}</p>
                     </div>
                 </div>
                 <div class="b-3">

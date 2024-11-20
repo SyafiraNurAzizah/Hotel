@@ -18,7 +18,6 @@ class MeetingBooking extends Model
         'date',
         'start_time',
         'end_time',
-        'tipe_meja',
         'jumlah_harga',
         'pesan',
     ];
@@ -31,7 +30,7 @@ class MeetingBooking extends Model
     
         public function hotel()
         {
-            return $this->belongsTo(Hotels::class);
+            return $this->belongsTo(Hotels::class, 'hotel_id');
         }
     
         public function meeting()
