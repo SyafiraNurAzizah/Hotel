@@ -9,7 +9,7 @@
 
 
 
-                    <form method="POST" action="{{ route('contact.store') }}">
+                    {{-- <form method="POST" action="{{ route('contact.store') }}"> --}}
 
         {{ csrf_field() }}
 

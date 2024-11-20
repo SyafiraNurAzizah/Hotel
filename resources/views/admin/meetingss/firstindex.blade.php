@@ -66,7 +66,7 @@
                     <!-- Tambahkan Ikon di Atas Judul -->
                     <i class="fas fa-building card-icon"></i>
                     <h4 class="card-title"> Cabang Jakarta</h4>
-                    <p class="card-text">Lihat semua booking di hotel cabang Jakarta.</p>
+                    <p class="card-text">Lihat semua booking meeting di hotel cabang Jakarta.</p>
                     <a href="{{ route('admin.meetingss.indexx', 'jakarta') }}" class="btn btn-primary">
                         Lihat Detail
                     </a>
@@ -81,7 +81,7 @@
                     <!-- Tambahkan Ikon di Atas Judul -->
                     <i class="fas fa-hotel card-icon"></i>
                     <h4 class="card-title">Cabang Semarang</h4>
-                    <p class="card-text">Lihat semua booking di hotel cabang Semarang.</p>
+                    <p class="card-text">Lihat semua booking meeting di hotel cabang Semarang.</p>
                     <a href="{{ route('admin.meetingss.indexx', 'semarang') }}" class="btn btn-primary">
                         Lihat Detail
                     </a>
@@ -96,7 +96,7 @@
                     <!-- Tambahkan Ikon di Atas Judul -->
                     <i class="fas fa-city card-icon"></i>
                     <h4 class="card-title">Cabang Hotel Bogor</h4>
-                    <p class="card-text">Lihat semua booking di hotel cabang Bogor.</p>
+                    <p class="card-text">Lihat semua booking meeting di hotel cabang Bogor.</p>
                     <a href="{{ route('admin.meetingss.indexx', 'bogor') }}" class="btn btn-primary">
                         Lihat Detail
                     </a>

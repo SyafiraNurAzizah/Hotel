@@ -71,6 +71,40 @@
 .btn-back:hover {
     background-color: #c97a5b;
 }
+
+/* CSS untuk input pencarian */
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    padding: 8px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.search-input::placeholder {
+    font-style: italic;
+}
+
+/* Styling untuk ikon pencarian */
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+/* Styling untuk ikon status */
+.icon-status {
+    font-size: 16px;
+    padding-right: 5px;
+}
 </style>
 @endpush
 
@@ -82,10 +116,17 @@
 <br>  
 <div class="container">
     <h2 class="mb-4">Data Booking Meeting</h2>
+
+    <!-- Kontainer untuk input pencarian -->
+    <div class="search-container">
+        <div style="position: relative;">
+            <input type="text" id="searchInput" class="search-input" placeholder="Cari ID...">
+            <i class="fas fa-search search-icon"></i> <!-- Ikon pencarian -->
+        </div>
+    </div>
     <a href="{{ route('admin.meeting.list-tamu') }}" class="btn mb-3" style="background-color: #dfa974; color: white">
         <i class="fas fa-plus-circle"></i> Reservasi Ruang
     </a>
-
     <!-- Tabel Data Booking -->
     <table class="table table-bordered">
         <thead>
@@ -109,19 +150,19 @@
                     <td>
                         @if($item->status == 'selesai')
                             <span style="color: green; font-weight: bold;">
-                                <i class="fas fa-check-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                                <i class="fas fa-check-circle icon-status"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
                             </span>
                         @elseif($item->status == 'belum_selesai')
                             <span style="color: orange; font-weight: bold;">
-                                <i class="fas fa-hourglass-half"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                                <i class="fas fa-hourglass-half icon-status"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
                             </span>
                         @elseif($item->status == 'sedang_diproses')
                             <span style="color: blue; font-weight: bold;">
-                                <i class="fas fa-spinner"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                                <i class="fas fa-spinner icon-status"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
                             </span>
                         @elseif($item->status == 'dibatalkan')
                             <span style="color: red; font-weight: bold;">
-                                <i class="fas fa-times-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                                <i class="fas fa-times-circle icon-status"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
                             </span>
                         @else
                             <span>{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
@@ -130,11 +171,11 @@
                     <td>
                         @if($item->status_pembayaran == 'dibayar')
                             <span style="color: green; font-weight: bold;">
-                                <i class="fas fa-check-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}
+                                <i class="fas fa-check-circle icon-status"></i> {{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}
                             </span>
                         @else
                             <span style="color: red; font-weight: bold;">
-                                <i class="fas fa-times-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}
+                                <i class="fas fa-times-circle icon-status"></i> {{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}
                             </span>
                         @endif
                     </td>
@@ -162,4 +203,23 @@
         </tbody>
     </table>
 </div>
+
+@push('scripts')
+<script>
+// JavaScript untuk filter pencarian
+document.getElementById('searchInput').addEventListener('keyup', function() {
+    var input = this.value.toLowerCase();
+    var tableRows = document.querySelectorAll('#bookingTable tr');
+
+    tableRows.forEach(function(row) {
+        var rowData = row.textContent.toLowerCase();
+        if (rowData.includes(input)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+</script>
+@endpush
 @endsection
