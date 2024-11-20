@@ -14,15 +14,15 @@
 @endpush
 @section('content')
     <!-- Breadcrumb Section Begin -->
-    <div class="breadcrumb-section">
+    <div class="breadcrumb-section mt-3 mb-5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text m-5">
                         <h2>Wedding Rooms</h2>
-                        <div class="bt-option d-flex justify-content-center">
+                        {{-- <div class="bt-option d-flex justify-content-center">
                             <a href="{{ route('index') }}"><i class="fas fa-home"></i> Beranda</a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

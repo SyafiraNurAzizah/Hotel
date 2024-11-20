@@ -261,35 +261,81 @@
     document.addEventListener('DOMContentLoaded', function () {
         const forms = document.querySelectorAll('.room-booking form');
 
-            forms.forEach(function(form) {
-                form.addEventListener('submit', function(event) {
-                    // Ambil nilai jumlah dewasa
-                    const jumlahTamu = parseInt(form.querySelector('.tamu_dewasa').value) || 0;
+        forms.forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                // Ambil nilai jumlah dewasa
+                const jumlahTamu = parseInt(form.querySelector('.tamu_dewasa').value) || 0;
 
-                    // Ambil jumlah kamar dan kapasitas kamar
-                    const jumlahKamar = parseInt(form.querySelector('.jumlah_kamar').value) || 0;
-                    const kapasitasKamar = parseInt(form.querySelector(
-                        'input[name="tipe_kamar_id"]').dataset.kapasitas) || 0;
+                // Ambil jumlah kamar dan kapasitas kamar
+                const jumlahKamar = parseInt(form.querySelector('.jumlah_kamar').value) || 0;
+                const kapasitasKamar = parseInt(form.querySelector('input[name="tipe_kamar_id"]').dataset.kapasitas) || 0;
 
-                    // Debugging untuk memastikan semua data diambil dengan benar
-                    console.log('Jumlah tamu dewasa:', jumlahTamu);
-                    console.log('Jumlah kamar:', jumlahKamar);
-                    console.log('Kapasitas per kamar:', kapasitasKamar);
+                // Debugging untuk memastikan semua data diambil dengan benar
+                console.log('Jumlah tamu dewasa:', jumlahTamu);
+                console.log('Jumlah kamar:', jumlahKamar);
+                console.log('Kapasitas per kamar:', kapasitasKamar);
 
-                    // Hitung kapasitas total
-                    const kapasitasTotal = jumlahKamar * kapasitasKamar;
-                    console.log('Kapasitas total:', kapasitasTotal);
+                // Hitung kapasitas total
+                const kapasitasTotal = jumlahKamar * kapasitasKamar;
+                console.log('Kapasitas total:', kapasitasTotal);
 
                 // Jika jumlah tamu melebihi kapasitas total, tampilkan peringatan
                 if (jumlahTamu > kapasitasTotal) {
                     event.preventDefault(); // Hentikan pengiriman form
-                    alert('Jumlah tamu melebihi kapasitas kamar. Silakan kurangi jumlah tamu atau tambahkan kamar.');
+
+
+                    const errorKapasitasKamarOverlay = document.getElementById('errorKapasitasKamar');
+                    errorKapasitasKamarOverlay.style.display = 'flex';  // Menampilkan overlay
+
+                    const closeErrorKapasitasKamarPopup = document.getElementById('closeErrorKapasitasKamarPopup');
+                    
+                    // Menutup popup jika tombol close diklik
+                    if (closeErrorKapasitasKamarPopup) {
+                        closeErrorKapasitasKamarPopup.addEventListener('click', function() {
+                            errorKapasitasKamarOverlay.style.display = 'none';  // Menutup overlay
+                        });
+                    }
+
+                    // Menutup popup jika area luar popup diklik
+                    errorKapasitasKamarOverlay.addEventListener('click', function(e) {
+                        if (e.target === errorKapasitasKamarOverlay) {
+                            errorKapasitasKamarOverlay.style.display = 'none';  // Menutup overlay
+                        }
+                    });
+
+
                     console.log('Form dihentikan karena kapasitas terlampaui');
                 } else {
                     console.log('Form lanjut dikirim');
                 }
             });
         });
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Cek apakah session error ada
+        @if(session('kamarTersediaError'))
+            // Menampilkan popup jika session error ada
+            const errorKetersediaanKamarOverlay = document.getElementById('errorKetersediaanKamar');
+            errorKetersediaanKamarOverlay.style.display = 'flex';  // Menampilkan overlay
+
+            const closeErrorKetersediaanKamarPopup = document.getElementById('closeErrorKetersediaanKamarPopup');
+            
+            // Menutup popup jika tombol close diklik
+            if (closeErrorKetersediaanKamarPopup) {
+                closeErrorKetersediaanKamarPopup.addEventListener('click', function() {
+                    errorKetersediaanKamarOverlay.style.display = 'none';  // Menutup overlay
+                });
+            }
+
+            // Menutup popup jika area luar popup diklik
+            errorKetersediaanKamarOverlay.addEventListener('click', function(e) {
+                if (e.target === errorKetersediaanKamarOverlay) {
+                    errorKetersediaanKamarOverlay.style.display = 'none';  // Menutup overlay
+                }
+            });
+        @endif
     });
 
 
