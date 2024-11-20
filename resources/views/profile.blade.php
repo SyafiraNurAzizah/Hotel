@@ -288,68 +288,136 @@
 
 
 
-
+<div class="icon-table">
+    <i class="fa-solid fa-bed active" onclick="showTable('table-bed', this)" style="margin-right: 20px"></i>
+    <div class="vertical-line"></div>
+    <i class="fa-solid fa-users" onclick="showTable('table-users', this)"></i>
+</div>
 
 
 <div class="horizontal-line"></div>
 
 <div class="container">
-    <table class="table table-custom">
-        <thead class="thead-custom">
-            <tr>
-                <th>id</th>
-                <th>Hotel</th>
-                <th>Tipe Kamar</th>
-                <th>Check In</th>
-                <th>Check Out</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($bookings as $item)
-                <tr onclick="window.location='{{ route('hotel.transaksi.transaksi-hotel', ['location' => strtolower($item->hotel->nama_cabang), 'nama_tipe' => $item->tipe_kamar->nama_tipe, 'uuid' => $item->uuid]) }}'" style="cursor: pointer;">
-                    <td><strong>#{{ substr($item->uuid, 0, 5) }}</strong></td>
-                    <td>{{ $item->hotel->nama_cabang }}</td>
-                    <td>{{ $item->tipe_kamar->nama_tipe }}</td>
-                    <td>{{ \Carbon\Carbon::parse($item->check_in)->format('d F Y') }}</td>
-                    <td>{{ \Carbon\Carbon::parse($item->check_out)->format('d F Y') }}</td>
-                    <td>
-                        @if ($item->status == 'selesai')
-                            {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
-                            
-                            <span style="background: #E9F1FE; color: #1967D3; padding: 5px 15px; border-radius: 5px;">
-                                {{ ucwords(str_replace('_', ' ', $item->status)) }}
-                            </span>
-                        @elseif($item->status == 'belum_selesai')
-                            {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
-
-                            <span style="background: #FDF6E4; color: #B06001; padding: 5px 15px; border-radius: 5px;">
-                                {{ ucwords(str_replace('_', ' ', $item->status)) }}
-                            </span>
-                        @elseif($item->status == 'sedang_diproses')
-                            {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
-
-                            <span style="background: #E7F2EA; color: #137333; padding: 5px 15px; border-radius: 5px;">
-                                {{ ucwords(str_replace('_', ' ', $item->status)) }}
-                            </span>
-                        @elseif($item->status == 'dibatalkan')
-                            {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
-                        
-                            <span style="background: #FCEAEA; color: #C5211F; padding: 5px 15px; border-radius: 5px;">
-                                {{ ucwords(str_replace('_', ' ', $item->status)) }}
-                            </span>
-                        @else
-                            <span>{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
-                        @endif
-                    </td>
-                </tr>
-            @empty
+    <div id="table-bed" class="table-container" style="display: block;">
+        <table class="table table-custom">
+            <thead class="thead-custom">
                 <tr>
-                    <td colspan="8" class="no-data">No data available</td>
+                    <th>id</th>
+                    <th>Hotel</th>
+                    <th>Tipe Kamar</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Status</th>
                 </tr>
-            @endforelse
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse ($bookings as $item)
+                    <tr onclick="window.location='{{ route('hotel.transaksi.transaksi-hotel', ['location' => strtolower($item->hotel->nama_cabang), 'nama_tipe' => $item->tipe_kamar->nama_tipe, 'uuid' => $item->uuid]) }}'" style="cursor: pointer;">
+                        <td><strong>#{{ substr($item->uuid, 0, 5) }}</strong></td>
+                        <td>{{ $item->hotel->nama_cabang }}</td>
+                        <td>{{ $item->tipe_kamar->nama_tipe }}</td>
+                        <td>{{ \Carbon\Carbon::parse($item->check_in)->format('d F Y') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($item->check_out)->format('d F Y') }}</td>
+                        <td>
+                            @if ($item->status == 'selesai')
+                                {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
+                                
+                                <span style="background: #E9F1FE; color: #1967D3; padding: 5px 15px; border-radius: 5px;">
+                                    {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                                </span>
+                            @elseif($item->status == 'belum_selesai')
+                                {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
+
+                                <span style="background: #FDF6E4; color: #B06001; padding: 5px 15px; border-radius: 5px;">
+                                    {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                                </span>
+                            @elseif($item->status == 'sedang_diproses')
+                                {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
+
+                                <span style="background: #E7F2EA; color: #137333; padding: 5px 15px; border-radius: 5px;">
+                                    {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                                </span>
+                            @elseif($item->status == 'dibatalkan')
+                                {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
+                            
+                                <span style="background: #FCEAEA; color: #C5211F; padding: 5px 15px; border-radius: 5px;">
+                                    {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                                </span>
+                            @else
+                                <span>{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
+                            @endif
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="8" class="no-data">No data available</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container">
+    <div id="table-users" class="table-container" style="display: none;">
+        <table class="table table-custom">
+            <thead class="thead-custom">
+                <tr>
+                    <th>id</th>
+                    <th>Hotel</th>
+                    <th>Tanggal</th>
+                    <th>Jam Mulai</th>
+                    <th>Jam Selesai</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($bookings_meetings as $item)
+                {{-- <tr onclick="window.location='{{ route('meeting.transaksi.transaksi-meeting', ['location' => strtolower($item->hotel->nama_cabang), 'roomId' => $item->meeting_id, 'uuid' => $item->uuid]) }}'" style="cursor: pointer;"> --}}
+                <tr>
+                    <td><strong>#{{ substr($item->uuid, 0, 5) }}</strong></td>
+                        <td>{{ $item->hotel->nama_cabang }}</td>
+                        <td>{{ \Carbon\Carbon::parse($item->date)->format('d F Y') }}</td>
+                        <td>{{ $item->start_time }}</td>
+                        <td>{{ $item->end_time }}</td>
+                        <td>
+                            @if ($item->status == 'selesai')
+                                {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
+                                
+                                <span style="background: #E9F1FE; color: #1967D3; padding: 5px 15px; border-radius: 5px;">
+                                    {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                                </span>
+                            @elseif($item->status == 'belum_selesai')
+                                {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
+
+                                <span style="background: #FDF6E4; color: #B06001; padding: 5px 15px; border-radius: 5px;">
+                                    {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                                </span>
+                            @elseif($item->status == 'sedang_diproses')
+                                {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
+
+                                <span style="background: #E7F2EA; color: #137333; padding: 5px 15px; border-radius: 5px;">
+                                    {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                                </span>
+                            @elseif($item->status == 'dibatalkan')
+                                {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
+                            
+                                <span style="background: #FCEAEA; color: #C5211F; padding: 5px 15px; border-radius: 5px;">
+                                    {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                                </span>
+                            @else
+                                <span>{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
+                            @endif
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="8" class="no-data">No data available</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 </div>
 
 
@@ -383,5 +451,32 @@
             });
         });
     });
+
+
+    function showTable(tableId, clickedIcon) {
+        // Sembunyikan semua tabel
+        const tables = document.querySelectorAll('.table-container');
+        tables.forEach(table => {
+            table.style.display = 'none';
+        });
+
+        // Tampilkan tabel yang dipilih
+        const selectedTable = document.getElementById(tableId);
+        if (selectedTable) {
+            selectedTable.style.display = 'block';
+        }
+
+        // Ganti kelas aktif pada ikon
+        const icons = document.querySelectorAll('.icon-table i');
+        icons.forEach(icon => {
+            icon.classList.remove('active');
+            icon.style.display = 'inline-block'; // Pastikan ikon terlihat
+        });
+
+        // Sembunyikan ikon yang tidak aktif
+        clickedIcon.classList.add('active');
+        clickedIcon.style.display = 'inline-block'; // Pastikan ikon terlihat
+    }
+    
 </script>
 @endpush

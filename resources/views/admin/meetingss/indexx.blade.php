@@ -5,32 +5,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <style>
-/* CSS untuk Tombol Kembali */
-.back-button {
-    position: fixed;
-    top: 90px; /* Sesuaikan posisi vertikal */
-    left: 40px; /* Sesuaikan posisi horizontal */
+/* Styling untuk card */
+.card {
+    margin-bottom: 20px;
 }
 
-.btn-back {
-    background-color: #dfa974;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 50%;
-    text-decoration: none;
-    font-size: 20px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-back:hover {
-    background-color: #c97a5b;
-}
-
-/* Styling Tabel */
+/* Styling tabel */
 .table {
     background-color: #f9f9f9;
     border-collapse: separate;
-    border-spacing: 0 10px; /* Jarak antar baris */
+    border-spacing: 0 10px;
 }
 
 .table th {
@@ -57,7 +41,7 @@
     border-radius: 8px;
 }
 
-/* Styling Tombol Aksi */
+/* Styling tombol aksi */
 .btn {
     margin: 0 5px;
 }
@@ -67,24 +51,25 @@
     font-size: 14px;
 }
 
-.btn-info {
-    background-color: #5bc0de;
-    border-color: #5bc0de;
+/* CSS untuk Tombol Kembali */
+.back-button {
+    position: fixed;
+    top: 90px; /* Sesuaikan posisi vertikal */
+    left: 40px; /* Sesuaikan posisi horizontal */
 }
 
-.btn-warning {
-    background-color: #f0ad4e;
-    border-color: #f0ad4e;
+.btn-back {
+    background-color: #dfa974;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
 }
 
-.btn-danger {
-    background-color: #d9534f;
-    border-color: #d9534f;
-}
-
-/* Styling Ikon dalam tombol */
-.btn i {
-    margin-right: 5px;
+.btn-back:hover {
+    background-color: #c97a5b;
 }
 
 /* CSS untuk input pencarian */
@@ -101,6 +86,25 @@
     border-radius: 5px;
     margin-left: 10px;
 }
+
+.search-input::placeholder {
+    font-style: italic;
+}
+
+/* Styling untuk ikon pencarian */
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+/* Styling untuk ikon status */
+.icon-status {
+    font-size: 16px;
+    padding-right: 5px;
+}
 </style>
 @endpush
 
@@ -111,46 +115,54 @@
 </div>
 <br>  
 <div class="container">
-    <h2 class="mb-4">Cabang <strong>{{ $city }}</strong></h2>
-    <a href="{{ route('admin.hotel.list-tamu') }}" class="btn mb-3" style="background-color: #dfa974; color: white">
-        <i class="fas fa-plus-circle"></i> Reservasi Hotel
-    </a>
+    <h2 class="mb-4">Data Booking Meeting</h2>
 
     <!-- Kontainer untuk input pencarian -->
     <div class="search-container">
-        <input type="text" id="searchInput" class="search-input" placeholder="Cari ID...">
+        <div style="position: relative;">
+            <input type="text" id="searchInput" class="search-input" placeholder="Cari ID...">
+            <i class="fas fa-search search-icon"></i> <!-- Ikon pencarian -->
+        </div>
     </div>
-
+    <a href="{{ route('admin.meeting.list-tamu') }}" class="btn mb-3" style="background-color: #dfa974; color: white">
+        <i class="fas fa-plus-circle"></i> Reservasi Ruang
+    </a>
+    <!-- Tabel Data Booking -->
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th><i class="fas fa-user"></i> ID</th>
-                <th><i class="fas fa-user"></i> User ID</th>
-                <th><i class="fas fa-hotel"></i> Hotel ID</th>
-                <th><i class="fas fa-tasks"></i> Status</th>
-                <th><i class="fas fa-money-check-alt"></i> Status Pembayaran</th>
-                <th><i class="fas fa-dollar-sign"></i> Jumlah Harga</th>
-                <th><i class="fas fa-cog"></i> Aksi</th>
+                <th>ID</th>
+                <th>Hotel ID</th>
+                <th>Meeting ID</th>
+                <th>Tanggal</th>
+                <th>Status</th>
+                <th>Status Pembayaran</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody id="bookingTable">
-            @forelse($bookinghotel as $item)
+            @forelse($booking as $item)
                 <tr>
                     <td>{{ substr($item->uuid, 0, 5) }}</td>
-                    <td>{{ $item->user->firstname ?? 'N/A' }}</td>
-                    <td>{{ $item->hotel->nama_cabang ?? 'N/A' }}</td>
+                    <td>{{ $item->hotel_id == null ? 'N/A' : $item->hotel->nama_cabang }}</td>
+                    <td>{{ $item->meeting_id == null ? 'N/A' : $item->meeting->nama_ruang }}</td>
+                    <td>{{ $item->date }}</td>
                     <td>
                         @if($item->status == 'selesai')
                             <span style="color: green; font-weight: bold;">
-                                <i class="fas fa-check-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                                <i class="fas fa-check-circle icon-status"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
                             </span>
                         @elseif($item->status == 'belum_selesai')
                             <span style="color: orange; font-weight: bold;">
-                                <i class="fas fa-hourglass-half"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                                <i class="fas fa-hourglass-half icon-status"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                            </span>
+                        @elseif($item->status == 'sedang_diproses')
+                            <span style="color: blue; font-weight: bold;">
+                                <i class="fas fa-spinner icon-status"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
                             </span>
                         @elseif($item->status == 'dibatalkan')
                             <span style="color: red; font-weight: bold;">
-                                <i class="fas fa-times-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
+                                <i class="fas fa-times-circle icon-status"></i> {{ ucwords(str_replace('_', ' ', $item->status)) }}
                             </span>
                         @else
                             <span>{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
@@ -159,25 +171,22 @@
                     <td>
                         @if($item->status_pembayaran == 'dibayar')
                             <span style="color: green; font-weight: bold;">
-                                <i class="fas fa-check-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}
-                            </span>
-                        @elseif($item->status_pembayaran == 'belum_dibayar')
-                            <span style="color: red; font-weight: bold;">
-                                <i class="fas fa-times-circle"></i> {{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}
+                                <i class="fas fa-check-circle icon-status"></i> {{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}
                             </span>
                         @else
-                            <span>{{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}</span>
+                            <span style="color: red; font-weight: bold;">
+                                <i class="fas fa-times-circle icon-status"></i> {{ ucwords(str_replace('_', ' ', $item->status_pembayaran)) }}
+                            </span>
                         @endif
                     </td>
-                    <td>Rp{{ number_format($item->jumlah_harga, 2) }}</td>
                     <td>
-                        <a href="{{ route('admin.hotel.show', $item->id) }}" class="btn btn-info" title="Detail">
+                        <a href="{{ route('admin.meetingss.show', $item->id) }}" class="btn btn-info" title="Detail">
                             <i class="fas fa-info-circle"></i> Detail
                         </a>
-                        <a href="{{ route('admin.hotel.edit', $item->id) }}" class="btn btn-warning" title="Edit">
+                        <a href="{{ route('admin.meetingss.edit', $item->id) }}" class="btn btn-warning" title="Edit">
                             <i class="fas fa-edit"></i> Edit
                         </a>
-                        <form action="{{ route('admin.hotel.destroy', $item->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('admin.meetingss.destroy', $item->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" title="Hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus?');">
@@ -188,11 +197,10 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7" style="text-align: center">Tidak ada data booking di Hotel {{ $city }}</td>
+                    <td colspan="7" style="text-align: center">Tidak ada data booking meeting.</td>
                 </tr>
             @endforelse
         </tbody>
-        
     </table>
 </div>
 

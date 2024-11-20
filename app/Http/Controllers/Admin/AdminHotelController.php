@@ -36,9 +36,9 @@ class AdminHotelController extends Controller
     public function AdminShow($id)
 {
     // Mengambil data booking berdasarkan ID
-    $bookinghotels = BookingHotel::with(['hotel', 'user'])->findOrFail($id);
+    $booking = BookingHotel::with(['hotel', 'user'])->findOrFail($id);
 
-    return view('admin.hotel.show', compact('bookinghotels'));
+    return view('admin.hotel.show', compact('booking'));
 }
 
 public function AdminDestroy($id)

@@ -9,6 +9,8 @@
 
 .room-item {
     margin-bottom: 30px;
+    margin-right: 30px;
+    border-radius: 20%;
 }
 .room-item img {
     width: 360px;
@@ -24,6 +26,7 @@
     font-weight: 700;
     margin-bottom: 14px;
 }
+
 .room-item .ri-text .primary-btn {
     color: #19191a;
 }

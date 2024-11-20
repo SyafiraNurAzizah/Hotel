@@ -18,15 +18,15 @@
 
 
 <div class="step">
-    <a href="{{ route('admin.hotel.list-tamu') }}">
+    <a href="{{ route('admin.meeting.list-tamu') }}">
         <i class="fa-solid fa-users" style="position: relative; top: 80px; left: 210px; color: #222736"></i>
     </a>
     <div class="stepbystep">
-        <a href="{{ route('admin.hotel.tamu') }}">
+        <a href="{{ route('admin.meeting.tamu') }}">
             <i class="fa-solid fa-user" style="position: relative; bottom: 4px; left: 20px;"></i>
         </a>
         <div class="garis" style="position: relative; left: 12px;"></div>
-        <a href="{{ route('admin.hotel.create') }}">
+        <a href="{{ route('admin.meeting.reservasi') }}">
             <i class="fa-solid fa-bed" style="padding-right: 60px; position: relative; left: 5px;"></i>
         </a>
     </div>
