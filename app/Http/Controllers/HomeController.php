@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hotels;
+use App\Models\Meetings;
 use App\Models\ProfileUser;
 use App\Models\TipeKamar;
 use App\Models\User;
@@ -42,6 +43,10 @@ class HomeController extends Controller
 
         $bookings = $user->bookings;
 
+        $bookings_meetings = $user->bookings_meetings;
+
+        $meetings = Meetings::all();
+
         // Safe check for the profile_user of the authenticated user
         $userProfile = Auth::user()->profile_user ?? null;
 
@@ -55,10 +60,11 @@ class HomeController extends Controller
         }
 
         $user = Auth::user();
+
         $profile = ProfileUser ::where('user_id', $user->id)->first();
 
         // Pass user profile along with the other data to the view
-        return view('profile', ['user' => $user, 'bookings' => $bookings, 'userProfile' => $userProfile, 'profile' => $profile]);
+        return view('profile', ['user' => $user, 'bookings' => $bookings, 'bookings_meetings' => $bookings_meetings, 'userProfile' => $userProfile, 'profile' => $profile, 'meetings' => $meetings]);
     }
 
     public function updateProfile(Request $request, $firstname, $lastname)

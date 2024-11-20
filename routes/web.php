@@ -12,6 +12,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HotelsController;
 use App\Http\Controllers\MeetingBookingController;
 use App\Http\Controllers\MeetingsController;
+use App\Http\Controllers\Admin\MeetingController;
+use App\Models\Meetings;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
@@ -96,9 +98,6 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMid
     // Route::get('admin/hotel/daftar-pengunjung', [BookingHotelController::class, 'daftarPengunjungAdmin'])->name('admin.hotel.list-tamu');
     Route::post('/admin/hotel/tamu', [BookingHotelController::class, 'tambahPengunjungAdmin'])->name('admin.hotel.store.tamu');
 
-    Route::get('/test', function () {
-        return 'Test route works!';
-    });
 
     // Route CRUD untuk Admin Hotel
     Route::get('/admin/hotel', [AdminHotelController::class, 'AdminIndex'])->name('admin.hotel.firstindex');            // Untuk daftar hotel
@@ -118,12 +117,19 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMid
 
 
 //---------------------------------------------- ADMIN MEETING ------------------------------------------------//
-    Route::get('/admin/meeting', [MeetingsController::class, 'index'])->name('admin.meeting.index');
-    Route::get('/admin/meeting/create', [MeetingsController::class, 'create'])->name('admin.meeting.create');
-    Route::post('/admin/meeting', [MeetingsController::class, 'store'])->name('admin.meeting.store');
-    Route::get('/admin/meeting/{id}', [MeetingsController::class, 'edit'])->name('admin.meeting.edit');
-    Route::post('/admin/meeting/{id}', [MeetingsController::class, 'update'])->name('admin.meeting.update');
-    Route::delete('/admin/meeting/{id}', [MeetingsController::class, 'destroy'])->name('admin.meeting.destroy');
+    Route::get('/admin/meeting', [MeetingController::class, 'index'])->name('admin.meeting.index');
+    Route::get('/admin/meeting/create', [MeetingController::class, 'create'])->name('admin.meeting.create');
+    Route::post('/admin/meeting', [MeetingController::class, 'store'])->name('admin.meeting.store');
+    // Route::get('/admin/meeting/{id}', [MeetingController::class, 'edit'])->name('admin.meeting.edit');
+    // Route::post('/admin/meeting/{id}', [MeetingController::class, 'update'])->name('admin.meeting.update');
+    Route::delete('/admin/meeting/{id}', [MeetingController::class, 'destroy'])->name('admin.meeting.destroy');
+
+    Route::get('/admin/meeting/reservasi', [MeetingController::class, 'reservasi'])->name('admin.meeting.reservasi');
+    Route::post('/admin/meeting', [MeetingController::class, 'reservasiStore'])->name('admin.meeting.store');
+    Route::get('/admin/meeting/pengunjung', [MeetingController::class, 'pengunjungAdmin'])->name('admin.meeting.tamu');
+    Route::post('/admin/meeting/tamu', [MeetingController::class, 'tambahPengunjungAdmin'])->name('admin.meeting.store.tamu');
+    Route::get('admin/meeting/daftar-pengunjung', [MeetingController::class, 'daftarPengunjungAdmin'])->name('admin.meeting.list-tamu');
+
 //-------------------------------------------------------------------------------------------------------------//
 
 });
