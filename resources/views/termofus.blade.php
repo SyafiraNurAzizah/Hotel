@@ -69,32 +69,33 @@
                 width: 100%; /* Satu kolom untuk layar sangat kecil */
             }
         }
-        .back-button {
-    position: fixed;
-    top: 90px; /* Sesuaikan posisi vertikal */
-    left: 40px; /* Sesuaikan posisi horizontal */
-	
-}
 
+
+.back-button {
+    position: fixed;
+    top: 545px; /* Sesuaikan posisi vertikal */
+    left: 1290px; /* Sesuaikan posisi horizontal */	
+}
 .btn-back {
     background-color: #007bff;
     color: white;
-    padding: 9px 10px;
+    padding: 10px 15px;
     border-radius: 50% ;
     text-decoration: none;
     font-size: 20px;
 
     transition: background-color 0.3s ease;
 }
-
 .btn-back:hover {
-    background-color: #c97a5b;
+    background-color: #ffffff;
+    color: #007bff;
+    /* border: 1px solid #007bff; */
 }
     </style>
 </head>
 <body>
     <div class="back-button">
-        <h3><a href="javascript:history.back()" class="btn btn-back">←</a></h3>
+        <h3><a href="javascript:history.back()" class="btn btn-back"><i class="fas fa-arrow-left"></i></a></h3>
     </div>
     <br> 
 <div class="container">
