@@ -12,9 +12,9 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
                         <h2>Meeting Services</h2>
-                        <div class="bt-option">
+                        {{-- <div class="bt-option">
                             <span>Pilih lokasi & tempat rapat terbaik yang pernah ada dengan fasilitas terlengkap!</span>
-                        </div>
+                        </div> --}}
                         <!-- Form Pencarian -->
                         <div class="search-container mt-3">
                             <form action="{{ route('search.meeting') }}" method="GET">
@@ -40,18 +40,23 @@
                     </div>
                 @else
                     @foreach ($hotels as $item)
-                    <div class="col-lg-4 col-md-6">
-                        <div class="room-item">
-                            <img src="{{ asset('/img/hotels/' . $item->foto_hotel) }}" alt="" class="room-image">
-                            <div class="ri-text">
-                                <h3>{{ $item->nama_cabang }}</h3>
-                                <a href="{{ route('ruang', ['location' => strtolower($item->nama_cabang)]) }}" class="primary-btn">More Details</a>
-                            </div>
+                    <div class="room-item">
+                        <img src="{{ asset('/img/hotels/' . $item->foto_hotel) }}" alt="" class="room-image">
+                        <div class="ri-text">
+                            <h3>{{ $item->nama_cabang }}</h3>
+                            <a href="{{ route('ruang', ['location' => strtolower($item->nama_cabang)]) }}" class="primary-btn">More Details</a>
                         </div>
                     </div>
                     @endforeach
                 @endif
             </div>
+            @if(session('success'))
+                <div class="success-message">
+                    {{ session('success') }}
+                </div>
+            @endif
         </div>
     </section>
-@endsection
+    
+
+    @endsection     

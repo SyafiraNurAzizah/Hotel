@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminHotelController;
+use App\Http\Controllers\Admin\AdminMeetingController;
 use App\Http\Controllers\Admin\WeddingController;
 use App\Http\Controllers\BookingHotelController;
 use App\Http\Controllers\ContactController;
@@ -131,6 +132,17 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMid
     Route::get('admin/meeting/daftar-pengunjung', [MeetingController::class, 'daftarPengunjungAdmin'])->name('admin.meeting.list-tamu');
 
 //-------------------------------------------------------------------------------------------------------------//
+
+    // Route CRUD untuk Admin Meeting
+    Route::get('/admin/meeting', [AdminMeetingController::class, 'AdminIndex'])->name('admin.meetingss.firstindex');// Untuk daftar meeting
+    Route::get('/admin/bookings/location/{location}', [AdminMeetingController::class, 'showByLocation'])->name('admin.meetingss.indexx');
+    Route::get('/admin/meeting/{id}', [AdminMeetingController::class, 'show'])->name('admin.meetingss.show');
+    Route::get('/admin/meeting/{id}/edit', [AdminMeetingController::class, 'edit'])->name('admin.meetingss.edit');              // Untuk form edit
+// Route to handle update - it should accept a PUT method
+Route::put('/admin/meeting/{id}/update', [AdminMeetingController::class, 'update'])->name('admin.meetingss.update');
+
+    Route::delete('/admin/meeting/{id}', [AdminMeetingController::class, 'destroy'])->name('admin.meetingss.destroy');     // Untuk menghapus data
+
 
 });
 //----------------------------------------------------------------------------//

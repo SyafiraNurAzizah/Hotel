@@ -67,7 +67,7 @@
                         @foreach ($hotel->tipe_ruang as $room)
                             <div class="col-lg-4 col-md-6">
                                 <div class="room-item">
-                                    <img src="{{ $room->foto }}" alt="">
+                                    <img src="{{ asset('img/rooms/' . $room->foto) }}" alt="">
                                     <div class="ri-text">
                                         <h4>{{ $room->nama_ruang }}</h4>
                                         <h3>Rp{{ number_format($room->harga_per_jam, 2, ',', '.') }}<span> /Jam</span></h3>

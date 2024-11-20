@@ -27,9 +27,17 @@ class MeetingBooking extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function hotel()
-    {
-        return $this->belongsTo(Hotels::class, 'hotel_id');
+    
+        public function hotel()
+        {
+            return $this->belongsTo(Hotels::class, 'hotel_id');
+        }
+    
+        public function meeting()
+        {
+            return $this->belongsTo(Meetings  ::class);
+        }
     }
-}
+    
+
+    
