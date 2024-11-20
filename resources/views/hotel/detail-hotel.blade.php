@@ -1,150 +1,24 @@
 @extends('layouts.app')
 
-{{-- @push('styles')
-<style>
-    .room-details-item img {
-        width: 100%;
-        height: auto;
-        border-radius: 12px;
-    }
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/hotel/detail-hotel.css') }}">
 
-    .rd-text {
-        margin-top: 20px;
-    }
 
-    .rd-title {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .rd-title h3 {
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-
-    .rd-title .rdt-right {
-        display: flex;
-        align-items: center;
-    }
-
-    .rdt-right .rating {
-        margin-right: 20px;
-    }
-
-    .rdt-right a {
-        background-color: #ff9c00;
-        padding: 10px 20px;
-        color: white;
-        border-radius: 5px;
-        text-decoration: none;
-    }
-
-    .rd-text h2 {
-        font-size: 28px;
-        margin-top: 15px;
-        margin-bottom: 25px;
-    }
-
-    .rd-text table {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .rd-text table td {
-        padding: 10px 0;
-    }
-
-    .rd-text table .r-o {
-        font-weight: bold;
-    }
-
-    .rd-reviews {
-        margin-top: 40px;
-    }
-
-    .review-item {
-        display: flex;
-        margin-bottom: 20px;
-    }
-
-    .ri-pic img {
-        width: 60px;
-        border-radius: 50%;
-        margin-right: 20px;
-    }
-
-    .ri-text {
-        flex-grow: 1;
-    }
-
-    .ri-text .rating {
-        margin-bottom: 5px;
-    }
-
-    .room-booking {
-        background-color: #f3f4f5;
-        padding: 30px;
-        border-radius: 10px;
-        margin-top: 30px;
-    }
-
-    .room-booking h3 {
-        margin-bottom: 20px;
-    }
-
-    .check-date {
-        margin-bottom: 15px;
-    }
-
-    .check-date input {
-        width: calc(100% - 30px);
-        padding: 10px;
-        border: 1px solid #e1e1e1;
-        border-radius: 5px;
-    }
-
-    .check-date i {
-        position: relative;
-        top: -30px;
-        right: -10px;
-        color: #999;
-    }
-
-    .select-option {
-        margin-bottom: 15px;
-    }
-
-    .select-option select {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #e1e1e1;
-        border-radius: 5px;
-    }
-
-    .room-booking button {
-        width: 100%;
-        background-color: #ff9c00;
-        border: none;
-        padding: 10px;
-        color: white;
-        border-radius: 5px;
-        font-size: 16px;
-    } --}}
-
-    {{-- /* Responsive for mobile */
-    @media (max-width: 768px) {
-        .rd-title {
-            flex-direction: column;
-            align-items: flex-start;
+    <style>
+        .icon_star {
+            font-size: 18px;
+            color: #d3d3d3; /* Default color for empty stars */
         }
-
-        .room-booking {
-            margin-top: 20px;
+    
+        .icon_star.rated {
+            color: #f5b917; /* Color for filled stars */
         }
-    }
-</style>
-@endpush --}}
+    
+        .icon_star.hover {
+            color: #f5b917; /* Hover color */
+        }
+    </style>
+@endpush
 
 @section('content')
 <br><br><br>
@@ -213,43 +87,24 @@
 
 
                     <div class="rd-reviews">
-                        {{-- RATING FORM --}}
-                        <div class="rating mb-5">
-                            <form action="{{ route('rating.store', $room->nama_tipe) }}" method="POST" class="rating-form">
-                                @csrf
-                                <input type="hidden" name="tipe_kamar_id" value="{{ $room->id }}">
-                                <input type="hidden" id="rating" name="rating" value="0"> {{-- Hidden input untuk menyimpan nilai rating --}}
-
-                                <div class="form-group">
-                                    <h5 class="rating mb-2">Berikan Rating Anda :</h5>
-                                    <div id="star-rating">
-                                        {{-- Bintang-bintang yang dapat diklik --}}
-                                        @for ($i = 1; $i <= 5; $i++)
-                                            <i class="icon_star" data-value="{{ $i }}"
-                                                style="cursor: pointer;"></i>
-                                        @endfor
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    {{-- <label for="comment">Comment:</label> --}}
-                                    <textarea name="comment" id="comment" rows="2" class="form-control" placeholder="Masukkan komentar Anda"></textarea>
-                                </div>
-
-                                <button type="submit" class="btn mt-2"
-                                    style="background-color: #dfa974; color: #fff;">Submit</button>
-                            </form>
-                        </div>
-
-
                         {{-- REVIEW --}}
-                        <div class="reviews">
-                            <h4>Reviews</h4>
+                        <div class="reviews" style="margin-bottom: 80px;">
+                            <h4>Ulasan</h4>
                             @forelse ($room->ratings as $rating)
                                 <div class="review">
                                     <div class="review-item">
                                         <div class="ri-pic">
-                                            <img src="img/room/avatar/avatar-1.jpg" alt="">
+                                            @php
+                                                $profile = $rating->user->profile_user; // Ambil profil user yang memberi rating
+                                            @endphp
+
+                                            {{-- Cek apakah profil ada dan memiliki foto --}}
+                                            @if (isset($profile) && $profile->foto)
+                                                <img src="{{ asset('storage/' . $profile->foto) }}" alt="Foto Profil" class="profile-image" style="object-fit: cover">
+                                            @else
+                                                <img src="{{ asset('img/profile-default.jpg') }}" alt="Foto Profil" class="profile-image">
+                                            @endif
+                                            {{-- <img src="img/room/avatar/avatar-1.jpg" alt=""> --}}
                                         </div>
                                         <div class="ri-text">
                                             <h5 class="m-0">{{ $rating->user->firstname }}</h5>
@@ -269,101 +124,50 @@
 
                                 </div>
                             @empty
-                                <P>Belum ada rating</P>
+                                <P>Belum ada ulasan</P>
                             @endforelse
                         </div>
+                        
+                        @if (Auth::check() && Auth::user()->isUser())
+                        {{-- RATING FORM --}}
+                        <div class="rating mb-5">
+                            <form action="{{ route('rating.store', $room->nama_tipe) }}" method="POST" class="rating-form">
+                                @csrf
+                                <input type="hidden" name="tipe_kamar_id" value="{{ $room->id }}">
+                                <input type="hidden" id="rating" name="rating" value="0"> {{-- Hidden input untuk menyimpan nilai rating --}}
 
+                                <div class="form-group">
+                                    <h4 class="rating mb-4">Berikan Ulasan Anda:</h4>
+                                    <div id="star-rating">
+                                        {{-- Bintang-bintang yang dapat diklik --}}
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <i class="icon_star" data-value="{{ $i }}"
+                                                style="cursor: pointer;"></i>
+                                        @endfor
 
-
-
-
-
-
-
-                        {{-- <h4>Reviews</h4>
-                        <div class="review-item">
-                            <div class="ri-pic">
-                                <img src="img/room/avatar/avatar-1.jpg" alt="">
-                            </div>
-                            <div class="ri-text">
-                                <span>27 Aug 2019</span>
-                                <div class="rating">
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star-half_alt"></i>
-                                </div>
-                                <h5>Brandon Kelley</h5>
-                                <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                    adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
-                                    magnam.</p>
-                            </div>
-                        </div>
-                        <div class="review-item">
-                            <div class="ri-pic">
-                                <img src="img/room/avatar/avatar-2.jpg" alt="">
-                            </div>
-                            <div class="ri-text">
-                                <span>27 Aug 2019</span>
-                                <div class="rating">
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star-half_alt"></i>
-                                </div>
-                                <h5>Brandon Kelley</h5>
-                                <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                    adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
-                                    magnam.</p>
-                            </div>
-                        </div> --}}
-                    </div>
-
-
-
-
-
-
-
-                    @if (Auth::check() && Auth::user()->isUser())
-                        {{-- <div class="review-add">
-                            <h4>Add Review</h4>
-                            <form action="#" class="ra-form">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="text" placeholder="Name*">
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <input type="text" placeholder="Email*">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div>
-                                            <h5>You Rating:</h5>
-                                            <div class="rating">
-                                                <i class="icon_star"></i>
-                                                <i class="icon_star"></i>
-                                                <i class="icon_star"></i>
-                                                <i class="icon_star"></i>
-                                                <i class="icon_star-half_alt"></i>
-                                            </div>
-                                        </div>
-                                        <textarea placeholder="Your Review"></textarea>
-                                        <button type="submit">Submit Now</button>
+                                        <input type="hidden" name="rating" id="rating-input">
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    {{-- <label for="comment">Comment:</label> --}}
+                                    <textarea name="comment" id="comment" rows="2" class="form-control" placeholder="Masukkan ulasan Anda" style="height: 150px"></textarea>
+                                </div>
+
+                                {{-- <button type="submit" class="btn mt-2" style="background-color: #dfa974; color: #fff; padding: 5px 25px; border-radius: none;">Kirim</button> --}}
+                                <button type="submit" style="background-color: #dfa974; color: #fff; padding: 10px 45px; border: none; letter-spacing: 2px; font-size: 15px;">KIRIM</button>
                             </form>
-                        </div> --}}
-
-
-
+                        </div>
+                        @endif
+                    </div>
                 </div>
+
+                @if (Auth::check() && Auth::user()->isUser())
                 <div class="col-lg-4">
                     @foreach ($hotels as $hotel)
                         <div class="room-booking">
                             {{-- <h3>Your Reservation at {{ $hotel->nama_cabang }} - {{ $room->nama_tipe }}</h3> --}}
-                            <h3>Your Reservation</h3>
+                            <h3>Reservasi</h3>
                             <form action="{{ route('booking.hotel.store', ['location' => strtolower($hotel->nama_cabang), 'nama_tipe' => $room->nama_tipe]) }}" method="POST">
                                 @csrf
 
@@ -454,36 +258,6 @@
 @push('scripts')
 
 <script>
-    // $(function() {
-    //     $("#date-in").datepicker({
-    //         dateFormat: 'yy-mm-dd',
-    //         onSelect: function() {
-    //             updateCheckout();
-    //         }
-    //     });
-    //     $("#date-out").datepicker({
-    //         dateFormat: 'yy-mm-dd'
-    //     });
-    // });
-
-    // function updateCheckout() {
-    //     const checkinInput = document.getElementById('date-in');
-    //     const checkoutInput = document.getElementById('date-out');
-
-    //     const checkinDate = new Date(checkinInput.value);
-    //     if (!isNaN(checkinDate.getTime())) {
-    //         checkinDate.setDate(checkinDate.getDate() + 1);
-    //         const year = checkinDate.getFullYear();
-    //         const month = String(checkinDate.getMonth() + 1).padStart(2, '0');
-    //         const day = String(checkinDate.getDate()).padStart(2, '0');
-    //         checkoutInput.value = `${year}-${month}-${day}`;
-    //     } else {
-    //         checkoutInput.value = '';
-    //     }
-    // };
-
-
-
     document.addEventListener('DOMContentLoaded', function () {
         const forms = document.querySelectorAll('.room-booking form');
 
@@ -517,6 +291,53 @@
             });
         });
     });
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const stars = document.querySelectorAll('#star-rating .icon_star');
+    const ratingInput = document.getElementById('rating-input');
+
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            let ratingValue = this.getAttribute('data-value');
+            ratingInput.value = ratingValue; // Set the hidden input with the rating value
+
+            // Highlight the stars based on the clicked rating
+            stars.forEach(star => {
+                if (star.getAttribute('data-value') <= ratingValue) {
+                    star.classList.add('rated');
+                } else {
+                    star.classList.remove('rated');
+                }
+            });
+        });
+
+        star.addEventListener('mouseover', function() {
+            let hoverValue = this.getAttribute('data-value');
+            
+            // Temporarily highlight the stars on hover
+            stars.forEach(star => {
+                if (star.getAttribute('data-value') <= hoverValue) {
+                    star.classList.add('rated');
+                } else {
+                    star.classList.remove('rated');
+                }
+            });
+        });
+
+        star.addEventListener('mouseout', function() {
+            // Reset the highlight when hover ends, but keep the selected rating
+            stars.forEach(star => {
+                if (star.getAttribute('data-value') <= ratingInput.value) {
+                    star.classList.add('rated');
+                } else {
+                    star.classList.remove('rated');
+                }
+            });
+        });
+    });
+});
 
 </script>
 

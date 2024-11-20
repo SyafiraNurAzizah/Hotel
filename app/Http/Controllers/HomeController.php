@@ -67,13 +67,12 @@ class HomeController extends Controller
         return view('profile', ['user' => $user, 'bookings' => $bookings, 'bookings_meetings' => $bookings_meetings, 'userProfile' => $userProfile, 'profile' => $profile, 'meetings' => $meetings]);
     }
 
-    public function updateProfile(Request $request, $firstname, $lastname)
+    public function updateProfile(Request $request)
     {
-        // Validate the incoming request data
+        // Validasi data yang diterima
         $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            // 'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
             'no_telp' => 'nullable|string|max:15',
             'alamat' => 'nullable|string|max:255',
             'tanggal_lahir' => 'nullable|date',
@@ -81,55 +80,52 @@ class HomeController extends Controller
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Update the users table
-        $user = User::where('firstname', $firstname)
-                    ->where('lastname', $lastname)
-                    ->first();
+        // Ambil pengguna yang sedang login
+        $user = Auth::user();
 
-        if ($user) {
-            // Update user's first name and last name
-            $user->firstname = $request->input('firstname');
-            $user->lastname = $request->input('lastname');
-            // $user->email = $request->input('email');
-            $user->no_telp = $request->input('no_telp');
-            $user->save();
-
-            // Retrieve the existing profile
-            $profile = ProfileUser ::where('user_id', $user->id)->first();
-
-            // Check if a new photo is uploaded
-            if ($request->hasFile('foto')) {
-                // Store the new photo and update the path
-                $fotoPath = $request->file('foto')->store('photos', 'public');
-            } else {
-                // If no new photo is uploaded, keep the existing photo path
-                $fotoPath = $profile ? $profile->foto : null;
-            }
-
-            // Update or create the profile_user table
-            ProfileUser ::updateOrCreate(
-                ['user_id' => $user->id], // Condition to check if the record exists
-                [
-                    'alamat' => $request->input('alamat'),
-                    'tanggal_lahir' => $request->input('tanggal_lahir'),
-                    'jenis_kelamin' => $request->input('jenis_kelamin'),
-                    // Handle file upload if a new photo is uploaded
-                    'foto' => $fotoPath, // Use the determined photo path
-                ]
-            );
-
-            // Construct the new URL using the updated first name and last name
-            $newFirstname = $user->firstname; // Updated first name
-            $newLastname = $user->lastname; // Updated last name
-            $newUrl = route('profile', ['firstname' => $newFirstname, 'lastname' => $newLastname]);
-
-            // Redirect to the new URL with success message
-            return redirect($newUrl)->with('success', 'Profil berhasil diperbarui.');
+        // Pastikan pengguna ditemukan
+        if (!$user) {
+            return redirect()->back()->with('error', 'Pengguna tidak ditemukan.');
         }
 
-        // Handle case where user is not found
-        return redirect()->back()->with('error', 'Pengguna tidak ditemukan.');
+        // Update nama depan dan belakang pengguna
+        $user->firstname = $request->input('firstname');
+        $user->lastname = $request->input('lastname');
+        $user->no_telp = $request->input('no_telp');
+        
+        // Simpan perubahan di tabel users
+        $user->save();
+
+        // Cek apakah profil pengguna sudah ada
+        $profile = ProfileUser::where('user_id', $user->id)->first();
+
+        // Cek apakah ada foto yang diupload
+        if ($request->hasFile('foto')) {
+            // Simpan foto baru dan ambil path-nya
+            $fotoPath = $request->file('foto')->store('photos', 'public');
+        } else {
+            // Jika tidak ada foto baru, tetap menggunakan foto lama
+            $fotoPath = $profile ? $profile->foto : null;
+        }
+
+        // Update atau buat data di tabel profile_user
+        ProfileUser::updateOrCreate(
+            ['user_id' => $user->id], // Kondisi untuk mengecek apakah profil sudah ada
+            [
+                'alamat' => $request->input('alamat'),
+                'tanggal_lahir' => $request->input('tanggal_lahir'),
+                'jenis_kelamin' => $request->input('jenis_kelamin'),
+                'foto' => $fotoPath, // Simpan path foto yang baru (atau tetap menggunakan yang lama)
+            ]
+        );
+
+        // Membuat URL baru berdasarkan id, nama depan, dan belakang yang diperbarui
+        $newUrl = route('profile', ['id' => $user->id, 'firstname' => $user->firstname, 'lastname' => $user->lastname]);
+
+        // Redirect ke halaman profil yang baru dengan pesan sukses
+        return redirect($newUrl)->with('success', 'Profil berhasil diperbarui.');
     }
+
 
 
 

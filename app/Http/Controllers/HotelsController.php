@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Fasilitas;
 use App\Models\Hotels;
+use App\Models\ProfileUser;
 use App\Models\TipeKamar;
 use App\Models\Rating;
 use Illuminate\Http\Request;
@@ -155,16 +156,22 @@ class HotelsController extends Controller
     {
         $hotels = Hotels::where('nama_cabang', $location)->get();
 
-        $room = TipeKamar::with('hotel')->where('nama_tipe', $nama_tipe)->firstOrFail();
+        $room = TipeKamar::with(['hotel', 'ratings.user.profile_user'])->where('nama_tipe', $nama_tipe)->firstOrFail();
 
         foreach ($hotels as $hotel) {
             $hotel->room_types = TipeKamar::where('hotel_id', $hotel->id)->get();
         }
 
+        // $user = Auth::user();
+
+        // $profile = ProfileUser::where('user_id', $user->id)->first();
+
         return view('hotel.rating', [
             'location' => ucfirst($location),
             'hotels' => $hotels,
-            'room' => $room
+            'room' => $room,
+            // 'profile' => $profile,
+            // 'user' => $user
         ])
             ->with('success', 'Thank you for your rating!');
     }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/hotel.css') }}">
+<link rel="stylesheet" href="{{ asset('css/meetings.css') }}">
 @endpush
 
 @section('content') 
@@ -30,16 +30,15 @@
         </div>
     </div>
 
-<section class="rooms-section spad">
-    <div class="container">
-        <div class="row">
-            @if($hotels->isEmpty())
-                <div class="col-lg-12">
-                    <p>Tidak ada hasil untuk pencarian "{{ $query }}"</p>
-                </div>
-            @else
-                @foreach ($hotels as $item)
-                <div class="col-lg-4 col-md-6">
+    <section class="rooms-section spad">
+        <div class="container">
+            <div class="row">
+                @if($hotels->isEmpty())
+                    <div class="col-lg-12">
+                        <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-bottom: 200px;">Tidak ada hasil untuk pencarian "{{ request('query') }}"</p>
+                    </div>
+                @else
+                    @foreach ($hotels as $item)
                     <div class="room-item">
                         <img src="{{ asset('/img/hotels/' . $item->foto_hotel) }}" alt="" class="room-image">
                         <div class="ri-text">
@@ -47,8 +46,13 @@
                             <a href="{{ route('rooms', ['location' => strtolower($item->nama_cabang)]) }}" class="primary-btn">More Details</a>
                         </div>
                     </div>
+                    @endforeach
+                @endif
+            </div>
+            @if(session('success'))
+                <div class="success-message">
+                    {{ session('success') }}
                 </div>
-                @endforeach
             @endif
         </div>
     </section>

@@ -260,3 +260,22 @@
 /* .btn-back:hover {
     background-color: #c97a5b;
 } */
+
+
+
+
+.rd-reviews .rating form .form-group textarea {
+    padding-top: 20px;
+    padding-left: 20px;
+    border-radius: 0px;
+}
+.rd-reviews .rating form .form-group textarea:focus {
+    border: 1px solid #19191a2c;
+    border-radius: 0px;
+    box-shadow: none;
+}
+.rd-reviews .rating form .form-group textarea::placeholder {
+    color: #19191a69;
+    /* padding-top: 10px; */
+    /* padding-left: 7px; */
+}   
