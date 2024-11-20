@@ -7,7 +7,11 @@
 @section('content')
 <br><br><br>
 <div class="back-button">
-    <h3><a href="javascript:history.back()" class="btn btn-back">←</a></h3>
+    <h3>
+        <a href="javascript:history.back()" class="btn btn-back">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+    </h3>
 </div>
 <br>
     <section class="room-details-section spad">
@@ -138,7 +142,6 @@
                         </div>
                     @endforeach
                 </div>
-                
                 @endif
             </div>
         </div>

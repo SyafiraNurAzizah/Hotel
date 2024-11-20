@@ -23,7 +23,7 @@ class MeetingsController extends Controller
 
         // Ambil tipe kamar untuk setiap hotel
         foreach ($hotels as $hotel) {
-            $hotel->tipe_ruang = Meetings::where('hotel_id', $hotel->id)->get();
+            $hotel->tipe_ruang = Meetings::where('hotel_id', $hotel->id)->orderBy('harga_per_jam', 'asc')->get();
         }
         
         return view('meeting.ruang', [

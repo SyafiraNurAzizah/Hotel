@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2>Meeting Services</h2>
+                        <h2>Meetings & Events</h2>
                         {{-- <div class="bt-option">
                             <span>Pilih lokasi & tempat rapat terbaik yang pernah ada dengan fasilitas terlengkap!</span>
                         </div> --}}
@@ -36,7 +36,7 @@
             <div class="row">
                 @if($hotels->isEmpty())
                     <div class="col-lg-12">
-                        <p>Tidak ada hasil untuk pencarian "{{ request('query') }}"</p>
+                        <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-bottom: 200px;">Tidak ada hasil untuk pencarian "{{ request('query') }}"</p>
                     </div>
                 @else
                     @foreach ($hotels as $item)

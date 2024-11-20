@@ -3,49 +3,43 @@
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/rooms.css') }}">
 <style>
-/* CSS untuk Tombol Kembali */
-.back-button {
-    position: fixed;
-    top: 90px; /* Sesuaikan posisi vertikal */
-    left: 40px; /* Sesuaikan posisi horizontal */
-	
-}
-
-.btn-back {
-    background-color: #dfa974;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 50% ;
-    text-decoration: none;
-    font-size: 20px;
-
-    transition: background-color 0.3s ease;
-}
-
-.btn-back:hover {
-    background-color: #c97a5b;
-}
-
-
-
+    .back-button {
+        position: fixed;
+        top: 550px; /* Sesuaikan posisi vertikal */
+        left: 1280px; /* Sesuaikan posisi horizontal */
+    }
+    .btn-back {
+        background-color: #ffffff;
+        color: #19191a;
+        padding: 10px 15px;
+        border-radius: 50% ;
+        text-decoration: none;
+        font-size: 20px;
+        box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+    }
+    /* .btn-back:hover {
+        background-color: #c97a5b;
+    } */
 </style>
 @endpush
 
 @section('content')
 <div class="back-button">
-    <h3><a href="javascript:history.back()" class="btn btn-back">←</a></h3>
+    <h3>
+        <a href="javascript:history.back()" class="btn btn-back">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+    </h3>
 </div>
+
 <!-- Breadcrumb Section Begin -->
 <div class="breadcrumb-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text">
-                    <h2>{{ ($location) }}</h2>
-                    <div class="bt-option">
-                        <a href="{{ route('ruang', ['location' => strtolower($location)]) }}" class="active">Rooms</a>
-                        {{-- <span><a href="{{ route('fasilitas', ['location' => strtolower($location)]) }}">Fasilitas</a></span> --}}
-                    </div>
+                    <h2 style="padding-top: 96px">{{ ($location) }}</h2>
                 </div>
             </div>
         </div>
@@ -66,8 +60,8 @@
                     @else
                         @foreach ($hotel->tipe_ruang as $room)
                             <div class="col-lg-4 col-md-6">
-                                <div class="room-item">
-                                    <img src="{{ asset('img/rooms/' . $room->foto) }}" alt="">
+                                <div class="room-item" style="padding-top: 70px;">
+                                    <img src="{{ asset('img/meetings/rooms/' . $room->foto) }}" alt="" style="height: 240px; object-fit: cover">
                                     <div class="ri-text">
                                         <h4>{{ $room->nama_ruang }}</h4>
                                         <h3>Rp{{ number_format($room->harga_per_jam, 2, ',', '.') }}<span> /Jam</span></h3>
@@ -95,13 +89,6 @@
                     @endif
                 @endforeach
             @endif
-        </div>
-        <div class="col-lg-12">
-            <div class="room-pagination">
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-            </div>
         </div>
     </div>
 </section>

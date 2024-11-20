@@ -4,100 +4,81 @@
 <link rel="stylesheet" href="{{ asset('css/hotel/rooms.css') }}">
 <style>
     /* Card Container */
-.room-item {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    margin-bottom: 30px;
-    min-height: 500px; /* Atur tinggi minimum card */
-    display: flex;
-    flex-direction: column; /* Untuk memastikan konten card tertata dengan baik */
-}
-
-.room-item img {
-    width: 100%;
-    height: 250px; /* Atur tinggi gambar agar seragam */
-    border-radius: 12px 12px 0 0;
-    object-fit: cover;
-}
-
-.ri-text .r-o {
-    font-weight: bold;
-}
-
-.ri-text td:last-child {
-    white-space: nowrap;        /* Pastikan teks tidak dibungkus ke baris baru */
-    overflow: hidden;           /* Sembunyikan teks yang melampaui batas */
-    text-overflow: ellipsis;    /* Tambahkan titik-titik di akhir teks */
-    max-width: 150px;           /* Atur lebar maksimum kolom layanan */
-    display: inline-block;      /* Agar properti ellipsis berfungsi */
-}
-
-
-.ri-text h4, .ri-text h3 {
-    margin-bottom: 10px;
-}
-
-/* .primary-btn {
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 8px;
-    text-align: center;
-    display: inline-block;
-    color: white;
-    text-decoration: none;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.primary-btn:hover {
-
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-} */
-
-/* Responsiveness */
-@media (max-width: 768px) {
     .room-item {
-        margin-bottom: 20px;
-        min-height: 400px; /* Atur ulang tinggi minimum untuk mobile */
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        margin-bottom: 30px;
+        min-height: 500px; /* Atur tinggi minimum card */
+        display: flex;
+        flex-direction: column; /* Untuk memastikan konten card tertata dengan baik */
     }
-
     .room-item img {
-        height: 200px; /* Sesuaikan tinggi gambar untuk mobile */
+        width: 100%;
+        height: 250px; /* Atur tinggi gambar agar seragam */
+        border-radius: 12px 12px 0 0;
+        object-fit: cover;
     }
-}
-/* CSS untuk Tombol Kembali */
-.back-button {
-    position: fixed;
-    top: 90px; /* Sesuaikan posisi vertikal */
-    left: 40px; /* Sesuaikan posisi horizontal */
-	
-}
 
-.btn-back {
-    background-color: #dfa974;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 50% ;
-    text-decoration: none;
-    font-size: 20px;
+    .ri-text .r-o {
+        font-weight: bold;
+    }
+    .ri-text td:last-child {
+        white-space: nowrap;        /* Pastikan teks tidak dibungkus ke baris baru */
+        overflow: hidden;           /* Sembunyikan teks yang melampaui batas */
+        text-overflow: ellipsis;    /* Tambahkan titik-titik di akhir teks */
+        max-width: 150px;           /* Atur lebar maksimum kolom layanan */
+        display: inline-block;      /* Agar properti ellipsis berfungsi */
+    }
+    .ri-text h4, .ri-text h3 {
+        margin-bottom: 10px;
+    }
 
-    transition: background-color 0.3s ease;
-}
 
-.btn-back:hover {
-    background-color: #c97a5b;
-}
+    /* Responsiveness */
+    @media (max-width: 768px) {
+        .room-item {
+            margin-bottom: 20px;
+            min-height: 400px; /* Atur ulang tinggi minimum untuk mobile */
+        }
+
+        .room-item img {
+            height: 200px; /* Sesuaikan tinggi gambar untuk mobile */
+        }
+    }
+
+    .back-button {
+        position: fixed;
+        top: 550px; /* Sesuaikan posisi vertikal */
+        left: 1280px; /* Sesuaikan posisi horizontal */
+    }
+    .btn-back {
+        background-color: #ffffff;
+        color: #19191a;
+        padding: 10px 15px;
+        border-radius: 50% ;
+        text-decoration: none;
+        font-size: 20px;
+        box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+    }
+    /* .btn-back:hover {
+        background-color: #c97a5b;
+    } */
 
 </style>
 @endpush
 
 @section('content')
 <div class="back-button">
-    <h3><a href="javascript:history.back()" class="btn btn-back">←</a></h3>
+    <h3>
+        <a href="javascript:history.back()" class="btn btn-back">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+    </h3>
 </div>
 <br>   
 <!-- Breadcrumb Section Begin -->

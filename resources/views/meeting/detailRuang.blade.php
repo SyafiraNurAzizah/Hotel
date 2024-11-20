@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
+
+@push('styles')
 <link rel="stylesheet" href="{{ asset('css/detailmeet.css') }}">
+@endpush
 
 @section('content')
     {{-- <div class="breadcrumb-section">
@@ -20,9 +23,17 @@
         </div>
     </div> --}}
 
-    <br><br><br><br><br><br>
+    <div class="back-button">
+        <h3>
+            <a href="javascript:history.back()" class="btn btn-back">
+                <i class="bi bi-arrow-left"></i>
+            </a>
+        </h3>
+    </div>
 
-    <section class="room-details-section spad" style="position: relative; bottom: 7px;">
+    <br><br><br><br>
+
+    <section class="room-details-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">

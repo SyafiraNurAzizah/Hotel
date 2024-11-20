@@ -1,5 +1,6 @@
 .breadcrumb-section {
-    padding-top: 140px;
+    padding-top: 110px;
+    margin-bottom: 50px;
 }
 
 .rooms-section {
@@ -86,24 +87,34 @@
     width: 100%;
     max-width: 600px; /* Batasi lebar maksimal pencarian */
     margin: 0 auto 20px auto; /* Atur margin atas dan bawah */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .search-input {
     width: 90%; /* Panjang input */
+    height: 40px;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 23px;
     margin-left: 6%;
+    padding-left: 30px;
 }
 
 .search-btn {
-    padding: 10px 15px;
-    background-color: #dfa974;
-    color: #fff;
-    border: none;
+    /* padding: 10px 15px; */
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    color: #dfa974;
+    border: 1px solid #dfa974;
+    /* background-color: #dfa974; */
+    /* color: #fff; */
+    /* border: none; */
     border-radius: 50%;
-    margin-left: 10px;
+    position: relative;
+    left: 10px;
+    /* margin-left: 10px; */
     cursor: pointer;
 }
 
