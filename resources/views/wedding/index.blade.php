@@ -2,6 +2,15 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/wedding.css') }}">
+    <style>
+        .room-item:hover{
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+            cursor: pointer;
+
+        }
+    </style>
 @endpush
 @section('content')
     <!-- Breadcrumb Section Begin -->
@@ -11,7 +20,9 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text m-5">
                         <h2>Wedding Rooms</h2>
-                        
+                        <div class="bt-option d-flex justify-content-center">
+                            <a href="{{ route('index') }}"><i class="fas fa-home"></i> Beranda</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,6 @@
     <style>
         /* Breadcrumb Styling */
         .breadcrumb-section {
-            background: url('/images/breadcrumb-bg.jpg') center center/cover no-repeat;
             padding: 80px 0;
             position: relative;
         }
@@ -24,14 +23,14 @@
             font-weight: bold;
         }
 
-        .bt-option a {
+        /* .bt-option a {
             color: #dfa974;
             font-weight: bold;
         }
 
         .bt-option span {
             color: #fff;
-        }
+        } */
 
         /* Table Styling */
         .table-custom {
@@ -40,6 +39,7 @@
             border-spacing: 0 10px;
             width: 100%;
             margin-top: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
         }
 
         .table-custom th, .table-custom td {
@@ -92,10 +92,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2><i class="fas fa-address-book"></i> Admin Contact</h2>
+                        <h2><i class="fas fa-address-book"></i> Contact</h2>
                         <div class="bt-option">
                             <a href="{{ route('index') }}"><i class="fas fa-home"></i> Beranda</a>
-                            <span><i class="fas fa-envelope"></i> Data Contact</span>
+                            {{-- <span><i class="fas fa-envelope"></i> Data Contact</span> --}}
                         </div>
                     </div>
                 </div>
@@ -132,7 +132,40 @@
                         </tr>
                     @endforelse
                 </tbody>
-            </table>
+            </table> 
+
+                    {{-- <div class="row">
+                        @forelse ($contact as $item)
+                            <div class="col-lg-4">
+                                <div class="card shadow-lg p-4" style="width: 18rem; border-radius: 20px; background-color: #efebdf;">
+                                    <div class="ri-pic">
+                                        <img src="img/room/avatar/avatar-1.jpg" alt="">
+                                    </div>
+                                    <div class="ri-text">
+                                        <h4>{{ $item->Nama }}</h4>
+                                        <p>{{ $item->created_at->format('Y-m-d') }}</p>
+                                        <h6 class="mt-2">{{ $item->Pesan }}</h6>
+                    
+                                        <div class="btn-contact d-flex justify-content-between align-items-center my-3">
+                                            <a href="https://wa.me/+628812721410?text=Halo%2C%20saya%20tertarik%20dengan%20paket%20wedding%20Anda."
+                                                target="_blank"
+                                                class="btn btn-outline-danger w-35 contact-btn d-flex align-items-center">
+                                                <i class="icon_trash me-2" style="margin-right: 8px;"></i> Delete
+                                            </a>
+                                            <a href="mailto:istiqomahkhoerunnisa@gmail.com?subject=Informasi%20Paket%20Wedding&body=Halo,%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20paket%20wedding%20Anda."
+                                                class="btn btn-outline-secondary w-35 gmail-btn d-flex align-items-center">
+                                                <i class="icon_mail_alt" style="margin-right: 8px;"></i> Gmail 
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <p>No data available</p>
+                        @endforelse
+                    </div> --}}
+                    
+
         </div>
     </section>
     <!-- Data Contact Section End -->
