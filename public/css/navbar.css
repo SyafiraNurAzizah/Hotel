@@ -200,6 +200,7 @@ body {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    
 }
 
 .nav-menu .nav-right .profile-user .user-dropdown {
