@@ -6,7 +6,6 @@
 
     <style>
         .breadcrumb-section {
-            background: url('/images/breadcrumb-bg.jpg') center center/cover no-repeat;
             padding: 80px 0;
             position: relative;
         }
