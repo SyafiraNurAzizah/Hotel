@@ -43,7 +43,7 @@
     /* Gaya Konten Grid */
     .content-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         gap: 20px;
     }
 
@@ -69,34 +69,26 @@
         color: #333;
         font-size: 16px;
     }
-
-    /* Penekanan pada Status */
     .status-selesai {
         color: green;
     }
-
     .status-belum-selesai {
-        color: orange;
+        color: yellow;
     }
-
+    .status-sedang-diproses {
+        color: blue;
+    }
     .status-dibatalkan {
         color: red;
     }
 
-    /* Penekanan pada Status Pembayaran */
     .status-dibayar {
         color: green;
     }
-
     .status-belum-dibayar {
         color: red;
     }
 
-    /* Ikon untuk setiap label */
-    .icon {
-        font-size: 20px;
-        margin-bottom: 5px;
-    }
 </style>
 @endpush
 
@@ -108,74 +100,111 @@
 <br><br>
 <div class="container">
     <div class="card">
-        <h2>Detail Booking Meeting</h2>
+        <h2>Detail Reservasi</h2>
         <div class="content-grid">
             <!-- Kolom 1 -->
             <div class="content-row">
-                <i class="icon fas fa-hotel"></i>
+                <div class="label">UUID</div>
+                <div class="value">{{ $booking->uuid }}</div>
+            </div>
+            <div class="content-row">
+                <div class="label">User ID</div>
+                <div class="value">{{ $booking->user->firstname }} {{ $booking->user->lastname }}</div>
+            </div>
+            <div class="content-row">
                 <div class="label">Hotel ID</div>
-                <div class="value">{{ $bookings->hotel_id }}</div>
-            </div>
-            <div class="content-row">
-                <i class="icon fas fa-id-badge"></i>
-                <div class="label">Meeting ID</div>
-                <div class="value">{{ $bookings->meeting_id }}</div>
-            </div>
-            <div class="content-row">
-                <i class="icon fas fa-user"></i>
-                <div class="label">Nama</div>
-                <div class="value">{{ $bookings->name }}</div>
-            </div>
-            <div class="content-row">
-                <i class="icon fas fa-envelope"></i>
-                <div class="label">Email</div>
-                <div class="value">{{ $bookings->email }}</div>
-            </div>
-            <div class="content-row">
-                <i class="icon fas fa-phone"></i>
-                <div class="label">Telepon</div>
-                <div class="value">{{ $bookings->phone }}</div>
+                <div class="value">{{ $booking->hotel->nama_cabang }}</div>
             </div>
 
             <!-- Kolom 2 -->
             <div class="content-row">
-                <i class="icon fas fa-calendar-alt"></i>
+                <div class="label">Meeting ID</div>
+                <div class="value">{{ $booking->meeting->nama_ruang  }}</div>
+            </div>
+            <div class="content-row">
                 <div class="label">Tanggal</div>
-                <div class="value">{{ $bookings->date }}</div>
+                <div class="value">{{ \Carbon\Carbon::parse($booking->date)->format('d-m-Y') }}</div>
             </div>
             <div class="content-row">
-                <i class="icon fas fa-clock"></i>
-                <div class="label">Waktu Mulai</div>
-                <div class="value">{{ $bookings->start_time }}</div>
+                <div class="label">Jam Mulai</div>
+                <div class="value">{{ \Carbon\Carbon::parse($booking->start_time)->format('H:i') }}</div>
+            </div>
+
+            <!-- Kolom 3 -->
+            <div class="content-row">
+                <div class="label">Jam Selesai</div>
+                <div class="value">{{ \Carbon\Carbon::parse($booking->end_time)->format('H:i') }}</div>
             </div>
             <div class="content-row">
-                <i class="icon fas fa-clock"></i>
-                <div class="label">Waktu Selesai</div>
-                <div class="value">{{ $bookings->end_time }}</div>
-            </div>
-            <div class="content-row">
-                <i class="icon fas fa-info-circle"></i>
                 <div class="label">Status</div>
                 <div class="value">
-                    {{ ucwords(str_replace('_', ' ', $bookings->status)) }}
+                    @if($booking->status == 'selesai')
+                        <span class="status-selesai">
+                            <i class="fas fa-check-circle"></i> <!-- Ikon untuk selesai -->
+                            {{ ucwords(str_replace('_', ' ', $booking->status)) }}
+                        </span>
+                    @elseif($booking->status == 'belum_selesai')
+                        <span class="status-belum-selesai">
+                            <i class="fas fa-hourglass-half"></i> <!-- Ikon untuk belum selesai -->
+                            {{ ucwords(str_replace('_', ' ', $booking->status)) }}
+                        </span>
+                    @elseif($booking->status == 'sedang_diproses')
+                        <span class="status-sedang-diproses">
+                            <i class="fas fa-spinner"></i> <!-- Ikon untuk sedang diproses -->
+                            {{ ucwords(str_replace('_', ' ', $booking->status)) }}
+                        </span>
+                    @elseif($booking->status == 'dibatalkan')
+                        <span class="status-dibatalkan">
+                            <i class="fas fa-times-circle"></i> <!-- Ikon untuk dibatalkan -->
+                            {{ ucwords(str_replace('_', ' ', $booking->status)) }}
+                        </span>
+                    @else
+                        <span>
+                            <i class="fas fa-info-circle"></i> <!-- Ikon default untuk status lainnya -->
+                            {{ ucwords(str_replace('_', ' ', $booking->status)) }}
+                        </span>
+                    @endif
                 </div>
             </div>
+            
             <div class="content-row">
-                <i class="icon fas fa-wallet"></i>
-                <div class="label">Status Pembayaran</div>
-                <div class="value">
-                    {{ ucwords(str_replace('_', ' ', $bookings->status_pembayaran)) }}
-                </div>
-            </div>
-        </div>
+    <div class="label">Status Pembayaran</div>
+    <div class="value">
+        @if($booking->status_pembayaran == 'dibayar')
+            <span class="status-dibayar">
+                <i class="fas fa-check-circle"></i> <!-- Ikon untuk pembayaran dibayar -->
+                {{ ucwords(str_replace('_', ' ', $booking->status_pembayaran)) }}
+            </span>
+        @elseif($booking->status_pembayaran == 'belum_dibayar')
+            <span class="status-belum-dibayar">
+                <i class="fas fa-exclamation-circle"></i> <!-- Ikon untuk pembayaran belum dibayar -->
+                {{ ucwords(str_replace('_', ' ', $booking->status_pembayaran)) }}
+            </span>
+        @else
+            <span>
+                <i class="fas fa-info-circle"></i> <!-- Ikon default untuk status pembayaran lainnya -->
+                {{ ucwords(str_replace('_', ' ', $booking->status_pembayaran)) }}
+            </span>
+        @endif
+    </div>
+</div>
 
-        <!-- Tombol untuk Edit Booking -->
-        <div class="text-center" style="margin-top: 20px;">
-            <a href="{{ route('admin.meeting.edit', $bookings->id) }}" class="btn btn-edit">
-                <i class="fas fa-edit"></i> Edit Booking
-            </a>
+
+            <div class="content-row">
+                <div class="label">Jumlah Harga</div>
+                <div class="value">Rp{{ number_format($booking->jumlah_harga, 2) }}</div>
+            </div>
+
+            <!-- Kolom 4 -->
+            <div class="content-row">
+                <div class="label">Pesan</div>
+                <div class="value">{{ $booking->pesan }}</div>
+            </div>
+
+            
         </div>
     </div>
 </div>
+
 <br><br><br>
 @endsection

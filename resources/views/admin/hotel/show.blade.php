@@ -112,23 +112,23 @@
             <div class="content-row">
                 <i class="icon fas fa-user"></i>
                 <div class="label">Nama Pengguna</div>
-                <div class="value">{{ $bookinghotels->user->firstname }} {{ $bookinghotels->user->lastname }}</div>
+                <div class="value">{{ $booking->user->firstname }} {{ $booking->user->lastname }}</div>
             </div>
             <div class="content-row">
                 <i class="icon fas fa-users"></i>
                 <div class="label">Tamu Dewasa</div>
-                <div class="value">{{ $bookinghotels->tamu_dewasa }}</div>
+                <div class="value">{{ $booking->tamu_dewasa }}</div>
             </div>
             <div class="content-row">
                 <i class="icon fas fa-wallet"></i>
                 <div class="label">Status Pembayaran</div>
                 <div class="value">
-                    @if($bookinghotels->status_pembayaran == 'dibayar')
-                        <span class="status-dibayar">{{ ucwords(str_replace('_', ' ', $bookinghotels->status_pembayaran)) }}</span>
-                    @elseif($bookinghotels->status_pembayaran == 'belum_dibayar')
-                        <span class="status-belum-dibayar">{{ ucwords(str_replace('_', ' ', $bookinghotels->status_pembayaran)) }}</span>
+                    @if($booking->status_pembayaran == 'dibayar')
+                        <span class="status-dibayar">{{ ucwords(str_replace('_', ' ', $booking->status_pembayaran)) }}</span>
+                    @elseif($booking->status_pembayaran == 'belum_dibayar')
+                        <span class="status-belum-dibayar">{{ ucwords(str_replace('_', ' ', $booking->status_pembayaran)) }}</span>
                     @else
-                        <span>{{ ucwords(str_replace('_', ' ', $bookinghotels->status_pembayaran)) }}</span>
+                        <span>{{ ucwords(str_replace('_', ' ', $booking->status_pembayaran)) }}</span>
                     @endif
                 </div>
             </div>
@@ -137,24 +137,24 @@
             <div class="content-row">
                 <i class="icon fas fa-calendar-check"></i>
                 <div class="label">Check-In</div>
-                <div class="value">{{ \Carbon\Carbon::parse($bookinghotels->checkin)->format('d-m-Y') }}</div>
+                <div class="value">{{ \Carbon\Carbon::parse($booking->checkin)->format('d-m-Y') }}</div>
             </div>
             <div class="content-row">
                 <i class="icon fas fa-money-bill"></i>
                 <div class="label">Jumlah Harga</div>
-                <div class="value">Rp{{ number_format($bookinghotels->jumlah_harga, 2) }}</div>
+                <div class="value">Rp{{ number_format($booking->jumlah_harga, 2) }}</div>
             </div>
 
             <!-- Kolom 3 -->
             <div class="content-row">
                 <i class="icon fas fa-hotel"></i>
                 <div class="label">Hotel</div>
-                <div class="value">{{ $bookinghotels->hotel->nama_cabang ?? 'N/A' }}</div>
+                <div class="value">{{ $booking->hotel->nama_cabang ?? 'N/A' }}</div>
             </div>
             <div class="content-row">
                 <i class="icon fas fa-child"></i>
                 <div class="label">Tamu Anak</div>
-                <div class="value">{{ $bookinghotels->tamu_anak }}</div>
+                <div class="value">{{ $booking->tamu_anak }}</div>
             </div>
 
             <!-- Kolom 4 -->
@@ -162,14 +162,14 @@
                 <i class="icon fas fa-info-circle"></i>
                 <div class="label">Status</div>
                 <div class="value">
-                    @if($bookinghotels->status == 'selesai')
-                        <span class="status-selesai">{{ ucwords(str_replace('_', ' ', $bookinghotels->status)) }}</span>
-                    @elseif($bookinghotels->status == 'belum_selesai')
-                        <span class="status-belum-selesai">{{ ucwords(str_replace('_', ' ', $bookinghotels->status)) }}</span>
-                    @elseif($bookinghotels->status == 'dibatalkan')
-                        <span class="status-dibatalkan">{{ ucwords(str_replace('_', ' ', $bookinghotels->status)) }}</span>
+                    @if($booking->status == 'selesai')
+                        <span class="status-selesai">{{ ucwords(str_replace('_', ' ', $booking->status)) }}</span>
+                    @elseif($booking->status == 'belum_selesai')
+                        <span class="status-belum-selesai">{{ ucwords(str_replace('_', ' ', $booking->status)) }}</span>
+                    @elseif($booking->status == 'dibatalkan')
+                        <span class="status-dibatalkan">{{ ucwords(str_replace('_', ' ', $booking->status)) }}</span>
                     @else
-                        <span>{{ ucwords(str_replace('_', ' ', $bookinghotels->status)) }}</span>
+                        <span>{{ ucwords(str_replace('_', ' ', $booking->status)) }}</span>
                     @endif
                 </div>
             </div>
@@ -178,23 +178,23 @@
             <div class="content-row">
                 <i class="icon fas fa-calendar-times"></i>
                 <div class="label">Check-Out</div>
-                <div class="value">{{ \Carbon\Carbon::parse($bookinghotels->checkout)->format('d-m-Y') }}</div>
+                <div class="value">{{ \Carbon\Carbon::parse($booking->checkout)->format('d-m-Y') }}</div>
             </div>
             <div class="content-row">
                 <i class="icon fas fa-comment-dots"></i>
                 <div class="label">Pesan</div>
-                <div class="value">{{ $bookinghotels->pesan }}</div>
+                <div class="value">{{ $booking->pesan }}</div>
             </div>
             
             <div class="content-row">
                 <i class="icon fas fa-bed"></i>
                 <div class="label">Tipe Kamar</div>
-                <div class="value">{{ $bookinghotels->tipe_kamar->nama_tipe ?? 'N/A' }}</div>
+                <div class="value">{{ $booking->tipe_kamar->nama_tipe ?? 'N/A' }}</div>
             </div>
             <div class="content-row">
                 <i class="icon fas fa-clock"></i>
                 <div class="label">Tanggal & Waktu Pemesanan</div>
-                <div class="value">{{ $bookinghotels->created_at->format('d-m-Y, H:i:s') }}</div>
+                <div class="value">{{ $booking->created_at->format('d-m-Y, H:i:s') }}</div>
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/fasilitas.css') }}">
+<link rel="stylesheet" href="{{ asset('css/hotel/fasilitas.css') }}">
 @endpush
 
 @section('content')
@@ -19,7 +19,8 @@
                 <div class="breadcrumb-text">
                     <h2>{{ ($location) }}</h2>
                     <div class="bt-option">
-                        <span><a href="{{ route('rooms', ['location' => strtolower($location)]) }}">Kamar</a></span>
+                        <a href="{{ route('rooms', ['location' => strtolower($location)]) }}">Kamar</a></span>
+                        <i class="bi bi-chevron-left" style="font-size: 10px"></i>
                         <a href="{{ route('fasilitas', ['location' => strtolower($location)]) }}" class="active">Fasilitas</a>
                     </div>
                 </div>
@@ -28,6 +29,8 @@
     </div>
 </div>
 <!-- Breadcrumb Section End -->
+
+<br><br>
 
 <!-- Rooms Section Begin -->
 <section class="rooms-section spad">
@@ -54,13 +57,13 @@
                 @endforeach
             @endif
         </div>
-        <div class="col-lg-12">
+        {{-- <div class="col-lg-12">
             <div class="room-pagination">
                 <a href="#">1</a>
                 <a href="#">2</a>
                 <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
             </div>
-        </div>
+        </div> --}}
     </div>
 </section>
 <!-- Rooms Section End -->

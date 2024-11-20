@@ -26,6 +26,7 @@ class BookingHotel extends Model
         'pesan',
         'status',
         'status_pembayaran',
+        'tamu_id'
     ];
 
 
@@ -39,8 +40,14 @@ class BookingHotel extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
     public function tipe_kamar()
     {
         return $this->belongsTo(TipeKamar::class, 'tipe_kamar_id');
+    }
+
+    public function tamu()
+    {
+        return $this->belongsTo(User::class, 'tamu_id');
     }
 }
