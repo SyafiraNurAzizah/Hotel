@@ -52,8 +52,8 @@
 
     .back-button {
         position: fixed;
-        top: 550px; /* Sesuaikan posisi vertikal */
-        left: 1280px; /* Sesuaikan posisi horizontal */
+        top: 100px;
+        left: 30px;
     }
     .btn-back {
         background-color: #ffffff;
@@ -73,16 +73,16 @@
 @endpush
 
 @section('content')
-<div class="back-button">
+<div class="back-button" style="z-index: 5;">
     <h3>
         <a href="javascript:history.back()" class="btn btn-back">
             <i class="bi bi-arrow-left"></i>
         </a>
     </h3>
 </div>
-<br>   
+{{-- <br>    --}}
 <!-- Breadcrumb Section Begin -->
-<div class="breadcrumb-section">
+<div class="breadcrumb-section" style="position: relative; bottom: 32px;">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -101,7 +101,7 @@
 <!-- Breadcrumb Section End -->
 
 <!-- Rooms Section Begin -->
-<section class="rooms-section spad">
+<section class="rooms-section spad" style="position: relative; bottom: 32px;">
     <div class="container">
         <div class="row">
             @if ($hotels->isEmpty())

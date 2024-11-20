@@ -46,25 +46,21 @@
 
 
 
-/* CSS untuk Tombol Kembali */
 .back-button {
     position: fixed;
-    top: 90px; /* Sesuaikan posisi vertikal */
-    left: 40px; /* Sesuaikan posisi horizontal */
-	
+    top: 100px;
+    left: 30px;
 }
-
 .btn-back {
-    background-color: #dfa974;
-    color: white;
+    background-color: #ffffff;
+    color: #19191a;
     padding: 10px 15px;
     border-radius: 50% ;
     text-decoration: none;
     font-size: 20px;
-
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
 }
-
-.btn-back:hover {
+/* .btn-back:hover {
     background-color: #c97a5b;
-}
+} */

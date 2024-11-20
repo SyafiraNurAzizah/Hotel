@@ -23,7 +23,7 @@
         </div>
     </div> --}}
 
-    <div class="back-button">
+    <div class="back-button"style="z-index: 10;">
         <h3>
             <a href="javascript:history.back()" class="btn btn-back">
                 <i class="bi bi-arrow-left"></i>
@@ -31,9 +31,9 @@
         </h3>
     </div>
 
-    <br><br><br><br>
+    <br><br><br>
 
-    <section class="room-details-section spad">
+    <section class="room-details-section spad" style="position: relative; bottom: 9px; z-index: 5;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">

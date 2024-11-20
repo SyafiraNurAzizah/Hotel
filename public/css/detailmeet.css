@@ -185,8 +185,9 @@
 
 .back-button {
     position: fixed;
-    top: 550px; /* Sesuaikan posisi vertikal */
-    left: 1280px; /* Sesuaikan posisi horizontal */
+    top: 100px;
+    left: 30px;
+    z-index: 999;
 }
 .btn-back {
     background-color: #ffffff;

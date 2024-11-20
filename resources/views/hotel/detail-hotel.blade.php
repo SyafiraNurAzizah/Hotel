@@ -29,8 +29,8 @@
         </a>
     </h3>
 </div>
-<br>
-    <section class="room-details-section spad">
+
+    <section class="room-details-section spad" style="position: relative; bottom: 9px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">

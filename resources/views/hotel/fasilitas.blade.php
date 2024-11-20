@@ -7,16 +7,20 @@
 @section('content')
 
 <div class="back-button">
-    <h3><a href="javascript:history.back()" class="btn btn-back">←</a></h3>
+    <h3>
+        <a href="javascript:history.back()" class="btn btn-back">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+    </h3>
 </div>
 
-<br><br><br><br>
+<br>
 <!-- Breadcrumb Section Begin -->
 <div class="breadcrumb-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="breadcrumb-text">
+                <div class="breadcrumb-text mt-3">
                     <h2>{{ ($location) }}</h2>
                     <div class="bt-option">
                         <a href="{{ route('rooms', ['location' => strtolower($location)]) }}">Kamar</a></span>
