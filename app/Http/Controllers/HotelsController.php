@@ -171,13 +171,10 @@ class HotelsController extends Controller
 
     public function indexAdminReview()
     {
-        // Ambil semua data TipeKamar beserta relasi ratings
         $room = TipeKamar::with('ratings')->get();
 
-        // Total Reviews
         $totalReviews = $room->flatMap->ratings->count();
 
-        // Average Rating
         $averageRating = $room->flatMap->ratings->avg('rating') ?? 0;
 
         // filter

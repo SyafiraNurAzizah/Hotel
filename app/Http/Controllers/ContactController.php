@@ -51,9 +51,9 @@ class ContactController extends Controller
          $contact->Email = $validateData['Email'];
          $contact->Pesan = $validateData['Pesan'];
      
-         if (Auth::check()) {
-             $contact->user_id = Auth::id();
-         }
+        //  if (Auth::check()) {
+        //      $contact->user_id = Auth::id();
+        //  }
      
          if ($contact->save()) {
              return redirect()->route('contact')->with('success', 'Pesan berhasil dikirim.');

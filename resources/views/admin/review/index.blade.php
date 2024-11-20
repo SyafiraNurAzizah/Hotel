@@ -21,15 +21,6 @@
             margin-bottom: 20px;
             font-weight: bold;
         }
-
-        .bt-option a {
-            color: #dfa974;
-            font-weight: bold;
-        }
-
-        .bt-option span {
-            color: #fff;
-        }
     </style>
 @endpush
 
@@ -43,7 +34,6 @@
                         <h2><i class="fas fa-address-book"></i> Review</h2>
                         <div class="bt-option">
                             <a href="{{ route('index') }}"><i class="fas fa-home"></i> Beranda</a>
-                            <span><i class="fas fa-envelope"></i> Data Review</span>
                         </div>
                     </div>
                 </div>

@@ -24,14 +24,14 @@
             font-weight: bold;
         }
 
-        .bt-option a {
+        /* .bt-option a {
             color: #dfa974;
             font-weight: bold;
         }
 
         .bt-option span {
             color: #fff;
-        }
+        } */
 
         /* Table Styling */
         .table-custom {
@@ -96,7 +96,7 @@
                         <h2><i class="fas fa-address-book"></i> Contact</h2>
                         <div class="bt-option">
                             <a href="{{ route('index') }}"><i class="fas fa-home"></i> Beranda</a>
-                            <span><i class="fas fa-envelope"></i> Data Contact</span>
+                            {{-- <span><i class="fas fa-envelope"></i> Data Contact</span> --}}
                         </div>
                     </div>
                 </div>

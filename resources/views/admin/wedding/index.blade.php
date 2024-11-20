@@ -15,13 +15,29 @@
             font-weight: bold;
         }
 
-        .bt-option a {
-            color: #dfa974;
+        .thead-custom th {
+            background-color: #dfa974;
+            color: white;
             font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
         }
 
-        .bt-option span {
-            color: #fff;
+
+        /* Table Styling */
+        .table-custom {
+            background-color: #f9f9f9;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+            width: 100%;
+            margin-top: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+        }
+
+        .table-custom th, .table-custom td {
+            text-align: center;
+            padding: 15px;
+            vertical-align: middle;
         }
 
         .thead-custom th {
@@ -30,6 +46,33 @@
             font-weight: bold;
             font-size: 16px;
             text-transform: uppercase;
+        }
+
+        .table-custom tbody tr {
+            background-color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .table-custom tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* No data styling */
+        .no-data {
+            text-align: center;
+            font-size: 18px;
+            color: #888;
+            font-style: italic;
+        }
+
+        /* Icon styling */
+        .table-custom .fa {
+            margin-right: 5px;
+        }
+
+        /* Container margins */
+        .container.mt-6 {
+            margin-top: 50px;
         }
     </style>
 @endpush
@@ -42,9 +85,8 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
                         <h2><i class="fas fa-address-book"></i> Wedding</h2>
-                        <div class="bt-option">
+                        <div class="bt-option d-flex justify-content-center">
                             <a href="{{ route('index') }}"><i class="fas fa-home"></i> Beranda</a>
-                            <span><i class="fas fa-envelope"></i> Data Wedding</span>
                         </div>
                     </div>
                 </div>
