@@ -143,13 +143,13 @@ Route::group(['middleware' => ['auth.custom', App\Http\Middleware\AdminAccessMid
     Route::get('/admin/review', [HotelsController::class, 'indexAdminReview'])->name('admin.review.index');
     Route::get('/admin/review/{location}/{nama_tipe}', [App\Http\Controllers\HotelsController::class, 'showAdminReview'])->name('admin.review.show');
     Route::delete('/admin/review/{id}', [App\Http\Controllers\HotelsController::class, 'destroyAdminReview'])->name('admin.review.destroy');
-    // Route CRUD untuk Admin Hotel
     Route::get('/admin/hotel', [AdminHotelController::class, 'AdminIndex'])->name('admin.hotel.firstindex');                // Untuk daftar hotel
     Route::get('/admin/booking/{city}', [AdminHotelController::class, 'showByCity'])->name('admin.hotel.index');
     Route::get('/admin/hotel/{id}', [AdminHotelController::class, 'AdminShow'])->name('admin.hotel.show');              // Untuk detail data
-    Route::get('/admin/hotel/{id}/edit', [AdminHotelController::class, 'edit'])->name('admin.hotel.edit');              // Untuk form edit
-    Route::post('/admin/hotel/{id}/update', [AdminHotelController::class, 'update'])->name('admin.hotel.update');       // Untuk update data
-    Route::delete('/admin/hotel/{id}', [AdminHotelController::class, 'AdminDestroy'])->name('admin.hotel.destroy');     // Untuk menghapus data  // Untuk daftar reservasi
+    Route::get('/admin/hotel/{id}/edit', [AdminHotelController::class, 'edit'])->name('admin.hotel.edit');   
+    Route::match(['put', 'post'], 'admin/hotel/{id}/update', [AdminHotelController::class, 'update'])->name('admin.hotel.update');
+
+    Route::delete('/admin/hotel/{id}', [AdminHotelController::class, 'AdminDestroy'])->name('admin.hotel.destroy');     // Untuk menghapus data  // Untuk daftar reservasi
 
     // Route CRUD untuk Admin Meeting
     Route::get('/admin/meeting', [AdminMeetingController::class, 'AdminIndex'])->name('admin.meetingss.firstindex'); // Untuk daftar meeting

@@ -186,9 +186,9 @@
                                 @foreach ($item->ratings as $rating)
                                 <div class="review d-flex shadow-sm p-3 mb-3" style="background-color: #efebdf; border-radius: 25px;">
                                     <div class="review-item col-lg-8 m-0">
-                                        <div class="ri-pic">
-                                            <img src="img/room/avatar/avatar-1.jpg" alt="">
-                                        </div>
+                                        {{-- <div class="ri-pic">
+                                            <img src="{{ asset('img/profile-default.jpg') }}" alt="Foto Profil" class="profile-image">
+                                        </div> --}}
                                         <div class="ri-text">
                                             <h5 class="m-0">{{ $rating->user->firstname }}</h5>
                                             <span>{{ $rating->created_at->format('Y-m-d') }}</span>

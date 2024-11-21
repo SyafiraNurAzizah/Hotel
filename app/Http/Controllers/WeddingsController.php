@@ -10,7 +10,7 @@ class WeddingsController extends Controller
     public function index()
     {
         $weddings = Wedding::all();
-        return view('wedding.index', compact('weddings'));
+        return view('admin.wedding.index', compact('weddings'));
     }
 
     public function edit($id)
@@ -55,14 +55,14 @@ class WeddingsController extends Controller
 
         $wedding->save();
 
-        return redirect()->route('wedding.index')->with('success', 'Data wedding berhasil diupdate.');
+        return redirect()->route('admin.wedding.index')->with('success', 'Data wedding berhasil diupdate.');
     }
 
     public function destroy($id)
     {
         $weddings = wedding::find($id);
         $weddings->delete();
-        return redirect()->route('wedding.index')->with('success', 'Data weddings berhasil dihapus.');
+        return redirect()->route('admin.wedding.index')->with('success', 'Data weddings berhasil dihapus.');
     }
 
     public function create()
@@ -103,7 +103,7 @@ class WeddingsController extends Controller
             'paket3' => $request->input('paket3'),
         ]);
 
-        return redirect()->route('wedding.index')->with('success', 'Data weddings berhasil ditambahkan.');
+        return redirect()->route('admin.wedding.index')->with('success', 'Data weddings berhasil ditambahkan.');
     }
 
     public function show($id)
@@ -111,7 +111,7 @@ class WeddingsController extends Controller
         $weddings = wedding::find($id);
 
         if (!$weddings) {
-            return redirect()->route('wedding.index')->with('error', 'Data tidak ditemukan');
+            return redirect()->route('admin.wedding.index')->with('error', 'Data tidak ditemukan');
         }
 
         return view('admin.wedding.show', compact('weddings'));

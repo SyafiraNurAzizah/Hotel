@@ -50,21 +50,42 @@ class AdminMeetingController extends Controller
 {
     $booking = MeetingBooking::findOrFail($id);
 
+    // Validasi input
     request()->validate([
-     'status' => 'required|string',
-
+        'status' => 'required|string',
     ]);
 
+    // Update status
     $booking->status = $request->status;
     $booking->status_pembayaran = $request->status_pembayaran;
     $booking->save();
-    return redirect()->route('admin.meetingss.indexx', ['id' => $id])->with('success', 'Data booking berhasil diperbarui!');
+
+    // Ambil nama kota terkait hotel yang diupdate
+    $city = $booking->hotel->nama_cabang;
+
+    // Redirect ke halaman dengan parameter city
+    return redirect()->route('admin.meetingss.indexx', ['location' => $city])
+                 ->with('success', 'Data booking berhasil diperbarui!');
+
 }
 
-   public function destroy($id)
-   {
-    $booking = MeetingBooking::find($id);
-    $booking->delete();
-    return redirect()->route('admin.meetingss.indexx');
-   }
+
+        public function destroy($id)
+        {
+            $booking = MeetingBooking::find($id);
+
+            if ($booking) {
+                $city = $booking->hotel->nama_cabang; // Ambil nama kota terkait hotel
+                $booking->delete();
+
+                // Pastikan untuk memberikan parameter city saat redirect
+                return redirect()->route('admin.meetingss.indexx', ['location' => $city]);
+            }
+
+            return redirect()->route('admin.meetingss.indexx', ['city' => 'default_city']);
+        }
+
+
+
+
 }

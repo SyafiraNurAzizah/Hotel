@@ -112,7 +112,7 @@
 <br>  
 <div class="container">
     <h2 class="mb-4">Cabang <strong>{{ $city }}</strong></h2>
-    <a href="{{ route('admin.hotel.list-tamu') }}" class="btn mb-3" style="background-color: #dfa974; color: white">
+    <a href="{{ route('admin.hotel.tamu') }}" class="btn mb-3" style="background-color: #dfa974; color: white">
         <i class="fas fa-plus-circle"></i> Reservasi Hotel
     </a>
 

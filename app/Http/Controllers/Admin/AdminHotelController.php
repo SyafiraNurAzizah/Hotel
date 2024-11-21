@@ -41,41 +41,56 @@ class AdminHotelController extends Controller
     return view('admin.hotel.show', compact('booking'));
 }
 
-public function AdminDestroy($id)
-{
-    // Mengambil booking berdasarkan ID dan menghapusnya
-    $bookinghotels = BookingHotel::findOrFail($id);
-    $bookinghotels->delete();
 
-    return redirect()->route('admin.hotel.index', compact('bookinghotels'))->with('success', 'Pemesan hotel berhasil dihapus.');
-}
+public function AdminDestroy($id)
+        {
+            $booking = BookingHotel::find($id);
+
+            if ($booking) {
+                $city = $booking->hotel->nama_cabang; // Ambil nama kota terkait hotel
+                $booking->delete();
+
+                // Pastikan untuk memberikan parameter city saat redirect
+                return redirect()->route('admin.hotel.index', ['city' => $city]);
+            }
+
+            return redirect()->route('admin.hotel.inde x', ['city' => 'default_city']);
+        }
+
+
 public function edit($id)
 {
     // Ambil data pemesanan hotel berdasarkan ID
-    $bookinghotels = BookingHotel::with(['hotel', 'user'])->findOrFail($id);
+    $bookinghotel = BookingHotel::with(['hotel', 'user'])->findOrFail($id);
 
-    return view('admin.hotel.edit', compact('bookinghotels'));
+    return view('admin.hotel.edit', compact('bookinghotel'));
 }
 public function update(Request $request, $id)
 {
+    // Find the booking hotel by ID
     $bookinghotels = BookingHotel::findOrFail($id);
 
-    
-    // Validasi data yang diterima
+    $city = $bookinghotels->hotel->city; // Adjust this according to your actual relationship
+
+    // Validate the data
     $request->validate([
         'status' => 'required|string',
         'status_pembayaran' => 'required|string',
         'jumlah_harga' => 'required|numeric',
     ]);
 
-    // Update data pemesanan
+    // Update booking hotel data
     $bookinghotels->status = $request->status;
     $bookinghotels->status_pembayaran = $request->status_pembayaran;
     $bookinghotels->jumlah_harga = $request->jumlah_harga;
     $bookinghotels->save();
 
-    return redirect()->route('admin.hotel.index')->with('success', 'Pemesan hotel berhasil diupdate.');
+    // Redirect with the 'city' parameter
+    $city = $bookinghotels->hotel->nama_cabang;
+
+    return redirect()->route('admin.hotel.index', ['city' => $city])->with('success', 'Data booking berhasil diperbarui!');
 }
+
 
 public function ShowReservation(Request $request)
 {

@@ -3,7 +3,7 @@
 @section('content')
 <br><br><br><br>
 <div class="container">
-    <a href="{{ route('admin.hotel.index') }}" class="btn btn-primary mb-4">Back</a>
+    {{-- <a href="{{ route('admin.hotel.index') }}" class="btn btn-primary mb-4">Back</a> --}}
 
     <h2>Edit Pemesanan Hotel</h2>
 
@@ -44,7 +44,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Update</button>
-        <a href="{{ route('admin.hotel.index') }}" class="btn btn-secondary">Batal</a>
+        {{-- <a href="{{ route('admin.hotel.index') }}" class="btn btn-secondary">Batal</a> --}}
     </form>
 </div>
 <br><br><br>

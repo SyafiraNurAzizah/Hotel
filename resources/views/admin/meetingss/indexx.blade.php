@@ -124,7 +124,7 @@
             <i class="fas fa-search search-icon"></i> <!-- Ikon pencarian -->
         </div>
     </div>
-    <a href="{{ route('admin.meeting.list-tamu') }}" class="btn mb-3" style="background-color: #dfa974; color: white">
+    <a href="{{ route('admin.meeting.tamu') }}" class="btn mb-3" style="background-color: #dfa974; color: white">
         <i class="fas fa-plus-circle"></i> Reservasi Ruang
     </a>
     <!-- Tabel Data Booking -->
