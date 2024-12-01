@@ -256,3 +256,22 @@
     right: 10px;
     bottom: 5px;
 }
+
+
+
+
+
+
+
+/* Mengatur lebar maksimal untuk kolom <td> status */
+.status-cell {
+    max-width: 150px;
+}
+.status-cell span {
+    max-width: 100%;
+}
+
+/* Mengubah warna ikon saat hover pada elemen <i> yang ada di dalam link <a> */
+.contact-cell a:hover i {
+    color: rgba(16, 20, 31, 0.89) !important;
+}

@@ -38,6 +38,8 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
+            <i class="bi bi-x close-button" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; top: 10px; right: 15px; font-size: 1.5rem; color: rgba(16, 20, 31, 0.89); cursor: pointer;"></i>
+
             <form action="{{ route('updateProfile', ['id' => Auth::user()->id, 'firstname' => Auth::user()->firstname, 'lastname' => Auth::user()->lastname]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -57,36 +59,6 @@
                         </div>
                     </div>
 
-                    {{-- <div class="form-group" style="display: flex; width: 300px; position: relative; bottom: 150px; left: 30px;">
-                        <div class="group-name">
-                            <input type="text" name="firstname" id="firstname" class="form-control" value="{{ Auth::user()->firstname }}" required style="text-align: right; font-size: 22px; font-weight: 500; letter-spacing: 1px; border: none;">
-                        </div>
-                        <div class="group-name">
-                            <input type="text" name="lastname" id="lastname" class="form-control" value="{{ Auth::user()->lastname }}" required style="text-align: left; font-size: 22px; font-weight: 500; letter-spacing: 1px; border: none;">
-                        </div>
-                    </div> --}}
-
-                    
-                    {{-- <div class="form-group" style="display: flex; gap: 10px;">
-                        <div class="group-name">
-                            <label for="firstname">Nama Depan</label>
-                            <input type="text" name="firstname" id="firstname" class="form-control" value="{{ Auth::user()->firstname }}" required>
-                        </div>
-                        <div class="group-name">
-                            <label for="lastname">Nama Belakang</label>
-                            <input type="text" name="lastname" id="lastname" class="form-control" value="{{ Auth::user()->lastname }}" required>
-                        </div>
-                    </div>
-    
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" value="{{ Auth::user()->email }}" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="no_telp">Nomor Telepon</label>
-                        <input type="text" name="no_telp" id="no_telp" class="form-control" value="{{ Auth::user()->no_telp }}">
-                    </div> --}}
                 </div>
                 
                 <div class="form-right">
@@ -130,162 +102,9 @@
                 <button type="submit" class="btn btn-primary">Edit Profil</button>
             </form>
 
-
-
-
-
-
-
-
-            {{-- <p class="profile">Informasi yang Anda berikan akan digunakan untuk verifikasi akun, memastikan keamanan, serta memberikan layanan yang lebih sesuai dengan kebutuhan Anda.</p>
-
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                <i class="bi bi-x"></i>
-            </button>
-
-            <button type="button" class="viewProfileButton profile-button" data-bs-toggle="modal" data-bs-target="#viewProfileModal">Profil</button> --}}
         </div>
     </div>
 </div>
-
-
-{{-- <div class="modal fade" id="viewProfileModal" tabindex="-1" aria-labelledby="viewProfileModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <p class="profile-title">Profil</p>
-            
-            <div class="button-profile">
-                <button type="button" class="btn-close" data-bs-toggle="modal" data-bs-target="#viewModal">
-                    <i class="bi bi-arrow-left"></i>
-                </button>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    <i class="bi bi-x"></i>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <div class="profile-part">
-                    <p>{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</p>
-                    <div class="bottom-line"></div>
-                </div>
-                <div class="profile-part">
-                    <p>{{ Auth::user()->email }}</p>
-                    <div class="bottom-line"></div>
-                </div>
-                <div class="profile-part">
-                    <p>{{ Auth::user()->no_telp }}</p>
-                    <div class="bottom-line"></div>
-                </div>
-                <div class="profile-part">
-                    <p>{{ $userProfile->jenis_kelamin }}</p>
-                    <div class="bottom-line"></div>
-                </div>
-                <div class="profile-part">
-                    <p>{{ $userProfile->tanggal_lahir }}</p>
-                    <div class="bottom-line"></div>
-                </div>
-                <div class="profile-part">
-                    <p class="profile-alamat">{{ $userProfile->alamat }}</p>
-                    <div class="bottom-line-alamat"></div>
-                </div>
-                
-            </div>
-
-            <button type="button" class="viewEditProfileButton profile-button" data-bs-toggle="modal" data-bs-target="#viewEditProfileModal">Edit Profil</button>
-        </div>
-    </div>
-</div> --}}
-
-
-{{-- <div class="modal fade" id="viewEditProfileModal" tabindex="-1" aria-labelledby="viewEditProfileModalLabel" aria-hidden="true"> --}}
-    {{-- <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="viewEditProfileModalLabel">Edit Profil Pengguna</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('profile.update') }}" method="POST">
-                <form action="#" method="POST">
-                    @csrf
-                    @method('PUT')  <!-- Menggunakan metode PUT untuk mengupdate data profil -->
-                    <div class="form-group">
-                        <label for="firstname">Nama Depan</label>
-                        <input type="text" class="form-control" id="firstname" name="firstname" value="{{ Auth::user()->firstname }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastname">Nama Belakang</label>
-                        <input type="text" class="form-control" id="lastname" name="lastname" value="{{ Auth::user()->lastname }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="alamat">Alamat</label>
-                        <input type="text" class="form-control" id="alamat" name="alamat" value="{{ Auth::user()->alamat }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="no_telp">Nomor Telepon</label>
-                        <input type="text" class="form-control" id="no_telp" name="no_telp" value="{{ Auth::user()->no_telp }}" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </form>
-            </div>
-        </div>
-    </div> --}}
-
-
-
-    {{-- <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <p class="profile-title">Edit Profil</p>
-
-            <div class="button-profile">
-                <button type="button" class="btn-close" data-bs-toggle="modal" data-bs-target="#viewProfileModal">
-                    <i class="bi bi-arrow-left"></i>
-                </button>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    <i class="bi bi-x"></i>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname', $user->firstname) }}" required autocomplete="firstname" placeholder="Nama Depan">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname', $user->lastname) }}" required autocomplete="lastname" placeholder="Nama Belakang">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-control" id="loginEmail" name="email" value="{{ old('email', Auth::user()->email) }}" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="phone" name="no_telp" value="{{ old('no_telp', Auth::user()->no_telp) }}" placeholder="Nomor Telepon" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="gender" name="jenis_kelamin" value="{{ old('jenis_kelamin', $userProfile->jenis_kelamin) }}" placeholder="Jenis Kelamin" required>
-                </div>
-                <div class="form-group">
-                    <input type="date" class="form-control" id="dob" name="tanggal_lahir" value="{{ old('tanggal_lahir', $userProfile->tanggal_lahir) }}" placeholder="Tanggal Lahir" required>
-                </div>
-                <div class="profile-part">
-                    <p class="profile-alamat">{{ $userProfile->alamat }}</p>
-                    <div class="bottom-line-alamat"></div>
-                </div>
-            </div>
-
-            <button type="submit" class="profile-button">Simpan</button>
-        </div>
-    </div>
-</div> --}}
-
 
 
 <div class="icon-table">
@@ -308,6 +127,7 @@
                     <th>Check In</th>
                     <th>Check Out</th>
                     <th>Status</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -318,7 +138,7 @@
                         <td>{{ $item->tipe_kamar->nama_tipe }}</td>
                         <td>{{ \Carbon\Carbon::parse($item->check_in)->format('d F Y') }}</td>
                         <td>{{ \Carbon\Carbon::parse($item->check_out)->format('d F Y') }}</td>
-                        <td>
+                        <td class="status-cell">
                             @if ($item->status == 'selesai')
                                 {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
                                 
@@ -347,6 +167,15 @@
                                 <span>{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
                             @endif
                         </td>
+                        
+                        <td class="contact-cell">
+                            <a href="https://wa.me/628812721410?text=Halo%20Berlian%20Hotel%2C%0A%0ASaya%20ingin%20membatalkan%20reservasi%20saya%20dengan%20detail%20berikut%3A%0ANomor%20Reservasi%3A%20%23{{ substr($item->uuid, 0, 5) }}%0ANama%20Pemesan%3A%20{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}%0ACheck-In%3A%20{{ \Carbon\Carbon::parse($item->check_in)->format('d F Y') }}%0ACheck-Out%3A%20{{ \Carbon\Carbon::parse($item->check_out)->format('d F Y') }}%0A%0AMohon%20bantuannya%20untuk%20memproses%20pembatalan%20ini.%20Jika%20ada%20biaya%20atau%20ketentuan%20terkait%2C%20saya%20siap%20mengikutinya.%20Konfirmasi%20lebih%20lanjut%20bisa%20disampaikan%20ke%20{{ Auth::user()->no_telp }}.%0A%0ATerima%20kasih%21" 
+                                target="_blank" 
+                                class="contact-btn d-flex align-items-center"
+                                onclick="event.stopPropagation();">
+                                <i class="icon_phone" style="color: rgba(16, 20, 31, 0.308)"></i>
+                            </a>
+                        </td>
                     </tr>
                 @empty
                     <tr>
@@ -369,12 +198,13 @@
                     <th>Jam Mulai</th>
                     <th>Jam Selesai</th>
                     <th>Status</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($bookings_meetings as $item)
                 {{-- <tr onclick="window.location='{{ route('meeting.transaksi.transaksi-meeting', ['location' => strtolower($item->hotel->nama_cabang), 'roomId' => $item->meeting_id, 'uuid' => $item->uuid]) }}'" style="cursor: pointer;"> --}}
-                <tr>
+                <tr onclick="window.location='{{ route('meeting.transaksi.transaksi-meeting', ['location' => strtolower($item->hotel->nama_cabang), 'roomId' => $item->meeting_id, 'uuid' => $item->uuid]) }}'" style="cursor: pointer;">
                     <td><strong>#{{ substr($item->uuid, 0, 5) }}</strong></td>
                         <td>{{ $item->hotel->nama_cabang }}</td>
                         <td>{{ \Carbon\Carbon::parse($item->date)->format('d F Y') }}</td>
@@ -408,6 +238,15 @@
                             @else
                                 <span>{{ ucwords(str_replace('_', ' ', $item->status)) }}</span>
                             @endif
+                        </td>
+
+                        <td class="contact-cell">
+                            <a href="https://wa.me/628812721410?text=Halo%20Berlian%20Hotel%2C%0A%0ASaya%20ingin%20membatalkan%20reservasi%20saya%20dengan%20detail%20berikut%3A%0ANomor%20Reservasi%3A%20%23{{ substr($item->uuid, 0, 5) }}%0ANama%20Pemesan%3A%20{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}%0ACheck-In%3A%20{{ \Carbon\Carbon::parse($item->check_in)->format('d F Y') }}%0ACheck-Out%3A%20{{ \Carbon\Carbon::parse($item->check_out)->format('d F Y') }}%0A%0AMohon%20bantuannya%20untuk%20memproses%20pembatalan%20ini.%20Jika%20ada%20biaya%20atau%20ketentuan%20terkait%2C%20saya%20siap%20mengikutinya.%20Konfirmasi%20lebih%20lanjut%20bisa%20disampaikan%20ke%20{{ Auth::user()->no_telp }}.%0A%0ATerima%20kasih%21" 
+                                target="_blank" 
+                                class="contact-btn d-flex align-items-center"
+                                onclick="event.stopPropagation();">
+                                <i class="icon_phone" style="color: rgba(16, 20, 31, 0.308)"></i>
+                            </a>
                         </td>
                     </tr>
                 @empty

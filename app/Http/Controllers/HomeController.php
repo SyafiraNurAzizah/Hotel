@@ -41,9 +41,9 @@ class HomeController extends Controller
     {
         $user = User::where('id', $id)->firstOrFail();
 
-        $bookings = $user->bookings;
+        $bookings = $user->bookings()->orderBy('created_at', 'desc')->get();
 
-        $bookings_meetings = $user->bookings_meetings;
+        $bookings_meetings = $user->bookings_meetings()->orderBy('created_at', 'desc')->get();
 
         $meetings = Meetings::all();
 

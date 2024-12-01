@@ -10,7 +10,7 @@ class WeddingsController extends Controller
     public function index()
     {
         $weddings = Wedding::all();
-        return view('admin.wedding.index', compact('weddings'));
+        return view('wedding.index', compact('weddings'));
     }
 
     public function edit($id)
@@ -111,7 +111,7 @@ class WeddingsController extends Controller
         $weddings = wedding::find($id);
 
         if (!$weddings) {
-            return redirect()->route('admin.wedding.index')->with('error', 'Data tidak ditemukan');
+            return redirect()->route('wedding.index')->with('error', 'Data tidak ditemukan');
         }
 
         return view('admin.wedding.show', compact('weddings'));
