@@ -140,26 +140,18 @@
                         <td>{{ \Carbon\Carbon::parse($item->check_out)->format('d F Y') }}</td>
                         <td class="status-cell">
                             @if ($item->status == 'selesai')
-                                {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
-                                
                                 <span style="background: #E9F1FE; color: #1967D3; padding: 5px 15px; border-radius: 5px;">
                                     {{ ucwords(str_replace('_', ' ', $item->status)) }}
                                 </span>
                             @elseif($item->status == 'belum_selesai')
-                                {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
-
                                 <span style="background: #FDF6E4; color: #B06001; padding: 5px 15px; border-radius: 5px;">
                                     {{ ucwords(str_replace('_', ' ', $item->status)) }}
                                 </span>
                             @elseif($item->status == 'sedang_diproses')
-                                {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
-
                                 <span style="background: #E7F2EA; color: #137333; padding: 5px 15px; border-radius: 5px;">
                                     {{ ucwords(str_replace('_', ' ', $item->status)) }}
                                 </span>
                             @elseif($item->status == 'dibatalkan')
-                                {{-- {{ ucwords(str_replace('_', ' ', $item->status)) }} --}}
-                            
                                 <span style="background: #FCEAEA; color: #C5211F; padding: 5px 15px; border-radius: 5px;">
                                     {{ ucwords(str_replace('_', ' ', $item->status)) }}
                                 </span>
@@ -241,7 +233,7 @@
                         </td>
 
                         <td class="contact-cell">
-                            <a href="https://wa.me/628812721410?text=Halo%20Berlian%20Hotel%2C%0A%0ASaya%20ingin%20membatalkan%20reservasi%20saya%20dengan%20detail%20berikut%3A%0ANomor%20Reservasi%3A%20%23{{ substr($item->uuid, 0, 5) }}%0ANama%20Pemesan%3A%20{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}%0ACheck-In%3A%20{{ \Carbon\Carbon::parse($item->check_in)->format('d F Y') }}%0ACheck-Out%3A%20{{ \Carbon\Carbon::parse($item->check_out)->format('d F Y') }}%0A%0AMohon%20bantuannya%20untuk%20memproses%20pembatalan%20ini.%20Jika%20ada%20biaya%20atau%20ketentuan%20terkait%2C%20saya%20siap%20mengikutinya.%20Konfirmasi%20lebih%20lanjut%20bisa%20disampaikan%20ke%20{{ Auth::user()->no_telp }}.%0A%0ATerima%20kasih%21" 
+                            <a href="https://wa.me/628812721410?text=Halo%20Berlian%20Hotel%2C%0A%0ASaya%20ingin%20membatalkan%20meeting%20saya%20dengan%20detail%20berikut%3A%0ANomor%20Meeting%3A%20%23{{ substr($item->uuid, 0, 5) }}%0ANama%20Pemesan%3A%20{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}%0ATanggal%20Meeting%3A%20{{ \Carbon\Carbon::parse($item->date)->format('d F Y') }}%0AWaktu%20Meeting%3A%20{{ $item->start_time }}%20-%20{{ $item->end_time }}%0A%0AMohon%20bantuannya%20untuk%20memproses%20pembatalan%20meeting%20ini.%20Jika%20ada%20biaya%20atau%20ketentuan%20terkait%2C%20saya%20siap%20mengikutinya.%20Konfirmasi%20lebih%20lanjut%20bisa%20disampaikan%20ke%20{{ Auth::user()->no_telp }}.%0A%0ATerima%20kasih%21" 
                                 target="_blank" 
                                 class="contact-btn d-flex align-items-center"
                                 onclick="event.stopPropagation();">
