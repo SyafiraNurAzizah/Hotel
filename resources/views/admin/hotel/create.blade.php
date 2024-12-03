@@ -7,7 +7,11 @@
 
 @section('content')
 <div class="back-button">
-    <h3><a href="javascript:history.back()" class="btn btn-back">←</a></h3>
+    <h3>
+        <a href="javascript:history.back()" class="btn btn-back">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+    </h3>
 </div>
 
 

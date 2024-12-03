@@ -195,6 +195,7 @@
         
     </table>
 </div>
+@endsection
 
 @push('scripts')
 <script>
@@ -214,4 +215,3 @@ document.getElementById('searchInput').addEventListener('keyup', function() {
 });
 </script>
 @endpush
-@endsection

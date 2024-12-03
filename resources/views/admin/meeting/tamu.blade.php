@@ -7,7 +7,11 @@
 
 @section('content')
 <div class="back-button">
-    <h3><a href="javascript:history.back()" class="btn btn-back">←</a></h3>
+    <h3>
+        <a href="javascript:history.back()" class="btn btn-back">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+    </h3>
 </div>
 
 
@@ -62,23 +66,6 @@
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>
-    </div>
-</div>
-
-
-<div class="overlay" id="errorKetersediaanKamar">
-    <div class="bukti">
-        <span class="close" id="closeErrorKetersediaanKamarPopup"></span>
-        
-        <div id="ketersediaanKamar">
-            <div class="circle-1">
-                <div class="circle-2">
-                    <i class="bi bi-exclamation-circle"></i>
-                </div>
-            </div>
-            <h1>Kamar Tidak Tersedia</h1>
-            <p>Mohon maaf, kamar yang Anda pilih tidak tersedia untuk tanggal ini.</p>
-        </div>
     </div>
 </div>
 @endsection

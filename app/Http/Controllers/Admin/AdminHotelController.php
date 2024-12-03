@@ -34,74 +34,74 @@ class AdminHotelController extends Controller
     }
 
     public function AdminShow($id)
-{
-    // Mengambil data booking berdasarkan ID
-    $booking = BookingHotel::with(['hotel', 'user'])->findOrFail($id);
+    {
+        // Mengambil data booking berdasarkan ID
+        $booking = BookingHotel::with(['hotel', 'user'])->findOrFail($id);
 
-    return view('admin.hotel.show', compact('booking'));
-}
+        return view('admin.hotel.show', compact('booking'));
+    }
 
 
-public function AdminDestroy($id)
-        {
-            $booking = BookingHotel::find($id);
+    public function AdminDestroy($id)
+    {
+        $booking = BookingHotel::find($id);
 
-            if ($booking) {
-                $city = $booking->hotel->nama_cabang; // Ambil nama kota terkait hotel
-                $booking->delete();
+        if ($booking) {
+            $city = $booking->hotel->nama_cabang; // Ambil nama kota terkait hotel
+            $booking->delete();
 
-                // Pastikan untuk memberikan parameter city saat redirect
-                return redirect()->route('admin.hotel.index', ['city' => $city]);
-            }
-
-            return redirect()->route('admin.hotel.inde x', ['city' => 'default_city']);
+            // Pastikan untuk memberikan parameter city saat redirect
+            return redirect()->route('admin.hotel.index', ['city' => $city]);
         }
 
-
-public function edit($id)
-{
-    // Ambil data pemesanan hotel berdasarkan ID
-    $bookinghotel = BookingHotel::with(['hotel', 'user'])->findOrFail($id);
-
-    return view('admin.hotel.edit', compact('bookinghotel'));
-}
-public function update(Request $request, $id)
-{
-    // Find the booking hotel by ID
-    $bookinghotels = BookingHotel::findOrFail($id);
-
-    $city = $bookinghotels->hotel->city; // Adjust this according to your actual relationship
-
-    // Validate the data
-    $request->validate([
-        'status' => 'required|string',
-        'status_pembayaran' => 'required|string',
-        'jumlah_harga' => 'required|numeric',
-    ]);
-
-    // Update booking hotel data
-    $bookinghotels->status = $request->status;
-    $bookinghotels->status_pembayaran = $request->status_pembayaran;
-    $bookinghotels->jumlah_harga = $request->jumlah_harga;
-    $bookinghotels->save();
-
-    // Redirect with the 'city' parameter
-    $city = $bookinghotels->hotel->nama_cabang;
-
-    return redirect()->route('admin.hotel.index', ['city' => $city])->with('success', 'Data booking berhasil diperbarui!');
-}
-
-
-public function ShowReservation(Request $request)
-{
-    $query = $request->get('query');
-    if ($query) {
-        $hotels = Hotels::where('nama_cabang', 'like', '%' . $query . '%')->get();
-    } else {
-        $hotels = Hotels::all();
+        return redirect()->route('admin.hotel.inde x', ['city' => 'default_city']);
     }
-    return view('admin.hotel.index', compact('hotels', 'query'));
-}
+
+
+    public function edit($id)
+    {
+        // Ambil data pemesanan hotel berdasarkan ID
+        $bookinghotel = BookingHotel::with(['hotel', 'user'])->findOrFail($id);
+
+        return view('admin.hotel.edit', compact('bookinghotel'));
+    }
+    public function update(Request $request, $id)
+    {
+        // Find the booking hotel by ID
+        $bookinghotels = BookingHotel::findOrFail($id);
+
+        $city = $bookinghotels->hotel->city; // Adjust this according to your actual relationship
+
+        // Validate the data
+        $request->validate([
+            'status' => 'required|string',
+            'status_pembayaran' => 'required|string',
+            'jumlah_harga' => 'required|numeric',
+        ]);
+
+        // Update booking hotel data
+        $bookinghotels->status = $request->status;
+        $bookinghotels->status_pembayaran = $request->status_pembayaran;
+        $bookinghotels->jumlah_harga = $request->jumlah_harga;
+        $bookinghotels->save();
+
+        // Redirect with the 'city' parameter
+        $city = $bookinghotels->hotel->nama_cabang;
+
+        return redirect()->route('admin.hotel.index', ['city' => $city])->with('success', 'Data booking berhasil diperbarui!');
+    }
+
+
+    public function ShowReservation(Request $request)
+    {
+        $query = $request->get('query');
+        if ($query) {
+            $hotels = Hotels::where('nama_cabang', 'like', '%' . $query . '%')->get();
+        } else {
+            $hotels = Hotels::all();
+        }
+        return view('admin.hotel.index', compact('hotels', 'query'));
+    }
 
 
 }

@@ -345,11 +345,6 @@ class BookingHotelController extends Controller
         // Kirim data tersebut ke view 'admin.hotel.create'
         return view('admin.hotel.create', compact('users', 'hotels', 'room', 'tamu'));
     }
-
-
-
-
-
     
     public function store(Request $request)
     {
@@ -466,15 +461,6 @@ class BookingHotelController extends Controller
         }
     }
 
-
-
-
-
-
-
-
-
-
     public function show($id)
     {
         $booking = BookingHotel::findOrFail($id);
@@ -484,7 +470,7 @@ class BookingHotelController extends Controller
 
     public function daftarPengunjungAdmin()
     {
-        $tamu = Tamu::all(); // Ambil semua data tamu
+        $tamu = Tamu::orderBy('nama', 'asc')->get();
         return view('admin.hotel.list-tamu', compact('tamu'));
     }
     

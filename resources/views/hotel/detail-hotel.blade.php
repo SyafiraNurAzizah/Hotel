@@ -47,13 +47,6 @@
                                         @for ($i = $room->ratings->avg('rating') + 1; $i <= 5; $i++)
                                             <i class="icon_star-empty"></i>
                                         @endfor
-
-
-                                        {{-- <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star-half_alt"></i> --}}
                                     </div>
                                 </div>
                             </div>

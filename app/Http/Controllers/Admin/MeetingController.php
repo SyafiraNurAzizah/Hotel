@@ -111,7 +111,7 @@ class MeetingController extends Controller
 
     public function daftarPengunjungAdmin()
     {
-        $tamu = Tamu::all(); // Ambil semua data tamu
+        $tamu = Tamu::orderBy('nama', 'asc')->get();
         return view('admin.meeting.list-tamu', compact('tamu'));
     }
     
