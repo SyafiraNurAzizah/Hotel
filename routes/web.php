@@ -159,6 +159,11 @@ Route::get('/admin/hotel/pengunjung', [BookingHotelController::class, 'pengunjun
     ->middleware(['auth.custom', AdminAccessMiddleware::class])
     ->name('admin.hotel.tamu');
 
+ Route::get('/admin/hotel/{id}', [AdminHotelController::class, 'AdminShow'])
+    ->where('id', '[0-9]+') // hanya menerima angka untuk {id}
+    ->middleware(['auth.custom', AdminAccessMiddleware::class])
+    ->name('admin.hotel.show');
+
 Route::get('/admin/hotel/{city}', [AdminHotelController::class, 'showByCity'])
     ->middleware(['auth.custom', AdminAccessMiddleware::class])
     ->name('admin.hotel.index');
@@ -173,7 +178,7 @@ Route::group(['middleware' => ['auth.custom', AdminAccessMiddleware::class]], fu
     Route::get('/admin/hotel', [HomeController::class, 'adminHotel'])->name('admin.hotel.index');
 
     Route::get('/admin/hotel', [BookingHotelController::class, 'index'])->name('admin.hotel.index');
-    Route::get('/admin/hotel/{id}', [BookingHotelController::class, 'show'])->name('admin.hotel.show');
+    // Route::get('/admin/hotel/{id}', [BookingHotelController::class, 'show'])->name('admin.hotel.show');
     // Route::get('/admin/admin/create', [BookingHotelController::class, 'create'])->name('admin.hotel.create');
     Route::post('/admin/hotel/store', [BookingHotelController::class, 'store'])->name('admin.hotel.store')->middleware('auth');
     Route::get('/admin/hotel/{id}/edit', [BookingHotelController::class, 'edit'])->name('admin.hotel.edit');
@@ -187,7 +192,7 @@ Route::group(['middleware' => ['auth.custom', AdminAccessMiddleware::class]], fu
     // Route CRUD untuk Admin Hotel
     Route::get('/admin/hotel', [AdminHotelController::class, 'AdminIndex'])->name('admin.hotel.firstindex');            // Untuk daftar hotel
     // Route::get('/admin/hotel/{city}', [AdminHotelController::class, 'showByCity'])->name('admin.hotel.index');
-    Route::get('/admin/hotel/{id}', [AdminHotelController::class, 'AdminShow'])->name('admin.hotel.show');              // Untuk detail data
+    // Route::get('/admin/hotel/{id}', [AdminHotelController::class, 'AdminShow'])->name('admin.hotel.show');              // Untuk detail data
     Route::get('/admin/hotel/{id}/edit', [AdminHotelController::class, 'edit'])->name('admin.hotel.edit');              // Untuk form edit
     // Route::post('/admin/hotel/{id}/update', [AdminHotelController::class, 'update'])->name('admin.hotel.update');       
     Route::match(['put', 'post'], 'admin/hotel/{id}/update', [AdminHotelController::class, 'update'])->name('admin.hotel.update');

@@ -137,7 +137,7 @@
             @forelse($bookinghotel as $item)
                 <tr>
                     <td>{{ substr($item->uuid, 0, 5) }}</td>
-                    <td>{{ $item->user->firstname ?? 'N/A' }}</td>
+                    <td>{{ optional($item->user)->firstname ?? optional($item->tamu)->nama ?? 'N/A' }}</td>
                     <td>{{ $item->hotel->nama_cabang ?? 'N/A' }}</td>
                     <td>
                         @if($item->status == 'selesai')

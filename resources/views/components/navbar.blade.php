@@ -25,13 +25,13 @@
                                     <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}">Beranda</a></li>
                                     <li class="{{ Request::is('hotel') || Request::is('hotel/*') ? 'active' : '' }}"><a href="{{ url('hotel') }}">Hotel</a></li>
                                     <li class="{{ Request::is('meeting') || Request::is('meeting/*') ? 'active' : '' }}"><a href="{{ url('meeting') }}">Meetings</a></li>
-                                    <li class="{{ Request::is('wedding') ? 'active' : '' }}"><a href="{{ route('wedding.index') }}">Weedings</a></li>
+                                    <li class="{{ Request::is('wedding') ? 'active' : '' }}"><a href="{{ route('wedding.index') }}">Weddings</a></li>
                                     <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">Contact</a></li>
                                 @elseif (Auth::check() && Auth::user()->role == 'user')
                                     <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}">Beranda</a></li>
                                     <li class="{{ Request::is('hotel') || Request::is('hotel/*') ? 'active' : '' }}"><a href="{{ url('hotel') }}">Hotel</a></li>
                                     <li class="{{ Request::is('meeting') || Request::is('meeting/*') ? 'active' : '' }}"><a href="{{ url('meeting') }}">Meetings</a></li>
-                                    <li class="{{ Request::is('wedding') ? 'active' : '' }}"><a href="{{ route('wedding.index') }}">Weedings</a></li>
+                                    <li class="{{ Request::is('wedding') ? 'active' : '' }}"><a href="{{ route('wedding.index') }}">Weddings</a></li>
                                     <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">Contact</a></li>
                                 @elseif (Auth::check() && Auth::user()->role == 'admin')
                                     {{-- <li class="{{ Request::is('admin') ? 'active' : '' }}"><a href="{{ route('admin.index') }}">ADMIN</a></li> --}}
@@ -45,7 +45,7 @@
                                     </li>
                                     
                                     <li class="{{ Request::is('wedding') || Request::is('admin/wedding*') ? 'active' : '' }}">
-                                        <a href="{{ route('admin.wedding.index') }}">Weedings</a>
+                                        <a href="{{ route('admin.wedding.index') }}">Weddings</a>
                                     </li>
                                     
                                     <li class="{{ Request::is('review') || Request::is('admin/review*') ? 'active' : '' }}">

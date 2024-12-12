@@ -48,6 +48,6 @@ class BookingHotel extends Model
 
     public function tamu()
     {
-        return $this->belongsTo(User::class, 'tamu_id');
+        return $this->belongsTo(Tamu::class, 'tamu_id');
     }
 }

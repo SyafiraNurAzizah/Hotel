@@ -112,7 +112,12 @@
             <div class="content-row">
                 <i class="icon fas fa-user"></i>
                 <div class="label">Nama Pengguna</div>
-                <div class="value">{{ $booking->user->firstname }} {{ $booking->user->lastname }}</div>
+                <div class="value"><div class="value">
+                    {{ $booking->user 
+                        ? trim(optional($booking->user)->firstname . ' ' . optional($booking->user)->lastname) 
+                        : ($booking->tamu->nama ?? 'N/A') }}
+                                    </div>
+                </div>
             </div>
             <div class="content-row">
                 <i class="icon fas fa-users"></i>
