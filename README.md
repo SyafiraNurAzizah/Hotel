@@ -6,8 +6,8 @@
 
 <br>
 
-<h3>Teknologi yang Digunakan</h3>
-<p>Hotel dikembangkan menggunakan teknologi berikut:</p>
+<h3>Stack yang Digunakan</h3>
+<p>Hotel dikembangkan menggunakan:</p>
 <ul>
     <li><b>Framework</b>: Laravel (PHP)</li>
     <li><b>Database</b>: MySQL</li>
